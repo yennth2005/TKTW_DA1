@@ -5,6 +5,8 @@
 
 define('BASE_URL'       , 'http://localhost/TKTW_DA1/');
 define('BASE_URL_ADMIN' , 'http://localhost/TKTW_DA1/admin/');
+define('BASE_URL_ADMIN_VIEW' , 'http://localhost/TKTW_DA1/admin/views/');
+
 
 define('DB_HOST'    , 'localhost');
 define('DB_PORT'    , 3306);
