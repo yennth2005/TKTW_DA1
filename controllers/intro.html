@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="/mvc-oop-basic_stu/views/components/navbar.php">
+    <div class="one">
+        <?php foreach($list_cate as $cate){?>
+    <h2><?php echo $cate['name-cate']?></h2>
+    
+        <div class="grid">
+        <?php   
+            $i=0;
+            foreach(post_pro() as $array1){
+                if($cate['id-cate']==$array1['id-cate']){
+                    $i++;
+        ?>
+            <div class="card"> 
+                <a href="desc_product.php? id=<?php echo $array1['id-pro']?>" name="<?php echo $array1['name']?>">
+                    <div class="card-thumb"><img src="<?php echo $array1['img']?>" width="200px" height="200px" alt=""></div>
+                    <div class="card-name"><?php echo $array1['name']?></div>
+                </a>
+                <div class="card-price"><?php echo $array1['price'] ?></div>
+                <form action="cart.php" method="POST">
+                    <input type="hidden" name="product_id" value="<?php echo $array1['id-pro']; ?>">
+                    <input type="hidden" name="action" value="add">
+                    <button type="submit">
+                        <img src="img/giỏ.jpg" width="21px" alt="">
+                    </button>
+                </form>
+            </div>                
+        <?php }}?>
+        </div> 
+    
+    <hr>
+    <?php }?>
+    </div>  
+</body>
+</html>
