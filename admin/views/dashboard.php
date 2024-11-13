@@ -163,8 +163,8 @@
 		<div class="cr-sidebar-overlay"></div>
 		<div class="cr-sidebar" data-mode="light">
 			<div class="cr-sb-logo">
-				<a href="index.html" class="sb-full"><img src="<?= BASE_URL_ADMIN_VIEW?>assets/img/logo/full-logo.png" alt="logo"></a>
-				<a href="index.html" class="sb-collapse"><img src="<?= BASE_URL_ADMIN_VIEW?>assets/img/logo/collapse-logo.png" alt="logo"></a>
+				<a href="index.html" class="sb-full"><img src="<?= BASE_URL_ADMIN_VIEW?>assets/img/logo/logoDA1-removebg-preview.png" alt="logo"></a>
+				<a href="index.html" class="sb-collapse"><img src="<?= BASE_URL_ADMIN_VIEW?>assets/img/logo/logo2-removebg-preview.png" alt="logo"></a>
 			</div>
 			<div class="cr-sb-wrapper">
 				<div class="cr-sb-content">
@@ -178,7 +178,7 @@
 									class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
 								<li><a href="product-list.html" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-								<li><a href="add-product.html" class="cr-page-link drop"><i
+								<li><a href="index.php?act=list-user" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
 								<li><a href="add-category.html" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i>Add Category</a></li>
