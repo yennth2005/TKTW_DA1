@@ -1,14 +1,8 @@
-<!-----------------------------------------------------------------------------------
-    Item Name: Carrot - Multipurpose eCommerce HTML Template.
-    Author: ashishmaraviya
-    Version: 2.1
-    Copyright 2024
------------------------------------------------------------------------------------>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 
-<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:02 GMT -->
+<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:49 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -26,7 +20,6 @@
     <!-- Icon CSS -->
     <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
     <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/remixicon.css" rel="stylesheet">
-    <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Vendor CSS -->
     <link href='<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/datatables.bootstrap5.min.css' rel='stylesheet'>
@@ -43,7 +36,7 @@
 </head>
 
 <body>
-    <main class="wrapper sb-default ecom">
+    <main class="wrapper sb-default">
         <!-- Loader -->
         <div id="cr-overlay">
             <div class="loader"></div>
@@ -191,7 +184,7 @@
                                             class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
                                 <li><a href="product-list.html" class="cr-page-link drop"><i
                                             class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-                                <li><a href="index.php?act=list-user" class="cr-page-link drop"><i
+                                <li><a href="add-product.html" class="cr-page-link drop"><i
                                             class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
                                 <li><a href="add-category.html" class="cr-page-link drop"><i
                                             class="ri-checkbox-blank-circle-line"></i>Add Category</a></li>
@@ -570,78 +563,84 @@
                 </div>
             </div>
         </div>
-
-        <!-- Main content -->
+        <!-- main content -->
         <div class="cr-main-content">
             <div class="container-fluid">
+                <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Product List</h5>
+                        <h5>Add Product</h5>
                         <ul>
                             <li><a href="index.html">Carrot</a></li>
-                            <li>Product List</li>
+                            <li>Add Product</li>
                         </ul>
                     </div>
                 </div>
-                <!-- Page title & breadcrumb -->
-                <!-- <form action="?act=search-user">
-        <input type="text" name="search">
-        <input type="submit" name="btn_search" value="Search">
-    </form> -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="cr-card card-default product-list">
-                            <div class="cr-card-content ">
-                                <div class="table-responsive">
-                                <center><a href="?act=create-user" class="btn btn-warning">Create User</a></center>
-
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <td>User_ID</td>
-                                            <td>Fullname</td>
-                                            <td>Username</td>
-                                            <td>Password</td>
-                                            <td>Avatar</td>
-                                            <td>Địa chỉ</td>
-                                            <td>Phone</td>
-                                            <td>Vai trò</td>
-                                            <td>Thao tác</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                            foreach($customers as $customer){
-                                            ?>
-											<tr>
+                        <div class="cr-card card-default">
+                            <div class="cr-card-content">
+                                <div class="row cr-product-uploads">
+                                    <div class="col-lg-4 mb-991">
+                                        <div class="cr-vendor-img-upload">
+                                            <div class="cr-vendor-main-img">
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="cr-vendor-upload-detail">
+                                            <form class="row g-3" action="?act=post-create-user" method="POST"
+                                            enctype="multipart/form-data">
+                                            <div class="avatar-upload">
+                                                    <div class="avatar-edit">
+                                                        <input type='file' id="product_main" class="cr-image-upload"
+                                                            accept=".png, .jpg, .jpeg" name="image">
+                                                        <label><i class="ri-pencil-line"></i></label>
+                                                    </div>
+                                                    <div class="avatar-preview cr-preview">
+                                                        <div class="imagePreview cr-div-preview">
+                                                            <img class="cr-image-preview"
+                                                                src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/product/preview.jpg"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="col-md-6">
+													<label for="name" class="form-label">Họ và tên</label>
+													<input type="text" class="form-control slug-title" name="name">
+												</div>
+												<div class="col-md-6">
+													<label for="email" class="form-label">Email</label>
+													<input type="text" class="form-control slug-title" name="email">
+												</div>
+												<div class="col-md-6">
+													<label for="password" class="form-label">Mật khẩu</label>
+													<input type="password" class="form-control slug-title" name="password">
+												</div>
+                                                <div class="col-md-6">
+													<label class="form-label">Vai trò</label>
+													<select class="form-control form-select" name="role">
+															<option value="0">User</option>
+															<option value="1">Admin</option>
+													</select>
+												</div>
+												<div class="col-md-6">
+													<label for="address" class="form-label">Địa chỉ</label>
+													<input type="text" class="form-control slug-title" name="address">
+												</div>
+												<div class="col-md-12">
+													<label for="phone" class="form-label">Số điện thoại</label>
+													<input type="text" class="form-control slug-title" name="phone">
+												</div>
 												
-												<td><?= $customer['customer_id']?></td>
-												<td><?= $customer['name']?></td>
-												<td><?= $customer['email']?></td>
-												<td><?= $customer['password']?></td>
-												<td><img src="<?= $customer['image']?>" width="200px" alt=""></td>
-												<td><?= $customer['address']?></td>
-												<td><?= $customer['phone']?></td>
-												<td><?= ($customer['role']) == 1 ? '<span class="badge text-bg-success">admin</span>' :'<span class="badge text-bg-danger">customer</span>';?></td>
-												<td>
-													<div class="d-flex justify-content-center">
-														<button type="button"
-															class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-															data-bs-toggle="dropdown" aria-haspopup="true"
-															aria-expanded="false" data-display="static">
-															<span class="sr-only"><i
-																	class="ri-settings-3-line"></i></span>
-														</button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="index.php?act=update-user&id=<?= $customer['customer_id']?>">Edit</a>
-															<a class="dropdown-item" href="index.php?act=delete-user&id=<?= $customer['customer_id']?>">Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-                                                <?php }?>
-                                        </tbody>
-                                    </table>
+                                                <div class="col-md-12">
+                                                    <button type="submit" name="btn_submit" class="btn cr-btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -742,6 +741,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
@@ -751,9 +751,9 @@
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/simplebar.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/apexcharts.min.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap-tagsinput.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/owl.carousel.min.js"></script>
     <!-- Data Tables -->
     <script src='<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery.datatables.min.js'></script>
     <script src='<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/datatables.bootstrap5.min.js'></script>
@@ -767,10 +767,9 @@
 
     <!-- Main Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
-    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/data/ecommerce-chart-data.js"></script>
 </body>
 
 
-<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:34 GMT -->
+<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:50 GMT -->
 
 </html>
