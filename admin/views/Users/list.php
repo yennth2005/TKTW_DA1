@@ -374,13 +374,13 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <td>User_ID</td>
-                                                <td>Fullname</td>
-                                                <td>Username</td>
-                                                <td>Password</td>
-                                                <td>Avatar</td>
+                                                <td>Mã khách hàng</td>
+                                                <td>Họ và tên</td>
+                                                <td>Email</td>
+                                                <td>Mật khẩu</td>
+                                                <td>Ảnh</td>
                                                 <td>Địa chỉ</td>
-                                                <td>Phone</td>
+                                                <td>Số điện thoại</td>
                                                 <td>Vai trò</td>
                                                 <td>Thao tác</td>
                                             </tr>
