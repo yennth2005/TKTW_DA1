@@ -18,7 +18,7 @@
                         <li><a href="index.php?act=list-user" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
                         <li><a href="index.php?act=create-user" class="cr-page-link drop"><i
-                                    class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
+                                    class="ri-checkbox-blank-circle-line"></i>Add User</a></li>
                         <li><a href="index.php?act=list-category" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Category List</a></li>
                         <li><a href="index.php?act=add-category" class="cr-page-link drop"><i
