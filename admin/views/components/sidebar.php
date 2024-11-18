@@ -16,15 +16,15 @@
                         <li><a href="<?= BASE_URL_ADMIN ?>" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
                         <li><a href="index.php?act=list-user" class="cr-page-link drop"><i
-                                    class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
+                                    class="ri-checkbox-blank-circle-line"></i>Người dùng</a></li>
                         <li><a href="index.php?act=create-user" class="cr-page-link drop"><i
-                                    class="ri-checkbox-blank-circle-line"></i>Add User</a></li>
+                                    class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
                         <li><a href="index.php?act=list-category" class="cr-page-link drop"><i
-                                    class="ri-checkbox-blank-circle-line"></i>Category List</a></li>
-                        <li><a href="index.php?act=add-category" class="cr-page-link drop"><i
-                                    class="ri-checkbox-blank-circle-line"></i>Add Sub Category</a></li>
-                        <li><a href="order-list.html" class="cr-page-link drop"><i
-                                    class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
+                                    class="ri-checkbox-blank-circle-line"></i>Danh mục</a></li>
+                        <li><a href="index.php?act=list-order" class="cr-page-link drop"><i
+                                    class="ri-checkbox-blank-circle-line"></i>Đơn hàng</a></li>
+                        <li><a href="index.php?act=list-comment" class="cr-page-link drop"><i
+                                    class="ri-checkbox-blank-circle-line"></i>Bình luận</a></li>
                         <li class="cr-sb-item sb-subdrop-item">
                             <a href="javascript:void(0)" class="cr-sub-drop-toggle">
                                 <i class="ri-shield-user-line"></i><span class="condense">Vendor<i

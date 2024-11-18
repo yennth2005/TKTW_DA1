@@ -4,10 +4,17 @@ require_once '../commons/function.php';
 require_once './models/Customer.php';
 require_once './models/Product.php';
 require_once './models/Category.php';
-require './controllers/CustomerController.php';
-require './controllers/DashboardController.php';
-require './controllers/ProductController.php';
-require './controllers/CategoryController.php';
+require_once './models/Order.php';
+require_once './models/State.php';
+require_once './models/Comment.php';
+require_once './controllers/CustomerController.php';
+require_once './controllers/DashboardController.php';
+require_once './controllers/ProductController.php';
+require_once './controllers/CategoryController.php';
+require_once './controllers/OrderController.php';
+require_once './controllers/StateController.php';
+require_once './controllers/CommentController.php';
+
 // Router đơn giản
 $controller = new CustomerController();
 
@@ -32,5 +39,23 @@ match ($act) {
     'post-category' => (new CategoryController())->postCategory(),
     'update-category' => (new CategoryController())->updateCategory(),
     'post-update-category' => (new CategoryController())->postUpdateCategory(),
+
+    //quản lý đơn hàng
+    'list-order'=>(new OrderController())->showAllOrder(),
+    'update-order'=>(new OrderController())->showDetailOrder(),
+    'update-state'=>(new OrderController())->updateOrder(),
+
+    //trạng thái đơn hàng
+    'list-state'=>(new StateController())->list(),
+    'delete-state' =>(new StateController())->delete(),
+    'create-state' =>(new StateController())->create(),
+    'post-create-state' =>(new StateController())->postCreate(),
+    'edit-state' =>(new StateController())->update(),
+    'post-update-state' =>(new StateController())->postUpdate(),
+
+    //quản lý bình luận
+    'list-comment'=>(new CommentController())->list(),
+    'view-detail' =>(new CommentController())->viewDetail(),
+    'delete-comment'=>(new CommentController())->delete(),
 }
     ?>

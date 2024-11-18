@@ -368,50 +368,11 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="cr-vendor-upload-detail">
-                                            <form class="row g-3" action="?act=post-create-user" method="POST"
-                                                enctype="multipart/form-data">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
-                                                        <label><i class="ri-pencil-line"></i></label>
-                                                    </div>
-                                                    <div class="avatar-preview cr-preview">
-                                                        <div class="imagePreview cr-div-preview">
-                                                            <img class="cr-image-preview"
-                                                                src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/product/preview.jpg"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <form class="row g-3" action="?act=post-create-state" method="POST">
+                                                
                                                 <div class="col-md-6">
-                                                    <label for="name" class="form-label">Họ và tên</label>
-                                                    <input type="text" class="form-control slug-title" id="" name="name">
-                                                    
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="text" class="form-control slug-title" name="email">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="password" class="form-label">Mật khẩu</label>
-                                                    <input type="password" class="form-control slug-title"
-                                                        name="password">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Vai trò</label>
-                                                    <select class="form-control form-select" name="role">
-                                                        <option value="0">User</option>
-                                                        <option value="1">Admin</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="address" class="form-label">Địa chỉ</label>
-                                                    <input type="text" class="form-control slug-title" name="address">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label for="phone" class="form-label">Số điện thoại</label>
-                                                    <input type="text" class="form-control slug-title" name="phone">
+                                                    <label for="name" class="form-label">Tên trạng thái</label>
+                                                    <input type="text" class="form-control slug-title" name="name">
                                                 </div>
 
                                                 <div class="col-md-12">
