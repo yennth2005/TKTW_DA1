@@ -11,22 +11,20 @@ function showArr($data)
 }
 
 // Kết nối CSDL qua PDO
-function connect_db(){
-    $hostname=DB_HOST;
-    $dbname=DB_NAME;
+function connect_db() { 
+    $hostname = DB_HOST;
+    $dbname = DB_NAME;
     
-    try{
-        $cont=new PDO("mysql:host=$hostname;dbname=$dbname",DB_USERNAME,DB_PASSWORD);
-        $cont->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        // $cont->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+    try {
+        $cont = new PDO("mysql:host=$hostname;dbname=$dbname", DB_USERNAME, DB_PASSWORD);
+        $cont->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $cont;
-    }catch(PDOException $e){
-        $e->getMessage();
-        echo "connect-faile";
-        // debug("connect-fail".$e->getMessage());
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+        return null; // Explicitly return null if connection fails
     }
-
 }
+
 // function post_pro(){
 //     global $list_pro;
 //     if(isset($_POST['btn_search'])){

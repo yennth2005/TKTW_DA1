@@ -574,10 +574,10 @@
                 <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Edit Product</h5>
+                        <h5>Add Product</h5>
                         <ul>
                             <li><a href="index.html">Carrot</a></li>
-                            <li>Edit Product</li>
+                            <li>Add Product</li>
                         </ul>
                     </div>
                 </div>
@@ -589,30 +589,24 @@
                                     <div class="col-lg-4 mb-991">
                                         <div class="cr-vendor-img-upload">
                                             <div class="cr-vendor-main-img">
-          
-    <!-- trang add và edt đều theo form -->
-     <!--  add là method="post" -->
-     <form action="index.php?act=post-update-pro&id=<?= $idProduct['product_id']?>" method="POST" enctype="multipart/form-data">
-     <label for="">Tên sản phẩm </label>
-<input type="text" name="name" id="" value="<?= $idProduct['product_name']?>">
-<label for="">Giá sản phẩm</label>
-<input type="text" name="price" id=""value="<?= $idProduct['price'] ?>">
-<label for="">Hình ảnh sản phẩm</label>
-<input type="file" name="images" id="" >
-<img src="<?= $idProduct['images'] ?>" alt="" width="150px">
-<!-- thêm chỗ này -->
- <img src="" alt="" srcset="">
-<label for="">Mô tả sản phẩm </label>
-<input type="text" name="description" id=""value="<?= $idProduct['description']?>">
-<label for="">Lượt xem </label>
-<input type="text" name="view" id="" value="<?= $idProduct['view']?>">
-<label for="">Danh mục </label>
-<input type="text" name="category_id" id="" value="<?= $idProduct['category_id']?>">
-<label for="">Số lượng</label>
-<input type="text" name="stock_quantity" id="" value="<?= $idProduct['stock_quantity']?>">
-<input type="submit" name="btn-submit" id="Gửi">
-     </form>
-                              </div>
+                                            <form action="?act=post-create-pro" method="post" enctype="multipart/form-data">
+        <label for="">Tên sản phẩm </label>
+        <input type="text" name="product_name" id=""> <br><br>
+        <label for="">Giá sản phẩm</label>
+        <input type="text" name="price" id=""><br><br>
+        <label for="">Hình ảnh sản phẩm</label>
+        <input type="file" name="images" id=""> <br><br>
+        <label for="">Mô tả sản phẩm </label>
+        <input type="text" name="description" id=""><br><br>
+        <label for="">Lượt xem </label>
+        <input type="text" name="view" id=""><br><br>
+        <label for="">Danh mục </label>
+        <input type="text" name="category_id" id=""><br><br>
+        <label for="">Số lượng</label>
+        <input type="text" name="stock_quantity" id=""><br><br>
+        <button type="submit" name="btn-submit">Gửi</button>
+    </form>
+                                            </div>
                                         </div>
                                     </div>
                                     

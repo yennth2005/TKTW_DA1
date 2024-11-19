@@ -10,12 +10,13 @@ class CustomerController {
         $customers=$this->customerModel->all();
         // debug($customers);
         //B2: gọi views listUser
-        include './views/Users/list.php';
+        require_once './views/Users/list.php';
     }
     public function postCreate() {
         $uploadFile="../uploads/Customer/".$_FILES['image']['name'];
         if(move_uploaded_file($_FILES['image']['tmp_name'],$uploadFile))echo "<h1>Uploaded</h1>";
         $images=$uploadFile;
+        //
         $name=$_POST['name'];
         $email=$_POST['email'];
         $password=$_POST['password'];

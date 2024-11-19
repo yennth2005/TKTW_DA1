@@ -4,35 +4,37 @@ class ProductAdmin{
     public function __construct(){
         $this->cnt=connect_db();
     }
-    public function showCate(){
-        $sql1="SELECT * FROM `categories`";
-        $stmt1=$this->cnt->query($sql1);
-        $data1=$stmt1->fetchAll();
-        return $data1;
-    }
-    public function show(){
-        $sql="SELECT * FROM `products`";
-        $stmt=$this->cnt->query($sql);
-        $data=$stmt->fetchAll();
-        return $data;
-    }
-    public function add($proName,$avatar,$proPrice,$amount,$idCate,$nameCate,$description){
-        $sql="INSERT INTO `products` ( `product_name`, `product_img`, `product_price`,`amount`, `cate_id`, `name_cate`,`description`) VALUES ('$proName', '$avatar', '$proPrice','$amount', '$idCate', '$nameCate', '$description')";
-        $this->cnt->exec($sql);
-    }
-    public function find($id){
-        $sql="SELECT * FROM `products` WHERE `products`.`product_id`={$id}";
-        $stmt=$this->cnt->query($sql);
+  
+
+    // Hiển thị danh sách - Lấy tất cả dữ liệu
+ public function getAllProduct() {
+    $sql = "SELECT * FROM `products`";
+    $stmt=$this->cnt->query($sql);
+    $data=$stmt->fetchAll();
+    return $data;
+}
+// Thêm sản phẩm - Thực hiện lệnh insert
+public function insertProduct($product_name, $price, $images, $description, $view, $category_id, $stock_quantity) {
+    $sql = "INSERT INTO `products` (`product_name`,`price`, `images`, `description`, `view`, `category_id`, `stock_quantity`) VALUES ('$product_name','$price','$images', '$description', '$view', '$category_id', '$stock_quantity')";
+    $this->cnt->exec($sql);
+}    
+
+    // Sửa sản phẩm - Lấy dữ liệu theo product_id
+public function getIdProduct($product_id) {
+    $sql = "SELECT * FROM `products` WHERE product_id = '$product_id'";
+    $stmt=$this->cnt->query($sql);
         $data=$stmt->fetch();
         return $data;
-    }
-    public function edit($id,$proName,$avatar,$proPrice,$amount,$idCate,$nameCate,$description){
-        $sql="UPDATE `products` SET `product_name` = '$proName', `product_img` = '$avatar', `product_price` = '$proPrice',`amount`='$amount' ,`cate_id` = '$idCate', `name_cate` = '$nameCate',`description`='$description' WHERE `products`.`product_id` = {$id}";
+}
+    // Cập nhật sản phẩm
+    public function updateProduct($product_name,$price, $images, $description, $view, $category_id, $stock_quantity, $product_id) {
+        $sql = "UPDATE `products` SET `product_name` = '$product_name',`price`='$price' ,`images` = '$images', `description` = '$description', `view` = '$view', `category_id` = '$category_id', `stock_quantity` = '$stock_quantity' WHERE `product_id` = '$product_id'";
         $this->cnt->exec($sql);
     }
-    public function delete($id){
-        $sql="DELETE FROM `products` WHERE `products`.`product_id`={$id}";
-        $this->cnt->exec($sql);
-    }
+    // Xóa sản phẩm
+public function deleteProduct($product_id) {
+    $sql = "DELETE FROM `products` WHERE product_id = '$product_id'";
+    $this->cnt->exec($sql);
+}
 }
 ?>

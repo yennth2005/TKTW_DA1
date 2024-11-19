@@ -1,36 +1,50 @@
 <?php
 require_once '../commons/env.php';
 require_once '../commons/function.php';
-require_once './models/User.php';
+require_once './models/Customer.php';
 require_once './models/Product.php';
-require './controllers/UserController.php';
+
+
+require './controllers/CustomerController.php';
 require './controllers/DashboardController.php';
 require './controllers/ProductController.php';
+
+
 // Router đơn giản
-$controller = new UserController();
+$controller = new CustomerController();
+$product= new ProductControllerAdmin();
 
 $act = $_GET['act'] ?? '/';
 //$_GET['action'] : 'index';
 match($act){
     '/'=>(new DashboardController())->dashboard(),
     //Quản lí user
-    'list-user'=>(new UserController())->list(),
-    'delete-user'=>(new UserController())->delete(),
-    'create-user'=>(new UserController())->create(),
-    'post-create-user'=>(new UserController())->postCreate(),
-    'update-user'=>(new UserController())->update(),
-    'post-update-user'=>(new UserController())->postUpdate(),
-    // 'search-user'=>(new UserController())->searchUser(),
-    // 'find-user'=>(new UserController())->findUser(),
-    // 'post-find'=>(new UserController())->postFind(),
+    'list-user'=>(new CustomerController())->list(),
+    'delete-user'=>(new CustomerController())->delete(),
+    'create-user'=>(new CustomerController())->create(),
+    'post-create-user'=>(new CustomerController())->postCreate(),
+    'update-user'=>(new CustomerController())->update(),
+    'post-update-user'=>(new CustomerController())->postUpdate(),
+    // 'search-user'=>(new CustomerController())->searchUser(),
+    // 'find-user'=>(new CustomerController())->findUser(),
+    // 'post-find'=>(new CustomerController())->postFind(),
 
-    'list-pro'=>(new ProductControllerAdmin())->showPro(),
-    'create-pro'=>(new ProductControllerAdmin())->create(),
-    'post-create-pro'=>(new ProductControllerAdmin())->postCreate(),
-    'update-pro'=>(new ProductControllerAdmin())->update(),
-    'post-update-pro'=>(new ProductControllerAdmin())->postPro(),
+
+    
+// quản lí sản phẩm 
+    'list-pro'=>(new ProductControllerAdmin())->listProduct(),
+    'create-pro'=>(new ProductControllerAdmin())->add(),
+    'post-create-pro'=>(new ProductControllerAdmin())->addProduct(),
+    'update-pro'=>(new ProductControllerAdmin())->edit(),
+    'post-update-pro'=>(new ProductControllerAdmin())->editProduct(),
     'delete-pro'=>(new ProductControllerAdmin())->delete(),
 
+    'addProduct' => $product->listProduct(),
+
     //Quản lí danh mục
+
+    //login
+    
+
 }
 ?>

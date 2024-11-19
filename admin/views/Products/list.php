@@ -1,13 +1,14 @@
+<!-----------------------------------------------------------------------------------
+    Item Name: Carrot - Multipurpose eCommerce HTML Template.
+    Author: ashishmaraviya
+    Version: 2.1
+    Copyright 2024
+----------------------------------------------------------------------------------->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 
- 
-    <!-- sang copy sang edit rồi chuyển qua controllers -->
-
-
-
-<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:49 GMT -->
+<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:02 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -25,6 +26,7 @@
     <!-- Icon CSS -->
     <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
     <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/remixicon.css" rel="stylesheet">
+    <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Vendor CSS -->
     <link href='<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/datatables.bootstrap5.min.css' rel='stylesheet'>
@@ -41,7 +43,7 @@
 </head>
 
 <body>
-    <main class="wrapper sb-default">
+    <main class="wrapper sb-default ecom">
         <!-- Loader -->
         <div id="cr-overlay">
             <div class="loader"></div>
@@ -189,7 +191,7 @@
                                             class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
                                 <li><a href="product-list.html" class="cr-page-link drop"><i
                                             class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
-                                <li><a href="add-product.html" class="cr-page-link drop"><i
+                                <li><a href="index.php?act=list-user" class="cr-page-link drop"><i
                                             class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
                                 <li><a href="add-category.html" class="cr-page-link drop"><i
                                             class="ri-checkbox-blank-circle-line"></i>Add Category</a></li>
@@ -568,54 +570,72 @@
                 </div>
             </div>
         </div>
-        <!-- main content -->
+
+        <!-- Main content -->
         <div class="cr-main-content">
             <div class="container-fluid">
-                <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Edit Product</h5>
+                        <h5>Product List</h5>
                         <ul>
                             <li><a href="index.html">Carrot</a></li>
-                            <li>Edit Product</li>
+                            <li>Product List</li>
                         </ul>
                     </div>
                 </div>
+                <!-- Page title & breadcrumb -->
+                <!-- <form action="?act=search-user">
+        <input type="text" name="search">
+        <input type="submit" name="btn_search" value="Search">
+    </form> -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="cr-card card-default">
-                            <div class="cr-card-content">
-                                <div class="row cr-product-uploads">
-                                    <div class="col-lg-4 mb-991">
-                                        <div class="cr-vendor-img-upload">
-                                            <div class="cr-vendor-main-img">
-          
-    <!-- trang add và edt đều theo form -->
-     <!--  add là method="post" -->
-     <form action="index.php?act=post-update-pro&id=<?= $idProduct['product_id']?>" method="POST" enctype="multipart/form-data">
-     <label for="">Tên sản phẩm </label>
-<input type="text" name="name" id="" value="<?= $idProduct['product_name']?>">
-<label for="">Giá sản phẩm</label>
-<input type="text" name="price" id=""value="<?= $idProduct['price'] ?>">
-<label for="">Hình ảnh sản phẩm</label>
-<input type="file" name="images" id="" >
-<img src="<?= $idProduct['images'] ?>" alt="" width="150px">
-<!-- thêm chỗ này -->
- <img src="" alt="" srcset="">
-<label for="">Mô tả sản phẩm </label>
-<input type="text" name="description" id=""value="<?= $idProduct['description']?>">
-<label for="">Lượt xem </label>
-<input type="text" name="view" id="" value="<?= $idProduct['view']?>">
-<label for="">Danh mục </label>
-<input type="text" name="category_id" id="" value="<?= $idProduct['category_id']?>">
-<label for="">Số lượng</label>
-<input type="text" name="stock_quantity" id="" value="<?= $idProduct['stock_quantity']?>">
-<input type="submit" name="btn-submit" id="Gửi">
-     </form>
-                              </div>
-                                        </div>
-                                    </div>
-                                    
+                        <div class="cr-card card-default product-list">
+                            <div class="cr-card-content ">
+                                <div class="table-responsive">
+                               
+
+                                <table class="table table-striped">
+        <thead>
+        <a href="index.php?act=create-pro"><button class="btn btn-success">Thêm sản phẩm</button></a>
+        <tr>
+            <td>ID</td>
+            <td>Tên sản phẩm</td>
+            <td>Giá sản phẩm</td>
+            <td>Hình ảnh sản phẩm</td>
+            <td>Mô tả</td>
+            <td>Lượt xem</td>
+            <td>Danh mục</td>
+            <td>Số lượng</td>
+            <td>Hành động</td>
+        </tr> 
+        </thead>
+     <tbody>
+     <?php 
+        // Lặp qua danh sách sản phẩm và hiển thị
+        foreach ($idProducts as $product) {
+        ?>
+        <tr>
+            <td><?= $product['product_id']?></td> <!-- Thay product_id nếu cần -->
+            <td><?= $product['product_name']?></td>
+            <td><?= $product['price'] ?></td>
+            <td><img src="<?= $product['images']?>" width="100" alt="Image"></td>
+            <td><?= $product['description'] ?></td> 
+            <td><?= $product['view'] ?></td>
+            <td><?= $product['category_id'] ?></td> 
+            <td><?= $product['stock_quantity'] ?></td> 
+
+            <td>
+                <!-- Sửa và Xóa sản phẩm -->
+                <a href="index.php?act=update-pro&id=<?= $product['product_id']?>"><button class="btn btn-warning">Sửa</button></a>
+                <a href="index.php?act=delete-pro&id=<?= $product['product_id']?>"><button class="btn btn-danger">Xóa</button></a>
+
+            </td>
+        </tr>
+        <?php  }?>
+     </tbody>
+        
+    </table>
                                 </div>
                             </div>
                         </div>
@@ -716,7 +736,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
@@ -726,9 +745,9 @@
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/simplebar.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/apexcharts.min.js"></script>
-    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap-tagsinput.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/owl.carousel.min.js"></script>
     <!-- Data Tables -->
     <script src='<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery.datatables.min.js'></script>
     <script src='<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/datatables.bootstrap5.min.js'></script>
@@ -742,10 +761,10 @@
 
     <!-- Main Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/data/ecommerce-chart-data.js"></script>
 </body>
 
 
-<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:50 GMT -->
+<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:34 GMT -->
 
 </html>
-

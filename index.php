@@ -4,12 +4,15 @@
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './models/Product.php';
+require_once './models/loginModel.php';
 // Require toàn bộ file Models: phải connect db trước
 
 // Require toàn bộ file Controllers
 require_once "./controllers/calculatorController.php";
 require_once "./controllers/HomeController.php";
-require_once "./controllers/ProductController.php";
+
+require_once "./controllers/loginController.php";
+
 require_once "./controllers/CategoryController.php";
 //Xây dựng Route
 $act = $_GET['act'] ?? '/'; //nếu không có act thì nó trả về cái / có nghĩa là trống
@@ -20,10 +23,8 @@ $act = $_GET['act'] ?? '/'; //nếu không có act thì nó trả về cái / c�
 
 match ($act) {
     // Trang chủ
-    '/' => (new ProductController())->showList(),
-    'category-pro'=>(new ProductController())->category(),
-    'desc-pro' => (new ProductController())->desc(),
-    // 'search-pro'=> (new ProductController())->search(),
-    // 'calculator'=>(new CalculatorController())->process(),
-    // '/' =>$homeController->home(),
+    '/' => (new HomeController())->home(),
+
+    //Login
+    // 'login' =>(new LoginController()) ->login(),
 };

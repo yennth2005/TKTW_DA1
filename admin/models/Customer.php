@@ -9,9 +9,13 @@ class Customer{
     public function all(){
 
             $sql="SELECT * FROM `customer`";
-            $stmt=$this->conn->query($sql);
-            $data=$stmt->fetchAll();
-        return $data;
+            $stmt= $this->conn->query($sql);
+            $data=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+
+        //     $stmt=$this->conn->query($sql);
+        //     $data=$stmt->fetchAll();
+        // return $data;
     }
     public function insert($name,$email,$password,$image,$address,$phone,$role){
         $sql= "INSERT INTO `customer` (`name`,`email`, `password`,`image`,`address`,`phone`, `role`) VALUES ('{$name}','{$email}', '{$password}','{$image}', '{$address}', '{$phone}', '{$role}')" ;
