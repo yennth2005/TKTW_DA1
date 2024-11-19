@@ -32,7 +32,7 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-    <link id="validate-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/validate.css" rel="stylesheet">
+    <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/validate.css" rel="stylesheet">
 
 </head>
 
@@ -369,70 +369,62 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="cr-vendor-upload-detail">
-                                            <form class="row g-3" action="?act=post-create-user" method="POST"
-                                                enctype="multipart/form-data" onclick="return createUser()">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
-                                                        <label><i class="ri-pencil-line"></i></label>
-                                                        
-                                                    </div>
-                                                    <div class="avatar-preview cr-preview">
-                                                        <div class="imagePreview cr-div-preview">
-                                                            <img class="cr-image-preview"
-                                                                src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/product/preview.jpg"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <form action="?act=post-create-pro" method="post"
+                                                enctype="multipart/form-data" onsubmit="return createProduct()">
                                                 <div class="col-md-6">
-                                                    <label for="name" class="form-label">Họ và tên</label>
-                                                    <input type="text" class="form-control slug-title" id="name" name="name">
+                                                    <label for="" class="form-label">Tên sản phẩm </label>
+                                                    <input type="text" class="form-control slug-title"
+                                                        name="product_name" id="name">
                                                     <span id="error_name"></span>
-                                                    <?php if(isset($error_name)){
-                                                    echo "<span>".$error_name."</span>";}    
-                                                    ?>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="text" class="form-control slug-title" id="email" name="email">
-                                                    <span id="error_email"></span>
+                                                    <label for="" class="form-label">Giá sản phẩm</label>
+                                                    <input type="text" class="form-control slug-title" name="price"
+                                                        id="price">
+                                                    <span id="error_price"></span>
+
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="" class="form-label">Hình ảnh sản phẩm</label> <br>
+                                                    <input type="file" name="images" id="image">
+                                                    <span id="error_image"></span>
 
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="password" class="form-label">Mật khẩu</label>
-                                                    <input type="password" class="form-control slug-title"
-                                                        name="password" id="password">
-                                                    <span id="error_password"></span>
+                                                    <label for="" class="form-label">Mô tả sản phẩm </label>
+                                                    <input type="text" class="form-control slug-title"
+                                                        name="description" id="desc">
+                                                    <span id="error_desc"></span>
 
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label">Vai trò</label>
-                                                    <select class="form-control form-select" id="role" name="role">
-                                                        <option value="0">User</option>
-                                                        <option value="1">Admin</option>
+                                                    <label for="" class="form-label">Lượt xem </label>
+                                                    <input type="text" class="form-control slug-title" name="view"
+                                                        id="view">
+                                                    <span id="error_view"></span>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Danh mục sản phẩm</label>
+                                                    <select class="form-control form-select" name="category_id"
+                                                        id="category_id">
+                                                        <option value="">-- Chọn danh mục --</option>
+                                                        <?php foreach ($cates as $cate) { ?>
+                                                            <option value="<?= $cate['category_id'] ?>">
+                                                                <?= $cate['category_name'] ?></option>
+                                                        <?php } ?>
                                                     </select>
-                                                    <span id="error_role"></span>
-
+                                                    <span id="error_cate"></span>
                                                 </div>
+
                                                 <div class="col-md-6">
-                                                    <label for="address" class="form-label">Địa chỉ</label>
-                                                    <input type="text" class="form-control slug-title" id="address" name="address">
-                                                    <span id="error_address"></span>
+                                                    <label for="" class="form-label">Số lượng</label>
+                                                    <input type="text" class="form-control slug-title"
+                                                        name="stock_quantity" id="amount">
+                                                    <span id="error_amount"></span>
 
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label for="phone" class="form-label">Số điện thoại</label>
-                                                    <input type="text" class="form-control slug-title" id="phone" name="phone">
-                                                    <span id="error_phone"></span>
-
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <button name="btn_submit"
-                                                        class="btn cr-btn-primary" onclick="createUser()">Submit</button>
-                                                </div>
+                                                <button onclick="createProduct()" name="btn-submit">Gửi</button>
                                             </form>
                                         </div>
                                     </div>
@@ -443,6 +435,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Footer -->
         <?php include './views/components/footer.php' ?>
 

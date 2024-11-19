@@ -26,17 +26,33 @@
                                     <i class="ri-user-3-line"></i>
                                     <span>Account</span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="register.html">Register</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="login.html">Login</a>
-                                    </li>
-                                </ul>
+                                <?php if (isset($_SESSION['user'])) { ?>
+                                    <ul class="dropdown-menu">
+                                        <?php if($_SESSION['user']['role']==1){?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= BASE_URL_ADMIN?>?act=home">Admin</a>
+                                        </li>
+                                        <?php }?>
+                                        <li>
+                                            <a class="dropdown-item" href="checkout.html">Setting</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=logout">Logout</a>
+                                        </li>
+                                    </ul>
+                                <?php } else { ?>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=register">Register</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=login">Login</a>
+                                        </li>
+                                    </ul>
+                                <?php } ?>
                             </li>
                         </ul>
                         <a href="wishlist.html" class="cr-right-bar-item">
@@ -286,7 +302,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="register.html">Register</a>
+                                        <a class="dropdown-item" href="index.php?act=register">Register</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="checkout.html">Checkout</a>

@@ -1,6 +1,8 @@
 <?php
+session_start();
 require_once '../commons/env.php';
 require_once '../commons/function.php';
+check_login();  
 require_once './models/Customer.php';
 require_once './models/Product.php';
 require_once './models/Category.php';
@@ -21,7 +23,7 @@ $controller = new CustomerController();
 $act = $_GET['act'] ?? '/';
 //$_GET['action'] : 'index';
 match ($act) {
-    '/' => (new DashboardController())->dashboard(),
+    'home' => (new DashboardController())->dashboard(),
     //Quản lí user
     'list-user' => (new CustomerController())->list(),
     'delete-user' => (new CustomerController())->delete(),
@@ -32,6 +34,16 @@ match ($act) {
     // 'search-user'=>(new CustomerController())->searchUser(),
     // 'find-user'=>(new CustomerController())->findUser(),
     // 'post-find'=>(new CustomerController())->postFind(),
+
+    //quản lý sản phẩm
+    'list-pro'=>(new ProductControllerAdmin())->listProduct(),
+    'create-pro'=>(new ProductControllerAdmin())->add(),
+    'post-create-pro'=>(new ProductControllerAdmin())->addProduct(),
+    'update-pro'=>(new ProductControllerAdmin())->edit(),
+    'post-update-pro'=>(new ProductControllerAdmin())->editProduct(),
+    'delete-pro'=>(new ProductControllerAdmin())->delete(),
+    'addProduct' => $product->listProduct(),
+
     //Quản lí danh mục
     'list-category' => (new CategoryController())->showAllCategory(),
     'delete-category' => (new CategoryController())->delete(),

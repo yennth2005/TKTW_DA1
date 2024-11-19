@@ -49,3 +49,15 @@ function postuser(){
         }return $result;
     }return $users;
 }
+function check_login(){
+    if(isset($_SESSION['user'])){
+        if($_SESSION['user']['role'] == 1){
+            return;
+        }
+        if(stripos($_SERVER["REQUEST_URI"], '/admin/')==FALSE){
+            return;
+        }
+    }
+    header("location: ".BASE_URL."?act=login");
+    exit();
+}

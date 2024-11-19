@@ -1,9 +1,10 @@
 <?php 
-
+session_start();
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './models/Product.php';
+require_once './models/Home.php';
 // Require toàn bộ file Models: phải connect db trước
 
 // Require toàn bộ file Controllers
@@ -20,10 +21,11 @@ $act = $_GET['act'] ?? '/'; //nếu không có act thì nó trả về cái / c�
 
 match ($act) {
     // Trang chủ
-    '/' => (new ProductController())->showList(),
-    'category-pro'=>(new ProductController())->category(),
-    'desc-pro' => (new ProductController())->desc(),
-    // 'search-pro'=> (new ProductController())->search(),
-    // 'calculator'=>(new CalculatorController())->process(),
-    // '/' =>$homeController->home(),
+    '/' => (new HomeController())->home(),
+    //tài khoản
+    'register' => (new HomeController())->register(),
+    'post-info-register' =>(new HomeController())->postInfo(),
+    'login'=>(new HomeController())->login(),
+    'check-login'=>(new HomeController())->postLogin(),
+    'logout'=>(new HomeController())->logout(),
 };
