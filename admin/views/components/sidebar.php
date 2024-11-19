@@ -17,7 +17,7 @@
                                     class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
                         <li><a href="index.php?act=list-user" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Người dùng</a></li>
-                        <li><a href="index.php?act=create-user" class="cr-page-link drop"><i
+                        <li><a href="index.php?act=list-pro" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Sản phẩm</a></li>
                         <li><a href="index.php?act=list-category" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Danh mục</a></li>

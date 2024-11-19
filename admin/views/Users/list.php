@@ -409,12 +409,39 @@
                                                                 <span class="sr-only"><i
                                                                         class="ri-settings-3-line"></i></span>
                                                             </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item"
+                                                            
+                                                                <a class="btn btn-outline-warning"
                                                                     href="index.php?act=update-user&id=<?= $customer['customer_id'] ?>">Edit</a>
-                                                                <a class="dropdown-item"
-                                                                    href="index.php?act=delete-user&id=<?= $customer['customer_id'] ?>">Delete</a>
-                                                            </div>
+                                                                    <!-- delete -->
+                                                                <button type="button" class="btn btn-outline-danger"
+                                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                    Xoá
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h1 class="modal-title fs-5"
+                                                                                    id="exampleModalLabel">Modal title</h1>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                Bạn chắc chắn chứ?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-bs-dismiss="modal">Close</button>
+                                                                                    <a href="index.php?act=delete-user&id=<?= $customer['customer_id'] ?>">Delete</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                         </div>
                                                     </td>
                                                 </tr>

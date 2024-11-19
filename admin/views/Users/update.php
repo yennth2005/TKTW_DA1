@@ -369,11 +369,11 @@
                                         <div class="cr-vendor-upload-detail">
                                             <form class="row g-3"
                                                 action="?act=post-update-user&id=<?= $customer['customer_id'] ?>"
-                                                method="POST" enctype="multipart/form-data">
+                                                method="POST" enctype="multipart/form-data" onsubmit="updateUser()" name="myForm">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
+                                                        <input type='file' class="cr-image-upload"
+                                                            accept=".png, .jpg, .jpeg" name="image" id="image">
                                                         <input type="hidden" name="imageUploaded">
                                                         <label><i class="ri-pencil-line"></i></label>
                                                     </div>
@@ -387,22 +387,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="name" class="form-label">Họ và tên</label>
-                                                    <input type="text" class="form-control slug-title" name="name"
+                                                    <input type="text" class="form-control slug-title" id="name" name="name"
                                                         value="<?= $customer['name'] ?>">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="text" class="form-control slug-title" name="email"
+                                                    <input type="text" class="form-control slug-title" id="name" name="email"
                                                         value="<?= $customer['email'] ?>">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="password" class="form-label">Mật khẩu</label>
                                                     <input type="password" class="form-control slug-title"
-                                                        name="password">
+                                                        name="password" id="password">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Vai trò</label>
-                                                    <select class="form-control form-select" name="role">
+                                                    <select class="form-control form-select" name="role" id="role">
                                                         <option value="0" <?= $customer['role'] === 0 ? 'selected' : '' ?>>User
                                                         </option>
                                                         <option value="1" <?= $customer['role'] === 1 ? 'selected' : '' ?>>
@@ -411,12 +411,12 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="address" class="form-label">Địa chỉ</label>
-                                                    <input type="text" class="form-control slug-title" name="address"
+                                                    <input type="text" class="form-control slug-title" id="address" name="address"
                                                         value="<?= $customer['address'] ?>">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label for="phone" class="form-label">Số điện thoại</label>
-                                                    <input type="text" class="form-control slug-title" name="phone"
+                                                    <input type="text" class="form-control slug-title" id="phone" name="phone"
                                                         value="<?= $customer['phone'] ?>">
                                                 </div>
 

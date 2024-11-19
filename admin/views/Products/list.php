@@ -1,8 +1,14 @@
+<!-----------------------------------------------------------------------------------
+    Item Name: Carrot - Multipurpose eCommerce HTML Template.
+    Author: ashishmaraviya
+    Version: 2.1
+    Copyright 2024
+----------------------------------------------------------------------------------->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 
-<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:49 GMT -->
+<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:02 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -20,6 +26,7 @@
     <!-- Icon CSS -->
     <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
     <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/remixicon.css" rel="stylesheet">
+    <link href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Vendor CSS -->
     <link href='<?= BASE_URL_ADMIN_VIEW ?>assets/css/vendor/datatables.bootstrap5.min.css' rel='stylesheet'>
@@ -32,12 +39,11 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-    <link id="validate-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/validate.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <main class="wrapper sb-default">
+    <main class="wrapper sb-default ecom">
         <!-- Loader -->
         <div id="cr-overlay">
             <div class="loader"></div>
@@ -45,6 +51,7 @@
 
         <!-- Header -->
         <?php include './views/components/header.php' ?>
+
 
         <!-- sidebar -->
         <?php include './views/components/sidebar.php' ?>
@@ -341,101 +348,72 @@
                 </div>
             </div>
         </div>
-        <!-- main content -->
+
+        <!-- Main content -->
         <div class="cr-main-content">
             <div class="container-fluid">
-                <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Add Product</h5>
+                        <h5>Product List</h5>
                         <ul>
                             <li><a href="index.html">Carrot</a></li>
-                            <li>Add Product</li>
+                            <li>Product List</li>
                         </ul>
                     </div>
                 </div>
+                <!-- Page title & breadcrumb -->
+                <!-- <form action="?act=search-user">
+        <input type="text" name="search">
+        <input type="submit" name="btn_search" value="Search">
+    </form> -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="cr-card card-default">
-                            <div class="cr-card-content">
-                                <div class="row cr-product-uploads">
-                                    <div class="col-lg-4 mb-991">
-                                        <div class="cr-vendor-img-upload">
-                                            <div class="cr-vendor-main-img">
+                        <div class="cr-card card-default product-list">
+                            <div class="cr-card-content ">
+                                <div class="table-responsive">
+                               
 
+                                <table class="table table-striped">
+        <thead>
+        <a href="index.php?act=create-pro"><button class="btn btn-success">Thêm sản phẩm</button></a>
+        <tr>
+            <td>ID</td>
+            <td>Tên sản phẩm</td>
+            <td>Giá sản phẩm</td>
+            <td>Hình ảnh sản phẩm</td>
+            <td>Mô tả</td>
+            <td>Lượt xem</td>
+            <td>Danh mục</td>
+            <td>Số lượng</td>
+            <td>Hành động</td>
+        </tr> 
+        </thead>
+     <tbody>
+     <?php 
+        // Lặp qua danh sách sản phẩm và hiển thị
+        foreach ($idProducts as $product) {
+        ?>
+        <tr>
+            <td><?= $product['product_id']?></td> <!-- Thay product_id nếu cần -->
+            <td><?= $product['product_name']?></td>
+            <td><?= $product['price'] ?></td>
+            <td><img src="<?= $product['images']?>" width="100" alt="Image"></td>
+            <td><?= $product['description'] ?></td> 
+            <td><?= $product['view'] ?></td>
+            <td><?= $product['category_id'] ?></td> 
+            <td><?= $product['stock_quantity'] ?></td> 
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="cr-vendor-upload-detail">
-                                            <form class="row g-3" action="?act=post-create-user" method="POST"
-                                                enctype="multipart/form-data" onclick="return createUser()">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
-                                                        <label><i class="ri-pencil-line"></i></label>
-                                                        
-                                                    </div>
-                                                    <div class="avatar-preview cr-preview">
-                                                        <div class="imagePreview cr-div-preview">
-                                                            <img class="cr-image-preview"
-                                                                src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/product/preview.jpg"
-                                                                alt="edit">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="name" class="form-label">Họ và tên</label>
-                                                    <input type="text" class="form-control slug-title" id="name" name="name">
-                                                    <span id="error_name"></span>
-                                                    <?php if(isset($error_name)){
-                                                    echo "<span>".$error_name."</span>";}    
-                                                    ?>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="text" class="form-control slug-title" id="email" name="email">
-                                                    <span id="error_email"></span>
+            <td>
+                <!-- Sửa và Xóa sản phẩm -->
+                <a href="index.php?act=update-pro&id=<?= $product['product_id']?>"><button class="btn btn-warning">Sửa</button></a>
+                <a href="index.php?act=delete-pro&id=<?= $product['product_id']?>"><button class="btn btn-danger">Xóa</button></a>
 
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="password" class="form-label">Mật khẩu</label>
-                                                    <input type="password" class="form-control slug-title"
-                                                        name="password" id="password">
-                                                    <span id="error_password"></span>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Vai trò</label>
-                                                    <select class="form-control form-select" id="role" name="role">
-                                                        <option value="0">User</option>
-                                                        <option value="1">Admin</option>
-                                                    </select>
-                                                    <span id="error_role"></span>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="address" class="form-label">Địa chỉ</label>
-                                                    <input type="text" class="form-control slug-title" id="address" name="address">
-                                                    <span id="error_address"></span>
-
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label for="phone" class="form-label">Số điện thoại</label>
-                                                    <input type="text" class="form-control slug-title" id="phone" name="phone">
-                                                    <span id="error_phone"></span>
-
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <button name="btn_submit"
-                                                        class="btn cr-btn-primary" onclick="createUser()">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+            </td>
+        </tr>
+        <?php  }?>
+     </tbody>
+        
+    </table>
                                 </div>
                             </div>
                         </div>
@@ -443,6 +421,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Footer -->
         <?php include './views/components/footer.php' ?>
 
@@ -529,7 +508,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
@@ -539,9 +517,9 @@
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/simplebar.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/apexcharts.min.js"></script>
-    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap-tagsinput.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/owl.carousel.min.js"></script>
     <!-- Data Tables -->
     <script src='<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery.datatables.min.js'></script>
     <script src='<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/datatables.bootstrap5.min.js'></script>
@@ -555,10 +533,10 @@
 
     <!-- Main Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
-    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/validate.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/data/ecommerce-chart-data.js"></script>
 </body>
 
 
-<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:50 GMT -->
+<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:34 GMT -->
 
 </html>

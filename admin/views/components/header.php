@@ -107,7 +107,7 @@
 								<li><a href="team-update.html">Settings</a></li>
 							</ul>
 							<ul class="border-top">
-								<li><a href="signin.html"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
+								<li><a href="<?= BASE_URL?>?act=login"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
 							</ul>
 						</div>
 					</div>
