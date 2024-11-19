@@ -23,6 +23,9 @@ class CustomerController {
         $address= $_POST['address'];
         $phone= $_POST['phone'];
         $role=$_POST['role'];
+        if($name == ''){
+            $error_name = "Không được bỏ trống";
+        }
         $this->customerModel->insert($name,$email,$password,$image,$address,$phone,$role);
         // $customers=$this->customerModel->all();
         header('Location: ?act=list-user');
@@ -60,6 +63,7 @@ class CustomerController {
         }else{
             $image=$customer['image'];
         };
+        
         $this->customerModel->edit($id, $name, $email, $password, $image, $address, $phone, $role);
         header("Location:".BASE_URL_ADMIN."?act=list-user");
     }

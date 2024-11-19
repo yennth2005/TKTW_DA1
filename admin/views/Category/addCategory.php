@@ -347,7 +347,7 @@
                     <div class="cr-breadcrumb">
                         <h5>Add Category</h5>
                         <ul>
-                            <li><a href="index.html">Carrot</a></li>
+                            <li><a href="index.php">Carrot</a></li>
                             <li>Add Category</li>
                         </ul>
                     </div>
@@ -370,7 +370,7 @@
                                     <div class="col-lg-8">
                                         <div class="cr-vendor-upload-detail">
                                             <form class="row g-3" action="?act=post-category" method="POST"
-                                                enctype="multipart/form-data">
+                                                enctype="multipart/form-data" onsubmit="createCate()" name="myForm">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
                                                         <input type='file' id="product_main" class="cr-image-upload"
@@ -382,7 +382,7 @@
                                                 <div class="col-md-9">
                                                     <label for="category_name" class="form-label">Tên danh mục</label>
                                                     <input type="text" class="form-control slug-title"
-                                                        name="category_name">
+                                                        name="category_name" id="name">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button type="submit" name="btn_submit"
