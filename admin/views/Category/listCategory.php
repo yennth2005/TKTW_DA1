@@ -352,10 +352,10 @@
             <div class="container-fluid">
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Product Category</h5>
+                        <h5>Danh mục sản phẩm</h5>
                         <ul>
-                            <li><a href="index.html">Carrot</a></li>
-                            <li>Product Category</li>
+                            <li><a href="?act=home">Carrot</a></li>
+                            <li>Danh mục sản phẩm</li>
                         </ul>
                     </div>
                 </div>
@@ -375,8 +375,9 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <td>User_ID</td>
-                                                <td>Fullname</td>
+                                                <td>Mã danh mục</td>
+                                                <td>Tên danh mục</td>
+                                                <td>Hình ảnh</td>
                                                 <td>Thao tác</td>
                                             </tr>
                                         </thead>
@@ -388,6 +389,7 @@
 
                                                     <td><?= $category['category_id'] ?></td>
                                                     <td><?= $category['category_name'] ?></td>
+                                                    <td><img src="<?= $category['image'] ?>" width="100px" alt=""></td>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
                                                             <button type="button"

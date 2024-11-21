@@ -154,7 +154,7 @@
             <div class="col-12">
                 <div class="cr-register" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
                     <div class="form-logo">
-                        <img src="assets/img/logo/logo.png" alt="logo">
+                        <img width="71px" src="<?= BASE_URL ?>views/assets/img/logo/logo2-removebg-preview.png" alt="logo">
                     </div>
                     <form class="cr-content-form" method="POST" action="index.php?act=post-info-register" onsubmit="return register()">
                         <div class="row">
@@ -191,7 +191,7 @@
                             </div>
                             <input type="hidden" name="role">
                             <div class="cr-register-buttons">
-                                <button onclick="register" name="btn-register" class="cr-button">Signup</button>
+                                <button onclick="register" name="btn-register" class="cr-button">Đăng ký</button>
                                 <a href="?act=login" class="link">
                                     Have an account?
                                 </a>

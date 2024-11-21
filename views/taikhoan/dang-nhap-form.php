@@ -167,33 +167,35 @@
 
 
                         ?>
-                        <form class="cr-content-form" method="POST" action="<?= BASE_URL ?>?act=check-login">
+                        <form class="cr-content-form" method="POST" action="<?= BASE_URL ?>?act=check-login" onsubmit="return login()">
                             <div class="row">
 
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" name="email" placeholder="" id="email"
                                             class="cr-form-control">
+                                            <span id="error_email"></span>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Mật khẩu</label>
                                         <input type="password" name="password" id="password" placeholder=" "
                                             class="cr-form-control">
+                                            <span id="error_password"></span>
                                     </div>
                                 </div>
                                 <div class="remember">
                                     <span class="form-group custom">
-                                        <input type="checkbox" id="html">
+                                        <input name="remember" type="checkbox" id="html">
                                         <label for="html">Remember Me</label>
                                     </span>
-                                    <a class="link" href="forgot.html">Forgot Password?</a>
+                                    <a class="link" href="<?= BASE_URL?>?act=forgot-password">Forgot Password?</a>
                                 </div><br>
                                 <div class="login-buttons">
-                                    <button type="submit" class="cr-button">Login</button>
-                                    <a href="register.html" class="link">
+                                    <button type="submit" onclick="login()" class="cr-button">Login</button>
+                                    <a href="<?= BASE_URL?>?act=register" class="link">
                                         Signup?
                                     </a>
                                 </div>
