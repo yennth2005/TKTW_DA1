@@ -13,7 +13,7 @@
                         <i class="ri-dashboard-3-line"></i><span class="condense">Dashboard<i
                                 class="drop-arrow ri-arrow-down-s-line"></i></span></a>
                     <ul class="cr-sb-drop condense">
-                        <li><a href="<?= BASE_URL_ADMIN ?>" class="cr-page-link drop"><i
+                        <li><a href="<?= BASE_URL_ADMIN ?>?act=home" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
                         <li><a href="index.php?act=list-user" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Người dùng</a></li>

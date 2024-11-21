@@ -47,12 +47,20 @@ class CustomerController {
         $id=$_GET['id'];
         $name=$_POST['name'];
         $email=$_POST['email'];
-        $password=$_POST['password'];
+        
         $address= $_POST['address'];
         $phone= $_POST['phone'];
         $role=$_POST['role'];
         $customer= $this->customerModel->find($id);
         $image=$customer['image'];
+        $password=$customer['password'];
+        if(isset($_POST['password'])&&$_POST['password']){
+            $pass=$_POST['password'];
+            $password=$pass;
+        }else{
+        $password=$customer['password'];
+
+        }
         if(isset($_FILES['image'])){
             if($_FILES['name']['error']==UPLOAD_ERR_OK){
                 $uploadFile = "../uploads/Customer/".$_FILES['image']['name'];

@@ -28,4 +28,5 @@ match ($act) {
     'login'=>(new HomeController())->login(),
     'check-login'=>(new HomeController())->postLogin(),
     'logout'=>(new HomeController())->logout(),
+    
 };

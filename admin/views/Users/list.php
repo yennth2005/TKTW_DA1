@@ -377,7 +377,6 @@
                                                 <td>Mã khách hàng</td>
                                                 <td>Họ và tên</td>
                                                 <td>Email</td>
-                                                <td>Mật khẩu</td>
                                                 <td>Ảnh</td>
                                                 <td>Địa chỉ</td>
                                                 <td>Số điện thoại</td>
@@ -394,54 +393,47 @@
                                                     <td><?= $customer['customer_id'] ?></td>
                                                     <td><?= $customer['name'] ?></td>
                                                     <td><?= $customer['email'] ?></td>
-                                                    <td><?= $customer['password'] ?></td>
                                                     <td><img src="<?= $customer['image'] ?>" width="200px" alt=""></td>
                                                     <td><?= $customer['address'] ?></td>
                                                     <td><?= $customer['phone'] ?></td>
-                                                    <td><?= ($customer['role']) == 1 ? '<span class="badge text-bg-success">admin</span>' : '<span class="badge text-bg-danger">customer</span>'; ?>
+                                                    <td><?= ($customer['role']) == 1 ? '<span class="badge text-bg-success">admin</span>' : '<span class="badge text-bg-info">customer</span>'; ?>
                                                     </td>
                                                     <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            
-                                                                <a class="btn btn-outline-warning"
-                                                                    href="index.php?act=update-user&id=<?= $customer['customer_id'] ?>">Edit</a>
-                                                                    <!-- delete -->
-                                                                <button type="button" class="btn btn-outline-danger"
-                                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                    Xoá
-                                                                </button>
 
-                                                                <!-- Modal -->
-                                                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h1 class="modal-title fs-5"
-                                                                                    id="exampleModalLabel">Modal title</h1>
-                                                                                <button type="button" class="btn-close"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                Bạn chắc chắn chứ?
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button"
-                                                                                    class="btn btn-secondary"
-                                                                                    data-bs-dismiss="modal">Close</button>
-                                                                                    <a href="index.php?act=delete-user&id=<?= $customer['customer_id'] ?>">Delete</a>
-                                                                            </div>
-                                                                        </div>
+                                                        <a class="btn btn-outline-warning mr-1"
+                                                            href="index.php?act=update-user&id=<?= $customer['customer_id'] ?>">Sửa</a>
+
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal<?= $customer['customer_id'] ?>"
+                                                            data-id="<?= $customer['customer_id'] ?>">
+                                                            Xóa
+                                                        </button>
+
+                                                        <div class="modal fade"
+                                                            id="deleteModal<?= $customer['customer_id'] ?>"
+                                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="staticBackdropLabel">Xác
+                                                                            nhận xóa</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn có chắc chắn muốn xóa khách hàng
+                                                                        <?= $customer['name'] ?>?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Hủy</button>
+                                                                        <a href="index.php?act=delete-user&id=<?= $customer['customer_id'] ?>"
+                                                                            class="btn btn-danger">Xóa</a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>

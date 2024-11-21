@@ -163,5 +163,28 @@ function createProduct() {
     return isValid; // Chỉ gửi form nếu tất cả hợp lệ
 }
 
+function createCate() {
+    let isValid = true;
+
+    // Lấy giá trị từ input
+    const categoryName = document.getElementById('name').value.trim();
+    const errorCate = document.getElementById('error_cate');
+
+    // Xóa thông báo lỗi trước đó
+    errorCate.textContent = '';
+
+    // Kiểm tra tên danh mục
+    if (categoryName === '') {
+        errorCate.textContent = 'Tên danh mục không được để trống.';
+        isValid = false;
+    } else if (categoryName.length < 3) {
+        errorCate.textContent = 'Tên danh mục phải có ít nhất 3 ký tự.';
+        isValid = false;
+    }
+
+    return isValid; // Trả về true nếu hợp lệ, false nếu không
+}
+
+
 
 

@@ -373,39 +373,32 @@
                                                     <label for="" class="form-label">Tên sản phẩm </label>
                                                     <input type="text" class="form-control slug-title" name="name" id=""
                                                         value="<?= $idProduct['product_name'] ?>">
-                                                    <label for="" class="form-label">Giá sản phẩm</label>
-                                                    <input type="text" class="form-control slug-title" name="price"
-                                                        id="" value="<?= $idProduct['price'] ?>">
                                                     <label for="" class="form-label">Hình ảnh sản phẩm</label>
                                                     <input type="file" name="images" id="">
-                                                    <img src="<?= $idProduct['images'] ?>" alt="" width="150px">
                                                     <!-- thêm chỗ này -->
                                                     <img src="" alt="" srcset="">
                                                     <label for="" class="form-label">Mô tả sản phẩm </label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="description" id=""
-                                                        value="<?= $idProduct['description'] ?>">
-                                                    <label for="" class="form-label">Lượt xem </label>
-                                                    <input type="text" class="form-control slug-title" name="view" id=""
-                                                        value="<?= $idProduct['view'] ?>">
+                                                    <textarea style="height: 300px" class="form-control slug-title"
+                                                        name="description"
+                                                        id=""><?= $idProduct['description'] ?></textarea>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Danh mục sản phẩm</label>
                                                         <select class="form-control form-select" name="category_id"
                                                             id="category_id">
                                                             <option value="">-- Chọn danh mục --</option>
                                                             <?php foreach ($cates as $cate) { ?>
-                                                                <option <?= ($idProduct['category_id']== $cate['category_id']) ? 'selected' : '' ?> value="<?= $cate['category_id'] ?>">
+                                                                <option <?= ($idProduct['category_id'] == $cate['category_id']) ? 'selected' : '' ?>
+                                                                    value="<?= $cate['category_id'] ?>">
                                                                     <?= $cate['category_name'] ?>
                                                                 </option>
                                                             <?php } ?>
                                                         </select>
                                                         <span id="error_cate"></span>
                                                     </div>
-                                                    <label for="" class="form-label">Số lượng</label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="stock_quantity" id=""
-                                                        value="<?= $idProduct['stock_quantity'] ?>">
-                                                    <input type="submit" name="btn-submit" id="Gửi">
+                                                    <div class="col-md-12">
+                                                        <button name="btn_submit"
+                                                            class="btn cr-btn-primary">Submit</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

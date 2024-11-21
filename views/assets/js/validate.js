@@ -54,3 +54,9 @@ function register() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
+
+  function login(){
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    
+  }

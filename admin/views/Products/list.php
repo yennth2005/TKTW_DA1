@@ -371,49 +371,54 @@
                         <div class="cr-card card-default product-list">
                             <div class="cr-card-content ">
                                 <div class="table-responsive">
-                               
 
-                                <table class="table table-striped">
-        <thead>
-        <a href="index.php?act=create-pro"><button class="btn btn-success">Thêm sản phẩm</button></a>
-        <tr>
-            <td>ID</td>
-            <td>Tên sản phẩm</td>
-            <td>Giá sản phẩm</td>
-            <td>Hình ảnh sản phẩm</td>
-            <td>Mô tả</td>
-            <td>Lượt xem</td>
-            <td>Danh mục</td>
-            <td>Số lượng</td>
-            <td>Hành động</td>
-        </tr> 
-        </thead>
-     <tbody>
-     <?php 
-        // Lặp qua danh sách sản phẩm và hiển thị
-        foreach ($idProducts as $product) {
-        ?>
-        <tr>
-            <td><?= $product['product_id']?></td> <!-- Thay product_id nếu cần -->
-            <td><?= $product['product_name']?></td>
-            <td><?= $product['price'] ?></td>
-            <td><img src="<?= $product['images']?>" width="100" alt="Image"></td>
-            <td><?= $product['description'] ?></td> 
-            <td><?= $product['view'] ?></td>
-            <td><?= $product['category_id'] ?></td> 
-            <td><?= $product['stock_quantity'] ?></td> 
 
-            <td>
-                <!-- Sửa và Xóa sản phẩm -->
-                <a href="index.php?act=update-pro&id=<?= $product['product_id']?>"><button class="btn btn-warning">Sửa</button></a>
-                <a href="index.php?act=delete-pro&id=<?= $product['product_id']?>"><button class="btn btn-danger">Xóa</button></a>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <a href="index.php?act=create-pro"><button class="btn btn-success">Thêm sản
+                                                    phẩm</button></a>
+                                            <tr>
+                                                <td>ID</td>
+                                                <td>Tên sản phẩm</td>
+                                                <td>Mô tả</td>
+                                                <td>Lượt xem</td>
+                                                <td>Danh mục</td>
+                                                <td>Số lượng biến thể</td>
+                                                <td>Số lượng hàng hoá</td>
+                                                <td>Hành động</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // Lặp qua danh sách sản phẩm và hiển thị
+                                            foreach ($idProducts as $product) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= $product['product_id'] ?></td> <!-- Thay product_id nếu cần -->
+                                                    <td><a
+                                                            href="?act=add-variants&product-id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a>
+                                                    </td>
+                                                    <td><?= $product['description'] ?></td>
+                                                    <td><?= $product['view'] ?></td>
+                                                    <td><?= $product['category_id'] ?></td>
+                                                    <td>null</td>
+                                                    <td>null</td>
+                                                    <td>
+                                                        <!-- Sửa và Xóa sản phẩm -->
+                                                        <a
+                                                            href="index.php?act=view-detail-pro&id=<?= $product['product_id'] ?>"><button
+                                                                class="btn btn-outline-info">Xem chi tiết</button></a>
+                                                        <a href="index.php?act=update-pro&id=<?= $product['product_id'] ?>"><button
+                                                                class="btn btn-outline-warning">Sửa</button></a>
+                                                        <a href="index.php?act=delete-pro&id=<?= $product['product_id'] ?>"><button
+                                                                class="btn btn-outline-danger">Xóa</button></a>
 
-            </td>
-        </tr>
-        <?php  }?>
-     </tbody>
-        
-    </table>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+
+                                    </table>
                                 </div>
                             </div>
                         </div>

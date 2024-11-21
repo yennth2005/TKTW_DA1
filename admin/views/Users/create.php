@@ -373,10 +373,10 @@
                                                 enctype="multipart/form-data" onclick="return createUser()">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
+                                                        <input type='file' class="cr-image-upload"
+                                                            accept=".png, .jpg, .jpeg" name="image" id="image">
+                                                        <input type="hidden" name="imageUploaded">
                                                         <label><i class="ri-pencil-line"></i></label>
-                                                        
                                                     </div>
                                                     <div class="avatar-preview cr-preview">
                                                         <div class="imagePreview cr-div-preview">
