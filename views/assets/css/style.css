@@ -4142,7 +4142,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
   z-index: 0;
 }
 .cr-side-categories img {
-  min-width: 100%;
+  width: 100%;
   height: 100%;
 }
 .cr-side-categories .categories-contain {

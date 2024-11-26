@@ -32,6 +32,7 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
+    <link id="validate-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/validate.css" rel="stylesheet">
 
 </head>
 
@@ -380,13 +381,14 @@
 
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <label for="category_name" class="form-label">Tên danh mục</label>
+                                                    <label for="" class="form-label">Tên danh mục</label>
                                                     <input type="text" class="form-control slug-title"
                                                         name="category_name" id="name">
+                                                    <span id="error_name"></span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button type="submit" name="btn_submit"
-                                                        class="btn cr-btn-primary">Submit</button>
+                                                    <button name="btn_submit" class="btn cr-btn-primary"
+                                                        onclick="createCate()">Submit</button>
                                                 </div>
                                             </form>
                                         </div>

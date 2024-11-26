@@ -376,7 +376,7 @@
                                                         <input type='file' id="product_main" class="cr-image-upload"
                                                             accept=".png, .jpg, .jpeg" name="image">
                                                         <label><i class="ri-pencil-line"></i></label>
-                                                        
+
                                                     </div>
                                                     <div class="avatar-preview cr-preview">
                                                         <div class="imagePreview cr-div-preview">
@@ -388,15 +388,18 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="name" class="form-label">Họ và tên</label>
-                                                    <input type="text" class="form-control slug-title" id="name" name="name">
+                                                    <input type="text" class="form-control slug-title" id="name"
+                                                        name="name">
                                                     <span id="error_name"></span>
-                                                    <?php if(isset($error_name)){
-                                                    echo "<span>".$error_name."</span>";}    
+                                                    <?php if (isset($error_name)) {
+                                                        echo "<span>" . $error_name . "</span>";
+                                                    }
                                                     ?>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="text" class="form-control slug-title" id="email" name="email">
+                                                    <input type="text" class="form-control slug-title" id="email"
+                                                        name="email">
                                                     <span id="error_email"></span>
 
                                                 </div>
@@ -418,20 +421,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="address" class="form-label">Địa chỉ</label>
-                                                    <input type="text" class="form-control slug-title" id="address" name="address">
+                                                    <input type="text" class="form-control slug-title" id="address"
+                                                        name="address">
                                                     <span id="error_address"></span>
 
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label for="phone" class="form-label">Số điện thoại</label>
-                                                    <input type="text" class="form-control slug-title" id="phone" name="phone">
+                                                    <input type="text" class="form-control slug-title" id="phone"
+                                                        name="phone">
                                                     <span id="error_phone"></span>
 
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <button name="btn_submit"
-                                                        class="btn cr-btn-primary" onclick="createUser()">Submit</button>
+                                                    <button name="btn_submit" class="btn cr-btn-primary"
+                                                        onclick="createUser()">Submit</button>
                                                 </div>
                                             </form>
                                         </div>

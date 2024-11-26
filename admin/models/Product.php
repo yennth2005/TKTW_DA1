@@ -13,19 +13,6 @@ class ProductAdmin{
     $data=$stmt->fetchAll();
     return $data;
 }
-public function allCate()
-{
-    $sql = "SELECT * FROM `categories`";
-    $stmt = $this->cnt->prepare($sql); // Nên dùng prepare để tránh lỗi
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-public function getCateById($id){
-    $sql="SELECT * FROM `categories` WHERE category_id = ?";
-    $stmt = $this->cnt->prepare($sql);
-    $stmt->execute([$id]);
-    return $stmt->fetch();
-}
 // Thêm sản phẩm - Thực hiện lệnh insert
 public function insertProduct($product_name, $price, $images, $description, $view, $category_id, $stock_quantity) {
     $sql = "INSERT INTO `products` (`product_name`,`price`, `images`, `description`, `view`, `category_id`, `stock_quantity`) VALUES ('$product_name','$price','$images', '$description', '$view', '$category_id', '$stock_quantity')";

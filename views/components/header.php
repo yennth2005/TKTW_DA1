@@ -7,14 +7,16 @@
                         <img src="views/assets/img/logo/logoDA1-removebg-preview.png" alt="logo" class="logo" />
                         <img src="views/assets/img/logo/logo2-removebg-preview.png" alt="logo" class="dark-logo" />
                     </a>
-                    <form class="cr-search">
-                        <input class="search-input" type="text" placeholder="Search For items..." />
-                        <select class="form-select" aria-label="Default select example">
+                    <!-- search -->
+                    <form class="cr-search" method="POST" action="<?= BASE_URL ?>?act=shop">
+                        <input class="search-input" type="text" name="keyword" placeholder="Search For items..."
+                            required />
+                        <!-- <select class="form-select" aria-label="Default select example">
                             <option selected>All Categories</option>
                             <option value="1">Mens</option>
                             <option value="2">Womens</option>
                             <option value="3">Electronics</option>
-                        </select>
+                        </select> -->
                         <a href="javascript:void(0)" class="search-btn">
                             <i class="ri-search-line"></i>
                         </a>
@@ -28,11 +30,11 @@
                                 </a>
                                 <?php if (isset($_SESSION['user'])) { ?>
                                     <ul class="dropdown-menu">
-                                        <?php if($_SESSION['user']['role']==1){?>
-                                        <li>
-                                            <a class="dropdown-item" href="<?= BASE_URL_ADMIN?>?act=home">Admin</a>
-                                        </li>
-                                        <?php }?>
+                                        <?php if ($_SESSION['user']['role'] == 1) { ?>
+                                            <li>
+                                                <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Admin</a>
+                                            </li>
+                                        <?php } ?>
                                         <li>
                                             <a class="dropdown-item" href="checkout.html">Setting</a>
                                         </li>
@@ -325,9 +327,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= BASE_URL ?>"> Home </a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                    Category
+                            <li class="nav-item ">
+                                <a class="nav-link " href="index.php?act=shop">
+                                    Shop
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -381,7 +383,7 @@
                                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="track-order.html">Track Order</a>
+                                        <a class="dropdown-item" href="index.php?act=theo-doi-don-hang">Track Order</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="wishlist.html">Wishlist</a>

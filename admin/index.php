@@ -19,6 +19,7 @@ require_once './controllers/CommentController.php';
 
 // Router đơn giản
 $controller = new CustomerController();
+$product= new ProductControllerAdmin();
 
 $act = $_GET['act'] ?? '/';
 //$_GET['action'] : 'index';

@@ -2,8 +2,8 @@
 <html lang="en">
 
 
-
-<!-- sang copy sang edit rồi chuyển qua controllers -->
+ 
+    <!-- sang copy sang edit rồi chuyển qua controllers -->
 
 
 
@@ -48,12 +48,234 @@
         </div>
 
         <!-- Header -->
-        <?php include './views/components/header.php' ?>
-
+        <header class="cr-header">
+            <div class="container-fluid">
+                <div class="cr-header-items">
+                    <div class="left-header">
+                        <a href="javascript:void(0)" class="cr-toggle-sidebar">
+                            <span class="outer-ring">
+                                <span class="inner-ring"></span>
+                            </span>
+                        </a>
+                        <div class="header-search-box">
+                            <div class="header-search-drop">
+                                <a href="javascript:void(0)" class="open-search"><i class="ri-search-line"></i></a>
+                                <form class="cr-search">
+                                    <input class="search-input" type="text" placeholder="Search...">
+                                    <a href="javascript:void(0)" class="search-btn"><i class="ri-search-line"></i>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-header">
+                        <div class="cr-right-tool cr-flag-drop language">
+                            <div class="cr-hover-drop">
+                                <div class="cr-hover-tool">
+                                    <img class="flag" src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/flag/us.png" alt="flag">
+                                </div>
+                                <div class="cr-hover-drop-panel right">
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><img class="flag"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/flag/us.png"
+                                                    alt="flag">English</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/flag/in.png"
+                                                    alt="flag">Hindi</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/flag/de.png" alt="flag">
+                                                Deutsch</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/flag/it.png"
+                                                    alt="flag">Italian</a></li>
+                                        <li><a href="javascript:void(0)"><img class="flag"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/flag/jp.png"
+                                                    alt="flag">Japanese</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cr-right-tool apps">
+                            <div class="cr-hover-drop">
+                                <div class="cr-hover-tool">
+                                    <i class="ri-apps-2-line"></i>
+                                </div>
+                                <div class="cr-hover-drop-panel right">
+                                    <h6 class="title">Apps</h6>
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><img class="app"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/apps/1.png"
+                                                    alt="flag">English</a></li>
+                                        <li><a href="javascript:void(0)"><img class="app"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/apps/2.png"
+                                                    alt="flag">Hindi</a></li>
+                                        <li><a href="javascript:void(0)"><img class="app"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/apps/3.png" alt="flag">
+                                                Deutsch</a></li>
+                                        <li><a href="javascript:void(0)"><img class="app"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/apps/4.png"
+                                                    alt="flag">Italian</a></li>
+                                        <li><a href="javascript:void(0)"><img class="app"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/apps/5.png"
+                                                    alt="flag">Japanese</a></li>
+                                        <li><a href="javascript:void(0)"><img class="app"
+                                                    src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/apps/6.png"
+                                                    alt="flag">Japanese</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cr-right-tool display-screen">
+                            <a class="cr-screen full" href="javascript:void(0)"><i class="ri-fullscreen-line"></i></a>
+                            <a class="cr-screen reset" href="javascript:void(0)"><i
+                                    class="ri-fullscreen-exit-line"></i></a>
+                        </div>
+                        <div class="cr-right-tool">
+                            <a class="cr-notify" href="javascript:void(0)">
+                                <i class="ri-notification-2-line"></i>
+                                <span class="label"></span>
+                            </a>
+                        </div>
+                        <div class="cr-right-tool display-dark">
+                            <a class="cr-mode dark" href="javascript:void(0)"><i class="ri-moon-clear-line"></i></a>
+                            <a class="cr-mode light" href="javascript:void(0)"><i class="ri-sun-line"></i></a>
+                        </div>
+                        <div class="cr-right-tool cr-user-drop">
+                            <div class="cr-hover-drop">
+                                <div class="cr-hover-tool">
+                                    <img class="user" src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/user/1.jpg" alt="user">
+                                </div>
+                                <div class="cr-hover-drop-panel right">
+                                    <div class="details">
+                                        <h6>Wiley Waites</h6>
+                                        <p>wiley@example.com</p>
+                                    </div>
+                                    <ul class="border-top">
+                                        <li><a href="team-profile.html">Profile</a></li>
+                                        <li><a href="faq.html">Help</a></li>
+                                        <li><a href="chatapp.html">Messages</a></li>
+                                        <li><a href="project-overview.html">Projects</a></li>
+                                        <li><a href="team-update.html">Settings</a></li>
+                                    </ul>
+                                    <ul class="border-top">
+                                        <li><a href="signin.html"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <!-- sidebar -->
-        <?php include './views/components/sidebar.php' ?>
-
+        <div class="cr-sidebar-overlay"></div>
+        <div class="cr-sidebar" data-mode="light">
+            <div class="cr-sb-logo">
+                <a href="index.html" class="sb-full"><img src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/logo/full-logo.png"
+                        alt="logo"></a>
+                <a href="index.html" class="sb-collapse"><img
+                        src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/logo/collapse-logo.png" alt="logo"></a>
+            </div>
+            <div class="cr-sb-wrapper">
+                <div class="cr-sb-content">
+                    <ul class="cr-sb-list">
+                        <li class="cr-sb-item sb-drop-item">
+                            <a href="javascript:void(0)" class="cr-drop-toggle">
+                                <i class="ri-dashboard-3-line"></i><span class="condense">Dashboard<i
+                                        class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                            <ul class="cr-sb-drop condense">
+                                <li><a href="index.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>ecommerce</a></li>
+                                <li><a href="product-list.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Product list</a></li>
+                                <li><a href="add-product.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Add Product</a></li>
+                                <li><a href="add-category.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Add Category</a></li>
+                                <li><a href="add-sub-category.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Add Sub Category</a></li>
+                                <li><a href="order-list.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Order List</a></li>
+                                <li class="cr-sb-item sb-subdrop-item">
+                                    <a href="javascript:void(0)" class="cr-sub-drop-toggle">
+                                        <i class="ri-shield-user-line"></i><span class="condense">Vendor<i
+                                                class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                                    <ul class="cr-sb-subdrop condense">
+                                        <li><a href="vendor-profile.html" class="cr-page-link subdrop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Profile</a></li>
+                                        <li><a href="vendor-update.html" class="cr-page-link subdrop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Vendor Update</a></li>
+                                        <li><a href="vendor-list.html" class="cr-page-link subdrop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Vendor List</a></li>
+                                        <li><a href="invoice.html" class="cr-page-link subdrop"><i
+                                                    class="ri-checkbox-blank-circle-line"></i>Invoice</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="cr-sb-item-separator"></li>
+                        <li class="cr-sb-title condense">Pages</li>
+                        <li class="cr-sb-item sb-drop-item">
+                            <a href="javascript:void(0)" class="cr-drop-toggle">
+                                <i class="ri-pages-line"></i><span class="condense">Authentication<i
+                                        class="drop-arrow ri-arrow-down-s-line"></i></span></a>
+                            <ul class="cr-sb-drop condense">
+                                <li><a href="signin.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i></i>Login</a></li>
+                                <li><a href="signup.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Signup</a></li>
+                                <li><a href="forgot.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Forgot password</a></li>
+                                <li><a href="two-factor.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>two factor</a></li>
+                                <li><a href="reset-password.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Reset password</a></li>
+                                <li><a href="remember.html" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Remember</a></li>
+                            </ul>
+                        </li>
+                        <li class="cr-sb-item-separator"></li>
+                        <li class="cr-sb-title condense">Elements</li>
+                        <li class="cr-sb-item">
+                            <a href="remix-icons.html" class="cr-page-link">
+                                <i class="ri-remixicon-line"></i><span class="condense"><span class="hover-title">remix
+                                        icons</span></span></a>
+                        </li>
+                        <li class="cr-sb-item">
+                            <a href="material-icons.html" class="cr-page-link">
+                                <i class="mdi mdi-material-ui"></i><span class="condense"><span
+                                        class="hover-title">Material icons</span></span></a>
+                        </li>
+                        <li class="cr-sb-item">
+                            <a href="apexchart.html" class="cr-page-link">
+                                <i class="ri-bar-chart-grouped-line"></i><span class="condense"><span
+                                        class="hover-title">Apexcharts</span></span></a>
+                        </li>
+                        <li class="cr-sb-item">
+                            <a href="buttons.html" class="cr-page-link">
+                                <i class="ri-radio-button-line"></i><span class="condense"><span
+                                        class="hover-title">Buttons</span></span></a>
+                        </li>
+                        <li class="cr-sb-item">
+                            <a href="accordions.html" class="cr-page-link">
+                                <i class="ri-play-list-add-line"></i><span class="condense"><span
+                                        class="hover-title">Accordions</span></span></a>
+                        </li>
+                        <li class="cr-sb-item">
+                            <a href="typography.html" class="cr-page-link">
+                                <i class="ri-file-text-line"></i><span class="condense"><span
+                                        class="hover-title">Typography</span></span></a>
+                        </li>
+                        <li class="cr-sb-item">
+                            <a href="alert-popup.html" class="cr-page-link">
+                                <i class="ri-file-warning-line"></i><span class="condense"><span
+                                        class="hover-title">Alert Popup</span></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <!-- Notify sidebar -->
         <div class="cr-notify-bar-overlay"></div>
@@ -352,10 +574,10 @@
                 <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Cập nhật sản phẩm</h5>
+                        <h5>Edit Product</h5>
                         <ul>
                             <li><a href="index.html">Carrot</a></li>
-                            <li>Cập nhật sản phẩm</li>
+                            <li>Edit Product</li>
                         </ul>
                     </div>
                 </div>
@@ -367,50 +589,33 @@
                                     <div class="col-lg-4 mb-991">
                                         <div class="cr-vendor-img-upload">
                                             <div class="cr-vendor-main-img">
-                                                <form
-                                                    action="index.php?act=post-update-pro&id=<?= $idProduct['product_id'] ?>"
-                                                    method="POST" enctype="multipart/form-data">
-                                                    <label for="" class="form-label">Tên sản phẩm </label>
-                                                    <input type="text" class="form-control slug-title" name="name" id=""
-                                                        value="<?= $idProduct['product_name'] ?>">
-                                                    <label for="" class="form-label">Giá sản phẩm</label>
-                                                    <input type="text" class="form-control slug-title" name="price"
-                                                        id="" value="<?= $idProduct['price'] ?>">
-                                                    <label for="" class="form-label">Hình ảnh sản phẩm</label>
-                                                    <input type="file" name="images" id="">
-                                                    <img src="<?= $idProduct['images'] ?>" alt="" width="150px">
-                                                    <!-- thêm chỗ này -->
-                                                    <img src="" alt="" srcset="">
-                                                    <label for="" class="form-label">Mô tả sản phẩm </label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="description" id=""
-                                                        value="<?= $idProduct['description'] ?>">
-                                                    <label for="" class="form-label">Lượt xem </label>
-                                                    <input type="text" class="form-control slug-title" name="view" id=""
-                                                        value="<?= $idProduct['view'] ?>">
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Danh mục sản phẩm</label>
-                                                        <select class="form-control form-select" name="category_id"
-                                                            id="category_id">
-                                                            <option value="">-- Chọn danh mục --</option>
-                                                            <?php foreach ($cates as $cate) { ?>
-                                                                <option <?= ($idProduct['category_id']== $cate['category_id']) ? 'selected' : '' ?> value="<?= $cate['category_id'] ?>">
-                                                                    <?= $cate['category_name'] ?>
-                                                                </option>
-                                                            <?php } ?>
-                                                        </select>
-                                                        <span id="error_cate"></span>
-                                                    </div>
-                                                    <label for="" class="form-label">Số lượng</label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="stock_quantity" id=""
-                                                        value="<?= $idProduct['stock_quantity'] ?>">
-                                                    <input type="submit" name="btn-submit" id="Gửi">
-                                                </form>
-                                            </div>
+          
+    <!-- trang add và edt đều theo form -->
+     <!--  add là method="post" -->
+     <form action="index.php?act=post-update-pro&id=<?= $idProduct['product_id']?>" method="POST" enctype="multipart/form-data">
+     <label for="">Tên sản phẩm </label>
+<input type="text" name="name" id="" value="<?= $idProduct['product_name']?>">
+<label for="">Giá sản phẩm</label>
+<input type="text" name="price" id=""value="<?= $idProduct['price'] ?>">
+<label for="">Hình ảnh sản phẩm</label>
+<input type="file" name="images" id="" >
+<img src="<?= $idProduct['images'] ?>" alt="" width="150px">
+<!-- thêm chỗ này -->
+ <img src="" alt="" srcset="">
+<label for="">Mô tả sản phẩm </label>
+<input type="text" name="description" id=""value="<?= $idProduct['description']?>">
+<label for="">Lượt xem </label>
+<input type="text" name="view" id="" value="<?= $idProduct['view']?>">
+<label for="">Danh mục </label>
+<input type="text" name="category_id" id="" value="<?= $idProduct['category_id']?>">
+<label for="">Số lượng</label>
+<input type="text" name="stock_quantity" id="" value="<?= $idProduct['stock_quantity']?>">
+<input type="submit" name="btn-submit" id="Gửi">
+     </form>
+                              </div>
                                         </div>
                                     </div>
-
+                                    
                                 </div>
                             </div>
                         </div>
@@ -420,7 +625,14 @@
         </div>
 
         <!-- Footer -->
-        <?php include './views/components/footer.php' ?>
+        <footer>
+            <div class="container-fluid">
+                <div class="copyright">
+                    <p><span id="copyright_year"></span> © Carrot, All rights Reserved.</p>
+                    <p>Design by MaraviyaInfotech.</p>
+                </div>
+            </div>
+        </footer>
 
         <!-- Feature tools -->
         <div class="cr-tools-sidebar-overlay"></div>
@@ -508,7 +720,6 @@
             </div>
         </div>
     </main>
-    <?php include './views/components/footer.php' ?>
 
     <!-- Vendor Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-3.6.4.min.js"></script>
@@ -537,3 +748,4 @@
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:50 GMT -->
 
 </html>
+

@@ -11,5 +11,7 @@ class CategoryController
         $cates = $this->proModel->show();
         require_once './views/home.php';
     }
+
+
 }
 ?>
