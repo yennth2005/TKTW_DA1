@@ -414,18 +414,15 @@
                                             <?php foreach ($products as $product) { ?>
                                                 <tr>
                                                     <td><?= $product['variant_id'] ?></td>
-                                                    <td><img src="<?= BASE_URL . $product['image'] ?>" width="100px" alt="">
-                                                    </td>
+                                                    <td><img src="<?= BASE_URL.$product['image'] ?>" width="100px" alt=""></td>
                                                     <td><?= $product['color'] ?></td>
                                                     <td><?= $product['size_value'] ?></td>
                                                     <td><?= number_format($product['price']) ?> VND</td>
                                                     <td><?= number_format($product['sale']) ?> VND</td>
                                                     <td><?= $product['quantity'] ?></td>
                                                     <td>
-                                                        <a href="?act=delete-variant&size-id=<?= $product['size_id'] ?>&product-id=<?= $product['product_id'] ?>"
-                                                            class="btn btn-danger mr-1">Xoá</a> <button type="button"
-                                                            class="btn btn-primary" data-bs-toggle="modal" <button
-                                                            data-bs-target="#exampleModal<?= $product['variant_id'] ?>"
+                                                        <a href="?act=delete-variant&size-id=<?= $product['size_id'] ?>&product-id=<?= $product['product_id']?>" class="btn btn-danger mr-1">Xoá</a>                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        <button data-bs-target="#exampleModal<?= $product['variant_id'] ?>"
                                                             data-bs-whatever="@getbootstrap">Thêm kích cỡ</button>
 
                                                         <div class="modal fade"
@@ -449,9 +446,7 @@
                                                                                 <input type="text" class="form-control"
                                                                                     id="size" name="size" required>
                                                                             </div>
-                                                                            <input type="hidden"
-                                                                                value="<?= $product['product_id'] ?>"
-                                                                                name="product-id">
+                                                                            <input type="hidden" value="<?= $product['product_id']?>" name="product-id">
                                                                             <div class="mb-3">
                                                                                 <label for="quantity"
                                                                                     class="col-form-label">Số lượng:</label>
@@ -467,7 +462,7 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
-
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -408,20 +408,13 @@
                                                     <span class="fw-bold">Tổng tiền: <span
                                                             class="text-success"><?= number_format($item['total_amount']) . "đ" ?></span></span>
                                                     <div class="d-flex gap-2">
-                                                        <?php if ($item['state_id'] >= 3) { ?>
+                                                        
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
-                                                            <button class="btn btn-danger btn-lg">Mua Lại</button>
-                                                        <?php } else { ?>
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-primary btn-lg">Xem chi tiết</button>
-                                                            </a>
-                                                            <button class="btn btn-warning">Mua Lại</button>
-                                                            <a href="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-danger btn-lg">Huỷ đơn hàng</button>
-                                                            </a>
-                                                        <?php } ?>
+                                                                <button class="btn btn-success btn-lg">Xác nhận</button>
+                                                            </a>                                                        
                                                     </div>
                                                 </div>
                                             </div>

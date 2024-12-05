@@ -70,7 +70,7 @@
 
     <!-- Header -->
     <?php include './views/components/header.php' ?>
-
+    
 
     <!-- Mobile menu -->
     <div class="cr-sidebar-overlay">
@@ -164,31 +164,29 @@
     <section class="section-hero padding-b-100 next">
         <div class="cr-slider swiper-container">
             <div class="swiper-wrapper">
-                <?php foreach ($cates as $cate): ?>
-                    <div class="swiper-slide">
-                        <div class="cr-hero-banner cr-banner-image-two"
-                            style="background-image: url('<?= $cate['image'] ?>')">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="cr-left-side-contain slider-animation">
-                                            <h5><span>100%</span> chính hãng</h5>
-                                            <h1 style="font-family: 'Arial'">Hàng đẹp <br> chất lượng cao</h1>
-                                            <p>
-                                                <?= $cate['category_name'] ?>
-                                            </p>
-                                            <div class="cr-last-buttons">
-                                                <a href="?act=view-category&category-id=<?= $cateP['category_id'] ?>"
-                                                    class="cr-button">
-                                                    shop now
-                                                </a>
-                                            </div>
+                <?php foreach($cates as $cate): ?>
+                <div class="swiper-slide">
+                    <div class="cr-hero-banner cr-banner-image-two" style="background-image: url('<?= $cate['image'] ?>')">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="cr-left-side-contain slider-animation">
+                                        <h5><span>100%</span> chính hãng</h5>
+                                        <h1 style="font-family: 'Arial'">Hàng đẹp <br> chất lượng cao</h1>
+                                        <p>
+                                            <?= $cate['category_name'] ?>
+                                        </p>
+                                        <div class="cr-last-buttons">
+                                            <a href="?act=view-category&category-id=<?= $cateP['category_id'] ?>" class="cr-button">
+                                                shop now
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <?php endforeach; ?>
             </div>
             <div class="swiper-pagination"></div>
@@ -201,22 +199,21 @@
             <div class="row mb-minus-24">
                 <div class="col-lg-4 col-12 mb-24">
                     <div class="cr-categories">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <?php $cateActive = true; ?>
                             <?php foreach ($catePro as $cateP): ?>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link <?= $cateActive ? 'active' : '' ?>"
-                                        id="<?= $cateP['category_code'] ?>-tab" data-bs-toggle="tab"
-                                        data-bs-target="#<?= $cateP['category_code'] ?>"
-                                        aria-selected="<?= $cateActive ? 'true' : 'false' ?>">
-                                        <?= $cateP['category_name'] ?> <span>(<?= $cateP['quantity'] ?> items)</span>
-                                    </button>
-                                </li>
+                                <button class="nav-link <?= $cateActive ? 'active' : '' ?>"
+                                    id="<?= $cateP['category_code'] ?>-tab" data-bs-toggle="tab"
+                                    data-bs-target="#<?= $cateP['category_code'] ?>"
+                                    aria-selected="<?= $cateActive ? 'true' : 'false' ?>">
+                                    <?= $cateP['category_name'] ?> <span>(<?= $cateP['quantity'] ?> items)</span>
+                                </button></li>
                                 <?php $cateActive = false; ?>
                             <?php endforeach; ?>
 
                             <li class="nav-item" role="presentation">
-                                <a class="center-categories-inner cr-view-more" href="#">
+                                <a class="center-categories-inner cr-view-more" href="?act=view-products">
                                     View More
                                 </a>
                             </li>
@@ -308,7 +305,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <div class="col-xl-9 col-lg-8 col-12 mb-24">
                     <div class="row mb-minus-24">
                         <?php foreach ($products as $pro) { ?>
@@ -365,25 +362,24 @@
                 <div class="col-lg-12">
                     <div class="cr-banner-slider swiper-container">
                         <div class="swiper-wrapper">
-                            <?php foreach ($cates as $cate): ?>
-                                <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
-                                    <div class="cr-product-banner-image">
-                                        <img src="<?= $cate['image'] ?>" alt="product-banner" />
-                                        <div class="cr-product-banner-contain">
-                                            <h5>
-                                                <?= $cate['category_name'] ?>
-                                            </h5>
-                                            <p>
-                                                <span class="percent">30%</span> Off
-                                                <span class="text">on first order</span>
-                                            </p>
-                                            <div class="cr-product-banner-buttons">
-                                                <a href="?act=view-category&category-id=<?= $cateP['category_id'] ?>"
-                                                    class="cr-button">shop now</a>
-                                            </div>
+                        <?php foreach ($cates as $cate):?>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-product-banner-image">
+                                    <img src="<?= $cate['image'] ?>" alt="product-banner" />
+                                    <div class="cr-product-banner-contain">
+                                        <h5>
+                                        <?= $cate['category_name'] ?>
+                                        </h5>
+                                        <p>
+                                            <span class="percent">30%</span> Off
+                                            <span class="text">on first order</span>
+                                        </p>
+                                        <div class="cr-product-banner-buttons">
+                                            <a href="?act=view-category&category-id=<?= $cateP['category_id'] ?>" class="cr-button">shop now</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -460,288 +456,22 @@
         </div>
     </section>
 
-    <!-- Deal -->
-    <section class="section-deal padding-b-100">
-        <div class="bg-banner-deal">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="cr-deal-rightside">
-                            <div class="cr-deal-content" data-aos="fade-up" data-aos-duration="2000">
-                                <span><code>35%</code> OFF</span>
-                                <h4 class="cr-deal-title">Great deal on organic food.</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do maecenas accumsan lacus vel facilisis.
-                                </p>
-                                <div id="timer" class="cr-counter">
-                                    <div class="cr-counter-inner">
-                                        <h4>
-                                            <span id="days"></span>
-                                            Days
-                                        </h4>
-                                        <h4>
-                                            <span id="hours"></span>
-                                            Hrs
-                                        </h4>
-                                        <h4>
-                                            <span id="minutes"></span>
-                                            Min
-                                        </h4>
-                                        <h4>
-                                            <span id="seconds"></span>
-                                            Sec
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Popular product -->
-    <section class="section-popular margin-b-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-xxl-7 col-xl-6 col-lg-6 col-md-12" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="cr-twocolumns-product">
-                        <div class="slick-slide">
-                            <div class="cr-product-card">
-                                <div class="cr-product-image">
-                                    <div class="cr-image-inner zoom-image-hover">
-                                        <img src="views/assets/img/product/9.jpg" alt="product-1" />
-                                    </div>
-                                    <div class="cr-side-view">
-                                        <a href="javascript:void(0)" class="wishlist">
-                                            <i class="ri-heart-line"></i>
-                                        </a>
-                                        <a class="model-oraganic-product" data-bs-toggle="modal" href="#quickview"
-                                            role="button">
-                                            <i class="ri-eye-line"></i>
-                                        </a>
-                                    </div>
-                                    <a class="cr-shopping-bag" href="javascript:void(0)">
-                                        <i class="ri-shopping-bag-line"></i>
-                                    </a>
-                                </div>
-                                <div class="cr-product-details">
-                                    <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html">Snacks</a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-line"></i>
-                                            <p>(4.5)</p>
-                                        </div>
-                                    </div>
-                                    <a href="product-left-sidebar.html" class="title">Best snakes with hazel nut mix
-                                        pack 200gm</a>
-                                    <p class="cr-price">
-                                        <span class="new-price">$120.25</span>
-                                        <span class="old-price">$123.25</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slick-slide">
-                            <div class="cr-product-card">
-                                <div class="cr-product-image">
-                                    <div class="cr-image-inner zoom-image-hover">
-                                        <img src="views/assets/img/product/10.jpg" alt="product-1" />
-                                    </div>
-                                    <div class="cr-side-view">
-                                        <a href="javascript:void(0)" class="wishlist">
-                                            <i class="ri-heart-line"></i>
-                                        </a>
-                                        <a class="model-oraganic-product" data-bs-toggle="modal" href="#quickview"
-                                            role="button">
-                                            <i class="ri-eye-line"></i>
-                                        </a>
-                                    </div>
-                                    <a class="cr-shopping-bag" href="javascript:void(0)">
-                                        <i class="ri-shopping-bag-line"></i>
-                                    </a>
-                                </div>
-                                <div class="cr-product-details">
-                                    <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html">Snacks</a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <p>(5.0)</p>
-                                        </div>
-                                    </div>
-                                    <a href="product-left-sidebar.html" class="title">Sweet snakes crunchy nut mix 250gm
-                                        pack</a>
-                                    <p class="cr-price">
-                                        <span class="new-price">$100.00</span>
-                                        <span class="old-price">$110.00</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slick-slide">
-                            <div class="cr-product-card">
-                                <div class="cr-product-image">
-                                    <div class="cr-image-inner zoom-image-hover">
-                                        <img src="views/assets/img/product/1.jpg" alt="product-1" />
-                                    </div>
-                                    <div class="cr-side-view">
-                                        <a href="javascript:void(0)" class="wishlist">
-                                            <i class="ri-heart-line"></i>
-                                        </a>
-                                        <a class="model-oraganic-product" data-bs-toggle="modal" href="#quickview"
-                                            role="button">
-                                            <i class="ri-eye-line"></i>
-                                        </a>
-                                    </div>
-                                    <a class="cr-shopping-bag" href="javascript:void(0)">
-                                        <i class="ri-shopping-bag-line"></i>
-                                    </a>
-                                </div>
-                                <div class="cr-product-details">
-                                    <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html">Snacks</a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-line"></i>
-                                            <p>(4.5)</p>
-                                        </div>
-                                    </div>
-                                    <a href="product-left-sidebar.html" class="title">Best snakes with hazel nut mix
-                                        pack 200gm</a>
-                                    <p class="cr-price">
-                                        <span class="new-price">$120.25</span>
-                                        <span class="old-price">$123.25</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slick-slide">
-                            <div class="cr-product-card">
-                                <div class="cr-product-image">
-                                    <div class="cr-image-inner zoom-image-hover">
-                                        <img src="views/assets/img/product/2.jpg" alt="product-1" />
-                                    </div>
-                                    <div class="cr-side-view">
-                                        <a href="javascript:void(0)" class="wishlist">
-                                            <i class="ri-heart-line"></i>
-                                        </a>
-                                        <a class="model-oraganic-product" data-bs-toggle="modal" href="#quickview"
-                                            role="button">
-                                            <i class="ri-eye-line"></i>
-                                        </a>
-                                    </div>
-                                    <a class="cr-shopping-bag" href="javascript:void(0)">
-                                        <i class="ri-shopping-bag-line"></i>
-                                    </a>
-                                </div>
-                                <div class="cr-product-details">
-                                    <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html">Snacks</a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <p>(5.0)</p>
-                                        </div>
-                                    </div>
-                                    <a href="product-left-sidebar.html" class="title">Sweet snakes crunchy nut mix 250gm
-                                        pack</a>
-                                    <p class="cr-price">
-                                        <span class="new-price">$100.00</span>
-                                        <span class="old-price">$110.00</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slick-slide">
-                            <div class="cr-product-card">
-                                <div class="cr-product-image">
-                                    <div class="cr-image-inner zoom-image-hover">
-                                        <img src="views/assets/img/product/3.jpg" alt="product-1" />
-                                    </div>
-                                    <div class="cr-side-view">
-                                        <a href="javascript:void(0)" class="wishlist">
-                                            <i class="ri-heart-line"></i>
-                                        </a>
-                                        <a class="model-oraganic-product" data-bs-toggle="modal" href="#quickview"
-                                            role="button">
-                                            <i class="ri-eye-line"></i>
-                                        </a>
-                                    </div>
-                                    <a class="cr-shopping-bag" href="javascript:void(0)">
-                                        <i class="ri-shopping-bag-line"></i>
-                                    </a>
-                                </div>
-                                <div class="cr-product-details">
-                                    <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html">Snacks</a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <p>(5.0)</p>
-                                        </div>
-                                    </div>
-                                    <a href="product-left-sidebar.html" class="title">Sweet snakes crunchy nut mix 250gm
-                                        pack</a>
-                                    <p class="cr-price">
-                                        <span class="new-price">$100.00</span>
-                                        <span class="old-price">$110.00</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="cr-products-rightbar">
-                        <img src="views/assets/img/product/products-rightview.jpg" alt="products-rightview" />
-                        <div class="cr-products-rightbar-content">
-                            <h4>
-                                Organic & Healthy <br />
-                                Vegetables
-                            </h4>
-                            <div class="cr-off">
-                                <span>25% <code>OFF</code></span>
-                            </div>
-                            <div class="rightbar-buttons">
-                                <a href="shop-left-sidebar.html" class="cr-button">
-                                    shop now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
-    <!-- Blogs  -->
+    <!-- Blog -->
     <section class="section-blog padding-b-100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="mb-30 aos-init aos-animate" data-aos="fade-up" data-aos-duration="2000">
+                    <div class="mb-30" data-aos="fade-up" data-aos-duration="2000">
                         <div class="cr-banner">
                             <h2>Latest News</h2>
+                        </div>
+                        <div class="cr-banner-sub-title">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                do eiusmod tempor incididunt ut labore lacus vel facilisis.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -750,21 +480,83 @@
                 <div class="col-lg-12">
                     <div class="cr-blog-slider swiper-container">
                         <div class="swiper-wrapper">
-                            <?php foreach ($posts as $post): ?>
-                                <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
-                                    <div class="cr-blog">
-                                        <div class="cr-blog-content">
-                                            <span><?php echo htmlspecialchars($post['title']); ?></span>
-                                            <h5><?php echo htmlspecialchars($post['title']); ?></h5>
-                                            <a class="read" href="?act=trang-bai-viet&id=<?php echo $post['id']; ?>">Read
-                                                More</a>
-                                        </div>
-                                        <div class="cr-blog-image">
-                                            <img src="<?php echo htmlspecialchars($post['img']); ?>" alt="blog-2">
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> |
+                                            <a href="blog-left-sidebar.html">Snacks</a></span>
+                                        <h5>
+                                            Urna pretium elit mauris cursus at elit Vestibulum.
+                                        </h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="views/assets/img/blog/2.jpg" alt="blog-2" />
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                10
+                                                <code>oct</code>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
+                            </div>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> |
+                                            <a href="blog-left-sidebar.html">Food</a></span>
+                                        <h5>Best guide to Shopping for organic ingredients.</h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="views/assets/img/blog/1.jpg" alt="blog-1" />
+                                        <div class="cr-blog-date">
+                                            <span> 09<code>sep</code> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> |
+                                            <a href="blog-left-sidebar.html">Snacks</a></span>
+                                        <h5>
+                                            Cursus at elit vestibulum urna pretium elit mauris.
+                                        </h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="views/assets/img/blog/3.jpg" alt="blog-2" />
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                12
+                                                <code>oct</code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> |
+                                            <a href="blog-left-sidebar.html">Vegetable</a></span>
+                                        <h5>Condimentum Nam enim bestMorbi odio sodales.</h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="views/assets/img/blog/2.jpg" alt="blog-3" />
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                22
+                                                <code>jan</code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

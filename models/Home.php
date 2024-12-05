@@ -81,21 +81,26 @@ class Home
 
 
     ////////ACOUNT//////////
-    public function find($id)
-    {
+    public function find($id){
         try {
-            $sql = "SELECT * FROM `customer` WHERE `customer`.`customer_id`={$id}";
-            $stmt = $this->conn->query($sql);
-            $data = $stmt->fetch();
+            $sql="SELECT * FROM `customer` WHERE `customer`.`customer_id`={$id}";
+            $stmt=$this->conn->query($sql);
+            $data= $stmt->fetch();
             return $data;
         } catch (PDOException $e) {
             $e->getMessage();
         }
     }
-    public function edit($id, $name, $email, $image, $address, $phone)
-    {
+
+    public function changePass($password, $customer_id) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$hashedPassword, $customer_id]);
+    }
+    public function edit($id,$name,$email,$image,$address,$phone){
         try {
-            $sql = "UPDATE `customer` SET `name` = '{$name}', `email` = '{$email}',  `image` = '{$image}', `address` = '{$address}',`phone`= '{$phone}' WHERE `customer`.`customer_id` = '{$id}'";
+            $sql="UPDATE `customer` SET `name` = '{$name}', `email` = '{$email}',  `image` = '{$image}', `address` = '{$address}',`phone`= '{$phone}' WHERE `customer`.`customer_id` = '{$id}'";
             $this->conn->exec($sql);
         } catch (\Throwable $th) {
             //throw $th;
@@ -373,7 +378,7 @@ class Home
     }
     public function updateTimeCart($create_at, $cart_id)
     {
-        $sql = "UPDATE carts SET create_at = ? WHERE cart_id = ?";
+        $sql = "UPDATE carts SET updated_at = ? WHERE cart_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$create_at, $cart_id]);
     }
@@ -478,7 +483,8 @@ class Home
             JOIN products p ON v.product_id = p.product_id
             JOIN states s ON o.state_id = s.state_id  -- Kết hợp với bảng states
             WHERE o.customer_id = ?
-            GROUP BY o.order_id";
+            GROUP BY o.order_id
+            ORDER BY o.order_id DESC";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$customer_id]);  // Sử dụng prepared statement để tránh SQL injection

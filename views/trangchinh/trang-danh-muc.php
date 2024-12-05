@@ -176,7 +176,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-12 md-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
-                    <form action="?act=filter" method="POST">
+                <form action="?act=filter" method="POST">
                         <div class="cr-shop-sideview">
                             <div class="cr-shop-categories">
                                 <h4 class="cr-shop-sub-title">Danh mục</h4>
@@ -278,15 +278,14 @@
                                             <li><label>Diet Type :</label>Vegetarian</li>
                                             <li><label>Speciality :</label>Gluten Free, Sugar Free</li>
                                         </ul>
-                                        <p class="cr-price"><span
-                                                class="new-price"><?= number_format($product['new_price']) ?></span> <span
+                                        <p class="cr-price"><span class="new-price"><?= number_format($product['new_price']) ?></span> <span
                                                 class="old-price"><?= number_format($product['sale_price']) ?></span></p>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
-                <?php } elseif (isset($_POST['btn_filter'])) { ?>
+                <?php } elseif(isset($_POST['btn_filter'])) { ?>
                     <div class="row col-100 mb-minus-24">
                         <?php foreach ($_SESSION['filtered_products'] as $product): ?>
                             <div class="col-xxl-3 col-xl-4 col-6 cr-product-box mb-24">
@@ -329,16 +328,15 @@
                                             <li><label>Diet Type :</label>Vegetarian</li>
                                             <li><label>Speciality :</label>Gluten Free, Sugar Free</li>
                                         </ul>
-                                        <p class="cr-price"><span
-                                                class="new-price"><?= number_format($product['new_price']) ?></span> <span
+                                        <p class="cr-price"><span class="new-price"><?= number_format($product['new_price']) ?></span> <span
                                                 class="old-price"><?= number_format($product['sale_price']) ?></span></p>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
-                <?php } else { ?>
-                    <div class="row col-100 mb-minus-24">
+                <?php }else{ ?>
+                <div class="row col-100 mb-minus-24">
                         <?php foreach ($products as $product): ?>
                             <div class="col-xxl-3 col-xl-4 col-6 cr-product-box mb-24">
                                 <div class="cr-product-card">
@@ -380,15 +378,14 @@
                                             <li><label>Diet Type :</label>Vegetarian</li>
                                             <li><label>Speciality :</label>Gluten Free, Sugar Free</li>
                                         </ul>
-                                        <p class="cr-price"><span
-                                                class="new-price"><?= number_format($product['new_price']) ?></span> <span
+                                        <p class="cr-price"><span class="new-price"><?= number_format($product['new_price']) ?></span> <span
                                                 class="old-price"><?= number_format($product['sale_price']) ?></span></p>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
-                <?php } ?>
+                <?php }?>
                 <nav aria-label="..." class="cr-pagination">
                     <ul class="pagination">
                         <li class="page-item disabled">
