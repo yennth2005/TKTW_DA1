@@ -4,7 +4,7 @@
     Version: 2.1
     Copyright 2024
  ============================================================-->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:29:37 GMT -->
 
@@ -36,6 +36,34 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="views/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body class="body-bg-6">
@@ -136,73 +164,78 @@
     </div>
 
     <section class="section-register padding-tb-100">
-    <div class="container">
-        <div class="row d-none">
-            <div class="col-lg-12">
-                <div class="mb-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
-                    <div class="cr-banner">
-                        <h2>Register</h2>
-                    </div>
-                    <div class="cr-banner-sub-title">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore lacus vel facilisis. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="cr-register" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
-                    <div class="form-logo">
-                        <img width="71px" src="<?= BASE_URL ?>views/assets/img/logo/logo2-removebg-preview.png" alt="logo">
-                    </div>
-                    <form class="cr-content-form" method="POST" action="index.php?act=post-info-register" onsubmit="return register()">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>Họ và tên</label>
-                                    <input type="text" placeholder="" name="name" id="name" class="cr-form-control">
-                                    <span id="error_name"></span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" placeholder="" id="email" class="cr-form-control">
-                                    <span id="error_email"></span>
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>Mật khẩu</label>
-                                    <input type="password" name="matkhau" id="matkhau" placeholder=" " class="cr-form-control">
-                                    <span id="error_password"></span>
-
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>Xác nhận mật khẩu</label>
-                                    <input type="password" name="matkhau1" id="matkhau1" placeholder="" class="cr-form-control">
-                                    <span id="error_password1"></span>
-
-                                </div>
-                            </div>
-                            <input type="hidden" name="role">
-                            <div class="cr-register-buttons">
-                                <button onclick="register" name="btn-register" class="cr-button">Đăng ký</button>
-                                <a href="?act=login" class="link">
-                                    Have an account?
-                                </a>
-                            </div>
+        <div class="container">
+            <div class="row d-none">
+                <div class="col-lg-12">
+                    <div class="mb-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="cr-banner">
+                            <h2>Register</h2>
                         </div>
-                    </form>
+                        <div class="cr-banner-sub-title">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore lacus vel facilisis. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="cr-register" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="form-logo">
+                            <img width="71px" src="<?= BASE_URL ?>views/assets/img/logo/logo2-removebg-preview.png"
+                                alt="logo">
+                        </div>
+                        <form class="cr-content-form" method="POST" action="index.php?act=post-info-register"
+                            onsubmit="return register()">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Họ và tên</label>
+                                        <input type="text" placeholder="" name="name" id="name" class="cr-form-control">
+                                        <span class="error" id="error_name"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" placeholder="" id="email"
+                                            class="cr-form-control">
+                                        <span class="error" id="error_email"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mật khẩu</label>
+                                        <input type="password" name="matkhau" id="matkhau" placeholder=" "
+                                            class="cr-form-control">
+                                        <span class="error" id="error_password"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Xác nhận mật khẩu</label>
+                                        <input type="password" name="matkhau1" id="matkhau1" placeholder=""
+                                            class="cr-form-control">
+                                        <span class="error" id="error_password1"></span>
+
+                                    </div>
+                                </div>
+                                <input type="hidden" name="role">
+                                <div class="cr-register-buttons">
+                                    <button onclick="register" name="btn-register" class="cr-button">Đăng ký</button>
+                                    <a href="?act=login" class="link">
+                                        Have an account?
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <?php include './views/components/footer.php' ?>

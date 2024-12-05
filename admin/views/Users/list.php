@@ -369,7 +369,7 @@
                         <div class="cr-card card-default product-list">
                             <div class="cr-card-content ">
                                 <div class="table-responsive">
-                                    <center><a href="?act=create-user" class="btn btn-warning">Create User</a></center>
+                                    <center><a href="?act=create-user" class="btn btn-success">Thêm người dùng</a></center>
 
                                     <table class="table">
                                         <thead>
@@ -393,7 +393,7 @@
                                                     <td><?= $customer['customer_id'] ?></td>
                                                     <td><?= $customer['name'] ?></td>
                                                     <td><?= $customer['email'] ?></td>
-                                                    <td><img src="<?= $customer['image'] ?>" width="200px" alt=""></td>
+                                                    <td><img src="<?= BASE_URL.$customer['image'] ?>" width="200px" alt=""></td>
                                                     <td><?= $customer['address'] ?></td>
                                                     <td><?= $customer['phone'] ?></td>
                                                     <td><?= ($customer['role']) == 1 ? '<span class="badge text-bg-success">admin</span>' : '<span class="badge text-bg-info">customer</span>'; ?>

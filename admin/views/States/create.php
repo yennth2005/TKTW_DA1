@@ -374,6 +374,10 @@
                                                     <label for="name" class="form-label">Tên trạng thái</label>
                                                     <input type="text" class="form-control slug-title" name="name">
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <label for="name" class="form-label">Mô tả trạng thái</label>
+                                                    <textarea name="description" id=""></textarea>
+                                                </div>
 
                                                 <div class="col-md-12">
                                                     <button type="submit" name="btn_submit"

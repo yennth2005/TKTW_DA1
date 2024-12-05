@@ -36,9 +36,56 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="views/assets/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body class="body-bg-6">
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+            <script style='text/javascript'> 
+                toastr.error('{$_SESSION['error']}');
+            </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+            <script style='text/javascript'> 
+                toastr.success('{$_SESSION['success']}');
+            </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
     <!-- Loader -->
     <div id="cr-overlay">
         <span class="loader"></span>
@@ -158,24 +205,24 @@
                             <img width="71px" src="<?= BASE_URL ?>views/assets/img/logo/logo2-removebg-preview.png"
                                 alt="logo">
                         </div>
-                        <?php
 
-                        if (isset($_SESSION['error_message'])) {
-                            echo "<div class='alert alert-danger'>" . $_SESSION['error_message'] . "</div>";
-                            unset($_SESSION['error_message']);
-                        }
-
-
-                        ?>
-                        <form class="cr-content-form" method="POST" action="<?= BASE_URL ?>?act=check-login" onsubmit="return login()">
+                        <form class="cr-content-form" method="POST" action="<?= BASE_URL ?>?act=check-login"
+                            onsubmit="return login()">
                             <div class="row">
 
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" name="email" placeholder="" id="email"
-                                            class="cr-form-control">
-                                            <span id="error_email"></span>
+                                            class="cr-form-control" value="<?php isset($email) ? $email : '' ?>">
+                                        <span class="error" id="error_email">
+                                            <?php if (isset($_SESSION['error_email'])): ?>
+                                                <?php
+                                                echo $_SESSION['error_email'];
+                                                unset($_SESSION['error_email']); // Xóa thông báo sau khi hiển thị
+                                                ?>
+                                            <?php endif; ?>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12">
@@ -183,7 +230,14 @@
                                         <label>Mật khẩu</label>
                                         <input type="password" name="password" id="password" placeholder=" "
                                             class="cr-form-control">
-                                            <span id="error_password"></span>
+                                        <span class="error" id="error_password">
+                                            <?php if (isset($_SESSION['error_password'])): ?>
+                                                <?php
+                                                echo $_SESSION['error_password'];
+                                                unset($_SESSION['error_password']);
+                                                ?>
+                                            <?php endif; ?>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="remember">
@@ -191,11 +245,11 @@
                                         <input name="remember" type="checkbox" id="html">
                                         <label for="html">Remember Me</label>
                                     </span>
-                                    <a class="link" href="<?= BASE_URL?>?act=forgot-password">Forgot Password?</a>
+                                    <a class="link" href="<?= BASE_URL ?>?act=forgot-password">Forgot Password?</a>
                                 </div><br>
                                 <div class="login-buttons">
-                                    <button type="submit" onclick="login()" class="cr-button">Login</button>
-                                    <a href="<?= BASE_URL?>?act=register" class="link">
+                                    <button type="submit" class="cr-button">Login</button>
+                                    <a href="<?= BASE_URL ?>?act=register" class="link">
                                         Signup?
                                     </a>
                                 </div>
@@ -206,7 +260,34 @@
             </div>
         </div>
     </section>
+    <script>
+        function login() {
+            // Lấy giá trị từ các trường
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
 
+            // Xóa thông báo lỗi cũ
+            document.getElementById("error_email").innerText = "";
+            document.getElementById("error_password").innerText = "";
+
+            let valid = true;
+
+            // Kiểm tra email
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                document.getElementById("error_email").innerText = "Email không hợp lệ";
+                valid = false;
+            }
+
+            // Kiểm tra mật khẩu
+            if (password.length < 6) { // Thay đổi độ dài tùy theo yêu cầu
+                document.getElementById("error_password").innerText = "Mật khẩu phải ít nhất 6 ký tự";
+                valid = false;
+            }
+
+            return valid; // Chỉ gửi biểu mẫu nếu tất cả các kiểm tra đều hợp lệ
+        }
+    </script>
     <!-- Footer -->
     <?php include './views/components/footer.php' ?>
 

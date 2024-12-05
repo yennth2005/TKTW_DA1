@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:30:26 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,23 +15,46 @@
     <title>Carrot - Multipurpose eCommerce HTML Template</title>
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/img/logo/favicon.png">
+    <link rel="shortcut icon" href="views/assets/img/logo/favicon.png">
 
     <!-- Icon CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/remixicon.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/materialdesignicons.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/remixicon.css">
 
     <!-- Vendor -->
-    <link rel="stylesheet" href="assets/css/vendor/animate.css">
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/aos.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/range-slider.css">
-    <link rel="stylesheet" href="assets/css/vendor/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/jquery.slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/animate.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/aos.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/range-slider.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/swiper-bundle.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/jquery.slick.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/slick-theme.css">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="views/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body class="body-bg-6">
@@ -41,422 +65,8 @@
     </div>
 
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="top-header">
-                        <a href="index.html" class="cr-logo">
-                            <img src="assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
-                        </a>
-                        <form class="cr-search">
-                            <input class="search-input" type="text" placeholder="Search For items...">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>All Categories</option>
-                                <option value="1">Mens</option>
-                                <option value="2">Womens</option>
-                                <option value="3">Electronics</option>
-                              </select>
-                            <a href="javascript:void(0)" class="search-btn">
-                                <i class="ri-search-line"></i>
-                            </a>
-                        </form>
-                        <div class="cr-right-bar">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle cr-right-bar-item" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                        <span>Account</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-3-line"></i>
-                                <span>Wishlist</span>
-                            </a>
-                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
-                                <i class="ri-shopping-cart-line"></i>
-                                <span>Cart</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="cr-fix" id="cr-main-menu-desk">
-            <div class="container">
-                <div class="cr-menu-list">
-                    <div class="cr-category-icon-block">
-                        <div class="cr-category-menu">
-                            <div class="cr-category-toggle">
-                                <i class="ri-menu-2-line"></i>
-                            </div>
-                        </div>
-                        <div class="cr-cat-dropdown">
-                            <div class="cr-cat-block">
-                                <div class="cr-cat-tab">
-                                    <div class="cr-tab-list nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                        aria-orientation="vertical">
-                                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-home" type="button" role="tab"
-                                            aria-controls="v-pills-home" aria-selected="true">
-                                            Dairy &amp; Bakery</button>
-                                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-profile" type="button" role="tab"
-                                            aria-controls="v-pills-profile" aria-selected="false" tabindex="-1">
-                                            Fruits &amp; Vegetable</button>
-                                        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-messages" type="button" role="tab"
-                                            aria-controls="v-pills-messages" aria-selected="false" tabindex="-1">
-                                            Snack &amp; Spice</button>
-                                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-settings" type="button" role="tab"
-                                            aria-controls="v-pills-settings" aria-selected="false" tabindex="-1">
-                                            Juice &amp; Drinks </button>
-                                        <a class="nav-link" href="shop-left-sidebar.html">
-                                            View All </a>
-                                    </div>
-                                    <div class="tab-content" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                            aria-labelledby="v-pills-home-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Dairy</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Milk</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Ice cream</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cheese</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Frozen
-                                                                custard</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Frozen
-                                                                yogurt</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Bakery</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cake and
-                                                                Pastry</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Rusk Toast</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Bread &amp;
-                                                                Buns</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Chocolate
-                                                                Brownie</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cream Roll</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                            aria-labelledby="v-pills-profile-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Fruits</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cauliflower</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Bell
-                                                                Peppers</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Broccoli</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cabbage</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Tomato</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Vegetable</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cauliflower</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Bell
-                                                                Peppers</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Broccoli</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cabbage</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Tomato</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                            aria-labelledby="v-pills-messages-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Snacks</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">French
-                                                                fries</a></li>
-                                                        <li><a href="shop-left-sidebar.html">potato
-                                                                chips</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Biscuits &amp;
-                                                                Cookies</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Popcorn</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Rice Cakes</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Spice</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cinnamon
-                                                                Powder</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cumin
-                                                                Powder</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Fenugreek
-                                                                Powder</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Pepper
-                                                                Powder</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Long Pepper</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                            aria-labelledby="v-pills-settings-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Juice</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Mango Juice</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Coconut
-                                                                Water</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Tetra Pack</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Apple
-                                                                Juices</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Lychee
-                                                                Juice</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">soft drink</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Breizh Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Green Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Jolt Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Mecca Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Topsia Cola</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <nav class="navbar navbar-expand-lg">
-                        <a href="javascript:void(0)" class="navbar-toggler shadow-none">
-                            <i class="ri-menu-3-line"></i>
-                        </a>
-                        <div class="cr-header-buttons">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-line"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
-                                <i class="ri-shopping-cart-line"></i>
-                            </a>
-                        </div>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">
-                                        Home
-                                    </a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Category
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left
-                                                sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-right-sidebar.html">Shop
-                                                Right
-                                                sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-full-width.html">Full
-                                                Width</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Products
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="product-left-sidebar.html">product
-                                                Left
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-right-sidebar.html">product
-                                                Right
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-full-width.html">Product
-                                                Full
-                                                Width
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Pages
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="about.html">About Us</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="contact-us.html">Contact Us</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="cart.html">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="track-order.html">Track Order</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="faq.html">Faq</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="policy.html">Policy</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Blog
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="blog-left-sidebar.html">Left
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-right-sidebar.html">Right
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-full-width.html">Full
-                                                Width</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-detail-left-sidebar.html">Detail
-                                                Left
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-detail-right-sidebar.html">Detail
-                                                Right
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-detail-full-width.html">Detail
-                                                Full
-                                                Width</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Elements
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="elements-products.html">Products</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="elements-typography.html">Typography</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="elements-buttons.html">Buttons</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <div class="cr-calling">
-                        <i class="ri-phone-line"></i>
-                        <a href="javascript:void(0)">+123 ( 456 ) ( 7890 )</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php include './views/components/header.php' ?>
+
 
     <!-- Mobile menu -->
     <div class="cr-sidebar-overlay"></div>
@@ -550,317 +160,212 @@
     <!-- Checkout section -->
     <section class="cr-checkout-section padding-tb-100">
         <div class="container">
-            <div class="row">
-                <!-- Sidebar Area Start -->
-                <div class="cr-checkout-rightside col-lg-4 col-md-12">
-                    <div class="cr-sidebar-wrap">
-                        <!-- Sidebar Summary Block -->
-                        <div class="cr-sidebar-block">
-                            <div class="cr-sb-title">
-                                <h3 class="cr-sidebar-title">Summary</h3>
-                            </div>
-                            <div class="cr-sb-block-content">
-                                <div class="cr-checkout-summary">
-                                    <div>
-                                        <span class="text-left">Sub-Total</span>
-                                        <span class="text-right">$80.00</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-left">Delivery Charges</span>
-                                        <span class="text-right">$80.00</span>
-                                    </div>
-                                    <div class="cr-checkout-summary-total">
-                                        <span class="text-left">Total Amount</span>
-                                        <span class="text-right">$80.00</span>
-                                    </div>
+            <form action="?act=checkout" method="POST">
+                <div class="row">
+                    <!-- Sidebar Area Start -->
+                    <div class="cr-checkout-rightside col-lg-4 col-md-12">
+                        <div class="cr-sidebar-wrap">
+                            <!-- Sidebar Summary Block -->
+                            <div class="cr-sidebar-block">
+                                <div class="cr-sb-title">
+                                    <h3 class="cr-sidebar-title">Summary</h3>
                                 </div>
-                                <div class="cr-checkout-pro">
-                                    <div class="col-sm-12 mb-6">
-                                        <div class="cr-product-inner">
-                                            <div class="cr-pro-image-outer">
-                                                <div class="cr-pro-image">
-                                                    <a href="product-left-sidebar.html" class="image">
-                                                        <img class="main-image" src="assets/img/product/10.jpg"
-                                                            alt="Product">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="cr-pro-content cr-product-details">
-                                                <h5 class="cr-pro-title"><a href="product-left-sidebar.html">Dates Value
-                                                        Pack Pouch</a></h5>
-                                                <div class="cr-pro-rating">
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-line"></i>
-                                                </div>
-                                                <p class="cr-price"><span class="new-price">$120.25</span> <span
-                                                        class="old-price">$123.25</span></p>
-                                            </div>
+                                <div class="cr-sb-block-content">
+                                    <div class="cr-checkout-summary">
+                                        <div>
+                                            <span class="text-left">Tổng tiền của bạn</span>
+                                            <span class="text-right"><?= number_format($total) ?>đ</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-left">Phí vận chuyển</span>
+                                            <span class="text-right">
+                                                <?php
+                                                $fee = $total >= 200000 ? 0 : 30000;
+                                                echo number_format($fee) . "đ"
+                                                    ?>
+                                            </span>
+                                        </div>
+                                        <div class="cr-checkout-summary-total">
+                                            <span class="text-left">Tổng tiên</span>
+                                            <span class="text-right"><?php $total_amout = $total + $fee;
+                                            echo number_format($total_amout) . "đ" ?></span>
+                                            <input type="hidden" name="total_amount" value="<?= $total_amout ?>">
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 mb-0">
-                                        <div class="cr-product-inner">
-                                            <div class="cr-pro-image-outer">
-                                                <div class="cr-pro-image">
-                                                    <a href="product-left-sidebar.html" class="image">
-                                                        <img class="main-image" src="assets/img/product/12.jpg"
-                                                            alt="Product">
-                                                    </a>
+                                    <div class="cr-checkout-pro">
+                                        <?php foreach ($cartItems as $item): ?>
+                                            <div class="col-sm-12 mb-6">
+                                                <div class="cr-product-inner">
+                                                    <div class="cr-pro-image-outer">
+                                                        <div class="cr-pro-image">
+                                                            <a href="?act=view-detail&color=<?= $item['variant_id'] ?>" class="image">
+                                                                <img class="main-image" src="<?= $item['image'] ?>"
+                                                                    alt="Product">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="cart-item-id[]"
+                                                        value="<?= $item['cart_item_id'] ?>">
+                                                    <div class="cr-pro-content cr-product-details">
+                                                        <h5 class="cr-pro-title"><a
+                                                                href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
+                                                        </h5>
+                                                        <div class="cr-pro-rating">
+                                                            <i class="ri-star-fill"></i>
+                                                            <i class="ri-star-fill"></i>
+                                                            <i class="ri-star-fill"></i>
+                                                            <i class="ri-star-fill"></i>
+                                                            <i class="ri-star-line"></i>
+                                                        </div>
+                                                        <p class="cr-price"><span
+                                                                class="new-price"><?= number_format($item['price']) ?>đ</span>
+                                                            <!-- <span class="old-price">$123.25</span></p> -->
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="cr-pro-content cr-product-details">
-                                                <h5 class="cr-pro-title"><a href="product-left-sidebar.html">Smoked
-                                                        Honey Spiced Nuts</a></h5>
-                                                <div class="cr-pro-rating">
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-fill"></i>
-                                                    <i class="ri-star-line"></i>
-                                                </div>
-                                                <p class="cr-price"><span class="new-price">$120.25</span> <span
-                                                        class="old-price">$123.25</span></p>
 
-                                            </div>
+                                        <?php endforeach; ?>
+                                        <?php foreach ($cartItems as $index => $item): ?>
+                                            <input type="hidden" name="cartItems[<?= $index ?>][variant_id]"
+                                                value="<?= $item['variant_id'] ?>">
+                                            <input type="hidden" name="cartItems[<?= $index ?>][size_id]"
+                                                value="<?= $item['size_id'] ?>">
+                                            <input type="hidden" name="cartItems[<?= $index ?>][quantity]"
+                                                value="<?= $item['quantity'] ?>">
+                                            <input type="hidden" name="cartItems[<?= $index ?>][price]"
+                                                value="<?= $item['price'] ?>">
+                                        <?php endforeach; ?>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sidebar Summary Block -->
+                        </div>
+                        <div class="cr-sidebar-wrap cr-checkout-del-wrap">
+                            <!-- Sidebar Summary Block -->
+                            <div class="cr-sidebar-block">
+                                <div class="cr-sb-title">
+                                    <h3 class="cr-sidebar-title">Phương thức vận chuyển</h3>
+                                </div>
+                                <div class="cr-sb-block-content">
+                                    <div class="cr-checkout-del">
+                                        <div class="cr-del-desc">Đơn hàng trên 200,000đ sẽ được miễn phí vận chuyển
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
+                            <!-- Sidebar Summary Block -->
                         </div>
-                        <!-- Sidebar Summary Block -->
-                    </div>
-                    <div class="cr-sidebar-wrap cr-checkout-del-wrap">
-                        <!-- Sidebar Summary Block -->
-                        <div class="cr-sidebar-block">
-                            <div class="cr-sb-title">
-                                <h3 class="cr-sidebar-title">Delivery Method</h3>
-                            </div>
-                            <div class="cr-sb-block-content">
-                                <div class="cr-checkout-del">
-                                    <div class="cr-del-desc">Please select the preferred shipping method to use on this
-                                        order.</div>
-                                    <form action="#">
-                                        <span class="cr-del-option">
-                                            <span>
-                                                <span class="cr-del-opt-head">Free Shipping</span>
-                                                <input type="radio" id="del1" name="radio-group" checked>
-                                                <label for="del1">Rate - $0 .00</label>
-                                            </span>
-                                            <span>
-                                                <span class="cr-del-opt-head">Flat Rate</span>
-                                                <input type="radio" id="del2" name="radio-group">
-                                                <label for="del2">Rate - $5.00</label>
-                                            </span>
-                                        </span>
-                                        <span class="cr-del-commemt">
-                                            <span class="cr-del-opt-head">Add Comments About Your Order</span>
-                                            <textarea name="your-commemt" placeholder="Comments"></textarea>
-                                        </span>
-                                    </form>
+                        <div class="cr-sidebar-wrap cr-checkout-pay-wrap">
+                            <!-- Sidebar Payment Block -->
+                            <div class="cr-sidebar-block">
+                                <div class="cr-sb-title">
+                                    <h3 class="cr-sidebar-title">Phương thức thanh toán</h3>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Sidebar Summary Block -->
-                    </div>
-                    <div class="cr-sidebar-wrap cr-checkout-pay-wrap">
-                        <!-- Sidebar Payment Block -->
-                        <div class="cr-sidebar-block">
-                            <div class="cr-sb-title">
-                                <h3 class="cr-sidebar-title">Payment Method</h3>
-                            </div>
-                            <div class="cr-sb-block-content">
-                                <div class="cr-checkout-pay">
-                                    <div class="cr-pay-desc">Please select the preferred payment method to use on this
-                                        order.</div>
-                                    <form action="#" class="payment-options">
-                                        <span class="cr-pay-option">
-                                            <span>
-                                                <input type="radio" id="pay1" name="radio-group" checked>
-                                                <label for="pay1">Cash On Delivery</label>
-                                            </span>
-                                        </span>
-                                        <span class="cr-pay-option">
-                                            <span>
-                                                <input type="radio" id="pay2" name="radio-group">
-                                                <label for="pay2">UPI</label>
-                                            </span>
-                                        </span>
-                                        <span class="cr-pay-option">
-                                            <span>
-                                                <input type="radio" id="pay3" name="radio-group">
-                                                <label for="pay3">Bank Transfer</label>
-                                            </span>
-                                        </span>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sidebar Payment Block -->
-                    </div>
-                    <div class="cr-sidebar-wrap cr-check-pay-img-wrap">
-                        <!-- Sidebar Payment Block -->
-                        <div class="cr-sidebar-block">
-                            <div class="cr-sb-title">
-                                <h3 class="cr-sidebar-title">Payment Method</h3>
-                            </div>
-                            <div class="cr-sb-block-content">
-                                <div class="cr-check-pay-img-inner">
-                                    <div class="cr-check-pay-img">
-                                        <img src="assets/img/banner/payment.png" alt="payment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sidebar Payment Block -->
-                    </div>
-                </div>
-                <div class="cr-checkout-leftside col-lg-8 col-md-12 m-t-991">
-                    <!-- checkout content Start -->
-                    <div class="cr-checkout-content">
-                        <div class="cr-checkout-inner">
-                            <div class="cr-checkout-wrap mb-30">
-                                <div class="cr-checkout-block cr-check-new">
-                                    <h3 class="cr-checkout-title">New Customer</h3>
-                                    <div class="cr-check-block-content">
-                                        <div class="cr-check-subtitle">Checkout Options</div>
-                                        <form action="#">
-                                            <span class="cr-new-option">
+                                <div class="cr-sb-block-content">
+                                    <div class="cr-checkout-pay">
+                                        <div class="cr-pay-desc">Please select the preferred payment method to use on
+                                            this
+                                            order.</div>
+                                        <form action="#" class="payment-options">
+                                            <span class="cr-pay-option">
                                                 <span>
-                                                    <input type="radio" id="account1" name="radio-group" checked>
-                                                    <label for="account1">Register Account</label>
-                                                </span>
-                                                <span>
-                                                    <input type="radio" id="account2" name="radio-group">
-                                                    <label for="account2">Guest Account</label>
+                                                    <input type="radio" id="pay1" name="radio-group" checked>
+                                                    <label for="pay1">Thanh toán khi nhận hàng</label>
                                                 </span>
                                             </span>
-                                        </form>
-                                        <div class="cr-new-desc">By creating an account you will be able to shop faster,
-                                            be up to date on an order's status, and keep track of the orders you have
-                                            previously made.
-                                        </div>
-                                        <span>
-                                            <button class="cr-button mt-30" type="submit">Continue</button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="cr-checkout-block cr-check-login">
-                                    <h3 class="cr-checkout-title">Returning Customer</h3>
-                                    <div class="cr-check-login-form">
-                                        <form action="#" method="post">
-                                            <span class="cr-check-login-wrap">
-                                                <label>Email Address</label>
-                                                <input type="text" name="name" placeholder="Enter your email address"
-                                                    required>
-                                            </span>
-                                            <span class="cr-check-login-wrap">
-                                                <label>Password</label>
-                                                <input type="password" name="password" placeholder="Enter your password"
-                                                    required>
-                                            </span>
-
-                                            <span class="cr-check-login-wrap cr-check-login-btn">
-                                                <button class="cr-button mr-15" type="submit">Login</button>
-                                                <a class="cr-check-login-fp" href="#">Forgot Password?</a>
+                                            <span class="cr-pay-option">
+                                                <span>
+                                                    <input type="radio" id="pay2" name="radio-group">
+                                                    <label for="pay2">Thanh toán trực tuyến</label>
+                                                </span>
                                             </span>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="cr-checkout-wrap">
-                                <div class="cr-checkout-block cr-check-bill">
-                                    <h3 class="cr-checkout-title">Billing Details</h3>
-                                    <div class="cr-bl-block-content">
-                                        <div class="cr-check-subtitle">Checkout Options</div>
-                                        <span class="cr-bill-option">
-                                            <span>
-                                                <input type="radio" id="bill1" name="radio-group">
-                                                <label for="bill1">I want to use an existing address</label>
-                                            </span>
-                                            <span>
-                                                <input type="radio" id="bill2" name="radio-group" checked>
-                                                <label for="bill2">I want to use new address</label>
-                                            </span>
-                                        </span>
-                                        <div class="cr-check-bill-form mb-minus-24">
-                                            <form action="#" method="post">
+                            <!-- Sidebar Payment Block -->
+                        </div>
+                        <div class="cr-sidebar-wrap cr-check-pay-img-wrap">
+                            <!-- Sidebar Payment Block -->
+                            <div class="cr-sidebar-block">
+                                <div class="cr-sb-title">
+                                    <h3 class="cr-sidebar-title">Payment Method</h3>
+                                </div>
+                                <div class="cr-sb-block-content">
+                                    <div class="cr-check-pay-img-inner">
+                                        <div class="cr-check-pay-img">
+                                            <img src="views/assets/img/banner/payment.png" alt="payment">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sidebar Payment Block -->
+                        </div>
+                    </div>
+                    <div class="cr-checkout-leftside col-lg-8 col-md-12 m-t-991">
+                        <!-- checkout content Start -->
+                        <div class="cr-checkout-content">
+                            <div class="cr-checkout-inner">
+
+                                <div class="cr-checkout-wrap">
+                                    <div class="cr-checkout-block cr-check-bill">
+                                        <h3 class="cr-checkout-title">Billing Details</h3>
+                                        <div class="cr-bl-block-content">
+                                            <div class="cr-check-subtitle">Checkout Options</div>
+
+                                            <div class="cr-check-bill-form mb-minus-24">
+
                                                 <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>First Name*</label>
-                                                    <input type="text" name="firstname"
-                                                        placeholder="Enter your first name" required>
+                                                    <label>Họ và tên*</label>
+                                                    <input type="text" name="name" placeholder="Điền họ và tên"
+                                                        required>
+                                                    <p id="name_err" style="color:red">
+                                                        <?= isset($name_err) ? $name_err : '' ?>
+                                                    </p>
                                                 </span>
                                                 <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Last Name*</label>
-                                                    <input type="text" name="lastname"
-                                                        placeholder="Enter your last name" required>
+                                                    <label>Email*</label>
+                                                    <input type="email" name="email" placeholder="Điền email" required>
+                                                    <p id="email_err" style="color:red">
+                                                        <?= isset($email_err) ? $email_err : '' ?>
+                                                    </p>
                                                 </span>
                                                 <span class="cr-bill-wrap">
-                                                    <label>Address</label>
-                                                    <input type="text" name="address" placeholder="Address Line 1">
+                                                    <label>Địa chỉ</label>
+                                                    <input type="text" name="address" placeholder="Điền địa chỉ">
                                                 </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>City *</label>
-                                                    <span class="cr-bl-select-inner">
-                                                        <select name="cr_select_city" id="cr-select-city"
-                                                            class="cr-bill-select">
-                                                            <option selected disabled>City</option>
-                                                            <option value="1">City 1</option>
-                                                            <option value="2">City 2</option>
-                                                            <option value="3">City 3</option>
-                                                            <option value="4">City 4</option>
-                                                            <option value="5">City 5</option>
-                                                        </select>
-                                                    </span>
+                                                <p id="address_err" style="color:red">
+                                                    <?= isset($address_err) ? $address_err : '' ?>
+                                                </p>
+                                                <span class="cr-bill-wrap">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" name="phone" placeholder="Điền số điện thoại">
                                                 </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Post Code</label>
-                                                    <input type="text" name="postalcode" placeholder="Post Code">
-                                                </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Country *</label>
-                                                    <span class="cr-bl-select-inner">
-                                                        <select name="cr_select_country" id="cr-select-country"
-                                                            class="cr-bill-select">
-                                                            <option selected disabled>Country</option>
-                                                            <option value="1">Country 1</option>
-                                                            <option value="2">Country 2</option>
-                                                            <option value="3">Country 3</option>
-                                                            <option value="4">Country 4</option>
-                                                            <option value="5">Country 5</option>
-                                                        </select>
-                                                    </span>
-                                                </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Region State</label>
-                                                    <span class="cr-bl-select-inner">
-                                                        <select name="cr_select_state" id="cr-select-state"
-                                                            class="cr-bill-select">
-                                                            <option selected disabled>Region/State</option>
-                                                            <option value="1">Region/State 1</option>
-                                                            <option value="2">Region/State 2</option>
-                                                            <option value="3">Region/State 3</option>
-                                                            <option value="4">Region/State 4</option>
-                                                            <option value="5">Region/State 5</option>
-                                                        </select>
-                                                    </span>
-                                                </span>
-                                            </form>
-                                        </div>
+                                                <p id="phone_err" style="color:red">
+                                                    <?= isset($phone_err) ? $phone_err : '' ?>
+                                                </p>
+                                                <div class="cr-bill-wrap">
+                                                    <label>Ghi chú về đơn hàng của bạn</label>
+                                                    <textarea class="form-control" name="comments" placeholder="Leave a comment here"
+                                                        id="floatingTextarea"></textarea>
+                                                </div>
 
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
+                                <span class="cr-check-order-btn">
+                                    <button name="submit" class="btn btn-success">Đặt hàng</button>
+                                </span>
                             </div>
-                            <span class="cr-check-order-btn">
-                                <a class="cr-button mt-30" href="#">Place Order</a>
-                            </span>
                         </div>
+                        <!--cart content End -->
                     </div>
-                    <!--cart content End -->
                 </div>
-            </div>
+            </form>
         </div>
     </section>
     <!-- Checkout section End -->
@@ -872,8 +377,8 @@
                 <div class="col-xl-4 col-lg-6 col-sm-12 col-12 cr-footer-border">
                     <div class="cr-footer-logo">
                         <div class="image">
-                            <img src="assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
+                            <img src="views/assets/img/logo/logo.png" alt="logo" class="logo">
+                            <img src="views/assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
                         </div>
                         <p>Carrot is the biggest market of grocery products. Get your daily needs from our store.</p>
                     </div>
@@ -952,49 +457,49 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/1.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/1.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/2.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/2.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/3.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/3.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/4.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/4.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/5.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/5.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/6.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/6.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/7.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/7.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/8.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/8.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
@@ -1015,7 +520,7 @@
         <i class="ri-arrow-up-line"></i>
         <div class="back-to-top-wrap">
             <svg viewBox="-1 -1 102 102">
-                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
             </svg>
         </div>
     </a>
@@ -1031,8 +536,8 @@
                 </div>
                 <ul class="crcart-pro-items">
                     <li>
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img src="assets/img/product/4.jpg"
-                                alt="product-1"></a>
+                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
+                                src="views/assets/img/product/4.jpg" alt="product-1"></a>
                         <div class="cr-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Fresh Pomegranate</a>
                             <span class="cart-price"><span>$56.00</span> x 1kg</span>
@@ -1048,8 +553,8 @@
                         </div>
                     </li>
                     <li>
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img src="assets/img/product/2.jpg"
-                                alt="product-2"></a>
+                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
+                                src="views/assets/img/product/2.jpg" alt="product-2"></a>
                         <div class="cr-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Green Apples</a>
                             <span class="cart-price"><span>$75.00</span> x 1kg</span>
@@ -1065,10 +570,10 @@
                         </div>
                     </li>
                     <li>
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img src="assets/img/product/3.jpg"
-                                alt="product-3"></a>
+                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
+                                src="views/assets/img/product/3.jpg" alt="product-3"></a>
                         <div class="cr-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Watermelon  - Small</a>
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Watermelon - Small</a>
                             <span class="cart-price"><span>$48.00</span> x 5kg</span>
                             <div class="cr-cart-qty">
                                 <div class="cart-qty-plus-minus">
@@ -1168,10 +673,10 @@
                     </div>
                     <ul class="rtl-mode">
                         <li class="rtl">
-                            <img src="assets/img/tool/rtl.png" alt="rtl">
+                            <img src="views/assets/img/tool/rtl.png" alt="rtl">
                         </li>
                         <li class="ltr active-rtl-mode">
-                            <img src="assets/img/tool/ltr.png" alt="ltr">
+                            <img src="views/assets/img/tool/ltr.png" alt="ltr">
                         </li>
                     </ul>
                 </div>
@@ -1181,22 +686,22 @@
                     </div>
                     <ul class="bg-panel">
                         <li class="bg-1">
-                            <img src="assets/img/shape/bg-shape-1.png" alt="bg-shape-1">
+                            <img src="views/assets/img/shape/bg-shape-1.png" alt="bg-shape-1">
                         </li>
                         <li class="bg-2">
-                            <img src="assets/img/shape/bg-shape-2.png" alt="bg-shape-2">
+                            <img src="views/assets/img/shape/bg-shape-2.png" alt="bg-shape-2">
                         </li>
                         <li class="bg-3">
-                            <img src="assets/img/shape/bg-shape-3.png" alt="bg-shape-3">
+                            <img src="views/assets/img/shape/bg-shape-3.png" alt="bg-shape-3">
                         </li>
                         <li class="bg-4">
-                            <img src="assets/img/shape/bg-shape-4.png" alt="bg-shape-4">
+                            <img src="views/assets/img/shape/bg-shape-4.png" alt="bg-shape-4">
                         </li>
                         <li class="bg-5">
-                            <img src="assets/img/shape/bg-shape-5.png" alt="bg-shape-5">
+                            <img src="views/assets/img/shape/bg-shape-5.png" alt="bg-shape-5">
                         </li>
                         <li class="bg-6 active-bg-panel">
-                            <img src="assets/img/shape/bg-shape-6.png" alt="bg-shape-6">
+                            <img src="views/assets/img/shape/bg-shape-6.png" alt="bg-shape-6">
                         </li>
                     </ul>
                 </div>
@@ -1205,19 +710,20 @@
     </div>
 
     <!-- Vendor Custom -->
-    <script src="assets/js/vendor/jquery-3.6.4.min.js"></script>
-    <script src="assets/js/vendor/jquery.zoom.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/vendor/mixitup.min.js"></script>
-    <script src="assets/js/vendor/range-slider.js"></script>
-    <script src="assets/js/vendor/aos.min.js"></script>
-    <script src="assets/js/vendor/swiper-bundle.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
+    <script src="views/assets/js/vendor/jquery-3.6.4.min.js"></script>
+    <script src="views/assets/js/vendor/jquery.zoom.min.js"></script>
+    <script src="views/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="views/assets/js/vendor/mixitup.min.js"></script>
+    <script src="views/assets/js/vendor/range-slider.js"></script>
+    <script src="views/assets/js/vendor/aos.min.js"></script>
+    <script src="views/assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="views/assets/js/vendor/slick.min.js"></script>
 
     <!-- Main Custom -->
-    <script src="assets/js/main.js"></script>
+    <script src="views/assets/js/main.js"></script>
 </body>
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:30:26 GMT -->
+
 </html>
