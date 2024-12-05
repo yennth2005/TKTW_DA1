@@ -2,7 +2,7 @@
 session_start();
 require_once '../commons/env.php';
 require_once '../commons/function.php';
-check_login();
+check_login();  
 require_once './models/Customer.php';
 require_once './models/Product.php';
 require_once './models/Category.php';
@@ -10,7 +10,6 @@ require_once './models/Order.php';
 require_once './models/State.php';
 require_once './models/Comment.php';
 require_once './models/Statistic.php';
-require_once './models/Blog.php';
 require_once './controllers/CustomerController.php';
 require_once './controllers/DashboardController.php';
 require_once './controllers/ProductController.php';
@@ -19,7 +18,6 @@ require_once './controllers/OrderController.php';
 require_once './controllers/StateController.php';
 require_once './controllers/CommentController.php';
 require_once './controllers/StatisticsController.php';
-require_once './controllers/BlogController.php';
 
 // Router đơn giản
 $customer = new CustomerController();
@@ -29,14 +27,13 @@ $order = new OrderController();
 $comment = new CommentController();
 $state = new StateController();
 $statistic = new StatisticsController();
-$blogs = new BlogController();
 
 $act = $_GET['act'] ?? '/';
 //$_GET['action'] : 'index';
 match ($act) {
     'home' => (new DashboardController())->dashboard(),
     //thống kê
-    'statistic' => $statistic->showStatistic(),
+    'statistic' =>$statistic->showStatistic(),
     //Quản lí user
     'list-user' => $customer->list(),
     'delete-user' => $customer->delete(),
@@ -49,18 +46,18 @@ match ($act) {
     // 'post-find'=>$customer->postFind(),
 
     //quản lý sản phẩm
-    'list-pro' => (new ProductControllerAdmin())->listProduct(),
-    'create-pro' => (new ProductControllerAdmin())->add(),
-    'post-create-pro' => (new ProductControllerAdmin())->addProduct(),
-    'update-pro' => (new ProductControllerAdmin())->edit(),
-    'post-update-pro' => (new ProductControllerAdmin())->editProduct(),
-    'delete-pro' => (new ProductControllerAdmin())->delete(),
+    'list-pro'=>$product->listProduct(),
+    'create-pro'=>$product->add(),
+    'post-create-pro'=>$product->addProduct(),
+    'update-pro'=>$product->edit(),
+    'post-update-pro'=>$product->editProduct(),
+    'delete-pro'=>$product->delete(),
     'addProduct' => $product->listProduct(),
-    'view-detail-pro' => $product->viewDetailVariantByProduct(),
-    'add-variants' => $product->variants(),
-    'post-add-variant' => $product->addVariant(),
-    'add-size' => $product->saveSize(),
-    'delete-variant' => $product->deleteVariant(),
+    'view-detail-pro'=>$product->viewDetailVariantByProduct(),
+    'add-variants'=> $product -> variants(),
+    'post-add-variant'=>$product->addVariant(),
+    'add-size'=>$product->saveSize(),
+    'delete-variant'=>$product->deleteVariant(),
 
     //Quản lí danh mục
     'list-category' => $category->showAllCategory(),
@@ -71,30 +68,21 @@ match ($act) {
     'post-update-category' => $category->postUpdateCategory(),
 
     //quản lý đơn hàng
-    'list-order' => (new OrderController())->showAllOrder(),
-    'update-order' => (new OrderController())->showDetailOrder(),
-    'update-state' => (new OrderController())->updateOrder(),
-
+    'list-order'=>$order->showAllOrder(),
+    'update-order'=>$order->showDetailOrder(),
+    'update-state'=>$order->updateOrder(),
+    'delete-order'=>$order->deleteOrder(),
     //trạng thái đơn hàng
-    'list-state' => (new StateController())->list(),
-    'delete-state' => (new StateController())->delete(),
-    'create-state' => (new StateController())->create(),
-    'post-create-state' => (new StateController())->postCreate(),
-    'edit-state' => (new StateController())->update(),
-    'post-update-state' => (new StateController())->postUpdate(),
+    'list-state'=>$state->list(),
+    'delete-state' =>$state->delete(),
+    'create-state' =>$state->create(),
+    'post-create-state' =>$state->postCreate(),
+    'edit-state' =>$state->update(),
+    'post-update-state' =>$state->postUpdate(),
 
     //quản lý bình luận
-    'list-comment' => (new CommentController())->list(),
-    'view-detail' => (new CommentController())->viewDetail(),
-    'delete-comment' => (new CommentController())->delete(),
-
-    //bài viết
-    'list-blogs' => (new BlogController())->showAllBlog(),
-    'delete-blog' => (new BlogController())->delete(),
-    'add-blog' => (new BlogController())->addBlogs(),
-    'post-add-blog' => (new BlogController())->postBlog(),
-    'update-blog' => (new BlogController())->updateBlog(),
-    'post-update-blog' => (new BlogController())->postUpdateBlog(),
+    'list-comment'=>$comment->list(),
+    'view-detail' =>$comment->viewDetail(),
+    'delete-comment'=>$comment->delete(),
 }
-
     ?>

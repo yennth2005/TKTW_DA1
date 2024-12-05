@@ -62,6 +62,11 @@
         unset($_SESSION['success']);
     }
     ?>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body class="body-bg-6">
@@ -204,7 +209,6 @@
                         <form class="cr-content-form" method="POST" action="<?= BASE_URL ?>?act=check-login"
                             onsubmit="return login()">
                             <div class="row">
-
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Email</label>
@@ -236,10 +240,6 @@
                                     </div>
                                 </div>
                                 <div class="remember">
-                                    <span class="form-group custom">
-                                        <input name="remember" type="checkbox" id="html">
-                                        <label for="html">Remember Me</label>
-                                    </span>
                                     <a class="link" href="<?= BASE_URL ?>?act=forgot-password">Forgot Password?</a>
                                 </div><br>
                                 <div class="login-buttons">

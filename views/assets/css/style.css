@@ -4144,7 +4144,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
   z-index: 0;
 }
 .cr-side-categories img {
-  width: 100%;
+  min-width: 100%;
   height: 100%;
 }
 .cr-side-categories .categories-contain {
@@ -9661,5 +9661,6 @@ iframe {
 .cr-product-uploads .color-label {
   width: 100%;
 }
+
 
 /*# sourceMappingURL=style.css.map */

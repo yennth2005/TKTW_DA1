@@ -14,7 +14,7 @@
                             <option value="1">Mens</option>
                             <option value="2">Womens</option>
                             <option value="3">Electronics</option>
-                        </select> -->
+                        </select>
                         <a href="javascript:void(0)" class="search-btn">
                             <i class="ri-search-line"></i>
                         </a>
@@ -27,39 +27,31 @@
                                     <span>Tôi</span>
                                 </a>
                                 <?php if (isset($_SESSION['user'])) { ?>
-                                        <ul class="dropdown-menu">
-    <<<<<<< Updated upstream
-                                            <?php if ($_SESSION['user']['role'] == 1) { ?>
-                                                <li>
-                                                    <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Trang quản trị</a>
-                                                </li>
-                                            <?php } ?>
-                                            <li>
-    =======
-                                            <?php if ($_SESSION['user']['role'] == 1) { ?>
-                                                    <li>
-                                                        <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Trang quản trị</a>
-                                                    </li>
-                                            <?php } ?>
-                                            <li>
-                                                <a class="dropdown-item" href="?act=view-order">Đơn mua</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="?act=personal-detail">Tài khoản của tôi</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="dropdown-menu">
+                                        <?php if($_SESSION['user']['role']==1){?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= BASE_URL_ADMIN?>?act=home">Trang quản trị</a>
+                                        </li>
+                                        <?php }?>
+                                        <li>
+                                            <a class="dropdown-item" href="?act=view-order">Đơn mua</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="?act=personal-detail">Tài khoản của tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                        </li>
+                                    </ul>
                                 <?php } else { ?>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=register">Đăng ký</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=register">Đăng ký</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
+                                        </li>
+                                    </ul>
                                 <?php } ?>
                             </li>
                         </ul>
@@ -309,31 +301,31 @@
                                     <i class="ri-user-3-line"></i>
                                 </a>
                                 <?php if (isset($_SESSION['user'])) { ?>
-                                        <ul class="dropdown-menu">
-                                            <?php if ($_SESSION['user']['role'] == 1) { ?>
-                                                    <li>
-                                                        <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Trang quản trị</a>
-                                                    </li>
-                                            <?php } ?>
-                                            <li>
-                                                <a class="dropdown-item" href="?act=view-order">Đơn mua</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="checkout.html">Tài khoản của tôi</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="dropdown-menu">
+                                        <?php if($_SESSION['user']['role']==1){?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= BASE_URL_ADMIN?>?act=home">Trang quản trị</a>
+                                        </li>
+                                        <?php }?>
+                                        <li>
+                                            <a class="dropdown-item" href="?act=view-order">Đơn mua</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="checkout.html">Tài khoản của tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                        </li>
+                                    </ul>
                                 <?php } else { ?>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=register">Đăng ký</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=register">Đăng ký</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
+                                        </li>
+                                    </ul>
                                 <?php } ?>
                             </li>
                         </ul>
@@ -354,12 +346,11 @@
                                     Danh mục
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <?php foreach ($cates as $cate): ?>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="?act=view-category&category-id=<?= $cate['category_id'] ?>"><?= $cate['category_name'] ?></a>
-                                            </li>
-                                    <?php endforeach; ?>
+                                    <?php foreach($cates as $cate):?>
+                                    <li>
+                                        <a class="dropdown-item" href="?act=view-category&category-id=<?=$cate['category_id'] ?>"><?=$cate['category_name'] ?></a>
+                                    </li>
+                                    <?php endforeach;?>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -367,72 +358,19 @@
                                     Sản phẩm
                                 </a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)">
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)">
                                     Giới thiệu
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="about.html">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="contact-us.html">Contact Us</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="cart.html">Cart</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="index.php?act=theo-doi-don-hang">Track Order</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="login.html">Login</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="register.html">Register</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="policy.html">Policy</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)">
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)">
                                     Bài viết
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="blog-left-sidebar.html">Left Sidebar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="blog-right-sidebar.html">Right Sidebar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="blog-full-width.html">Full Width</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="blog-detail-left-sidebar.html">Detail Left
-                                            Sidebar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="blog-detail-right-sidebar.html">Detail Right
-                                            Sidebar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="blog-detail-full-width.html">Detail Full
-                                            Width</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
-
+                            
                         </ul>
                     </div>
                 </nav>

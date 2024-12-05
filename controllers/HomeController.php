@@ -2,12 +2,12 @@
 class HomeController
 {
     public $homeModel;
-    public $BlogModel;
 
     public function __construct()
     {
+
         $this->homeModel = new Home();
-        $this->BlogModel = new BlogModel();
+
 
     }
     //////////products and categories///////////////////
@@ -16,7 +16,6 @@ class HomeController
         $products = $this->homeModel->listPro();
         $cates = $this->homeModel->getAllCate();
         $catePro = $this->homeModel->cateProduct();
-        $posts = $this->BlogModel->getAllBlog();
         // var_dump($products);
         require_once './views/home.php';
     }
@@ -112,6 +111,7 @@ class HomeController
             'Tím' => 'violet',
             'Xanh nhạt' => '#0dcaf0',
             'Nâu' => 'brown',
+            'Xanh'=>'blue'
         ];
         require_once './views/trangchinh/trang-chi-tiet.php';
     }
@@ -215,8 +215,16 @@ class HomeController
         if (!isset($_POST['password']) || empty($_POST['password'])) {
             $error_password = "Mật khẩu không được để trống";
         } else {
-            $_SESSION['error'] = "Sai email hoặc mật khẩu. Vui lòng thử lại!";
-            header("Location: index.php?act=login");
+
+            if (!password_verify($_POST['password'], $data['password'])) {
+                $error_password = "Mật khẩu không đúng";
+            }
+        }
+
+        if ($error_email || $error_password) {
+            $_SESSION['error_email'] = $error_email;
+            $_SESSION['error_password'] = $error_password;
+            header("Location: ?act=login"); // Chuyển hướng về trang đăng nhập
             exit;
         }
     }
@@ -259,11 +267,39 @@ class HomeController
 
 
             $this->homeModel->edit($_SESSION['user']['customer_id'], $name, $email, $image, $address, $phone);
-            // header("Location: " .$_SERVER['HTTP_REFERER']);
+            $_SESSION['success'] = "Cập nhật thành công";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
         }
         require_once 'views/taikhoan/thong-tin-ca-nhan.php';
     }
 
+
+    public function changePassword()
+    {
+        require_once 'views/taikhoan/thay-doi-mat-khau.php';
+    }
+    public function doneChanged()
+    {
+        $customer_id = $_GET['customer_id'];
+        $password = $_POST['new_pass'];
+        $passwordCheck = $_POST['new_pass_check'];
+
+        if (strlen($password) < 8) {
+            $_SESSION['error'] = "Mật khẩu ít nhất 8 kí tự";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        } elseif ($passwordCheck != $password) {
+            $_SESSION['error'] = "Mật khẩu không trùng khớp";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        } else {
+            $this->homeModel->changePass($password, $customer_id);
+            $_SESSION['success'] = "Thay đổi mật khẩu thành công";
+            header("Location: ?act=personal-detail");
+            exit;
+        }
+    }
     //CART
 
     public function addToCart()
@@ -365,33 +401,39 @@ class HomeController
 
             $cart_id = $cart['cart_id'];
             $cartData = $this->homeModel->getItemFromCart($cart_id);
-            foreach ($cartData as $cart) {
-                $products = $this->homeModel->getProductWithVariant($cart['variant_id']);
-            }
-            $allVariants = $this->homeModel->getAllVariantByProduct($products['product_id']);
-            // var_dump($allVariants);
-            // echo "<pre>";
-            // print_r($allVariants);  
-            // echo "</pre>";
-            foreach ($allVariants as $variant) {
 
-                $allSizes = $this->homeModel->getAllSizeByProductAndVariant($variant['variant_id']);
+            $allVariantsData = [];
+            $allSizesData = [];
+
+            foreach ($cartData as $cartItem) {
+                $products = $this->homeModel->getProductWithVariant($cartItem['variant_id']);
+                $allVariants = $this->homeModel->getAllVariantByProduct($products['product_id']);
+
+                foreach ($allVariants as $variant) {
+                    if (!isset($allVariantsData[$variant['variant_id']])) {
+                        $allVariantsData[$variant['variant_id']] = $variant;
+                    }
+
+                    if (!isset($allSizesData[$variant['variant_id']])) {
+                        $allSizes = $this->homeModel->getAllSizeByProductAndVariant($variant['variant_id']);
+                        $allSizesData[$variant['variant_id']] = $allSizes;
+                    }
+                }
             }
-            // var_dump($cartData);
             // echo "<pre>";
-            // print_r($products);
+            // print_r($allVariantsData);
             // echo "</pre>";
+
             // echo "<pre>";
-            // print_r($allSizes);
+            // print_r($allSizesData);
             // echo "</pre>";
-            // echo "<pre>";
-            // print_r($cart);
-            // echo "</pre>";
+
             require_once 'views/gio-hang/gio-hang.php';
         } else {
             require_once 'views/gio-hang/gio-hang.php';
         }
     }
+
 
     public function deleteProductFromCartById()
     {
@@ -416,64 +458,65 @@ class HomeController
         $cart_id = $cart['cart_id'];
         $cartItem = $this->homeModel->getCartItemFromCartId($cart_id);
 
-        $allVariants = $this->homeModel->getAllVariantByProduct($product_id);
-        // var_dump($allVariants);
-        // echo "<pre>";
-        // print_r($allVariants);  
-        // echo "</pre>";
-        foreach ($allVariants as $variant) {
-
-            $allSizes = $this->homeModel->getAllSizeByProductAndVariant($variant['variant_id']);
-        }
-        // echo "<pre>";
-        // print_r($allSizes);  
-        // echo "</pre>";
         if (isset($_POST['submit'])) {
             $quantity = $_POST['quantity'];
             $price = $_POST['price'];
             $variant_id = $_POST['variant'];
             $size_id = $_POST['size'];
 
-            if ($_POST['submit'] === 'Thanh toán') {
+            if ($_POST['submit'] === "Thanh toán") {
                 $selectedProducts = $_POST['selected_products'];
                 $total = 0;
                 $cartItems = [];
+                if (!empty($selectedProducts)) {
+                    foreach ($selectedProducts as $variant_id) {
+                        $items = $this->homeModel->selectItemFromVariantId($variant_id);
+                        $cartItems = array_merge($cartItems, $items);
+                    }
 
-                foreach ($selectedProducts as $variant_id) {
-                    // Gọi hàm selectItemFromVariantId với từng variant_id
-                    $items = $this->homeModel->selectItemFromVariantId($variant_id);
+                    //tổng giá trị
+                    foreach ($cartItems as $item) {
+                        $total += $item['price'] * $item['quantity'];
+                    }
 
-                    // Gộp các items vào mảng cartItems
-                    $cartItems = array_merge($cartItems, $items);
+                    require_once 'views/gio-hang/mua-hang.php';
+                } else {
+                    $_SESSION['error'] = "Vui lòng chọn ít nhất một sản phẩm";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                    exit;
                 }
-
-                //  tổng giá trị
-                foreach ($cartItems as $item) {
-                    $total += $item['price'] * $item['quantity'];
-                }
-                // var_dump($cartItems);
-                require_once 'views/gio-hang/mua-hang.php';
-
             } else {
                 $id = $_POST['id'];
-                // var_dump($id);
+
                 foreach ($id as $key => $cart_item_id) {
                     $quantityValue = $_POST['quantity'][$key];
                     $priceValue = $_POST['price'][$key];
                     $variantValue = $_POST['variant'][$key];
                     $sizeValue = $_POST['size'][$key];
-
-                    // Cập nhật sản phẩm trong giỏ hàng
-                    $this->homeModel->updateProductInCart($variantValue, $sizeValue, $quantityValue, $priceValue, $cart_item_id);
-                    $_SESSION['success'] = "Cập nhật thành công";
-                    header("Location: ?act=view-cart");
+                    //     echo "<pre>";
+                    // print_r($sizeValue);
+                    // echo "</pre>";
+                    if (!empty($variantValue) && !empty($sizeValue) && !empty($quantityValue) && !empty($priceValue)) {
+                        // //cập nhật sản phẩm
+                        $this->homeModel->updateProductInCart($variantValue, $sizeValue, $quantityValue, $priceValue, $cart_item_id);
+                    } else {
+                        $_SESSION['error'] = "Vui lòng kiểm tra thông tin sản phẩm.";
+                        header("Location: ?act=view-cart");
+                        exit;
+                    }
                 }
+                // echo "<pre>";
+                // print_r($_POST['variant']);
+                // echo "</pre>";
 
-
+                $_SESSION['success'] = "Cập nhật thành công";
+                // Chỉ chuyển hướng sau khi cập nhật tất cả sản phẩm
+                header("Location: ?act=view-cart");
+                exit;
             }
         }
 
-        // Cập nhật thời gian của giỏ hàng sua khi cập nhật thông tin
+        // Cập nhật thời gian của giỏ hàng sau khi cập nhật thông tin
         $this->homeModel->updateTimeCart(date('Y-m-d'), $cart_id);
     }
 
@@ -622,13 +665,43 @@ class HomeController
         require_once 'views/gio-hang/cam-on.php';
     }
 
-    //blogs
-
-    public function showBlogsDetail($id)
-    {
-        $post = $this->BlogModel->getBlogById($id);
-        // var_dump($id);
-        require './views/trangchinh/trang-bai-viet.php';
+    public function forgot(){
+        require_once 'views/taikhoan/quen-mat-khau.php';
     }
 
+    // public function forgot()
+    // {
+    //     if (isPost()) {
+    //         $data = filter();
+    //         if ($data['email']) {
+    //             $email = $data['email'];
+    //             $kq = get_user_data($email);
+    //             // checkloi($kq);
+    //             if ($kq === 0) {
+    //                 setsession('forgot', 'Email không tồn tại');
+    //                 View(FRONTEND__CLIENT, 'forgot', []);
+    //                 return;
+    //             }
+    //             $dataUser = get_user_data($email, 999);
+    //             // checkloi($dataUser['userId']);
+    //             $Code = generateRandomNumber();
+
+
+    //             $dulieu = [
+    //                 'forgots' => $Code
+    //             ];
+    //             sendResetPasswordMail($data['email'], $Code);
+    //             $upadetForrgot = update('users', $dulieu, "userId=$dataUser[userId]");
+    //             if ($upadetForrgot) {
+    //                 setsession('chaggePassword', 'Vui long nhap Mã đã gửi về Email bạn');
+    //                 setsession('hienthi', 100);
+    //                 View(FRONTEND__CLIENT, 'forgot', ['dataUser' => $dataUser]);
+    //             } else {
+    //                 setsession('chaggePassword', 'Lỗi Kĩ thuật');
+    //             }
+    //         } else {
+    //             checkloi($data);
+    //         }
+    //     }
+    // }
 }

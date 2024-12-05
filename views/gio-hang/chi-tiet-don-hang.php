@@ -55,23 +55,28 @@
         unset($_SESSION['success']);
     }
     ?>
-    <style>.timeline {
+    <style>
+        .timeline {
             /* border: 1px solid #007bff; */
             border-radius: 5px;
             padding: 1rem;
             /* background-color: #f8f9fa; */
         }
+
         .timeline-event {
             border-bottom: 1px solid #dee2e6;
             padding: 1rem 0;
         }
+
         .timeline-event:last-child {
             border-bottom: none;
         }
+
         .timeline-date {
             font-weight: bold;
             color: #007bff;
-        }</style>
+        }
+    </style>
 </head>
 
 <body class="body-bg-6">
@@ -177,93 +182,111 @@
     <!-- Checkout section -->
     <section class="section-cart padding-t-100">
         <div class="container">
-            <div class="row mb-minus-24">
-                <div class="col-lg-4 col-12 mb-24">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-12">
                     <h1>Thông tin người nhận</h1>
-                    <span><h6><?= $orderDetail['recipient_name'] ?></h6></span>
-                    <span><?= $orderDetail['recipient_phone'] ?></span> <br>
-                    <span><?= $orderDetail['recipient_address'] ?></span> <br>
+                    <span>
+                        <h6><b>Khách hàng: </b><?= $orderDetail['recipient_name'] ?></h6>
+                    </span>
+                    <span><b>Số điện thoại: </b><?= $orderDetail['recipient_phone'] ?></span> <br>
+                    <span><b>Địa chỉ: </b><?= $orderDetail['recipient_address'] ?></span> <br>
+                    <span><b>Lời nhắn: </b><?= $orderDetail['comments'] ?></span> <br>
                 </div>
-                <div class="col-lg-4 col-12 mb-24">
+                <div class="col-xxl-6 col-xl-12">
                     <div class="timeline">
-                        <?php foreach($historyState as $history): ?>
-                        <div class="timeline-event row">
-                            <div class="col-md-4 timeline-date"><?= $history['create_at'] ?></div>
-                            <div class="col-md-8 timeline-content">
-                                <strong><?= $history['state_name'] ?></strong><br>
-                                <?= $history['description'] ?><br>
-                                <?= $orderDetail['recipient_name'] ?>
+                        <?php foreach ($historyState as $history): ?>
+                            <div class="timeline-event row">
+                                <div class="col-md-4 timeline-date"><?= $history['create_at'] ?></div>
+                                <div class="col-md-8 timeline-content">
+                                    <strong><?= $history['state_name'] ?></strong><br>
+                                    <?= $history['description'] ?><br>
+                                    <?= $orderDetail['recipient_name'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <?php endforeach;?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
-            <?php foreach($orderItems as $item): ?>
-                <div class="card">
-                    <div class="row g-0">
-                        <div class="col-md-1">
-                            <img style="padding: 40px 0px 0px 20px" width="100px" height="100px"
-                                src="<?= $item['image'] ?>" class="img-fluid rounded-start"
-                                alt="Product Image">
-                        </div>
-                        <div class="col-md-11">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title"><a href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
-                                    </h5>
-                                    
+            <div class="row">
+                <div class="col-xxl-6 col-xl-12">
+                    <?php foreach ($orderItems as $item): ?>
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-1">
+                                    <img style="padding: 40px 0px 0px 20px" width="100px" height="100px"
+                                        src="<?= $item['image'] ?>" class="img-fluid rounded-start" alt="Product Image">
                                 </div>
-                                <p class="card-text">Màu: <span
-                                        class="text-default fw-bold"><?= $item['color']. "-" . $item['size_value'] ?></span>
-                                </p>
-                                <p class="card-text">Giá: <span
-                                        class="text-danger fw-bold"><?= number_format($item['price']) . "đ" ?></span>
-                                </p>
-                                <p class="card-text">Số lượng: <span
-                                        class="text-info fw-bold">x <?= $item['quantity'] ?></span>
-                                </p>
+                                <div class="col-md-11">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5 class="card-title"><a
+                                                    href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
+                                            </h5>
 
-                                <div class="d-flex justify-content-between align-items-center mt-4">
-                                    <span class="fw-bold">Tổng tiền: <span
-                                            class="text-success"><?= number_format($item['price'] * $item['quantity']) . "đ" ?></span></span>
-                                    
+                                        </div>
+                                        <p class="card-text">Màu: <span
+                                                class="text-default fw-bold"><?= $item['color'] . "-" . $item['size_value'] ?></span>
+                                        </p>
+                                        <p class="card-text">Giá: <span
+                                                class="text-danger fw-bold"><?= number_format($item['price']) . "đ" ?></span>
+                                        </p>
+                                        <p class="card-text">Số lượng: <span class="text-info fw-bold">x
+                                                <?= $item['quantity'] ?></span>
+                                        </p>
+
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <span class="fw-bold">Tổng tiền: <span
+                                                    class="text-success"><?= number_format($item['price'] * $item['quantity']) . "đ" ?></span></span>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-            </div>
-            <?php endforeach;?>
-            
-            <div class="col-lg-4 col-6 mb-12">
-                <div class="container mt-5">
-                    <h3>Tổng Kết Đơn Hàng</h3>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Tổng tiền hàng</td>
-                                <td class="text-right"><?= $order['total_amount']-20000 >=200000 ? number_format($order['total_amount'])."đ" : number_format(($order['total_amount']) - 20000)."đ" ?></td>
-                            </tr>
-                            <tr>
-                                <td>Phí vận chuyển</td>
-                                <td class="text-right">+<?= number_format(20000) ."đ" ?></td>
-                            </tr>
-                            <tr>
-                                <td>Giảm giá phí vận chuyển</td>
-                                <td class="text-right text-danger"><?= $order['total_amount']-20000>=200000 ? "-20,000đ" : "-0đ" ?></td>
-                            </tr>
-                            <tr class="total-row">
-                                <td>Thành tiền</td>
-                                <td class="text-right text-success"><b><?= number_format($order['total_amount'])."đ" ?></b></td>
-                            </tr>
-                            <tr>
-                                <td>Phương thức Thanh toán</td>
-                                <td class="text-right"><?= $order['payment_method']==0 ? "Thanh toán khi nhận hàng" :"Thanh toán trực tuyến" ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <?php endforeach; ?>
                 </div>
+
+                <div class="col-xxl-6 col-xl-12">
+                    <div class="container mt-5">
+                        <h3>Tổng Kết Đơn Hàng</h3>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Tổng tiền hàng</td>
+                                    <td class="text-right">
+                                        <?= $order['total_amount'] - 20000 >= 200000 ? number_format($order['total_amount']) . "đ" : number_format(($order['total_amount']) - 20000) . "đ" ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Phí vận chuyển</td>
+                                    <td class="text-right">+<?= number_format(20000) . "đ" ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giảm giá phí vận chuyển</td>
+                                    <td class="text-right text-danger">
+                                        <?= $order['total_amount'] - 20000 >= 200000 ? "-20,000đ" : "-0đ" ?>
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td>Thành tiền</td>
+                                    <td class="text-right text-success">
+                                        <b><?= number_format($order['total_amount']) . "đ" ?></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Phương thức Thanh toán</td>
+                                    <td class="text-right">
+                                        <?= $order['payment_method'] == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán trực tuyến" ?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
     </section>
     <!-- Checkout section End -->
 
@@ -281,7 +304,7 @@
     </a>
 
     <!-- Cart -->
-    
+
 
     <!-- Side-tool -->
     <div class="cr-tool-overlay"></div>

@@ -25,7 +25,7 @@ class CategoryModel
     }
 
     //thêm
-    public function insertCategory($category_name, $image)
+    public function insertCategory($category_name,$image)
     {
         $sql = "INSERT INTO categories (category_name,image) VALUES ('$category_name','$image') ";
         $this->conn->query($sql);
@@ -33,10 +33,10 @@ class CategoryModel
 
     }
 
-    public function updateCategory($id, $category_name, $image)
+    public function updateCategory($id, $category_name,$image)
     {
         $sql = "UPDATE categories SET `category_name` = '$category_name',`image` ='$image' WHERE `categories` . `category_id` = ?";
-        $stmt = $this->conn->prepare($sql);
+        $stmt=$this->conn->prepare($sql);
         $stmt->execute([$id]);
     }
 
