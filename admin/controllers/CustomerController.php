@@ -18,8 +18,11 @@ class CustomerController
     public function postCreate()
     {
         $uploadDir = __DIR__ . '/../../uploads/Customer/';
+
         $fileName = basename($_FILES['image']['name']);
+
         $uploadFile = $uploadDir . $fileName;
+
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
             echo "<h1>Uploaded</h1>";
 
@@ -29,19 +32,17 @@ class CustomerController
         } else {
             echo "<h1>Error uploading file</h1>";
         }
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $image = $images;
         $address = $_POST['address'];
         $phone = $_POST['phone'];
-        $create_at = date("Y-m-d H:i:s");
         $role = $_POST['role'];
         if ($name == '') {
             $error_name = "Không được bỏ trống";
         }
-        $this->customerModel->insert($name, $email, $password, $image, $address, $phone, $role, $create_at);
+        $this->customerModel->insert($name, $email, $password, $image, $address, $phone, $role);
         // $customers=$this->customerModel->all();
         header('Location: ?act=list-user');
     }
@@ -65,12 +66,11 @@ class CustomerController
     }
     public function postUpdate()
     {
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $id = $_GET['id'];
         $customer = $this->customerModel->find($id);
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $create_at = date("Y-m-d H:i:s");
+
         $address = $_POST['address'];
         $phone = $_POST['phone'];
         $role = $_POST['role'];
@@ -102,7 +102,7 @@ class CustomerController
         }
         ;
 
-        $this->customerModel->edit($id, $name, $email, $password, $image, $address, $phone, $role, $create_at);
+        $this->customerModel->edit($id, $name, $email, $password, $image, $address, $phone, $role);
         header("Location:" . BASE_URL_ADMIN . "?act=list-user");
     }
     // public function searchUser(){

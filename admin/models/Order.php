@@ -60,24 +60,7 @@ class Order
         return $order_id;
     }
 
-    public function deleteOrderHistory($order_id)
-    {
-        $sql = "DELETE FROM order_history_state WHERE order_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$order_id]);
-    }
-    public function deleteOrderItem($order_id)
-    {
-        $sql = "DELETE FROM order_detail WHERE order_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$order_id]);
-    }
-    public function deleteOrder($order_id)
-    {
-        $sql = "DELETE FROM orders WHERE order_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$order_id]);
-    }
+
     public function __destruct()
     {
         $this->conn = null;

@@ -92,14 +92,6 @@ class Home
             $e->getMessage();
         }
     }
-
-    public function changePass($password, $customer_id)
-    {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$hashedPassword, $customer_id]);
-    }
     public function edit($id, $name, $email, $image, $address, $phone)
     {
         try {
@@ -381,7 +373,7 @@ class Home
     }
     public function updateTimeCart($create_at, $cart_id)
     {
-        $sql = "UPDATE carts SET updated_at = ? WHERE cart_id = ?";
+        $sql = "UPDATE carts SET create_at = ? WHERE cart_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$create_at, $cart_id]);
     }

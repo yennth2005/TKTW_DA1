@@ -638,60 +638,6 @@
                                             // Lặp qua danh sách sản phẩm và hiển thị
                                             foreach ($idProducts as $product) {
                                                 ?>
-<<<<<<< Updated upstream
-                                                <tr>
-                                                    <td><?= $product['product_id'] ?></td> <!-- Thay product_id nếu cần -->
-                                                    <td><a
-                                                            href="?act=add-variants&product-id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a>
-                                                    </td>
-                                                    <td><?= $product['description'] ?></td>
-                                                    <td><?= $product['view'] ?></td>
-                                                    <td><?= $product['category_id'] ?></td>
-                                                    <td><?= $product['variant_quantity'] ?></td>
-                                                    <td><?= number_format($product['quantity']) ?></td>
-
-                                                    <td>
-                                                        <a
-                                                            href="index.php?act=view-detail-pro&id=<?= $product['product_id'] ?>"><button
-                                                                class="btn btn-info mb-1">Xem</button></a>
-                                                        <a class="btn btn-warning mb-1"
-                                                            href="index.php?act=update-pro&id=<?= $product['product_id'] ?>">Sửa</a>
-
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                            data-bs-target="#deleteModal<?= $product['product_id'] ?>"
-                                                            data-id="<?= $product['product_id'] ?>">
-                                                            Xóa
-                                                        </button>
-
-                                                        <div class="modal fade"
-                                                            id="deleteModal<?= $product['product_id'] ?>"
-                                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="staticBackdropLabel">Xác
-                                                                            nhận xóa</h5>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Bạn có chắc chắn muốn xóa?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Hủy</button>
-                                                                        <a href="index.php?act=delete-pro&id=<?= $product['product_id'] ?>"
-                                                                            class="btn btn-danger">Xóa</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                </tr>
-=======
                                                     <tr>
                                                         <td><?= $product['product_id'] ?></td> <!-- Thay product_id nếu cần -->
                                                         <td><?= $product['product_name'] ?></td>
@@ -709,7 +655,6 @@
 
                                                         </td>
                                                     </tr>
->>>>>>> Stashed changes
                                             <?php } ?>
                                         </tbody>
 

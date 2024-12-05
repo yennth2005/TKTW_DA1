@@ -674,14 +674,9 @@
                                                         id="category_id">
                                                         <option value="">-- Chọn danh mục --</option>
                                                         <?php foreach ($cates as $cate) { ?>
-<<<<<<< Updated upstream
                                                             <option value="<?= $cate['category_id'] ?>">
                                                                 <?= $cate['category_name'] ?>
                                                             </option>
-=======
-                                                                <option value="<?= $cate['category_id'] ?>">
-                                                                    <?= $cate['category_name'] ?></option>
->>>>>>> Stashed changes
                                                         <?php } ?>
                                                     </select>
                                                     <span id="error_cate" style="color:red;"></span>

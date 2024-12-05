@@ -20,20 +20,6 @@ class ProductAdmin
         $data = $stmt->fetchAll();
         return $data;
     }
-    public function allCate()
-    {
-        $sql = "SELECT * FROM `categories`";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    public function getCateById($id)
-    {
-        $sql = "SELECT * FROM `categories` WHERE category_id = ?";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetch();
-    }
     // Thêm sản phẩm - Thực hiện lệnh insert
     public function insertProduct($product_name, $image, $description, $view, $category_id)
     {
@@ -47,18 +33,16 @@ class ProductAdmin
     // Sửa sản phẩm - Lấy dữ liệu theo product_id
     public function getIdProduct($product_id)
     {
-        $sql = "SELECT * FROM `products` WHERE product_id = ?";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute([$product_id]);
+        $sql = "SELECT * FROM `products` WHERE product_id = '$product_id'";
+        $stmt = $this->cnt->query($sql);
         $data = $stmt->fetch();
         return $data;
     }
     // Cập nhật sản phẩm
-    public function updateProduct($product_name, $image, $description, $view, $category_id, $product_id)
+    public function updateProduct($product_name, $price, $images, $description, $view, $category_id, $stock_quantity, $product_id)
     {
-        $sql = "UPDATE `products` SET `product_name` = ?,`image`=?, `description` = ?, `view` = ?, `category_id` = ? WHERE `product_id` = ?";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute([$product_name, $image, $description, $view, $category_id, $product_id]);
+        $sql = "UPDATE `products` SET `product_name` = '$product_name',`price`='$price' ,`images` = '$images', `description` = '$description', `view` = '$view', `category_id` = '$category_id', `stock_quantity` = '$stock_quantity' WHERE `product_id` = '$product_id'";
+        $this->cnt->exec($sql);
     }
     // Xóa sản phẩm
 
@@ -76,21 +60,8 @@ class ProductAdmin
     }
     public function deleteProduct($product_id)
     {
-        $sql = "DELETE FROM `products` WHERE product_id = ?";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute([$product_id]);
-    }
-    public function insertVariant($image, $color, $price, $sale, $description, $product_id)
-    {
-        $sql = "INSERT INTO `variants` ( `image`, `color`, `price`, `sale`, `desciption`, `product_id`) VALUES ( ?,?,?,?,?,?)";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute([$image, $color, $price, $sale, $description, $product_id]);
-    }
-    public function insertSizeVariant($size_value, $quantity, $variant_id)
-    {
-        $sql = "INSERT INTO `size_variants` ( `size_value`, `quantity`, `variant_id`) VALUES ( ?,?,?)";
-        $stmt = $this->cnt->prepare($sql);
-        $stmt->execute([$size_value, $quantity, $variant_id]);
+        $sql = "DELETE FROM `products` WHERE product_id = '$product_id'";
+        $this->cnt->exec($sql);
     }
     public function getVariantsByProductId($product_id)
     {

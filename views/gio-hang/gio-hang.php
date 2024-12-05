@@ -195,21 +195,8 @@
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($cartData as $item): ?>
-<<<<<<< Updated upstream
-                                                    <tr id="cart-item-<?= $item['cart_item_id'] ?>"
-                                                        data-id="<?= $item['cart_item_id'] ?>">
-                                                        <!-- mảng id để lấy vị trí cart items -->
-                                                        <input type="hidden" name="id[]" value="<?= $item['cart_item_id'] ?>">
-                                                        <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
-                                                        <input type="hidden" name="size[]" value="<?= $item['size_id'] ?>">
-                                                        <input type="hidden" name="variant[]"
-                                                            value="<?= $item['variant_id'] ?>">
-                                                        <input type="hidden" name="product_id"
-                                                            value="<?= $item['product_id'] ?>">
-=======
                                                     <tr>
                                                         <input type="hidden" name="id[]" value="<?= $item['cart_item_id'] ?>">
->>>>>>> Stashed changes
                                                         <td>
                                                             <input type="checkbox" name="selected_products[]"
                                                                 value="<?= $item['variant_id'] ?>"
@@ -219,12 +206,6 @@
                                                                 value="<?= htmlspecialchars(json_encode($item)) ?>" disabled>
                                                         </td>
 
-<<<<<<< Updated upstream
-                                                        <td class="cr-cart-name">
-                                                            <a href="?act=view-detail&color=<?= $item['variant_id'] ?>">
-                                                                <img src="<?= $item['image'] ?>"
-                                                                    alt="product-<?= $item['variant_id'] ?>"
-=======
                                                         <script>
                                                             function toggleHiddenField(checkbox) {
                                                                 var productId = checkbox.value;
@@ -238,86 +219,19 @@
                                                         <td class="cr-cart-name">
                                                             <a href="?act=view-detail&color=<?= $item['variant_id'] ?>">
                                                                 <img src="<?= $item['image'] ?>" alt="product-1"
->>>>>>> Stashed changes
                                                                     class="cr-cart-img">
                                                                 <?= $item['product_name'] ?>
                                                             </a>
                                                         </td>
-<<<<<<< Updated upstream
-
-                                                        <td class="cr-cart-price">
-                                                            <span class="amount"
-                                                                id="price"><?= number_format($item['price']) ?></span>
-                                                        </td>
-
-=======
                                                         <td class="cr-cart-price">
                                                             <span class="amount"><?= number_format($item['price']) ?></span>
                                                             <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
                                                         </td>
->>>>>>> Stashed changes
                                                         <td class="cr-cart-qty">
                                                             <div class="cart-qty-plus-minus">
                                                                 <button type="button" class="plus">+</button>
                                                                 <input type="number" placeholder="."
                                                                     value="<?= $item['quantity'] ?>" name="quantity[]"
-<<<<<<< Updated upstream
-                                                                    class="quantity" data-price="<?= $item['price'] ?>">
-                                                                <button type="button" class="minus">-</button>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="cr-cart-color">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="dropdown me-2">
-                                                                    <button class="btn btn-secondary dropdown-toggle set-color"
-                                                                        type="button"
-                                                                        id="colorDropdown-<?= $item['cart_item_id'] ?>"
-                                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <?= $item['color'] ?: 'Chọn màu' ?>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu"
-                                                                        aria-labelledby="colorDropdown-<?= $item['cart_item_id'] ?>">
-                                                                        <?php foreach ($allVariantsData as $variant): ?>
-                                                                            <?php if ($variant['product_id'] == $item['product_id']): // Kiểm tra xem biến thể có khớp không ?>
-                                                                                <li>
-                                                                                    <a class="dropdown-item inputColor"
-                                                                                        data-color="<?= $variant['color'] ?>"
-                                                                                        data-price="<?= $variant['price'] ?>"
-                                                                                        data-image="<?= $variant['image'] ?>"
-                                                                                        value="<?= $variant['variant_id'] ?>" href="#">
-                                                                                        <?= ucfirst($variant['color']) ?>
-                                                                                    </a>
-                                                                                </li>
-                                                                            <?php endif; ?>
-                                                                        <?php endforeach; ?>
-                                                                    </ul>
-                                                                </div>
-
-                                                                <div class="dropdown"
-                                                                    id="size-picker-<?= $item['cart_item_id'] ?>">
-                                                                    <button class="btn btn-secondary dropdown-toggle set-size"
-                                                                        type="button"
-                                                                        id="sizeDropdown-<?= $item['cart_item_id'] ?>"
-                                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <?= $item['size_value'] ?: 'Chọn kích thước' ?>
-                                                                    </button>
-                                                                    <ul class="dropdown-menu"
-                                                                        aria-labelledby="sizeDropdown-<?= $item['cart_item_id'] ?>">
-                                                                        <!-- Kích thước sẽ được tải bằng AJAX -->
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-
-                                                            <span class="color-display"
-                                                                id="color-display-<?= $item['cart_item_id'] ?>"><?= $item['color'] ?></span>
-                                                            <span class="size-display"
-                                                                id="size-display-<?= $item['cart_item_id'] ?>"> -
-                                                                <?= $item['size_value'] ?></span>
-
-                                                        </td>
-
-=======
                                                                     class="quantity" data-price="<?= $item['price'] ?>"
                                                                     onchange="updateTotal()">
                                                                 <button type="button" class="minus">-</button>
@@ -328,76 +242,74 @@
                                                                 <option value=""></option>
                                                             </select> -->
                                                             <div class="dropdown-center">
-                                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                                    data-bs-toggle="dropdown" aria-expanded="false">
                                                                     Chọn loại khác
                                                                 </button>
                                                                 <ul class="dropdown-menu">
                                                                     <li class="dropdown-item">
-                                                                    <div class="variant-picker-item">
-                                                                        <div class="variant-picker-label">
-                                                                            Color: <span
-                                                                                class="fw-6 variant-picker-label-value value-currentColor"></span>
+                                                                        <div class="variant-picker-item">
+                                                                            <div class="variant-picker-label">
+                                                                                Color: <span
+                                                                                    class="fw-6 variant-picker-label-value value-currentColor"></span>
+                                                                            </div>
+                                                                            <div class="variant-picker-values"
+                                                                                id="color-picker">
+                                                                                <?php foreach ($allVariants as $variant): ?>
+                                                                                    <input class="inputColor"
+                                                                                        id="color-<?= $variant['variant_id'] ?>"
+                                                                                        type="text" name="color"
+                                                                                        value="<?= $variant['variant_id'] ?>"
+                                                                                        data-price="<?= $variant['price'] ?>"
+                                                                                        data-image="<?= $variant['image'] ?>"
+                                                                                        <?= $variant['variant_id'] === $products['variant_id'] ? 'checked' : '' ?>>
+                                                                                    <label class="hover-tooltip radius-60 color-btn"
+                                                                                        for="color-<?= $variant['variant_id'] ?>">
+                                                                                        <span class="btn-checkbox"
+                                                                                            style="background-color: <?= $exchangeColor[$variant['color']] ?>"></span>
+                                                                                        <span
+                                                                                            class="tooltip"><?= ucfirst($variant['color']) ?></span>
+                                                                                    </label>
+                                                                                <?php endforeach; ?>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="variant-picker-values" id="color-picker">
-                                                                            <?php foreach ($allVariants as $variant): ?>
-                                                                                <input class="inputColor"
-                                                                                    id="color-<?= $variant['variant_id'] ?>"
-                                                                                    type="text" name="color"
-                                                                                    value="<?= $variant['variant_id'] ?>"
-                                                                                    data-price="<?= $variant['price'] ?>"
-                                                                                    data-image="<?= $variant['image'] ?>"
-                                                                                    <?= $variant['variant_id'] === $products['variant_id'] ? 'checked' : '' ?>>
-                                                                                <label class="hover-tooltip radius-60 color-btn"
-                                                                                    for="color-<?= $variant['variant_id'] ?>">
-                                                                                    <span class="btn-checkbox"
-                                                                                        style="background-color: <?= $exchangeColor[$variant['color']] ?>"></span>
-                                                                                    <span
-                                                                                        class="tooltip"><?= ucfirst($variant['color']) ?></span>
-                                                                                </label>
-                                                                            <?php endforeach; ?>
-                                                                        </div>
-                                                                    </div>
                                                                     </li>
 
                                                                     <li class="dropdown-item">
-                                                                    <div class="variant-picker-item">
-                                                                        <div class="variant-picker-label">
-                                                                            Size: <span
-                                                                                class="fw-6 variant-picker-label-value value-currentSize"></span>
+                                                                        <div class="variant-picker-item">
+                                                                            <div class="variant-picker-label">
+                                                                                Size: <span
+                                                                                    class="fw-6 variant-picker-label-value value-currentSize"></span>
+                                                                            </div>
+                                                                            <div class="variant-picker-values" id="size-picker">
+                                                                                <?php foreach ($allSizes as $size): ?>
+                                                                                    <input id="size-<?= $size['size_id'] ?>"
+                                                                                        type="radio" name="size"
+                                                                                        value="<?= $size['size_id'] ?>"
+                                                                                        data-quantity="<?= $size['quantity'] ?>"
+                                                                                        <?= $size['size_id'] === $products['size_id'] ? 'checked' : '' ?>>
+                                                                                    <label class="style-text size-btn"
+                                                                                        for="size-<?= $size['size_id'] ?>">
+                                                                                        <p><?= $size['size_value'] ?></p>
+                                                                                    </label>
+                                                                                <?php endforeach; ?>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="variant-picker-values" id="size-picker">
-                                                                            <?php foreach ($allSizes as $size): ?>
-                                                                                <input id="size-<?= $size['size_id'] ?>"
-                                                                                    type="radio" name="size"
-                                                                                    value="<?= $size['size_id'] ?>"
-                                                                                    data-quantity="<?= $size['quantity'] ?>"
-                                                                                    <?= $size['size_id'] === $products['size_id'] ? 'checked' : '' ?>>
-                                                                                <label class="style-text size-btn"
-                                                                                    for="size-<?= $size['size_id'] ?>">
-                                                                                    <p><?= $size['size_value'] ?></p>
-                                                                                </label>
-                                                                            <?php endforeach; ?>
-                                                                        </div>
-                                                                    </div>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                             <span class="color"><?= $item['color'] ?> -
                                                                 <?= $item['size_value'] ?></span>
                                                             <input type="hidden" name="size[]" value="<?= $item['size_id'] ?>">
-                                                            <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                                            <input type="hidden" name="product_id"
+                                                                value="<?= $item['product_id'] ?>">
                                                             <input type="hidden" name="variant[]"
                                                                 value="<?= $item['variant_id'] ?>">
                                                         </td>
->>>>>>> Stashed changes
                                                         <td class="cr-cart-subtotal">
                                                             <span
                                                                 class="subtotal"><?= number_format($item['price'] * $item['quantity']) ?></span>
                                                         </td>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                                                         <td class="cr-cart-remove">
                                                             <a
                                                                 href="?act=deleteProductFromCart&id=<?= $item['cart_item_id'] ?>">
@@ -407,123 +319,20 @@
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
-<<<<<<< Updated upstream
-
-                                            <script>
-                                                document.addEventListener('DOMContentLoaded', () => {
-                                                    const BASE_URL = "http://localhost/TKTW_DA1/";
-
-                                                    // Xử lý chọn biến thể màu
-                                                    document.querySelectorAll('.inputColor').forEach(colorItem => {
-                                                        colorItem.addEventListener('click', function (event) {
-                                                            event.preventDefault();
-
-                                                            // Tìm hàng chứa sản phẩm hiện tại
-                                                            const cartRow = this.closest('tr'); // Giả sử sản phẩm nằm trong hàng <tr>
-                                                            const cartItemId = cartRow.getAttribute('data-id'); // Lấy ID sản phẩm
-
-                                                            // Cập nhật thông tin hiển thị
-                                                            const colorDisplay = cartRow.querySelector(`#color-display-${cartItemId}`);
-                                                            const priceDisplay = cartRow.querySelector('.amount');
-                                                            const imageDisplay = cartRow.querySelector('.cr-cart-img');
-                                                            const priceInput = cartRow.querySelector('input[name="price[]"]');
-                                                            const colorInput = cartRow.querySelector('input[name="variant[]"]');
-
-                                                            // Cập nhật thông tin sản phẩm
-                                                            const selectedColor = this.getAttribute('data-color');
-                                                            const selectedPrice = this.getAttribute('data-price');
-                                                            const selectedVariantId = this.getAttribute('value');
-                                                            // console.log(selectedVariantId);
-                                                            // console.log(selectedPrice);
-
-                                                            colorDisplay.textContent = selectedColor;
-                                                            priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice) + "đ";
-                                                            imageDisplay.src = this.getAttribute('data-image');
-                                                            // document.querySelector(".set-color").textContent = selectedColor
-                                                            // Cập nhật input ẩn
-                                                            // Cập nhật input ẩn cho giá trị
-                                                            priceInput.value = parseFloat(selectedPrice); // Chuyển đổi sang số thực
-                                                            colorInput.value = selectedVariantId; // ID biến thể
-
-                                                            // Gọi API lấy danh sách kích thước
-                                                            fetch(`${BASE_URL}?act=get-size-by-color&variant_id=${selectedVariantId}`)
-                                                                .then(response => response.json())
-                                                                .then(data => {
-                                                                    const sizeDropdownMenu = cartRow.querySelector(`#size-picker-${cartItemId} .dropdown-menu`);
-                                                                    sizeDropdownMenu.innerHTML = data.map(size =>
-                                                                        `<li>
-                                                                                    <a class="dropdown-item sizeItem" data-size-id="${size.size_id}" href="#">${size.size_value}</a>
-                                                                                </li>`).join('');
-
-                                                                    // Xử lý sự kiện chọn kích thước
-                                                                    sizeDropdownMenu.querySelectorAll('.sizeItem').forEach(sizeItem => {
-                                                                        sizeItem.addEventListener('click', function (e) {
-                                                                            e.preventDefault();
-
-                                                                            const sizeDisplay = cartRow.querySelector(`#size-display-${cartItemId}`);
-                                                                            sizeDisplay.textContent = " - " + this.textContent;
-
-                                                                            // Cập nhật hidden input cho size
-                                                                            const sizeInput = cartRow.querySelector('input[name="size[]"]');
-                                                                            sizeInput.value = this.getAttribute('data-size-id');
-                                                                            // console.log(sizeInput.value);
-
-                                                                            console.log(sizeInput);
-                                                                        });
-
-                                                                    });
-                                                                })
-                                                                .catch(error => console.error('Lỗi:', error));
-                                                        });
-                                                    });
-
-                                                    // Xử lý thay đổi số lượng
-                                                    document.querySelectorAll('.quantity').forEach(quantityInput => {
-                                                        quantityInput.addEventListener('change', function () {
-                                                            const cartRow = this.closest('tr');
-                                                            const pricePerUnit = parseFloat(this.getAttribute('data-price'));
-                                                            const quantity = parseInt(this.value);
-                                                            const subtotalDisplay = cartRow.querySelector('.subtotal');
-                                                            const priceInput = cartRow.querySelector('input[name="price[]"]');
-
-                                                            // Tính toán và cập nhật subtotal
-                                                            const subtotal = pricePerUnit * quantity;
-                                                            subtotalDisplay.textContent = new Intl.NumberFormat().format(subtotal) + " VND";
-
-                                                            // Cập nhật giá trị cho input ẩn
-                                                            priceInput.value = pricePerUnit; // Cập nhật giá trị cho input giá
-                                                        });
-                                                    });
-                                                });
-
-                                            </script>
-=======
->>>>>>> Stashed changes
                                         </table>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="cr-cart-update-bottom">
                                                 <a href="index.php" class="cr-links">Tiếp tục mua hàng</a>
-<<<<<<< Updated upstream
 
-=======
-                                              
->>>>>>> Stashed changes
                                                 <div class="cart-summary">
                                                     <strong>Total: </strong>
                                                     <span id="cart-total">0 VND</span>
                                                 </div>
-<<<<<<< Updated upstream
-                                                <input id="updateCartBtn" style="" class="btn btn-warning" type="submit"
-                                                    name='submit' value="Cập nhật">
-                                                <input type="submit" value="Thanh toán" class="btn btn-danger"
-                                                    name="submit">
-=======
                                                 <input id="updateCartBtn" style="" type="submit" name='submit'
                                                     value="Cập nhật">
                                                 <input type="submit" value="Thanh toán" name="submit">
->>>>>>> Stashed changes
                                             </div>
                                         </div>
                                     </div>
@@ -534,50 +343,6 @@
                 </div>
 
                 <script>
-<<<<<<< Updated upstream
-                    // document.querySelector('form').addEventListener('submit', function (e) {
-                    //     const checked = document.querySelectorAll('input[name="selected_products[]"]:checked');
-                    //     if (checked.length === 0) {
-                    //         e.preventDefault();
-                    //         alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
-                    //     }
-                    // });
-
-                    // Hàm cập nhật tổng
-                    // function updateTotal() {
-                    //     let total = 0;
-                    //     document.querySelectorAll('tbody tr').forEach(row => {
-                    //         const price = parseFloat(row.querySelector('.quantity').dataset.price);
-                    //         const quantity = parseInt(row.querySelector('.quantity').value);
-                    //         const subtotal = price * quantity;
-                    //         row.querySelector('.subtotal').innerText = new Intl.NumberFormat().format(subtotal) + " VND";
-                    //         total += subtotal;
-                    //     });
-                    //     document.getElementById('cart-total').innerText = new Intl.NumberFormat().format(total) + " VND";
-                    // }
-
-                    // // Đảm bảo cập nhật tổng ban đầu
-                    // updateTotal();
-
-                    // // Thêm sự kiện cho các nút "+" và "-"
-                    // document.querySelectorAll('.plus').forEach(button => {
-                    //     button.addEventListener('click', function () {
-                    //         const input = this.nextElementSibling;
-                    //         input.value = parseInt(input.value) + 1;
-                    //         updateTotal();
-                    //     });
-                    // });
-
-                    // document.querySelectorAll('.minus').forEach(button => {
-                    //     button.addEventListener('click', function () {
-                    //         const input = this.previousElementSibling;
-                    //         if (parseInt(input.value) > 1) {
-                    //             input.value = parseInt(input.value) - 1;
-                    //             updateTotal();
-                    //         }
-                    //     });
-                    // });
-=======
                     document.querySelector('form').addEventListener('btn_checkout', function (e) {
                         const checked = document.querySelectorAll('input[name="selected_products[]"]:checked');
                         if (checked.length === 0) {
@@ -603,7 +368,6 @@
 
                     // Đảm bảo cập nhật tổng ban đầu
                     updateTotal();
->>>>>>> Stashed changes
                 </script>
             <?php } else { ?>
                 <h3>
@@ -1215,41 +979,38 @@
 
     <!-- Main Custom -->
     <script src="views/assets/js/main.js"></script>
-<<<<<<< Updated upstream
-
-=======
     <script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        let inputColor = document.querySelectorAll(".inputColor");
-        let BASE_URL = "http://localhost/TKTW_DA1/";
-        let blockSize = document.querySelector("#size-picker");
-        let colorSelect = document.querySelector("#size-id");
-        let priceDisplay = document.querySelector("#price-value"); // Phần tử để hiển thị giá
-        let imageDisplay =document.querySelector(".product-image");
-        let selectedColor = ""; // Biến để lưu mã màu
-        let selectedSize = ""; // Biến để lưu mã size
+        document.addEventListener('DOMContentLoaded', () => {
+            let inputColor = document.querySelectorAll(".inputColor");
+            let BASE_URL = "http://localhost/TKTW_DA1/";
+            let blockSize = document.querySelector("#size-picker");
+            let colorSelect = document.querySelector("#size-id");
+            let priceDisplay = document.querySelector("#price-value"); // Phần tử để hiển thị giá
+            let imageDisplay = document.querySelector(".product-image");
+            let selectedColor = ""; // Biến để lưu mã màu
+            let selectedSize = ""; // Biến để lưu mã size
 
-        inputColor.forEach(item => {
-            item.addEventListener('click', function(event) {
-                selectedColor = event.target.value; // Lưu mã màu đã chọn
-                let selectedPrice = event.target.getAttribute('data-price'); // Lấy giá từ thuộc tính data-price
-                priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice)+"đ"; // Cập nhật giá hiển thị
-                const selectedImage = event.target.getAttribute('data-image');
-                // console.log(imageDisplay);
-                imageDisplay.src = selectedImage
-                // console.log("Selected Color:", selectedColor);
-                
-                
+            inputColor.forEach(item => {
+                item.addEventListener('click', function (event) {
+                    selectedColor = event.target.value; // Lưu mã màu đã chọn
+                    let selectedPrice = event.target.getAttribute('data-price'); // Lấy giá từ thuộc tính data-price
+                    priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice) + "đ"; // Cập nhật giá hiển thị
+                    const selectedImage = event.target.getAttribute('data-image');
+                    // console.log(imageDisplay);
+                    imageDisplay.src = selectedImage
+                    // console.log("Selected Color:", selectedColor);
 
-                fetch(BASE_URL + '?act=get-size-by-color&variant_id=' + selectedColor)
-                    .then(response => response.json())
-                    .then(data => {
-                        blockSize.innerHTML = "";
-                        let UI = ``;
-                        
-                        data.forEach(size => {
-                            UI += `
+
+
+                    fetch(BASE_URL + '?act=get-size-by-color&variant_id=' + selectedColor)
+                        .then(response => response.json())
+                        .then(data => {
+                            blockSize.innerHTML = "";
+                            let UI = ``;
+
+                            data.forEach(size => {
+                                UI += `
                                 <input id="size-${size.size_id}" type="radio" name="size"
                                     value="${size.size_id}"
                                     data-quantity="${size.quantity}">
@@ -1257,63 +1018,62 @@
                                     <p>${size.size_value}</p>
                                 </label>
                             `;
-                        });
-                        
-                        blockSize.innerHTML = UI;
-
-                        // Lấy ID của size khi click vào
-                        const sizeInputs = blockSize.querySelectorAll('input[type="radio"]');
-                        sizeInputs.forEach(input => {
-                            input.addEventListener('change', function() {
-                                selectedSize = this.value; // Lưu mã size đã chọn
-                                document.querySelector('input[name="size_id"]').value = selectedSize; // Cập nhật giá trị size_id
-                                // console.log("Selected Size ID:", selectedSize);
-                                const quantityTotal = this.getAttribute('data-quantity');
-                                document.querySelector('.totalQuantity').innerHTML =quantityTotal
-                                // console.log(quantityTotal);
-                                // Tạo đường dẫn mới
-                                const newPath = `${BASE_URL}?act=view-detail&color=${selectedColor}&size=${selectedSize}`;
-                                console.log("New Path:", newPath);
-                                
-                                // Cập nhật lịch sử trình duyệt mà không tải lại trang
-                                history.pushState(null, "", newPath);
-                                
-                                // Nếu bạn muốn điều hướng đến đường dẫn mới ngay lập tức, hãy bỏ comment dòng dưới đây:
-                                // window.location.href = newPath;
                             });
+
+                            blockSize.innerHTML = UI;
+
+                            // Lấy ID của size khi click vào
+                            const sizeInputs = blockSize.querySelectorAll('input[type="radio"]');
+                            sizeInputs.forEach(input => {
+                                input.addEventListener('change', function () {
+                                    selectedSize = this.value; // Lưu mã size đã chọn
+                                    document.querySelector('input[name="size_id"]').value = selectedSize; // Cập nhật giá trị size_id
+                                    // console.log("Selected Size ID:", selectedSize);
+                                    const quantityTotal = this.getAttribute('data-quantity');
+                                    document.querySelector('.totalQuantity').innerHTML = quantityTotal
+                                    // console.log(quantityTotal);
+                                    // Tạo đường dẫn mới
+                                    const newPath = `${BASE_URL}?act=view-detail&color=${selectedColor}&size=${selectedSize}`;
+                                    console.log("New Path:", newPath);
+
+                                    // Cập nhật lịch sử trình duyệt mà không tải lại trang
+                                    history.pushState(null, "", newPath);
+
+                                    // Nếu bạn muốn điều hướng đến đường dẫn mới ngay lập tức, hãy bỏ comment dòng dưới đây:
+                                    // window.location.href = newPath;
+                                });
+                            });
+                        })
+                        .catch(error => {
+                            console.log(error);
                         });
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                });
             });
+
+            // Khởi tạo giá hiển thị với màu đã chọn mặc định
+            // const checkedColor = document.querySelector('.inputColor:checked');
+            // if (checkedColor) {
+            //     priceDisplay.textContent = checkedColor.getAttribute('data-price');
+            // }
+            // const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
+
+            //                                 const decreasePro = () => {
+            //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
+            //                                     if (currentValue > 1) { // Đảm bảo không giảm xuống dưới 1
+            //                                         quantityInput.value = currentValue - 1; // Giảm số lượng
+            //                                     }
+            //                                 }
+
+            //                                 const increasePro = () => {
+            //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
+            //                                     if(currenValue < quantityTotal ){
+            //                                         quantityInput.value = currentValue + 1;
+            //                                     } else{
+            //                                         alert("Vượt qu")
+            //                                     }
+            //                                 }
         });
-
-        // Khởi tạo giá hiển thị với màu đã chọn mặc định
-        // const checkedColor = document.querySelector('.inputColor:checked');
-        // if (checkedColor) {
-        //     priceDisplay.textContent = checkedColor.getAttribute('data-price');
-        // }
-        // const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
-                                        
-        //                                 const decreasePro = () => {
-        //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
-        //                                     if (currentValue > 1) { // Đảm bảo không giảm xuống dưới 1
-        //                                         quantityInput.value = currentValue - 1; // Giảm số lượng
-        //                                     }
-        //                                 }
-
-        //                                 const increasePro = () => {
-        //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
-        //                                     if(currenValue < quantityTotal ){
-        //                                         quantityInput.value = currentValue + 1;
-        //                                     } else{
-        //                                         alert("Vượt qu")
-        //                                     }
-        //                                 }
-    });
-</script>
->>>>>>> Stashed changes
+    </script>
 </body>
 
 

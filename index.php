@@ -51,7 +51,6 @@ match ($act) {
 
     //account
     'personal-detail' => $homeController->showPersonalDetail(),
-    'change-password' => $homeController->changePassword(),
-    'post-changed' => $homeController->doneChanged(),
+
 
 };

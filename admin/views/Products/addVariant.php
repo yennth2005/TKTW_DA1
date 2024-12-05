@@ -395,14 +395,12 @@
                                                 enctype="multipart/form-data" onsubmit="return createVariant()">
                                                 <input type="hidden" value="<?= $product_id ?>" name="product-id">
                                                 <div class="col-md-6">Hình ảnh </label>
-<<<<<<< Updated upstream
-                                                    <input type="file" class="form-control slug-title" name="images"
-                                                        id="image">
-=======
-                                                    <input type="file" class="form-control slug-title"
-                                                        name="images" id="image">
->>>>>>> Stashed changes
-                                                    <span id="error-image"></span>
+                                                    <<<<<<< Updated upstream <input type="file"
+                                                        class="form-control slug-title" name="images" id="image">
+                                                        =======
+                                                        <input type="file" class="form-control slug-title"
+                                                            name="images" id="image">
+                                                        <span id="error-image"></span>
                                                 </div>
                                                 <div class="col-md-6">Màu sắc </label>
                                                     <input type="text" class="form-control slug-title" name="color"

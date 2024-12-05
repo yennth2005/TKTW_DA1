@@ -62,33 +62,17 @@
         unset($_SESSION['success']);
     }
     ?>
-<<<<<<< Updated upstream
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
 </head>
 
 <body class="body-bg-6">
     <?php
-=======
-</head>
-
-<body class="body-bg-6">
-<?php
->>>>>>> Stashed changes
     if (isset($_SESSION['error'])) {
         echo "
             <script style='text/javascript'> 
                 toastr.error('{$_SESSION['error']}');
             </script>";
         unset($_SESSION['error']);
-<<<<<<< Updated upstream
     }
-=======
-    }   
->>>>>>> Stashed changes
     if (isset($_SESSION['success'])) {
         echo "
             <script style='text/javascript'> 

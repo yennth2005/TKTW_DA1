@@ -7,6 +7,10 @@ class DashboardController
     {
         $this->statidticModel = new Statistic();
     }
+    // public function showStatistic(){
+    //     $bestSeller = $this->statidticModel->selectTop5ProductSoldHighly();
+    //     require_once './views/dashboard.php';
+    // }
     public function dashboard()
     {
         $bestSellers = $this->statidticModel->selectTop5ProductSoldHighly();
@@ -14,7 +18,6 @@ class DashboardController
         $totalCustomers = $this->statidticModel->totalCustomers();
         $totalOrders = $this->statidticModel->totalOrders();
         $totalRevenues = $this->statidticModel->totalRevenues();
-        $viewHighest = $this->statidticModel->selectTopViewHighest();
         require_once './views/dashboard.php';
     }
 }

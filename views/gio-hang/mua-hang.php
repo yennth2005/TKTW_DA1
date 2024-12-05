@@ -194,51 +194,46 @@
                                     </div>
                                     <div class="cr-checkout-pro">
                                         <?php foreach ($cartItems as $item): ?>
-                                            <div class="col-sm-12 mb-6">
-                                                <div class="cr-product-inner">
-                                                    <div class="cr-pro-image-outer">
-                                                        <div class="cr-pro-image">
-<<<<<<< Updated upstream
-                                                            <a href="?act=view-detail&color=<?= $item['variant_id'] ?>"
-                                                                class="image">
-=======
-                                                            <a href="?act=view-detail&color=<?= $item['variant_id'] ?>" class="image">
->>>>>>> Stashed changes
-                                                                <img class="main-image" src="<?= $item['image'] ?>"
-                                                                    alt="Product">
-                                                            </a>
+                                                <div class="col-sm-12 mb-6">
+                                                    <div class="cr-product-inner">
+                                                        <div class="cr-pro-image-outer">
+                                                            <div class="cr-pro-image">
+                                                                <a href="?act=view-detail&color=<?= $item['variant_id'] ?>" class="image">
+                                                                    <img class="main-image" src="<?= $item['image'] ?>"
+                                                                        alt="Product">
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <input type="hidden" name="cart-item-id[]"
-                                                        value="<?= $item['cart_item_id'] ?>">
-                                                    <div class="cr-pro-content cr-product-details">
-                                                        <h5 class="cr-pro-title"><a
-                                                                href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
-                                                        </h5>
-                                                        <div class="cr-pro-rating">
-                                                            <i class="ri-star-fill"></i>
-                                                            <i class="ri-star-fill"></i>
-                                                            <i class="ri-star-fill"></i>
-                                                            <i class="ri-star-fill"></i>
-                                                            <i class="ri-star-line"></i>
+                                                        <input type="hidden" name="cart-item-id[]"
+                                                            value="<?= $item['cart_item_id'] ?>">
+                                                        <div class="cr-pro-content cr-product-details">
+                                                            <h5 class="cr-pro-title"><a
+                                                                    href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
+                                                            </h5>
+                                                            <div class="cr-pro-rating">
+                                                                <i class="ri-star-fill"></i>
+                                                                <i class="ri-star-fill"></i>
+                                                                <i class="ri-star-fill"></i>
+                                                                <i class="ri-star-fill"></i>
+                                                                <i class="ri-star-line"></i>
+                                                            </div>
+                                                            <p class="cr-price"><span
+                                                                    class="new-price"><?= number_format($item['price']) ?>đ</span>
+                                                                <!-- <span class="old-price">$123.25</span></p> -->
                                                         </div>
-                                                        <p class="cr-price"><span
-                                                                class="new-price"><?= number_format($item['price']) ?>đ</span>
-                                                            <!-- <span class="old-price">$123.25</span></p> -->
                                                     </div>
                                                 </div>
-                                            </div>
 
                                         <?php endforeach; ?>
                                         <?php foreach ($cartItems as $index => $item): ?>
-                                            <input type="hidden" name="cartItems[<?= $index ?>][variant_id]"
-                                                value="<?= $item['variant_id'] ?>">
-                                            <input type="hidden" name="cartItems[<?= $index ?>][size_id]"
-                                                value="<?= $item['size_id'] ?>">
-                                            <input type="hidden" name="cartItems[<?= $index ?>][quantity]"
-                                                value="<?= $item['quantity'] ?>">
-                                            <input type="hidden" name="cartItems[<?= $index ?>][price]"
-                                                value="<?= $item['price'] ?>">
+                                                <input type="hidden" name="cartItems[<?= $index ?>][variant_id]"
+                                                    value="<?= $item['variant_id'] ?>">
+                                                <input type="hidden" name="cartItems[<?= $index ?>][size_id]"
+                                                    value="<?= $item['size_id'] ?>">
+                                                <input type="hidden" name="cartItems[<?= $index ?>][quantity]"
+                                                    value="<?= $item['quantity'] ?>">
+                                                <input type="hidden" name="cartItems[<?= $index ?>][price]"
+                                                    value="<?= $item['price'] ?>">
                                         <?php endforeach; ?>
 
                                     </div>
@@ -353,12 +348,7 @@
                                                 </p>
                                                 <div class="cr-bill-wrap">
                                                     <label>Ghi chú về đơn hàng của bạn</label>
-<<<<<<< Updated upstream
-                                                    <textarea class="form-control" name="comments"
-                                                        placeholder="Leave a comment here"
-=======
                                                     <textarea class="form-control" name="comments" placeholder="Leave a comment here"
->>>>>>> Stashed changes
                                                         id="floatingTextarea"></textarea>
                                                 </div>
 

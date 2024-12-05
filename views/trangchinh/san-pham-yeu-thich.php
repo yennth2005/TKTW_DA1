@@ -507,12 +507,7 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-xs-12">
                             <div class="zoom-image-hover modal-border-image">
-<<<<<<< Updated upstream
-                                <img src="<?= BASE_URL_VIEW ?>assets/img/product/tab-1.jpg" alt="product-tab-2"
-                                    class="product-image">
-=======
                                 <img src="<?= BASE_URL_VIEW ?>assets/img/product/tab-1.jpg" alt="product-tab-2" class="product-image">
->>>>>>> Stashed changes
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-12 col-xs-12">
@@ -578,13 +573,8 @@
                 </div>
                 <ul class="crcart-pro-items">
                     <li>
-<<<<<<< Updated upstream
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
-                                src="<?= BASE_URL_VIEW ?>assets/img/product/4.jpg" alt="product-1"></a>
-=======
                         <a href="product-left-sidebar.html" class="crside_pro_img"><img src="<?= BASE_URL_VIEW ?>assets/img/product/4.jpg"
                                 alt="product-1"></a>
->>>>>>> Stashed changes
                         <div class="cr-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Fresh Pomegranate</a>
                             <span class="cart-price"><span>$56.00</span> x 1kg</span>
@@ -600,13 +590,8 @@
                         </div>
                     </li>
                     <li>
-<<<<<<< Updated upstream
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
-                                src="<?= BASE_URL_VIEW ?>assets/img/product/2.jpg" alt="product-2"></a>
-=======
                         <a href="product-left-sidebar.html" class="crside_pro_img"><img src="<?= BASE_URL_VIEW ?>assets/img/product/2.jpg"
                                 alt="product-2"></a>
->>>>>>> Stashed changes
                         <div class="cr-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Green Apples</a>
                             <span class="cart-price"><span>$75.00</span> x 1kg</span>
@@ -622,13 +607,8 @@
                         </div>
                     </li>
                     <li>
-<<<<<<< Updated upstream
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
-                                src="<?= BASE_URL_VIEW ?>assets/img/product/3.jpg" alt="product-3"></a>
-=======
                         <a href="product-left-sidebar.html" class="crside_pro_img"><img src="<?= BASE_URL_VIEW ?>assets/img/product/3.jpg"
                                 alt="product-3"></a>
->>>>>>> Stashed changes
                         <div class="cr-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Watermelon - Small</a>
                             <span class="cart-price"><span>$48.00</span> x 5kg</span>

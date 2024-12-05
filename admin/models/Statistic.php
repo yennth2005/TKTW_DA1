@@ -7,31 +7,16 @@ class Statistic
         $this->conn = connect_db();
     }
 
-    public function selectTopViewHighest()
+    public function selectProductIsBestSeller()
     {
-        $sql = "SELECT 
-                    p.product_name,
-                    p.image,
-                    p.view,
-                    MIN(v.price) AS price,
-                    SUM(sv.quantity) AS total,
-                    COALESCE(SUM(od.quantity), 0) AS total_sold
-                FROM 
-                    products p 
-                JOIN 
-                    variants v ON p.product_id = v.product_id
-                JOIN 
-                    size_variants sv ON v.variant_id = sv.variant_id 
-                LEFT JOIN 
-                    order_detail od ON sv.size_id = od.size_id
-                GROUP BY 
-                    p.product_name, p.image, p.view
-                ORDER BY 
-                    p.view DESC";
-
+        $sql = "SELECT p.product_name, SUM(od.quantity) AS total_quantity
+                    FROM orders o
+                    INNER JOIN order_details od ON o.order_id = od.order_id
+                    INNER JOIN products p ON od.product_id = p.product_id
+                    GROUP BY p.product_name
+                    ORDER BY total_quantity DESC";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(); // Thực thi câu lệnh
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về dữ liệu dưới dạng mảng
+        return $stmt->fetchAll();
     }
 
 
@@ -47,7 +32,7 @@ class Statistic
                     JOIN 
                         orders o ON od.order_id = o.order_id
                     WHERE 
-                        o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND o.state_id = 4
+                        o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
                     GROUP BY 
                         DATE(o.order_date)
                     ORDER BY 

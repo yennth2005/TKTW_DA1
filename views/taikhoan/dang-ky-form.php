@@ -59,14 +59,6 @@
         unset($_SESSION['success']);
     }
     ?>
-<<<<<<< Updated upstream
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
-=======
->>>>>>> Stashed changes
 </head>
 
 <body class="body-bg-6">

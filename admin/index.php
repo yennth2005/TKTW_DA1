@@ -46,12 +46,12 @@ match ($act) {
     // 'post-find'=>$customer->postFind(),
 
     //quản lý sản phẩm
-    'list-pro' => $product->listProduct(),
-    'create-pro' => $product->add(),
-    'post-create-pro' => $product->addProduct(),
-    'update-pro' => $product->edit(),
-    'post-update-pro' => $product->editProduct(),
-    'delete-pro' => $product->delete(),
+    'list-pro' => (new ProductControllerAdmin())->listProduct(),
+    'create-pro' => (new ProductControllerAdmin())->add(),
+    'post-create-pro' => (new ProductControllerAdmin())->addProduct(),
+    'update-pro' => (new ProductControllerAdmin())->edit(),
+    'post-update-pro' => (new ProductControllerAdmin())->editProduct(),
+    'delete-pro' => (new ProductControllerAdmin())->delete(),
     'addProduct' => $product->listProduct(),
     'view-detail-pro' => $product->viewDetailVariantByProduct(),
     'add-variants' => $product->variants(),
@@ -68,21 +68,21 @@ match ($act) {
     'post-update-category' => $category->postUpdateCategory(),
 
     //quản lý đơn hàng
-    'list-order' => $order->showAllOrder(),
-    'update-order' => $order->showDetailOrder(),
-    'update-state' => $order->updateOrder(),
-    'delete-order' => $order->deleteOrder(),
+    'list-order' => (new OrderController())->showAllOrder(),
+    'update-order' => (new OrderController())->showDetailOrder(),
+    'update-state' => (new OrderController())->updateOrder(),
+
     //trạng thái đơn hàng
-    'list-state' => $state->list(),
-    'delete-state' => $state->delete(),
-    'create-state' => $state->create(),
-    'post-create-state' => $state->postCreate(),
-    'edit-state' => $state->update(),
-    'post-update-state' => $state->postUpdate(),
+    'list-state' => (new StateController())->list(),
+    'delete-state' => (new StateController())->delete(),
+    'create-state' => (new StateController())->create(),
+    'post-create-state' => (new StateController())->postCreate(),
+    'edit-state' => (new StateController())->update(),
+    'post-update-state' => (new StateController())->postUpdate(),
 
     //quản lý bình luận
-    'list-comment' => $comment->list(),
-    'view-detail' => $comment->viewDetail(),
-    'delete-comment' => $comment->delete(),
+    'list-comment' => (new CommentController())->list(),
+    'view-detail' => (new CommentController())->viewDetail(),
+    'delete-comment' => (new CommentController())->delete(),
 }
     ?>
