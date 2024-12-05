@@ -376,7 +376,7 @@
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
                                                         <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
+                                                            accept=".png, .jpg, .jpeg, .webp" name="image">
                                                         <label><i class="ri-pencil-line"></i></label>
                                                     </div>
 

@@ -39,7 +39,29 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -378,32 +400,44 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <?php foreach($orders as $order){?>
+                                            <?php foreach ($orders as $order) { ?>
                                                 <tr>
 
-                                                    <td><?= $order['order_id']?></td>
-                                                    <td><?= $order['recipient_name']?></td>
-                                                    <td><?= $order['recipient_phone']?></td>
-                                                    <td><?= $order['order_date']?></td>
-                                                    <td><?= $order['total_amount']?></td>
-                                                    <td><?= $order['state_name']?></td>
+                                                    <td><?= $order['order_id'] ?></td>
+                                                    <td><?= $order['recipient_name'] ?></td>
+                                                    <td><?= $order['recipient_phone'] ?></td>
+                                                    <td><?= $order['order_date'] ?></td>
+                                                    <td><?= number_format($order['total_amount']) ?></td>
                                                     <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="button"
-                                                                class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false" data-display="static">
-                                                                <span class="sr-only"><i
-                                                                        class="ri-settings-3-line"></i></span>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item"
-                                                                    href="index.php?act=update-order&id=<?= $order['order_id']?>">Edit</a>
-                                                            </div>
-                                                        </div>
+                                                        <?php
+                                                     
+                                                        $statusClasses = [
+                                                            1 => 'text-warning', 
+                                                            2 => 'text-info',     
+                                                            3 => 'text-orange',  
+                                                            4 => 'text-success',   
+                                                            5 => 'text-danger',
+                                                        ];
+
+                                                        
+                                                        $class = $statusClasses[$order['state_id']] ?? 'text-muted';
+                                                        ?>
+                                                        <span class="<?= $class ?>"><?= $order['state_name'] ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <?php if($order['state_id'] != '5'){?>
+                                                            <a class="btn btn-warning"
+                                                                href="index.php?act=update-order&id=<?= $order['order_id'] ?>">Cập
+                                                                nhật</a>
+                                                        <?php }else{?>
+                                                            <a class="btn btn-danger"
+                                                            href="index.php?act=delete-order&id=<?= $order['order_id'] ?>">Xoá</a>
+                                                            <a class="btn btn-primary"
+                                                            href="index.php?act=update-order&id=<?= $order['order_id'] ?>">Xem</a>
+                                                        <?php }?>
                                                     </td>
                                                 </tr>
-                                                <?php }?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>

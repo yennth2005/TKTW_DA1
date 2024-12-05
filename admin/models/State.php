@@ -36,7 +36,7 @@ class State {
     }
 
     public function edit($state_id, $state_name) {
-        $sql = "UPDATE states SET state_name = ? WHERE state_id = ?";
+        $sql = "UPDATE states SET state_name = ?  WHERE state_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$state_name, $state_id]); // Thực thi với tham số an toàn
     }

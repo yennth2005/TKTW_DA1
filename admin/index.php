@@ -9,6 +9,7 @@ require_once './models/Category.php';
 require_once './models/Order.php';
 require_once './models/State.php';
 require_once './models/Comment.php';
+require_once './models/Statistic.php';
 require_once './controllers/CustomerController.php';
 require_once './controllers/DashboardController.php';
 require_once './controllers/ProductController.php';
@@ -16,6 +17,7 @@ require_once './controllers/CategoryController.php';
 require_once './controllers/OrderController.php';
 require_once './controllers/StateController.php';
 require_once './controllers/CommentController.php';
+require_once './controllers/StatisticsController.php';
 
 // Router đơn giản
 $customer = new CustomerController();
@@ -24,11 +26,14 @@ $category = new CategoryController();
 $order = new OrderController();
 $comment = new CommentController();
 $state = new StateController();
+$statistic = new StatisticsController();
 
 $act = $_GET['act'] ?? '/';
 //$_GET['action'] : 'index';
 match ($act) {
     'home' => (new DashboardController())->dashboard(),
+    //thống kê
+    'statistic' =>$statistic->showStatistic(),
     //Quản lí user
     'list-user' => $customer->list(),
     'delete-user' => $customer->delete(),
@@ -66,7 +71,7 @@ match ($act) {
     'list-order'=>$order->showAllOrder(),
     'update-order'=>$order->showDetailOrder(),
     'update-state'=>$order->updateOrder(),
-
+    'delete-order'=>$order->deleteOrder(),
     //trạng thái đơn hàng
     'list-state'=>$state->list(),
     'delete-state' =>$state->delete(),

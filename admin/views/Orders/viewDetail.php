@@ -39,7 +39,29 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -366,7 +388,7 @@
                             <div class="cr-card-content">
                                 <div class="row cr-product-uploads">
                                     <div class="col-lg-4 mb-991">
-
+                                    <?php if($order['state_id'] != '5'){?>
                                         <div class="row">
                                             <h3>Cập nhật trạng thái</h3>
                                             <form method="POST" action="?act=update-state&id=<?= $order['order_id']?>">
@@ -375,11 +397,16 @@
                                                         <option <?= $order['state_id'] == $state['state_id'] ? 'selected' :''?> name="state" value="<?= $state['state_id']?>"><?= $state['state_name'] ?>
                                                         </option>
                                                     <?php } ?>
-                                                </select>
-                                                <input type="hidden" name="time">
-                                                <button type="submit">Cập nhật</button>
+                                                </select> <br> <br>
+                                                <label for="description"><h3>Chi tiết trạng thái:</h3></label> <br>
+                                                <textarea name="description" id="description"></textarea>
+                                                <input type="hidden" name="time"> <br>
+                                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                                             </form>
                                         </div>
+                                        <?php }else{?>
+                                            <h3>Đơn hàng đã bị huỷ</h3>
+                                        <?php }?>
                                     </div>
                                     <div class="col-lg-8">
                                         <table class="table">
@@ -401,7 +428,7 @@
                                                         <tr>
                                                             <td><?= $order['product_id'] ?></td>
                                                             <td><?= $order['product_name'] ?></td>
-                                                            <td><?= $order['images'] ?></td>
+                                                            <td><img width="100px" height="100px" src="<?= BASE_URL.$order['image'] ?>" alt=""></td>
                                                             <td><?= $order['quantity'] ?></td>
                                                             <td><?= $order['price'] ?></td>
                                                         </tr>
