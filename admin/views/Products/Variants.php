@@ -39,7 +39,29 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -384,7 +406,7 @@
                                                 <td>Kích cỡ</td>
                                                 <td>Giá gốc</td>
                                                 <td>Giá khuyến mãi</td>
-                                                <td>Số lượng</td>
+                                                <td>Tổng số hàng</td>
                                                 <td>Hành động</td>
                                             </tr>
                                         </thead>
@@ -392,17 +414,28 @@
                                             <?php foreach ($products as $product) { ?>
                                                 <tr>
                                                     <td><?= $product['variant_id'] ?></td>
-                                                    <td><img src="<?= $product['image'] ?>" width="100px" alt=""></td>
+<<<<<<< Updated upstream
+                                                    <td><img src="<?= BASE_URL . $product['image'] ?>" width="100px" alt="">
+                                                    </td>
+=======
+                                                    <td><img src="<?= BASE_URL.$product['image'] ?>" width="100px" alt=""></td>
+>>>>>>> Stashed changes
                                                     <td><?= $product['color'] ?></td>
                                                     <td><?= $product['size_value'] ?></td>
                                                     <td><?= number_format($product['price']) ?> VND</td>
                                                     <td><?= number_format($product['sale']) ?> VND</td>
                                                     <td><?= $product['quantity'] ?></td>
                                                     <td>
-                                                    <a href="?act=delete-variant&size-id=<?= $product['size_id'] ?>&product-id=<?= $product['product_id']?>" class="btn btn-danger mr-1">Xoá</a>                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                           <button data-bs-target="#exampleModal<?= $product['variant_id'] ?>"
-                                                            data-bs-whatever="@getbootstrap">Thêm
-                                                            kích cỡ</button>
+<<<<<<< Updated upstream
+                                                        <a href="?act=delete-variant&size-id=<?= $product['size_id'] ?>&product-id=<?= $product['product_id'] ?>"
+                                                            class="btn btn-danger mr-1">Xoá</a> <button type="button"
+                                                            class="btn btn-primary" data-bs-toggle="modal" <button
+                                                            data-bs-target="#exampleModal<?= $product['variant_id'] ?>"
+=======
+                                                        <a href="?act=delete-variant&size-id=<?= $product['size_id'] ?>&product-id=<?= $product['product_id']?>" class="btn btn-danger mr-1">Xoá</a>                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        <button data-bs-target="#exampleModal<?= $product['variant_id'] ?>"
+>>>>>>> Stashed changes
+                                                            data-bs-whatever="@getbootstrap">Thêm kích cỡ</button>
 
                                                         <div class="modal fade"
                                                             id="exampleModal<?= $product['variant_id'] ?>" tabindex="-1"
@@ -425,7 +458,9 @@
                                                                                 <input type="text" class="form-control"
                                                                                     id="size" name="size" required>
                                                                             </div>
-                                                                            <input type="hidden" value="<?= $product['product_id']?>" name="product-id">
+                                                                            <input type="hidden"
+                                                                                value="<?= $product['product_id'] ?>"
+                                                                                name="product-id">
                                                                             <div class="mb-3">
                                                                                 <label for="quantity"
                                                                                     class="col-form-label">Số lượng:</label>
@@ -441,7 +476,7 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -423,7 +423,7 @@
             range: true,
             min: 20,
             max: 300,
-            values: [0, 250],
+            values: [0, 250],   
             slide: function (event, ui) {
                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             },
@@ -751,5 +751,9 @@
         $("body").addClass('body-bg-6').removeClass();
         $("#add_bg").remove();
     });
+
+
+    
+
 
 })(jQuery);

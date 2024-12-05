@@ -19,6 +19,7 @@
 	<meta name="author" content="ashishmaraviya">
 
 	<title>Carrot - Admin.</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<!-- App favicon -->
 	<link rel="shortcut icon" href="<?= BASE_URL_ADMIN_VIEW ?>assets/img/favicon/favicon.ico">
@@ -350,7 +351,255 @@
 		</div>
 
 		<!-- Main content -->
-		
+
+		<div class="cr-main-content">
+			<div class="container-fluid">
+				<!-- Page title & breadcrumb -->
+				<div class="cr-page-title">
+					<div class="cr-breadcrumb">
+						<h5>Thống kê</h5>
+						<ul>
+							<li><a href="index.html">Trang chủ</a></li>
+							<li>Thống kê</li>
+						</ul>
+					</div>
+					<div class="cr-tools">
+						<div id="pagedate">
+							<div class="cr-date-range" title="Date">
+								<span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="row">
+							<div class="col-xl-4 col-md-6">
+								<div class="cr-card">
+									<div class="cr-card-content label-card">
+										<div class="title">
+											<span class="icon icon-1"><i class="ri-shield-user-line"></i></span>
+											<div class="growth-numbers">
+												<h4>Khách hàng mới</h4>
+												<h5><?= $totalCustomers['current_month'] ?></h5>
+											</div>
+										</div>
+										<?php if ($totalOrders['percent'] < 0) { ?>
+											<p class="card-groth down">
+												<i class="ri-arrow-down-line"></i>
+												<?= number_format($totalCustomers['percent']) . "%" ?>
+												<span>Tháng trước</span>
+											</p>
+										<?php } else { ?>
+											<p class="card-groth up">
+												<i class="ri-arrow-up-line"></i>
+												<?= number_format($totalCustomers['percent']) . "%" ?>
+												<span>Tháng trước</span>
+											</p>
+										<?php } ?>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-md-6">
+								<div class="cr-card">
+									<div class="cr-card-content label-card">
+										<div class="title">
+											<span class="icon icon-2"><i class="ri-shopping-bag-3-line"></i></span>
+											<div class="growth-numbers">
+												<h4>Đơn hàng</h4>
+												<h5><?= $totalOrders['this_month'] ?></h5>
+											</div>
+										</div>
+										<?php if ($totalOrders['percent'] < 0) { ?>
+											<p class="card-groth down">
+												<i class="ri-arrow-down-line"></i>
+												<?= number_format($totalOrders['percent']) . "%" ?>
+												<span>Tháng trước</span>
+											</p>
+										<?php } else { ?>
+											<p class="card-groth up">
+												<i class="ri-arrow-up-line"></i>
+												<?= number_format($totalOrders['percent']) . "%" ?>
+												<span>Tháng trước</span>
+											</p> <?php } ?>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-md-6">
+								<div class="cr-card">
+									<div class="cr-card-content label-card">
+										<div class="title">
+											<span class="icon icon-3"><i class="ri-money-dollar-circle-line"></i></span>
+											<div class="growth-numbers">
+												<h4>Doanh thu</h4>
+												<h5><?= number_format($totalRevenues['this_month']) . "đ" ?></h5>
+											</div>
+										</div>
+										<?php if ($totalRevenues['percent'] < 0) { ?>
+											<p class="card-groth down">
+												<i class="ri-arrow-down-line"></i>
+												<?= number_format($totalRevenues['percent']) . "%" ?>
+												<span>Tháng trước</span>
+											</p>
+										<?php } else { ?>
+											<p class="card-groth up">
+												<i class="ri-arrow-up-line"></i>
+												<?= number_format($totalRevenues['percent']) . "%" ?>
+												<span>Tháng trước</span>
+											</p> <?php } ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xxl-12 col-xl-12">
+						<div class="cr-card revenue-overview">
+							<div class="cr-card-header header-575">
+								<h4 class="cr-card-title">Tổng quan doanh thu</h4>
+								<div class="header-tools">
+									<a href="javascript:void(0)" class="m-r-10 cr-full-card" title="Full Screen"><i
+											class="ri-fullscreen-line"></i></a>
+									<div class="cr-date-range date">
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="cr-card-content">
+
+								<div class="cr-chart-content">
+									<canvas id="revenueChart" class="mb-m-24"></canvas>
+									<script>
+										const revenueData = <?= json_encode($revenueDatas) ?>;
+										const labels = revenueData.map(item => item.order_date);
+										const data = revenueData.map(item => item.revenue);
+
+										const ctx = document.getElementById('revenueChart').getContext('2d');
+
+										const revenueChart = new Chart(ctx, {
+											type: 'line',
+											data: {
+												labels: labels,
+												datasets: [{
+													label: 'Doanh thu hàng tháng',
+													data: data,
+													borderColor: 'pink',
+													backgroundColor: 'rgba(255, 222, 252,0.2)',
+													borderWidth: 2,
+													fill: true
+												}]
+											},
+											options: {
+												scales: {
+													y: {
+														beginAtZero: true
+													}
+												}
+											}
+										});
+									</script>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-xxl-6 col-xl-12">
+						<div class="cr-card" id="best_seller_tbl">
+							<div class="cr-card-header">
+								<h4 class="cr-card-title">Sản phẩm bán chạy nhất</h4>
+								<div class="header-tools">
+									<a href="javascript:void(0)" class="m-r-10 cr-full-card" title="Full Screen"><i
+											class="ri-fullscreen-line"></i></a>
+									<div class="cr-date-range dots">
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="cr-card-content card-default">
+								<div class="best-seller-table">
+									<div class="table-responsive">
+										<table id="best_seller_data_table" class="table">
+											<thead>
+												<tr>
+													<th>Product_name</th>
+													<th>Price</th>
+													<th>Stock</th>
+													<th>Sold</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach ($bestSellers as $product): ?>
+													<tr>
+														<td><img class="cat-thumb" src="<?= BASE_URL . $product['image'] ?>"
+																alt="clients Image"><span
+																class="name"><?= $product['product_name'] ?></span>
+														</td>
+														<td>
+															<?= number_format($product['price']) ?>
+														</td>
+														<td><?= $product['total'] - $product['total_sold'] ?></td>
+														<td><?= $product['total_sold'] ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xxl-6 col-xl-12">
+						<div class="cr-card" id="top_product_tbl">
+							<div class="cr-card-header">
+								<h4 class="cr-card-title">Sản phẩm lượt xem cao nhất</h4>
+								<div class="header-tools">
+									<a href="javascript:void(0)" class="m-r-10 cr-full-card" title="Full Screen"><i
+											class="ri-fullscreen-line"></i></a>
+									<div class="cr-date-range dots">
+										<span></span>
+									</div>
+								</div>
+							</div>
+							<div class="cr-card-content card-default">
+								<div class="top-product-table">
+									<div class="table-responsive">
+										<table id="top_product_data_table" class="table">
+											<thead>
+												<tr>
+													<th>Product</th>
+													<th>Price</th>
+													<th>Stock</th>
+													<th>View</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach ($viewHighest as $product): ?>
+													<tr>
+														<td><img class="cat-thumb" src="<?= BASE_URL . $product['image'] ?>"
+																alt="clients Image"><span
+																class="name"><?= $product['product_name'] ?></span>
+														</td>
+														<td><?= $product['price'] ?></td>
+														<td><?= $product['total'] ?></td>
+														<td><?= $product['view'] ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
 
 		<!-- Footer -->
 		<?php include 'views/components/footer.php' ?>
@@ -446,7 +695,7 @@
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-3.6.4.min.js"></script>
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/simplebar.min.js"></script>
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/apexcharts.min.js"></script>
+	<!-- <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/apexcharts.min.js"></script> -->
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/owl.carousel.min.js"></script>
@@ -460,10 +709,9 @@
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/moment.min.js"></script>
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/daterangepicker.js"></script>
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/vendor/date-range.js"></script>
-
 	<!-- Main Custom -->
 	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
-	<script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/data/ecommerce-chart-data.js"></script>
+	<!-- <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/data/ecommerce-chart-data.js"></script> -->
 </body>
 
 

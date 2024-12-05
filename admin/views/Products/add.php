@@ -37,7 +37,29 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -589,7 +611,8 @@
                                     <div class="col-lg-4 mb-991">
                                         <div class="cr-vendor-img-upload">
                                             <div class="cr-vendor-main-img">
-                                                <form action="?act=post-create-pro" method="post" enctype="multipart/form-data">
+                                                <form action="?act=post-create-pro" method="post"
+                                                    enctype="multipart/form-data">
                                                     <label for="">Tên sản phẩm </label>
                                                     <input type="text" name="product_name" id=""> <br><br>
                                                     <label for="">Giá sản phẩm</label>
@@ -609,7 +632,68 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-8">
+                                        <div class="cr-vendor-upload-detail">
+                                            <form action="?act=post-create-pro" method="POST"
+                                                enctype="multipart/form-data" onsubmit="return createProduct()">
+                                                <div class="avatar-upload">
+                                                    <div class="avatar-edit">
+                                                        <input type='file' class="cr-image-upload"
+                                                            accept=".png, .jpg, .jpeg" name="images" id="image">
+                                                        <input type="hidden" name="imageUploaded">
+                                                        <label><i class="ri-pencil-line"></i></label>
+                                                    </div>
+                                                    <div class="avatar-preview cr-preview">
+                                                        <div class="imagePreview cr-div-preview">
+                                                            <img class="cr-image-preview"
+                                                                src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/product/preview.jpg"
+                                                                alt="edit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span id="error_image" style="color:red;"></span>
+                                                <!-- Error for image upload -->
 
+                                                <div class="col-md-6">
+                                                    <label for="" class="form-label">Tên sản phẩm</label>
+                                                    <input type="text" class="form-control slug-title"
+                                                        name="product_name" id="name">
+                                                    <span id="error_1" style="color:red;"></span>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="" class="form-label">Mô tả sản phẩm</label>
+                                                    <textarea class="form-control slug-title" name="description"
+                                                        id="desc"></textarea>
+                                                    <span id="error_desc" style="color:red;"></span>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Danh mục sản phẩm</label>
+                                                    <select class="form-control form-select" name="category_id"
+                                                        id="category_id">
+                                                        <option value="">-- Chọn danh mục --</option>
+                                                        <?php foreach ($cates as $cate) { ?>
+<<<<<<< Updated upstream
+                                                            <option value="<?= $cate['category_id'] ?>">
+                                                                <?= $cate['category_name'] ?>
+                                                            </option>
+=======
+                                                                <option value="<?= $cate['category_id'] ?>">
+                                                                    <?= $cate['category_name'] ?></option>
+>>>>>>> Stashed changes
+                                                        <?php } ?>
+                                                    </select>
+                                                    <span id="error_cate" style="color:red;"></span>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <button type="submit" name="btn_submit"
+                                                        class="btn cr-btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -736,6 +820,7 @@
 
     <!-- Main Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/validate1.js"></script>
 </body>
 
 

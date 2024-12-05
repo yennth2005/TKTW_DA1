@@ -7,11 +7,9 @@
                         <img src="views/assets/img/logo/logoDA1-removebg-preview.png" alt="logo" class="logo" />
                         <img src="views/assets/img/logo/logo2-removebg-preview.png" alt="logo" class="dark-logo" />
                     </a>
-                    <!-- search -->
-                    <form class="cr-search" method="POST" action="<?= BASE_URL ?>?act=shop">
-                        <input class="search-input" type="text" name="keyword" placeholder="Search For items..."
-                            required />
-                        <!-- <select class="form-select" aria-label="Default select example">
+                    <form class="cr-search" action="?act=search" method="POST">
+                        <input class="search-input" name="search" type="text" placeholder="Search For items..." />
+                        <select class="form-select" aria-label="Default select example">
                             <option selected>All Categories</option>
                             <option value="1">Mens</option>
                             <option value="2">Womens</option>
@@ -26,32 +24,41 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle cr-right-bar-item" href="javascript:void(0)">
                                     <i class="ri-user-3-line"></i>
-                                    <span>Account</span>
+                                    <span>Tôi</span>
                                 </a>
                                 <?php if (isset($_SESSION['user'])) { ?>
                                     <ul class="dropdown-menu">
+<<<<<<< Updated upstream
+                                        <?php if($_SESSION['user']['role']==1){?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= BASE_URL_ADMIN?>?act=home">Trang quản trị</a>
+                                        </li>
+                                        <?php }?>
+                                        <li>
+=======
                                         <?php if ($_SESSION['user']['role'] == 1) { ?>
                                             <li>
-                                                <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Admin</a>
+                                                <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Trang quản trị</a>
                                             </li>
                                         <?php } ?>
                                         <li>
-                                            <a class="dropdown-item" href="checkout.html">Setting</a>
+>>>>>>> Stashed changes
+                                            <a class="dropdown-item" href="?act=view-order">Đơn mua</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="index.php?act=logout">Logout</a>
+                                            <a class="dropdown-item" href="?act=personal-detail">Tài khoản của tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
                                         </li>
                                     </ul>
                                 <?php } else { ?>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="index.php?act=register">Register</a>
+                                            <a class="dropdown-item" href="index.php?act=register">Đăng ký</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="index.php?act=login">Login</a>
+                                            <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
                                         </li>
                                     </ul>
                                 <?php } ?>
@@ -59,11 +66,11 @@
                         </ul>
                         <a href="wishlist.html" class="cr-right-bar-item">
                             <i class="ri-heart-3-line"></i>
-                            <span>Wishlist</span>
+                            <span>Yêu thích</span>
                         </a>
-                        <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
+                        <a href="?act=view-cart" class="cr-right-bar-item">
                             <i class="ri-shopping-cart-line"></i>
-                            <span>Cart</span>
+                            <span>Giỏ hàng</span>
                         </a>
                     </div>
                 </div>
@@ -302,17 +309,41 @@
                                 <a class="nav-link" href="javascript:void(0)">
                                     <i class="ri-user-3-line"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="index.php?act=register">Register</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="login.html">Login</a>
-                                    </li>
-                                </ul>
+                                <?php if (isset($_SESSION['user'])) { ?>
+                                    <ul class="dropdown-menu">
+<<<<<<< Updated upstream
+                                        <?php if($_SESSION['user']['role']==1){?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= BASE_URL_ADMIN?>?act=home">Trang quản trị</a>
+                                        </li>
+                                        <?php }?>
+=======
+                                        <?php if ($_SESSION['user']['role'] == 1) { ?>
+                                            <li>
+                                                <a class="dropdown-item" href="<?= BASE_URL_ADMIN ?>?act=home">Trang quản trị</a>
+                                            </li>
+                                        <?php } ?>
+>>>>>>> Stashed changes
+                                        <li>
+                                            <a class="dropdown-item" href="?act=view-order">Đơn mua</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="checkout.html">Tài khoản của tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                <?php } else { ?>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=register">Đăng ký</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
+                                        </li>
+                                    </ul>
+                                <?php } ?>
                             </li>
                         </ul>
                         <a href="wishlist.html" class="cr-right-bar-item">
@@ -325,49 +356,37 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= BASE_URL ?>"> Home </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link " href="index.php?act=shop">
-                                    Shop
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left sidebar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="shop-right-sidebar.html">Shop Right
-                                            sidebar</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="shop-full-width.html">Full Width</a>
-                                    </li>
-                                </ul>
+                                <a class="nav-link" href="<?= BASE_URL ?>"> Trang chủ </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                    Products
+                                    Danh mục
                                 </a>
                                 <ul class="dropdown-menu">
+<<<<<<< Updated upstream
+                                    <?php foreach($cates as $cate):?>
                                     <li>
-                                        <a class="dropdown-item" href="product-left-sidebar.html">product Left
-                                            sidebar
-                                        </a>
+                                        <a class="dropdown-item" href="?act=view-category&category-id=<?=$cate['category_id'] ?>"><?=$cate['category_name'] ?></a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="product-right-sidebar.html">product Right
-                                            sidebar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="product-full-width.html">Product Full Width
-                                        </a>
-                                    </li>
+                                    <?php endforeach;?>
+=======
+                                    <?php foreach ($cates as $cate): ?>
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="?act=view-category&category-id=<?= $cate['category_id'] ?>"><?= $cate['category_name'] ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+>>>>>>> Stashed changes
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="?act=view-products">
+                                    Sản phẩm
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                    Pages
+                                    Giới thiệu
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -404,7 +423,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                    Blog
+                                    Bài viết
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -430,22 +449,11 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                    Elements
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="elements-products.html">Products</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="elements-typography.html">Typography</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="elements-buttons.html">Buttons</a>
-                                    </li>
-                                </ul>
-                            </li>
+<<<<<<< Updated upstream
+                            
+=======
+
+>>>>>>> Stashed changes
                         </ul>
                     </div>
                 </nav>

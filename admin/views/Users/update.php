@@ -345,10 +345,10 @@
                 <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Add Product</h5>
+                        <h5>Cập nhật tài khoản</h5>
                         <ul>
-                            <li><a href="index.html">Carrot</a></li>
-                            <li>Add Product</li>
+                            <li><a href="index.php">Admin</a></li>
+                            <li>Cập nhật tài khoản</li>
                         </ul>
                     </div>
                 </div>
@@ -380,7 +380,7 @@
                                                     <div class="avatar-preview cr-preview">
                                                         <div class="imagePreview cr-div-preview">
                                                             <img class="cr-image-preview"
-                                                                src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/product/preview.jpg"
+                                                                src="<?= BASE_URL.$customer['image'] ?>"
                                                                 alt="edit">
                                                         </div>
                                                     </div>

@@ -165,7 +165,9 @@ body {
   letter-spacing: 0.03rem;
   overflow-x: hidden;
 }
-
+.error{
+  color:red;
+}
 a {
   text-decoration: none;
   color: #000;
@@ -2363,7 +2365,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 .cr-banner-image-one {
   width: 100%;
-  background-image: url("../img/banner/banner.jpg");
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2371,8 +2373,8 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 .cr-banner-image-two {
   width: 100%;
-  background-image: url("../img/banner/banner-2.jpg");
-  background-repeat: no-repeat;
+  
+  background-repeat: no-repeat; 
   background-size: cover;
   background-position: center;
 }
@@ -9470,4 +9472,198 @@ iframe {
     margin-bottom: 24px;
   }
 }
+.timeline {
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+.timeline-event {
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 0;
+}
+.timeline-event:last-child {
+  border-bottom: none;
+}
+.timeline-date {
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+/**  Add product page  **/
+.cr-product-uploads .cr-vendor-img-upload {
+  margin-bottom: -10px;
+  position: sticky;
+  top: 94px;
+}
+.cr-product-uploads .avatar-upload {
+  margin-bottom: 10px;
+  position: relative;
+}
+.cr-product-uploads .avatar-upload .avatar-edit {
+  position: absolute;
+  right: 25px;
+  z-index: 1;
+  top: 25px;
+}
+.cr-product-uploads .avatar-upload .avatar-edit input {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 0;
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+}
+.cr-product-uploads .avatar-upload .avatar-edit input + label {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+  font-weight: normal;
+}
+.cr-product-uploads .avatar-upload .avatar-edit input + label i {
+  font-size: 20px;
+}
+.cr-product-uploads .avatar-upload .avatar-preview {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 0;
+}
+.cr-product-uploads .avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.cr-product-uploads .avatar-upload .avatar-preview .imagePreview img {
+  margin: auto;
+  vertical-align: middle;
+  max-width: 100%;
+  border-radius: 0;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload {
+  margin: 2px 7px 10px 7px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-edit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+  cursor: pointer;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-edit input {
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-edit input + label {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 0;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+  font-weight: normal;
+  cursor: pointer;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-edit input + label i {
+  font-size: 15px;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-preview {
+  padding: 2px;
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 0;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-preview > div {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.cr-product-uploads .cr-vendor-main-img .thumb-upload-set .thumb-upload .thumb-preview img {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  max-width: 100%;
+  border-radius: 0;
+}
+.cr-product-uploads input[type=color] {
+  width: 25px !important;
+  height: 25px !important;
+  padding: 0;
+  border-radius: 0 !important;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 4px;
+  min-height: 25px;
+  border: 0;
+}
+.cr-product-uploads .color-label {
+  width: 100%;
+}
+
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 /*# sourceMappingURL=style.css.map */

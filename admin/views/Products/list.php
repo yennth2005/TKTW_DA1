@@ -39,7 +39,29 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -597,16 +619,17 @@
 
                                     <table class="table table-striped">
                                         <thead>
-                                            <a href="index.php?act=create-pro"><button class="btn btn-success">Thêm sản phẩm</button></a>
+                                            <center><a href="index.php?act=create-pro" class="btn btn-success">Thêm sản
+                                                    phẩm</a></center>
+
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Tên sản phẩm</td>
-                                                <td>Giá sản phẩm</td>
-                                                <td>Hình ảnh sản phẩm</td>
                                                 <td>Mô tả</td>
                                                 <td>Lượt xem</td>
                                                 <td>Danh mục</td>
-                                                <td>Số lượng</td>
+                                                <td>Số lượng biến thể</td>
+                                                <td>Số lượng hàng hoá</td>
                                                 <td>Hành động</td>
                                             </tr>
                                         </thead>
@@ -614,25 +637,80 @@
                                             <?php
                                             // Lặp qua danh sách sản phẩm và hiển thị
                                             foreach ($idProducts as $product) {
-                                            ?>
+                                                ?>
+<<<<<<< Updated upstream
                                                 <tr>
                                                     <td><?= $product['product_id'] ?></td> <!-- Thay product_id nếu cần -->
-                                                    <td><?= $product['product_name'] ?></td>
-                                                    <td><?= number_format($product['price'], 3) ?></td>
-                                                    <td><img src="<?= $product['images'] ?>" width="100" alt="Image"></td>
+                                                    <td><a
+                                                            href="?act=add-variants&product-id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a>
+                                                    </td>
                                                     <td><?= $product['description'] ?></td>
                                                     <td><?= $product['view'] ?></td>
                                                     <td><?= $product['category_id'] ?></td>
-                                                    <td><?= $product['stock_quantity'] ?></td>
+                                                    <td><?= $product['variant_quantity'] ?></td>
+                                                    <td><?= number_format($product['quantity']) ?></td>
 
                                                     <td>
-                                                        <!-- Sửa và Xóa sản phẩm -->
-                                                        <a href="index.php?act=update-pro&id=<?= $product['product_id'] ?>"><button class="btn btn-warning">Sửa</button></a>
-                                                        <a href="index.php?act=delete-pro&id=<?= $product['product_id'] ?>"><button class="btn btn-danger">Xóa</button></a>
+                                                        <a
+                                                            href="index.php?act=view-detail-pro&id=<?= $product['product_id'] ?>"><button
+                                                                class="btn btn-info mb-1">Xem</button></a>
+                                                        <a class="btn btn-warning mb-1"
+                                                            href="index.php?act=update-pro&id=<?= $product['product_id'] ?>">Sửa</a>
 
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal<?= $product['product_id'] ?>"
+                                                            data-id="<?= $product['product_id'] ?>">
+                                                            Xóa
+                                                        </button>
+
+                                                        <div class="modal fade"
+                                                            id="deleteModal<?= $product['product_id'] ?>"
+                                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="staticBackdropLabel">Xác
+                                                                            nhận xóa</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn có chắc chắn muốn xóa?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Hủy</button>
+                                                                        <a href="index.php?act=delete-pro&id=<?= $product['product_id'] ?>"
+                                                                            class="btn btn-danger">Xóa</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
+
                                                 </tr>
-                                            <?php  } ?>
+=======
+                                                    <tr>
+                                                        <td><?= $product['product_id'] ?></td> <!-- Thay product_id nếu cần -->
+                                                        <td><?= $product['product_name'] ?></td>
+                                                        <td><?= number_format($product['price'], 3) ?></td>
+                                                        <td><img src="<?= $product['images'] ?>" width="100" alt="Image"></td>
+                                                        <td><?= $product['description'] ?></td>
+                                                        <td><?= $product['view'] ?></td>
+                                                        <td><?= $product['category_id'] ?></td>
+                                                        <td><?= $product['variant_quantity'] ?></td>
+                                                        <td><?= number_format($product['quantity']) ?></td>
+                                                        <td>
+                                                            <!-- Sửa và Xóa sản phẩm -->
+                                                            <a href="index.php?act=update-pro&id=<?= $product['product_id'] ?>"><button class="btn btn-warning">Sửa</button></a>
+                                                            <a href="index.php?act=delete-pro&id=<?= $product['product_id'] ?>"><button class="btn btn-danger">Xóa</button></a>
+
+                                                        </td>
+                                                    </tr>
+>>>>>>> Stashed changes
+                                            <?php } ?>
                                         </tbody>
 
                                     </table>

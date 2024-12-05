@@ -33,7 +33,29 @@
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/validate.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -347,7 +369,7 @@
                 <!-- Page title & breadcrumb -->
                 <div class="cr-page-title cr-page-title-2">
                     <div class="cr-breadcrumb">
-                        <h5>Thêm biến thể: Mã sản phẩm <?= $product_id?></h5>
+                        <h5>Thêm biến thể: Mã sản phẩm <?= $product_id ?></h5>
                         <ul>
                             <li><a href="index.html">Carrot</a></li>
                             <li>Add Product</li>
@@ -371,39 +393,44 @@
                                         <div class="cr-vendor-upload-detail">
                                             <form action="?act=post-add-variant" method="post"
                                                 enctype="multipart/form-data" onsubmit="return createVariant()">
-                                                <input type="hidden" value="<?= $product_id?>" name="product-id">
+                                                <input type="hidden" value="<?= $product_id ?>" name="product-id">
                                                 <div class="col-md-6">Hình ảnh </label>
+<<<<<<< Updated upstream
+                                                    <input type="file" class="form-control slug-title" name="images"
+                                                        id="image">
+=======
                                                     <input type="file" class="form-control slug-title"
-                                                        name="image" id="image">
+                                                        name="images" id="image">
+>>>>>>> Stashed changes
                                                     <span id="error-image"></span>
                                                 </div>
                                                 <div class="col-md-6">Màu sắc </label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="color" id="color">
+                                                    <input type="text" class="form-control slug-title" name="color"
+                                                        id="color">
                                                     <span id="error-color"></span>
                                                 </div>
                                                 <div class="col-md-6">Giá gốc </label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="price" id="price">
+                                                    <input type="text" class="form-control slug-title" name="price"
+                                                        id="price">
                                                     <span id="error-price"></span>
                                                 </div>
                                                 <div class="col-md-6">Giá khuyến mãi </label>
-                                                    <input type="text" class="form-control slug-title"
-                                                        name="sale" id="sale">
+                                                    <input type="text" class="form-control slug-title" name="sale"
+                                                        id="sale">
                                                     <span id="error-sale"></span>
                                                 </div>
-                                                
+
                                                 <div class="col-md-6">
                                                     <label for="" class="form-label">Mô tả sản phẩm </label>
-                                                    <textarea class="form-control slug-title"
-                                                    name="description" id="desc"></textarea>
+                                                    <textarea class="form-control slug-title" name="description"
+                                                        id="desc"></textarea>
                                                     <span id="error_desc"></span>
 
                                                 </div>
-                                                
+
                                                 <div class="col-md-12">
-                                                    <button name="btn_submit"
-                                                        class="btn cr-btn-primary" onclick="createVariant()">Submit</button>
+                                                    <button name="btn_submit" class="btn cr-btn-primary"
+                                                        onclick="createVariant()">Submit</button>
                                                 </div>
 
                                             </form>

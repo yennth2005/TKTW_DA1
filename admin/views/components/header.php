@@ -92,12 +92,12 @@
 				<div class="cr-right-tool cr-user-drop">
 					<div class="cr-hover-drop">
 						<div class="cr-hover-tool">
-							<img class="user" src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/user/1.jpg" alt="user">
+							<img class="user" src="<?= BASE_URL.$_SESSION['user']['image']?>" alt="user">
 						</div>
 						<div class="cr-hover-drop-panel right">
 							<div class="details">
-								<h6>Wiley Waites</h6>
-								<p>wiley@example.com</p>
+								<h6><?= $_SESSION['user']['name'] ?></h6>
+								<p><?= $_SESSION['user']['email'] ?></p>
 							</div>
 							<ul class="border-top">
 								<li><a href="team-profile.html">Profile</a></li>
@@ -107,7 +107,7 @@
 								<li><a href="team-update.html">Settings</a></li>
 							</ul>
 							<ul class="border-top">
-								<li><a href="<?= BASE_URL?>?act=login"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
+								<li><a href="<?= BASE_URL?>?act=logout"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
 							</ul>
 						</div>
 					</div>

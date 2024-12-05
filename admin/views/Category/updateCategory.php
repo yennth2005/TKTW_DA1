@@ -376,7 +376,7 @@
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
                                                         <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
+                                                            accept=".png, .jpg, .jpeg, .webp" name="image">
                                                         <label><i class="ri-pencil-line"></i></label>
                                                     </div>
 
@@ -385,6 +385,11 @@
                                                     <label for="category_name" class="form-label">Tên danh mục</label>
                                                     <input type="text" class="form-control slug-title"
                                                         name="category_name" id="name" value="<?= $category['category_name'] ?>">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <label for="category_name" class="form-label">Hình ảnh</label>
+                                                    <input type="file" class="form-control slug-title"
+                                                        name="image" id="">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button type="submit" name="btn_submit"

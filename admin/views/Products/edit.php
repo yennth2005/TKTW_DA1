@@ -2,8 +2,8 @@
 <html lang="en">
 
 
- 
-    <!-- sang copy sang edit rồi chuyển qua controllers -->
+
+<!-- sang copy sang edit rồi chuyển qua controllers -->
 
 
 
@@ -37,7 +37,29 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body>
@@ -589,33 +611,43 @@
                                     <div class="col-lg-4 mb-991">
                                         <div class="cr-vendor-img-upload">
                                             <div class="cr-vendor-main-img">
-          
-    <!-- trang add và edt đều theo form -->
-     <!--  add là method="post" -->
-     <form action="index.php?act=post-update-pro&id=<?= $idProduct['product_id']?>" method="POST" enctype="multipart/form-data">
-     <label for="">Tên sản phẩm </label>
-<input type="text" name="name" id="" value="<?= $idProduct['product_name']?>">
-<label for="">Giá sản phẩm</label>
-<input type="text" name="price" id=""value="<?= $idProduct['price'] ?>">
-<label for="">Hình ảnh sản phẩm</label>
-<input type="file" name="images" id="" >
-<img src="<?= $idProduct['images'] ?>" alt="" width="150px">
-<!-- thêm chỗ này -->
- <img src="" alt="" srcset="">
-<label for="">Mô tả sản phẩm </label>
-<input type="text" name="description" id=""value="<?= $idProduct['description']?>">
-<label for="">Lượt xem </label>
-<input type="text" name="view" id="" value="<?= $idProduct['view']?>">
-<label for="">Danh mục </label>
-<input type="text" name="category_id" id="" value="<?= $idProduct['category_id']?>">
-<label for="">Số lượng</label>
-<input type="text" name="stock_quantity" id="" value="<?= $idProduct['stock_quantity']?>">
-<input type="submit" name="btn-submit" id="Gửi">
-     </form>
-                              </div>
+                                                <form
+                                                    action="index.php?act=post-update-pro&id=<?= $idProduct['product_id'] ?>"
+                                                    method="POST" enctype="multipart/form-data">
+                                                    <label for="" class="form-label">Tên sản phẩm </label>
+                                                    <input type="text" class="form-control slug-title" name="name" id=""
+                                                        value="<?= $idProduct['product_name'] ?>">
+                                                    <label for="" class="form-label">Hình ảnh sản phẩm</label>
+                                                    <input type="file" name="images" id="">
+                                                    <!-- thêm chỗ này -->
+                                                    <img src="" alt="" srcset="">
+                                                    <label for="" class="form-label">Mô tả sản phẩm </label>
+                                                    <textarea style="height: 300px" class="form-control slug-title"
+                                                        name="description"
+                                                        id=""><?= $idProduct['description'] ?></textarea>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Danh mục sản phẩm</label>
+                                                        <select class="form-control form-select" name="category_id"
+                                                            id="category_id">
+                                                            <option value="">-- Chọn danh mục --</option>
+                                                            <?php foreach ($cates as $cate) { ?>
+                                                                <option <?= ($idProduct['category_id'] == $cate['category_id']) ? 'selected' : '' ?>
+                                                                    value="<?= $cate['category_id'] ?>">
+                                                                    <?= $cate['category_name'] ?>
+                                                                </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <span id="error_cate"></span>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button name="btn_submit"
+                                                            class="btn cr-btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -748,4 +780,3 @@
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:41:50 GMT -->
 
 </html>
-

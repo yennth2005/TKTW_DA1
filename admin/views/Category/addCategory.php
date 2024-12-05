@@ -371,26 +371,34 @@
                                     <div class="col-lg-8">
                                         <div class="cr-vendor-upload-detail">
                                             <form class="row g-3" action="?act=post-category" method="POST"
-                                                enctype="multipart/form-data" onsubmit="createCate()" name="myForm">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
-                                                        <label><i class="ri-pencil-line"></i></label>
-                                                    </div>
-
-                                                </div>
+                                                enctype="multipart/form-data">
                                                 <div class="col-md-9">
                                                     <label for="" class="form-label">Tên danh mục</label>
                                                     <input type="text" class="form-control slug-title"
-                                                        name="category_name" id="name">
-                                                    <span id="error_name"></span>
+                                                        name="category_name" id="name"
+                                                        value="<?= $_SESSION['old_data']['category_name'] ?? '' ?>">
+                                                    <span id="error_cate" style="color: red;">
+                                                        <?= $_SESSION['errors']['category_name'] ?? '' ?>
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <label for="category_name" class="form-label">Hình ảnh</label>
+                                                    <input type="file" class="form-control slug-title" name="image"
+                                                        id="">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button name="btn_submit" class="btn cr-btn-primary"
-                                                        onclick="createCate()">Submit</button>
+                                                    <button name="btn_submit" class="btn cr-btn-primary">Submit</button>
                                                 </div>
                                             </form>
+
+                                            <?php
+                                            // Xóa lỗi và dữ liệu cũ sau khi hiển thị
+                                            if (isset($_SESSION['errors']))
+                                                unset($_SESSION['errors']);
+                                            if (isset($_SESSION['old_data']))
+                                                unset($_SESSION['old_data']);
+                                            ?>
+
                                         </div>
                                     </div>
                                 </div>
@@ -515,6 +523,7 @@
 
     <!-- Main Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
+    <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/validate.js"></script>
 </body>
 
 

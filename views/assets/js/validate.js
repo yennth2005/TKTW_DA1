@@ -54,3 +54,54 @@ function register() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
+
+  // function login(){
+  //   const email = document.getElementById('email');
+  //   const password = document.getElementById('password');
+  //   document.getElementById("error_email").innerText = "";
+  //   document.getElementById("error_password").innerText = "";
+
+  //   let valid = true;
+
+  //   // Kiểm tra email
+  //   const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  //   if (!email.match(emailPattern)) {
+  //       document.getElementById("error_email").innerText = "Email không hợp lệ";
+  //       valid = false;
+  //   }
+
+  //   // Kiểm tra mật khẩu
+  //   if (password.length < 6) { // Thay đổi độ dài tùy theo yêu cầu
+  //       document.getElementById("error_password").innerText = "Mật khẩu phải ít nhất 6 ký tự";
+  //       valid = false;
+  //   }
+
+  //   return valid;
+  // }
+
+  function login() {
+    // Lấy giá trị từ các trường
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    // Xóa thông báo lỗi cũ
+    document.getElementById("error_email").innerText = "";
+    document.getElementById("error_password").innerText = "";
+
+    let valid = true;
+
+    // Kiểm tra email
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!email.match(emailPattern)) {
+        document.getElementById("error_email").innerText = "Email không hợp lệ";
+        valid = false;
+    }
+
+    // Kiểm tra mật khẩu
+    if (password.length < 6) { // Thay đổi độ dài tùy theo yêu cầu
+        document.getElementById("error_password").innerText = "Mật khẩu phải ít nhất 6 ký tự";
+        valid = false;
+    }
+
+    return valid; // Chỉ gửi biểu mẫu nếu tất cả các kiểm tra đều hợp lệ
+}

@@ -25,23 +25,24 @@ class CategoryModel
     }
 
     //thêm
-    public function insertCategory($category_name)
+    public function insertCategory($category_name, $image)
     {
-        $sql = "INSERT INTO categories (category_name) VALUES ('$category_name') ";
+        $sql = "INSERT INTO categories (category_name,image) VALUES ('$category_name','$image') ";
         $this->conn->query($sql);
 
 
     }
 
-    public function updateCategory($id, $category_name)
+    public function updateCategory($id, $category_name, $image)
     {
-        $sql = "UPDATE categories SET category_name = '$category_name' WHERE `categories` . `category_id` = {$id}";
-        $this->conn->query($sql);
+        $sql = "UPDATE categories SET `category_name` = '$category_name',`image` ='$image' WHERE `categories` . `category_id` = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
     }
 
     public function find($id)
     {
-        $sql = "SELECT * FROM categories WHERE `categories`.`category_id`={$id}";
+        $sql = "SELECT * FROM categories WHERE category_id='$id'";
         $stmt = $this->conn->query($sql);
         $data = $stmt->fetch();
         return $data;

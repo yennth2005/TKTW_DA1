@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:30:29 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,23 +15,47 @@
     <title>Carrot - Multipurpose eCommerce HTML Template</title>
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/img/logo/favicon.png">
+    <link rel="shortcut icon" href="views/assets/img/logo/favicon.png">
 
     <!-- Icon CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/remixicon.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/materialdesignicons.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/remixicon.css">
 
     <!-- Vendor -->
-    <link rel="stylesheet" href="assets/css/vendor/animate.css">
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/aos.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/range-slider.css">
-    <link rel="stylesheet" href="assets/css/vendor/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/jquery.slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/animate.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/aos.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/range-slider.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/swiper-bundle.min.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/jquery.slick.css">
+    <link rel="stylesheet" href="views/assets/css/vendor/slick-theme.css">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="views/assets/css/style.css">
+    <link rel="stylesheet" href="views/assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.error('{$_SESSION['error']}');
+            });
+        </script>";
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['success'])) {
+        echo "
+        <script>
+            $(document).ready(function() {
+                toastr.success('{$_SESSION['success']}');
+            });
+        </script>";
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>
 
 <body class="body-bg-6">
@@ -41,422 +66,8 @@
     </div>
 
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="top-header">
-                        <a href="index.html" class="cr-logo">
-                            <img src="assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
-                        </a>
-                        <form class="cr-search">
-                            <input class="search-input" type="text" placeholder="Search For items...">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>All Categories</option>
-                                <option value="1">Mens</option>
-                                <option value="2">Womens</option>
-                                <option value="3">Electronics</option>
-                              </select>
-                            <a href="javascript:void(0)" class="search-btn">
-                                <i class="ri-search-line"></i>
-                            </a>
-                        </form>
-                        <div class="cr-right-bar">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle cr-right-bar-item" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                        <span>Account</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-3-line"></i>
-                                <span>Wishlist</span>
-                            </a>
-                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
-                                <i class="ri-shopping-cart-line"></i>
-                                <span>Cart</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="cr-fix" id="cr-main-menu-desk">
-            <div class="container">
-                <div class="cr-menu-list">
-                    <div class="cr-category-icon-block">
-                        <div class="cr-category-menu">
-                            <div class="cr-category-toggle">
-                                <i class="ri-menu-2-line"></i>
-                            </div>
-                        </div>
-                        <div class="cr-cat-dropdown">
-                            <div class="cr-cat-block">
-                                <div class="cr-cat-tab">
-                                    <div class="cr-tab-list nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                        aria-orientation="vertical">
-                                        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-home" type="button" role="tab"
-                                            aria-controls="v-pills-home" aria-selected="true">
-                                            Dairy &amp; Bakery</button>
-                                        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-profile" type="button" role="tab"
-                                            aria-controls="v-pills-profile" aria-selected="false" tabindex="-1">
-                                            Fruits &amp; Vegetable</button>
-                                        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-messages" type="button" role="tab"
-                                            aria-controls="v-pills-messages" aria-selected="false" tabindex="-1">
-                                            Snack &amp; Spice</button>
-                                        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
-                                            data-bs-target="#v-pills-settings" type="button" role="tab"
-                                            aria-controls="v-pills-settings" aria-selected="false" tabindex="-1">
-                                            Juice &amp; Drinks </button>
-                                        <a class="nav-link" href="shop-left-sidebar.html">
-                                            View All </a>
-                                    </div>
-                                    <div class="tab-content" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                            aria-labelledby="v-pills-home-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Dairy</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Milk</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Ice cream</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cheese</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Frozen
-                                                                custard</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Frozen
-                                                                yogurt</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Bakery</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cake and
-                                                                Pastry</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Rusk Toast</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Bread &amp;
-                                                                Buns</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Chocolate
-                                                                Brownie</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cream Roll</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                            aria-labelledby="v-pills-profile-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Fruits</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cauliflower</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Bell
-                                                                Peppers</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Broccoli</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cabbage</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Tomato</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Vegetable</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cauliflower</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Bell
-                                                                Peppers</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Broccoli</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cabbage</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Tomato</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                            aria-labelledby="v-pills-messages-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Snacks</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">French
-                                                                fries</a></li>
-                                                        <li><a href="shop-left-sidebar.html">potato
-                                                                chips</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Biscuits &amp;
-                                                                Cookies</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Popcorn</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Rice Cakes</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Spice</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Cinnamon
-                                                                Powder</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Cumin
-                                                                Powder</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Fenugreek
-                                                                Powder</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Pepper
-                                                                Powder</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Long Pepper</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                            aria-labelledby="v-pills-settings-tab">
-                                            <div class="tab-list row">
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">Juice</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Mango Juice</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Coconut
-                                                                Water</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Tetra Pack</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Apple
-                                                                Juices</a></li>
-                                                        <li><a href="shop-left-sidebar.html">Lychee
-                                                                Juice</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="cr-col-title">soft drink</h6>
-                                                    <ul class="cat-list">
-                                                        <li><a href="shop-left-sidebar.html">Breizh Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Green Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Jolt Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Mecca Cola</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar.html">Topsia Cola</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <nav class="navbar navbar-expand-lg">
-                        <a href="javascript:void(0)" class="navbar-toggler shadow-none">
-                            <i class="ri-menu-3-line"></i>
-                        </a>
-                        <div class="cr-header-buttons">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-line"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
-                                <i class="ri-shopping-cart-line"></i>
-                            </a>
-                        </div>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">
-                                        Home
-                                    </a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Category
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left
-                                                sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-right-sidebar.html">Shop
-                                                Right
-                                                sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-full-width.html">Full
-                                                Width</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Products
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="product-left-sidebar.html">product
-                                                Left
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-right-sidebar.html">product
-                                                Right
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-full-width.html">Product
-                                                Full
-                                                Width
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Pages
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="about.html">About Us</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="contact-us.html">Contact Us</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="cart.html">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="track-order.html">Track Order</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="faq.html">Faq</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="policy.html">Policy</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Blog
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="blog-left-sidebar.html">Left
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-right-sidebar.html">Right
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-full-width.html">Full
-                                                Width</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-detail-left-sidebar.html">Detail
-                                                Left
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-detail-right-sidebar.html">Detail
-                                                Right
-                                                Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-detail-full-width.html">Detail
-                                                Full
-                                                Width</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Elements
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="elements-products.html">Products</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="elements-typography.html">Typography</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="elements-buttons.html">Buttons</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <div class="cr-calling">
-                        <i class="ri-phone-line"></i>
-                        <a href="javascript:void(0)">+123 ( 456 ) ( 7890 )</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php include './views/components/header.php' ?>
+
 
     <!-- Mobile menu -->
     <div class="cr-sidebar-overlay"></div>
@@ -563,171 +174,442 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="cr-cart-content" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
-                        <div class="row">
-                            <form action="#">
-                                <div class="cr-table-content">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>price</th>
-                                                <th class="text-center">Quantity</th>
-                                                <th>Total</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="cr-cart-name">
-                                                    <a href="javascript:void(0)">
-                                                        <img src="assets/img/product/1.jpg" alt="product-1"
-                                                            class="cr-cart-img">
-                                                        Organic Lemon
-                                                    </a>
-                                                </td>
-                                                <td class="cr-cart-price">
-                                                    <span class="amount">$56.00</span>
-                                                </td>
-                                                <td class="cr-cart-qty">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <button type="button" class="plus">+</button>
-                                                        <input type="text" placeholder="." value="1" minlength="1"
-                                                            maxlength="20" class="quantity">
-                                                        <button type="button" class="minus">-</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cr-cart-subtotal">$56.00</td>
-                                                <td class="cr-cart-remove">
-                                                    <a href="javascript:void(0)">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cr-cart-name">
-                                                    <a href="javascript:void(0)">
-                                                        <img src="assets/img/product/2.jpg" alt="product-1"
-                                                            class="cr-cart-img">
-                                                        Apple Juice
-                                                    </a>
-                                                </td>
-                                                <td class="cr-cart-price">
-                                                    <span class="amount">$75.00</span>
-                                                </td>
-                                                <td class="cr-cart-qty">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <button type="button" class="plus">+</button>
-                                                        <input type="text" placeholder="." value="1" minlength="1"
-                                                            maxlength="20" class="quantity">
-                                                        <button type="button" class="minus">-</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cr-cart-subtotal">$75.00</td>
-                                                <td class="cr-cart-remove">
-                                                    <a href="javascript:void(0)">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cr-cart-name">
-                                                    <a href="javascript:void(0)">
-                                                        <img src="assets/img/product/3.jpg" alt="product-1"
-                                                            class="cr-cart-img">
-                                                        Watermelon 5kg Pack
-                                                    </a>
-                                                </td>
-                                                <td class="cr-cart-price">
-                                                    <span class="amount">$48.00</span>
-                                                </td>
-                                                <td class="cr-cart-qty">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <button type="button" class="plus">+</button>
-                                                        <input type="text" placeholder="." value="1" minlength="1"
-                                                            maxlength="20" class="quantity">
-                                                        <button type="button" class="minus">-</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cr-cart-subtotal">$48.00</td>
-                                                <td class="cr-cart-remove">
-                                                    <a href="javascript:void(0)">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cr-cart-name">
-                                                    <a href="javascript:void(0)">
-                                                        <img src="assets/img/product/4.jpg" alt="product-1"
-                                                            class="cr-cart-img">
-                                                        Pomegranate 5 kg pack
-                                                    </a>
-                                                </td>
-                                                <td class="cr-cart-price">
-                                                    <span class="amount">$90.00</span>
-                                                </td>
-                                                <td class="cr-cart-qty">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <button type="button" class="plus">+</button>
-                                                        <input type="text" placeholder="." value="1" minlength="1"
-                                                            maxlength="20" class="quantity">
-                                                        <button type="button" class="minus">-</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cr-cart-subtotal">$90.00</td>
-                                                <td class="cr-cart-remove">
-                                                    <a href="javascript:void(0)">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cr-cart-name">
-                                                    <a href="javascript:void(0)">
-                                                        <img src="assets/img/product/5.jpg" alt="product-1"
-                                                            class="cr-cart-img">
-                                                        Organic Peach Fruits
-                                                    </a>
-                                                </td>
-                                                <td class="cr-cart-price">
-                                                    <span class="amount">$50.00</span>
-                                                </td>
-                                                <td class="cr-cart-qty">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <button type="button" class="plus">+</button>
-                                                        <input type="text" placeholder="." value="1" minlength="1"
-                                                            maxlength="20" class="quantity">
-                                                        <button type="button" class="minus">-</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cr-cart-subtotal">$50.00</td>
-                                                <td class="cr-cart-remove">
-                                                    <a href="javascript:void(0)">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="cr-cart-update-bottom">
-                                            <a href="javascript:void(0)" class="cr-links">Continue Shopping</a>
-                                            <a href="cart.html" class="cr-button">
-                                                Check Out
-                                            </a>
+            <?php if (isset($_SESSION['user'])) { ?>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cr-cart-content" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                            <div class="row">
+                                <form action="?act=order" method="POST">
+                                    <div class="cr-table-content">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td></td>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th class="text-center">Quantity</th>
+                                                    <th>Phân loại</th>
+                                                    <th>Total</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($cartData as $item): ?>
+<<<<<<< Updated upstream
+                                                    <tr id="cart-item-<?= $item['cart_item_id'] ?>"
+                                                        data-id="<?= $item['cart_item_id'] ?>">
+                                                        <!-- mảng id để lấy vị trí cart items -->
+                                                        <input type="hidden" name="id[]" value="<?= $item['cart_item_id'] ?>">
+                                                        <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
+                                                        <input type="hidden" name="size[]" value="<?= $item['size_id'] ?>">
+                                                        <input type="hidden" name="variant[]"
+                                                            value="<?= $item['variant_id'] ?>">
+                                                        <input type="hidden" name="product_id"
+                                                            value="<?= $item['product_id'] ?>">
+=======
+                                                    <tr>
+                                                        <input type="hidden" name="id[]" value="<?= $item['cart_item_id'] ?>">
+>>>>>>> Stashed changes
+                                                        <td>
+                                                            <input type="checkbox" name="selected_products[]"
+                                                                value="<?= $item['variant_id'] ?>"
+                                                                onchange="toggleHiddenField(this)">
+                                                            <input type="hidden" name="selected_products_data[]"
+                                                                id="product_<?= $item['variant_id'] ?>"
+                                                                value="<?= htmlspecialchars(json_encode($item)) ?>" disabled>
+                                                        </td>
+
+<<<<<<< Updated upstream
+                                                        <td class="cr-cart-name">
+                                                            <a href="?act=view-detail&color=<?= $item['variant_id'] ?>">
+                                                                <img src="<?= $item['image'] ?>"
+                                                                    alt="product-<?= $item['variant_id'] ?>"
+=======
+                                                        <script>
+                                                            function toggleHiddenField(checkbox) {
+                                                                var productId = checkbox.value;
+                                                                var hiddenField = document.getElementById("product_" + productId);
+                                                                hiddenField.disabled = !checkbox.checked; // Kích hoạt hoặc vô hiệu hóa trường hidden
+                                                                // console.log(hiddenField);
+                                                                // console.log(productId);
+                                                            }
+
+                                                        </script>
+                                                        <td class="cr-cart-name">
+                                                            <a href="?act=view-detail&color=<?= $item['variant_id'] ?>">
+                                                                <img src="<?= $item['image'] ?>" alt="product-1"
+>>>>>>> Stashed changes
+                                                                    class="cr-cart-img">
+                                                                <?= $item['product_name'] ?>
+                                                            </a>
+                                                        </td>
+<<<<<<< Updated upstream
+
+                                                        <td class="cr-cart-price">
+                                                            <span class="amount"
+                                                                id="price"><?= number_format($item['price']) ?></span>
+                                                        </td>
+
+=======
+                                                        <td class="cr-cart-price">
+                                                            <span class="amount"><?= number_format($item['price']) ?></span>
+                                                            <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
+                                                        </td>
+>>>>>>> Stashed changes
+                                                        <td class="cr-cart-qty">
+                                                            <div class="cart-qty-plus-minus">
+                                                                <button type="button" class="plus">+</button>
+                                                                <input type="number" placeholder="."
+                                                                    value="<?= $item['quantity'] ?>" name="quantity[]"
+<<<<<<< Updated upstream
+                                                                    class="quantity" data-price="<?= $item['price'] ?>">
+                                                                <button type="button" class="minus">-</button>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="cr-cart-color">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="dropdown me-2">
+                                                                    <button class="btn btn-secondary dropdown-toggle set-color"
+                                                                        type="button"
+                                                                        id="colorDropdown-<?= $item['cart_item_id'] ?>"
+                                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <?= $item['color'] ?: 'Chọn màu' ?>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu"
+                                                                        aria-labelledby="colorDropdown-<?= $item['cart_item_id'] ?>">
+                                                                        <?php foreach ($allVariantsData as $variant): ?>
+                                                                            <?php if ($variant['product_id'] == $item['product_id']): // Kiểm tra xem biến thể có khớp không ?>
+                                                                                <li>
+                                                                                    <a class="dropdown-item inputColor"
+                                                                                        data-color="<?= $variant['color'] ?>"
+                                                                                        data-price="<?= $variant['price'] ?>"
+                                                                                        data-image="<?= $variant['image'] ?>"
+                                                                                        value="<?= $variant['variant_id'] ?>" href="#">
+                                                                                        <?= ucfirst($variant['color']) ?>
+                                                                                    </a>
+                                                                                </li>
+                                                                            <?php endif; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </ul>
+                                                                </div>
+
+                                                                <div class="dropdown"
+                                                                    id="size-picker-<?= $item['cart_item_id'] ?>">
+                                                                    <button class="btn btn-secondary dropdown-toggle set-size"
+                                                                        type="button"
+                                                                        id="sizeDropdown-<?= $item['cart_item_id'] ?>"
+                                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <?= $item['size_value'] ?: 'Chọn kích thước' ?>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu"
+                                                                        aria-labelledby="sizeDropdown-<?= $item['cart_item_id'] ?>">
+                                                                        <!-- Kích thước sẽ được tải bằng AJAX -->
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                            <span class="color-display"
+                                                                id="color-display-<?= $item['cart_item_id'] ?>"><?= $item['color'] ?></span>
+                                                            <span class="size-display"
+                                                                id="size-display-<?= $item['cart_item_id'] ?>"> -
+                                                                <?= $item['size_value'] ?></span>
+
+                                                        </td>
+
+=======
+                                                                    class="quantity" data-price="<?= $item['price'] ?>"
+                                                                    onchange="updateTotal()">
+                                                                <button type="button" class="minus">-</button>
+                                                            </div>
+                                                        </td>
+                                                        <td class="cr-cart-color">
+                                                            <!-- <select name="" id="variant">
+                                                                <option value=""></option>
+                                                            </select> -->
+                                                            <div class="dropdown-center">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Chọn loại khác
+                                                                </button>
+                                                                <ul class="dropdown-menu">
+                                                                    <li class="dropdown-item">
+                                                                    <div class="variant-picker-item">
+                                                                        <div class="variant-picker-label">
+                                                                            Color: <span
+                                                                                class="fw-6 variant-picker-label-value value-currentColor"></span>
+                                                                        </div>
+                                                                        <div class="variant-picker-values" id="color-picker">
+                                                                            <?php foreach ($allVariants as $variant): ?>
+                                                                                <input class="inputColor"
+                                                                                    id="color-<?= $variant['variant_id'] ?>"
+                                                                                    type="text" name="color"
+                                                                                    value="<?= $variant['variant_id'] ?>"
+                                                                                    data-price="<?= $variant['price'] ?>"
+                                                                                    data-image="<?= $variant['image'] ?>"
+                                                                                    <?= $variant['variant_id'] === $products['variant_id'] ? 'checked' : '' ?>>
+                                                                                <label class="hover-tooltip radius-60 color-btn"
+                                                                                    for="color-<?= $variant['variant_id'] ?>">
+                                                                                    <span class="btn-checkbox"
+                                                                                        style="background-color: <?= $exchangeColor[$variant['color']] ?>"></span>
+                                                                                    <span
+                                                                                        class="tooltip"><?= ucfirst($variant['color']) ?></span>
+                                                                                </label>
+                                                                            <?php endforeach; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    </li>
+
+                                                                    <li class="dropdown-item">
+                                                                    <div class="variant-picker-item">
+                                                                        <div class="variant-picker-label">
+                                                                            Size: <span
+                                                                                class="fw-6 variant-picker-label-value value-currentSize"></span>
+                                                                        </div>
+                                                                        <div class="variant-picker-values" id="size-picker">
+                                                                            <?php foreach ($allSizes as $size): ?>
+                                                                                <input id="size-<?= $size['size_id'] ?>"
+                                                                                    type="radio" name="size"
+                                                                                    value="<?= $size['size_id'] ?>"
+                                                                                    data-quantity="<?= $size['quantity'] ?>"
+                                                                                    <?= $size['size_id'] === $products['size_id'] ? 'checked' : '' ?>>
+                                                                                <label class="style-text size-btn"
+                                                                                    for="size-<?= $size['size_id'] ?>">
+                                                                                    <p><?= $size['size_value'] ?></p>
+                                                                                </label>
+                                                                            <?php endforeach; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <span class="color"><?= $item['color'] ?> -
+                                                                <?= $item['size_value'] ?></span>
+                                                            <input type="hidden" name="size[]" value="<?= $item['size_id'] ?>">
+                                                            <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                                            <input type="hidden" name="variant[]"
+                                                                value="<?= $item['variant_id'] ?>">
+                                                        </td>
+>>>>>>> Stashed changes
+                                                        <td class="cr-cart-subtotal">
+                                                            <span
+                                                                class="subtotal"><?= number_format($item['price'] * $item['quantity']) ?></span>
+                                                        </td>
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+                                                        <td class="cr-cart-remove">
+                                                            <a
+                                                                href="?act=deleteProductFromCart&id=<?= $item['cart_item_id'] ?>">
+                                                                <i class="ri-delete-bin-line"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+<<<<<<< Updated upstream
+
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', () => {
+                                                    const BASE_URL = "http://localhost/TKTW_DA1/";
+
+                                                    // Xử lý chọn biến thể màu
+                                                    document.querySelectorAll('.inputColor').forEach(colorItem => {
+                                                        colorItem.addEventListener('click', function (event) {
+                                                            event.preventDefault();
+
+                                                            // Tìm hàng chứa sản phẩm hiện tại
+                                                            const cartRow = this.closest('tr'); // Giả sử sản phẩm nằm trong hàng <tr>
+                                                            const cartItemId = cartRow.getAttribute('data-id'); // Lấy ID sản phẩm
+
+                                                            // Cập nhật thông tin hiển thị
+                                                            const colorDisplay = cartRow.querySelector(`#color-display-${cartItemId}`);
+                                                            const priceDisplay = cartRow.querySelector('.amount');
+                                                            const imageDisplay = cartRow.querySelector('.cr-cart-img');
+                                                            const priceInput = cartRow.querySelector('input[name="price[]"]');
+                                                            const colorInput = cartRow.querySelector('input[name="variant[]"]');
+
+                                                            // Cập nhật thông tin sản phẩm
+                                                            const selectedColor = this.getAttribute('data-color');
+                                                            const selectedPrice = this.getAttribute('data-price');
+                                                            const selectedVariantId = this.getAttribute('value');
+                                                            // console.log(selectedVariantId);
+                                                            // console.log(selectedPrice);
+
+                                                            colorDisplay.textContent = selectedColor;
+                                                            priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice) + "đ";
+                                                            imageDisplay.src = this.getAttribute('data-image');
+                                                            // document.querySelector(".set-color").textContent = selectedColor
+                                                            // Cập nhật input ẩn
+                                                            // Cập nhật input ẩn cho giá trị
+                                                            priceInput.value = parseFloat(selectedPrice); // Chuyển đổi sang số thực
+                                                            colorInput.value = selectedVariantId; // ID biến thể
+
+                                                            // Gọi API lấy danh sách kích thước
+                                                            fetch(`${BASE_URL}?act=get-size-by-color&variant_id=${selectedVariantId}`)
+                                                                .then(response => response.json())
+                                                                .then(data => {
+                                                                    const sizeDropdownMenu = cartRow.querySelector(`#size-picker-${cartItemId} .dropdown-menu`);
+                                                                    sizeDropdownMenu.innerHTML = data.map(size =>
+                                                                        `<li>
+                                                                                    <a class="dropdown-item sizeItem" data-size-id="${size.size_id}" href="#">${size.size_value}</a>
+                                                                                </li>`).join('');
+
+                                                                    // Xử lý sự kiện chọn kích thước
+                                                                    sizeDropdownMenu.querySelectorAll('.sizeItem').forEach(sizeItem => {
+                                                                        sizeItem.addEventListener('click', function (e) {
+                                                                            e.preventDefault();
+
+                                                                            const sizeDisplay = cartRow.querySelector(`#size-display-${cartItemId}`);
+                                                                            sizeDisplay.textContent = " - " + this.textContent;
+
+                                                                            // Cập nhật hidden input cho size
+                                                                            const sizeInput = cartRow.querySelector('input[name="size[]"]');
+                                                                            sizeInput.value = this.getAttribute('data-size-id');
+                                                                            // console.log(sizeInput.value);
+
+                                                                            console.log(sizeInput);
+                                                                        });
+
+                                                                    });
+                                                                })
+                                                                .catch(error => console.error('Lỗi:', error));
+                                                        });
+                                                    });
+
+                                                    // Xử lý thay đổi số lượng
+                                                    document.querySelectorAll('.quantity').forEach(quantityInput => {
+                                                        quantityInput.addEventListener('change', function () {
+                                                            const cartRow = this.closest('tr');
+                                                            const pricePerUnit = parseFloat(this.getAttribute('data-price'));
+                                                            const quantity = parseInt(this.value);
+                                                            const subtotalDisplay = cartRow.querySelector('.subtotal');
+                                                            const priceInput = cartRow.querySelector('input[name="price[]"]');
+
+                                                            // Tính toán và cập nhật subtotal
+                                                            const subtotal = pricePerUnit * quantity;
+                                                            subtotalDisplay.textContent = new Intl.NumberFormat().format(subtotal) + " VND";
+
+                                                            // Cập nhật giá trị cho input ẩn
+                                                            priceInput.value = pricePerUnit; // Cập nhật giá trị cho input giá
+                                                        });
+                                                    });
+                                                });
+
+                                            </script>
+=======
+>>>>>>> Stashed changes
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="cr-cart-update-bottom">
+                                                <a href="index.php" class="cr-links">Tiếp tục mua hàng</a>
+<<<<<<< Updated upstream
+
+=======
+                                              
+>>>>>>> Stashed changes
+                                                <div class="cart-summary">
+                                                    <strong>Total: </strong>
+                                                    <span id="cart-total">0 VND</span>
+                                                </div>
+<<<<<<< Updated upstream
+                                                <input id="updateCartBtn" style="" class="btn btn-warning" type="submit"
+                                                    name='submit' value="Cập nhật">
+                                                <input type="submit" value="Thanh toán" class="btn btn-danger"
+                                                    name="submit">
+=======
+                                                <input id="updateCartBtn" style="" type="submit" name='submit'
+                                                    value="Cập nhật">
+                                                <input type="submit" value="Thanh toán" name="submit">
+>>>>>>> Stashed changes
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <script>
+<<<<<<< Updated upstream
+                    // document.querySelector('form').addEventListener('submit', function (e) {
+                    //     const checked = document.querySelectorAll('input[name="selected_products[]"]:checked');
+                    //     if (checked.length === 0) {
+                    //         e.preventDefault();
+                    //         alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
+                    //     }
+                    // });
+
+                    // Hàm cập nhật tổng
+                    // function updateTotal() {
+                    //     let total = 0;
+                    //     document.querySelectorAll('tbody tr').forEach(row => {
+                    //         const price = parseFloat(row.querySelector('.quantity').dataset.price);
+                    //         const quantity = parseInt(row.querySelector('.quantity').value);
+                    //         const subtotal = price * quantity;
+                    //         row.querySelector('.subtotal').innerText = new Intl.NumberFormat().format(subtotal) + " VND";
+                    //         total += subtotal;
+                    //     });
+                    //     document.getElementById('cart-total').innerText = new Intl.NumberFormat().format(total) + " VND";
+                    // }
+
+                    // // Đảm bảo cập nhật tổng ban đầu
+                    // updateTotal();
+
+                    // // Thêm sự kiện cho các nút "+" và "-"
+                    // document.querySelectorAll('.plus').forEach(button => {
+                    //     button.addEventListener('click', function () {
+                    //         const input = this.nextElementSibling;
+                    //         input.value = parseInt(input.value) + 1;
+                    //         updateTotal();
+                    //     });
+                    // });
+
+                    // document.querySelectorAll('.minus').forEach(button => {
+                    //     button.addEventListener('click', function () {
+                    //         const input = this.previousElementSibling;
+                    //         if (parseInt(input.value) > 1) {
+                    //             input.value = parseInt(input.value) - 1;
+                    //             updateTotal();
+                    //         }
+                    //     });
+                    // });
+=======
+                    document.querySelector('form').addEventListener('btn_checkout', function (e) {
+                        const checked = document.querySelectorAll('input[name="selected_products[]"]:checked');
+                        if (checked.length === 0) {
+                            e.preventDefault();
+                            alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
+                        }
+                    });
+
+
+                    // Hàm cập nhật tổng
+                    function updateTotal() {
+                        let total = 0;
+                        document.querySelectorAll('tbody tr').forEach(row => {
+                            const price = parseFloat(row.querySelector('.quantity').dataset.price);
+                            const quantity = parseInt(row.querySelector('.quantity').value);
+                            const subtotal = price * quantity;
+                            row.querySelector('.subtotal').innerText = new Intl.NumberFormat().format(subtotal) + " VND";
+                            total += subtotal;
+
+                        });
+                        document.getElementById('cart-total').innerText = new Intl.NumberFormat().format(total) + " VND";
+                    }
+
+                    // Đảm bảo cập nhật tổng ban đầu
+                    updateTotal();
+>>>>>>> Stashed changes
+                </script>
+            <?php } else { ?>
+                <h3>
+                    <a style="color: blue" href="?act=login">Đăng nhập ngay</a> để tiếp tục mua sắm
+                </h3>
+            <?php } ?>
         </div>
     </section>
 
@@ -755,7 +637,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/9.jpg" alt="product-1">
+                                        <img src="views/assets/img/product/9.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -793,7 +675,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/10.jpg" alt="product-1">
+                                        <img src="views/assets/img/product/10.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -832,7 +714,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/1.jpg" alt="product-1">
+                                        <img src="views/assets/img/product/1.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -870,7 +752,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/2.jpg" alt="product-1">
+                                        <img src="views/assets/img/product/2.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -909,7 +791,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/3.jpg" alt="product-1">
+                                        <img src="views/assets/img/product/3.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -957,8 +839,8 @@
                 <div class="col-xl-4 col-lg-6 col-sm-12 col-12 cr-footer-border">
                     <div class="cr-footer-logo">
                         <div class="image">
-                            <img src="assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
+                            <img src="views/assets/img/logo/logo.png" alt="logo" class="logo">
+                            <img src="views/assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
                         </div>
                         <p>Carrot is the biggest market of grocery products. Get your daily needs from our store.</p>
                     </div>
@@ -1037,49 +919,49 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/1.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/1.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/2.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/2.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/3.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/3.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/4.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/4.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/5.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/5.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/6.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/6.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/7.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/7.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="assets/img/insta/8.jpg" alt="insta">
+                                            <img src="views/assets/img/insta/8.jpg" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
@@ -1100,7 +982,7 @@
         <i class="ri-arrow-up-line"></i>
         <div class="back-to-top-wrap">
             <svg viewBox="-1 -1 102 102">
-                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
             </svg>
         </div>
     </a>
@@ -1115,7 +997,7 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-xs-12">
                             <div class="zoom-image-hover modal-border-image">
-                                <img src="assets/img/product/tab-1.jpg" alt="product-tab-2" class="product-image">
+                                <img src="views/assets/img/product/tab-1.jpg" alt="product-tab-2" class="product-image">
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-12 col-xs-12">
@@ -1181,8 +1063,8 @@
                 </div>
                 <ul class="crcart-pro-items">
                     <li>
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img src="assets/img/product/4.jpg"
-                                alt="product-1"></a>
+                        <a href="product-left-sidebar.html" class="crside_pro_img"><img
+                                src="views/assets/img/product/4.jpg" alt="product-1"></a>
                         <div class="cr-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Fresh Pomegranate</a>
                             <span class="cart-price"><span>$56.00</span> x 1kg</span>
@@ -1197,40 +1079,7 @@
                             <a href="javascript:void(0)" class="remove">×</a>
                         </div>
                     </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img src="assets/img/product/2.jpg"
-                                alt="product-2"></a>
-                        <div class="cr-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Green Apples</a>
-                            <span class="cart-price"><span>$75.00</span> x 1kg</span>
-                            <div class="cr-cart-qty">
-                                <div class="cart-qty-plus-minus">
-                                    <button type="button" class="plus">+</button>
-                                    <input type="text" placeholder="." value="1" minlength="1" maxlength="20"
-                                        class="quantity">
-                                    <button type="button" class="minus">-</button>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="crside_pro_img"><img src="assets/img/product/3.jpg"
-                                alt="product-3"></a>
-                        <div class="cr-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Watermelon  - Small</a>
-                            <span class="cart-price"><span>$48.00</span> x 5kg</span>
-                            <div class="cr-cart-qty">
-                                <div class="cart-qty-plus-minus">
-                                    <button type="button" class="plus">+</button>
-                                    <input type="text" placeholder="." value="1" minlength="1" maxlength="20"
-                                        class="quantity">
-                                    <button type="button" class="minus">-</button>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
             <div class="cr-cart-bottom">
@@ -1239,22 +1088,22 @@
                         <tbody>
                             <tr>
                                 <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
+                                <td class="text-right"></td>
                             </tr>
                             <tr>
                                 <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
+                                <td class="text-right"></td>
                             </tr>
                             <tr>
                                 <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
+                                <td class="text-right primary-color"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="cart_btn">
-                    <a href="cart.html" class="cr-button">View Cart</a>
-                    <a href="checkout.html" class="cr-btn-secondary">Checkout</a>
+                    <a href="?act=view-cart" class="cr-button">View Cart</a>
+                    <a href="?act=checkout" class="cr-btn-secondary">Checkout</a>
                 </div>
             </div>
         </div>
@@ -1318,10 +1167,10 @@
                     </div>
                     <ul class="rtl-mode">
                         <li class="rtl">
-                            <img src="assets/img/tool/rtl.png" alt="rtl">
+                            <img src="views/assets/img/tool/rtl.png" alt="rtl">
                         </li>
                         <li class="ltr active-rtl-mode">
-                            <img src="assets/img/tool/ltr.png" alt="ltr">
+                            <img src="views/assets/img/tool/ltr.png" alt="ltr">
                         </li>
                     </ul>
                 </div>
@@ -1331,22 +1180,22 @@
                     </div>
                     <ul class="bg-panel">
                         <li class="bg-1">
-                            <img src="assets/img/shape/bg-shape-1.png" alt="bg-shape-1">
+                            <img src="views/assets/img/shape/bg-shape-1.png" alt="bg-shape-1">
                         </li>
                         <li class="bg-2">
-                            <img src="assets/img/shape/bg-shape-2.png" alt="bg-shape-2">
+                            <img src="views/assets/img/shape/bg-shape-2.png" alt="bg-shape-2">
                         </li>
                         <li class="bg-3">
-                            <img src="assets/img/shape/bg-shape-3.png" alt="bg-shape-3">
+                            <img src="views/assets/img/shape/bg-shape-3.png" alt="bg-shape-3">
                         </li>
                         <li class="bg-4">
-                            <img src="assets/img/shape/bg-shape-4.png" alt="bg-shape-4">
+                            <img src="views/assets/img/shape/bg-shape-4.png" alt="bg-shape-4">
                         </li>
                         <li class="bg-5">
-                            <img src="assets/img/shape/bg-shape-5.png" alt="bg-shape-5">
+                            <img src="views/assets/img/shape/bg-shape-5.png" alt="bg-shape-5">
                         </li>
                         <li class="bg-6 active-bg-panel">
-                            <img src="assets/img/shape/bg-shape-6.png" alt="bg-shape-6">
+                            <img src="views/assets/img/shape/bg-shape-6.png" alt="bg-shape-6">
                         </li>
                     </ul>
                 </div>
@@ -1355,19 +1204,119 @@
     </div>
 
     <!-- Vendor Custom -->
-    <script src="assets/js/vendor/jquery-3.6.4.min.js"></script>
-    <script src="assets/js/vendor/jquery.zoom.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/vendor/mixitup.min.js"></script>
-    <script src="assets/js/vendor/range-slider.js"></script>
-    <script src="assets/js/vendor/aos.min.js"></script>
-    <script src="assets/js/vendor/swiper-bundle.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
+    <script src="views/assets/js/vendor/jquery-3.6.4.min.js"></script>
+    <script src="views/assets/js/vendor/jquery.zoom.min.js"></script>
+    <script src="views/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="views/assets/js/vendor/mixitup.min.js"></script>
+    <script src="views/assets/js/vendor/range-slider.js"></script>
+    <script src="views/assets/js/vendor/aos.min.js"></script>
+    <script src="views/assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="views/assets/js/vendor/slick.min.js"></script>
 
     <!-- Main Custom -->
-    <script src="assets/js/main.js"></script>
+    <script src="views/assets/js/main.js"></script>
+<<<<<<< Updated upstream
+
+=======
+    <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        let inputColor = document.querySelectorAll(".inputColor");
+        let BASE_URL = "http://localhost/TKTW_DA1/";
+        let blockSize = document.querySelector("#size-picker");
+        let colorSelect = document.querySelector("#size-id");
+        let priceDisplay = document.querySelector("#price-value"); // Phần tử để hiển thị giá
+        let imageDisplay =document.querySelector(".product-image");
+        let selectedColor = ""; // Biến để lưu mã màu
+        let selectedSize = ""; // Biến để lưu mã size
+
+        inputColor.forEach(item => {
+            item.addEventListener('click', function(event) {
+                selectedColor = event.target.value; // Lưu mã màu đã chọn
+                let selectedPrice = event.target.getAttribute('data-price'); // Lấy giá từ thuộc tính data-price
+                priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice)+"đ"; // Cập nhật giá hiển thị
+                const selectedImage = event.target.getAttribute('data-image');
+                // console.log(imageDisplay);
+                imageDisplay.src = selectedImage
+                // console.log("Selected Color:", selectedColor);
+                
+                
+
+                fetch(BASE_URL + '?act=get-size-by-color&variant_id=' + selectedColor)
+                    .then(response => response.json())
+                    .then(data => {
+                        blockSize.innerHTML = "";
+                        let UI = ``;
+                        
+                        data.forEach(size => {
+                            UI += `
+                                <input id="size-${size.size_id}" type="radio" name="size"
+                                    value="${size.size_id}"
+                                    data-quantity="${size.quantity}">
+                                <label class="style-text size-btn" for="size-${size.size_id}">
+                                    <p>${size.size_value}</p>
+                                </label>
+                            `;
+                        });
+                        
+                        blockSize.innerHTML = UI;
+
+                        // Lấy ID của size khi click vào
+                        const sizeInputs = blockSize.querySelectorAll('input[type="radio"]');
+                        sizeInputs.forEach(input => {
+                            input.addEventListener('change', function() {
+                                selectedSize = this.value; // Lưu mã size đã chọn
+                                document.querySelector('input[name="size_id"]').value = selectedSize; // Cập nhật giá trị size_id
+                                // console.log("Selected Size ID:", selectedSize);
+                                const quantityTotal = this.getAttribute('data-quantity');
+                                document.querySelector('.totalQuantity').innerHTML =quantityTotal
+                                // console.log(quantityTotal);
+                                // Tạo đường dẫn mới
+                                const newPath = `${BASE_URL}?act=view-detail&color=${selectedColor}&size=${selectedSize}`;
+                                console.log("New Path:", newPath);
+                                
+                                // Cập nhật lịch sử trình duyệt mà không tải lại trang
+                                history.pushState(null, "", newPath);
+                                
+                                // Nếu bạn muốn điều hướng đến đường dẫn mới ngay lập tức, hãy bỏ comment dòng dưới đây:
+                                // window.location.href = newPath;
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            });
+        });
+
+        // Khởi tạo giá hiển thị với màu đã chọn mặc định
+        // const checkedColor = document.querySelector('.inputColor:checked');
+        // if (checkedColor) {
+        //     priceDisplay.textContent = checkedColor.getAttribute('data-price');
+        // }
+        // const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
+                                        
+        //                                 const decreasePro = () => {
+        //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
+        //                                     if (currentValue > 1) { // Đảm bảo không giảm xuống dưới 1
+        //                                         quantityInput.value = currentValue - 1; // Giảm số lượng
+        //                                     }
+        //                                 }
+
+        //                                 const increasePro = () => {
+        //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
+        //                                     if(currenValue < quantityTotal ){
+        //                                         quantityInput.value = currentValue + 1;
+        //                                     } else{
+        //                                         alert("Vượt qu")
+        //                                     }
+        //                                 }
+    });
+</script>
+>>>>>>> Stashed changes
 </body>
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:30:29 GMT -->
+
 </html>

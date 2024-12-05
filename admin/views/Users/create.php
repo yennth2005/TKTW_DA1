@@ -370,13 +370,13 @@
                                     <div class="col-lg-8">
                                         <div class="cr-vendor-upload-detail">
                                             <form class="row g-3" action="?act=post-create-user" method="POST"
-                                                enctype="multipart/form-data" onclick="return createUser()">
+                                                enctype="multipart/form-data" onsubmit="return createUser()">
                                                 <div class="avatar-upload">
                                                     <div class="avatar-edit">
-                                                        <input type='file' id="product_main" class="cr-image-upload"
-                                                            accept=".png, .jpg, .jpeg" name="image">
+                                                        <input type='file' class="cr-image-upload"
+                                                            accept=".png, .jpg, .jpeg" name="image" id="image">
+                                                        <input type="hidden" name="imageUploaded">
                                                         <label><i class="ri-pencil-line"></i></label>
-
                                                     </div>
                                                     <div class="avatar-preview cr-preview">
                                                         <div class="imagePreview cr-div-preview">
@@ -410,6 +410,7 @@
                                                     <span id="error_password"></span>
 
                                                 </div>
+
                                                 <div class="col-md-6">
                                                     <label class="form-label">Vai trò</label>
                                                     <select class="form-control form-select" id="role" name="role">
@@ -436,7 +437,7 @@
 
                                                 <div class="col-md-12">
                                                     <button name="btn_submit" class="btn cr-btn-primary"
-                                                        onclick="createUser()">Submit</button>
+                                                        onsubmit="createUser()">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -561,6 +562,78 @@
     <!-- Main Custom -->
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/main.js"></script>
     <script src="<?= BASE_URL_ADMIN_VIEW ?>assets/js/validate.js"></script>
+    <script>
+
+        function createUser() {
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const address = document.getElementById('address');
+            const role = document.getElementById('role');
+            const phone = document.getElementById('phone');
+
+            let isValid = true; // Biến kiểm tra tổng thể
+
+            // Kiểm tra trường 'name'
+            if (name.value.trim() === '') {
+                document.getElementById('error_name').innerText = 'Không được bỏ trống';
+                isValid = false;
+            } else {
+                document.getElementById('error_name').innerText = ''; // Xóa thông báo lỗi
+            }
+
+            // Kiểm tra trường 'email'
+            if (email.value.trim() === '') {
+                document.getElementById('error_email').innerText = 'Không được bỏ trống';
+                isValid = false;
+            } else if (!validateEmail(email.value)) {
+                document.getElementById('error_email').innerText = 'Email không hợp lệ';
+                isValid = false;
+            } else {
+                document.getElementById('error_email').innerText = '';
+            }
+
+            // Kiểm tra trường 'password'
+            if (password.value.trim() === '') {
+                document.getElementById('error_password').innerText = 'Không được bỏ trống';
+                isValid = false;
+            } else if (password.value.length < 6) {
+                document.getElementById('error_password').innerText = 'Mật khẩu phải có ít nhất 6 ký tự';
+                isValid = false;
+            } else {
+                document.getElementById('error_password').innerText = '';
+            }
+
+            // Kiểm tra trường 'address'
+            if (address.value.trim() === '') {
+                document.getElementById('error_address').innerText = 'Không được bỏ trống';
+                isValid = false;
+            } else {
+                document.getElementById('error_address').innerText = '';
+            }
+
+            // Kiểm tra trường 'role'
+            if (role.value === '') {
+                document.getElementById('error_role').innerText = 'Vui lòng chọn vai trò';
+                isValid = false;
+            } else {
+                document.getElementById('error_role').innerText = '';
+            }
+
+            // Kiểm tra trường 'phone'
+            if (phone.value.trim() === '') {
+                document.getElementById('error_phone').innerText = 'Không được bỏ trống';
+                isValid = false;
+            } else if (!/^\d{10,11}$/.test(phone.value)) {
+                document.getElementById('error_phone').innerText = 'Số điện thoại không hợp lệ';
+                isValid = false;
+            } else {
+                document.getElementById('error_phone').innerText = '';
+            }
+
+            return isValid; // Chỉ gửi form nếu tất cả hợp lệ
+        }
+    </script>
 </body>
 
 
