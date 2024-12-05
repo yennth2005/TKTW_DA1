@@ -28,28 +28,28 @@ class ProductControllerAdmin
             echo "<h1>Lỗi</h1><p>Tên sản phẩm không được để trống.</p>";
             return;
         }
-    
+
         // Validate description
         if (empty($_POST['description'])) {
             echo "<h1>Lỗi</h1><p>Mô tả sản phẩm không được để trống.</p>";
             return;
         }
-    
+
         // Validate category
         if (empty($_POST['category_id'])) {
             echo "<h1>Lỗi</h1><p>Vui lòng chọn danh mục.</p>";
             return;
         }
-    
+
         // Validate file upload
         $file = $_FILES['images'];
-    
+
         if ($file['error'] !== UPLOAD_ERR_OK) {
             echo "<h1>Tải ảnh thất bại</h1>";
             echo "<p>Lỗi: File không được tải lên đúng cách.</p>";
             return;
         }
-    
+
         // Validate file type
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
         $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -57,10 +57,10 @@ class ProductControllerAdmin
             echo "<h1>Lỗi</h1><p>Hình ảnh phải có định dạng JPG, JPEG, PNG hoặc GIF.</p>";
             return;
         }
-    
+
         $filename = uniqid() . '.' . $extension;
         $uploadDir = __DIR__ . '/../../uploads/Products/';
-    
+
         if (!file_exists($uploadDir)) {
             if (!mkdir($uploadDir, 0777, true)) {
                 echo "<h1>Tải ảnh thất bại</h1>";
@@ -68,12 +68,12 @@ class ProductControllerAdmin
                 return;
             }
         }
-    
+
         $destination = $uploadDir . $filename;
-    
+
         if (move_uploaded_file($file['tmp_name'], $destination)) {
             echo "<h1>Tải ảnh thành công</h1>";
-    
+
             // Lưu thông tin sản phẩm vào cơ sở dữ liệu
             $product_id = $this->proAdminModel->insertProduct(
                 $_POST['product_name'],
@@ -161,13 +161,13 @@ class ProductControllerAdmin
             // echo "</pre>";
             $variant_id = $variant['variant_id'];
             $this->proAdminModel->deleteSizeByVariant($variant_id);
-        } 
+        }
         $this->proAdminModel->deleteVariantByProductId($id);
         // $variant_id = $variant['variant_id'];
         // var_dump($variant_id);
 
         $this->proAdminModel->deleteProduct($id);
-        $_SESSION['success']="Xoá thành công";
+        $_SESSION['success'] = "Xoá thành công";
         header("Location:  ?act=list-pro");
     }
 
@@ -226,7 +226,7 @@ class ProductControllerAdmin
         $this->proAdminModel->insertVariant($image, $color, $price, $sale, $desc, $product_id);
 
         // Điều hướng trở lại danh sách sản phẩm
-        header("Location: ?act=view-detail-pro&id=".$product_id);
+        header("Location: ?act=view-detail-pro&id=" . $product_id);
     }
     public function saveSize()
     {
@@ -247,12 +247,12 @@ class ProductControllerAdmin
         $product = $_GET['product-id'];
         $size_id = $_GET['size-id'];
         $this->proAdminModel->deleteVariant($size_id);
-        $_SESSION['success']="Xoá thành công";
+        $_SESSION['success'] = "Xoá thành công";
         header("Location: ?act=view-detail-pro&id=" . $product);
     }
     public function updateVariant()
     {
-        
+
     }
     // public function saveSize()
     // {

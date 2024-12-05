@@ -1,18 +1,18 @@
 <!DOCTYPE html>
- <html lang="en" dir="ltr">
- 
- 
+<html lang="en" dir="ltr">
+
+
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:30:27 GMT -->
+
 <head>
-     <meta charset="utf-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <meta name="keywords"
-         content="ecommerce, market, shop, mart, cart, deal, multipurpose, marketplace">
-     <meta name="description" content="Carrot - Multipurpose eCommerce HTML Template.">
-     <meta name="author" content="ashishmaraviya">
- 
-     <title>Carrot - Multipurpose eCommerce HTML Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="ecommerce, market, shop, mart, cart, deal, multipurpose, marketplace">
+    <meta name="description" content="Carrot - Multipurpose eCommerce HTML Template.">
+    <meta name="author" content="ashishmaraviya">
+
+    <title>Carrot - Multipurpose eCommerce HTML Template</title>
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= BASE_URL_VIEW ?>assets/img/logo/favicon.png">
@@ -173,8 +173,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-minus-24" data-aos="fade-up" data-aos-duration="2000"
-            data-aos-delay="400">
+            <div class="row mb-minus-24" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
                 <div class="col-lg-3 col-6 cr-product-box mb-24">
                     <div class="cr-product-card">
                         <div class="cr-product-image">
@@ -252,8 +251,8 @@
                             </div>
                             <a href="product-left-sidebar.html" class="title">Best snakes with hazel nut pack
                                 200gm</a>
-                            <p class="cr-price"><span class="new-price">$145</span> <span
-                                    class="old-price">$150</span></p>
+                            <p class="cr-price"><span class="new-price">$145</span> <span class="old-price">$150</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -493,7 +492,7 @@
         <i class="ri-arrow-up-line"></i>
         <div class="back-to-top-wrap">
             <svg viewBox="-1 -1 102 102">
-                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
             </svg>
         </div>
     </a>
@@ -611,7 +610,7 @@
                         <a href="product-left-sidebar.html" class="crside_pro_img"><img src="<?= BASE_URL_VIEW ?>assets/img/product/3.jpg"
                                 alt="product-3"></a>
                         <div class="cr-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Watermelon  - Small</a>
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Watermelon - Small</a>
                             <span class="cart-price"><span>$48.00</span> x 5kg</span>
                             <div class="cr-cart-qty">
                                 <div class="cart-qty-plus-minus">
@@ -746,7 +745,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Vendor Custom -->
     <script src="<?= BASE_URL_VIEW ?>assets/js/vendor/jquery-3.6.4.min.js"></script>
     <script src="<?= BASE_URL_VIEW ?>assets/js/vendor/jquery.zoom.min.js"></script>
@@ -763,4 +762,5 @@
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:30:27 GMT -->
+
 </html>

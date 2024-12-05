@@ -32,6 +32,7 @@
 
     <!-- Main CSS -->
     <link id="main-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/style.css" rel="stylesheet">
+    <link id="validate-css" href="<?= BASE_URL_ADMIN_VIEW ?>assets/css/validate.css" rel="stylesheet">
 
 </head>
 
@@ -372,7 +373,7 @@
                                             <form class="row g-3" action="?act=post-category" method="POST"
                                                 enctype="multipart/form-data">
                                                 <div class="col-md-9">
-                                                    <label for="category_name" class="form-label">Tên danh mục</label>
+                                                    <label for="" class="form-label">Tên danh mục</label>
                                                     <input type="text" class="form-control slug-title"
                                                         name="category_name" id="name"
                                                         value="<?= $_SESSION['old_data']['category_name'] ?? '' ?>">
@@ -382,8 +383,8 @@
                                                 </div>
                                                 <div class="col-md-9">
                                                     <label for="category_name" class="form-label">Hình ảnh</label>
-                                                    <input type="file" class="form-control slug-title"
-                                                        name="image" id="">
+                                                    <input type="file" class="form-control slug-title" name="image"
+                                                        id="">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button name="btn_submit" class="btn cr-btn-primary">Submit</button>

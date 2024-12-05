@@ -403,11 +403,20 @@
                                             <?php foreach ($orders as $order) { ?>
                                                 <tr>
 
+<<<<<<< Updated upstream
                                                     <td><?= $order['order_id'] ?></td>
                                                     <td><?= $order['recipient_name'] ?></td>
                                                     <td><?= $order['recipient_phone'] ?></td>
                                                     <td><?= $order['order_date'] ?></td>
                                                     <td><?= number_format($order['total_amount']) ?></td>
+=======
+                                                    <td><?= $order['order_id']?></td>
+                                                    <td><?= $order['recipient_name']?></td>
+                                                    <td><?= $order['recipient_phone']?></td>
+                                                    <td><?= $order['order_date']?></td>
+                                                    <td><?= number_format($order['total_amount'])?></td>
+                                                    <td><?= $order['state_name']?></td>
+>>>>>>> Stashed changes
                                                     <td>
                                                         <?php
                                                      

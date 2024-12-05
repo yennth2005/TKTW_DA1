@@ -389,42 +389,23 @@
 
                                                     <td><?= $category['category_id'] ?></td>
                                                     <td><?= $category['category_name'] ?></td>
-                                                    <td><img src="<?= BASE_URL.$category['image'] ?>" width="100px" alt=""></td>
-
+                                                    <td><img src="<?= BASE_URL . $category['image'] ?>" width="100px"
+                                                            alt="">
+                                                    </td>
                                                     <td>
-
-                                                        <a class="btn btn-warning mr-1"
-                                                            href="index.php?act=update-category&id=<?= $category['category_id'] ?>">Sửa</a>
-
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                            data-bs-target="#deleteModal<?= $category['category_id'] ?>"
-                                                            data-id="<?= $category['category_id'] ?>">
-                                                            Xóa
-                                                        </button>
-
-                                                        <div class="modal fade"
-                                                            id="deleteModal<?= $category['category_id'] ?>"
-                                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="staticBackdropLabel">Xác
-                                                                            nhận xóa</h5>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Bạn có chắc chắn muốn xóa?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Hủy</button>
-                                                                        <a href="index.php?act=delete-category&id=<?= $category['category_id'] ?>"
-                                                                            class="btn btn-danger">Xóa</a>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="d-flex justify-content-center">
+                                                            <button type="button"
+                                                                class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false" data-display="static">
+                                                                <span class="sr-only"><i
+                                                                        class="ri-settings-3-line"></i></span>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item"
+                                                                    href="index.php?act=update-category&id=<?= $category['category_id'] ?>">Edit</a>
+                                                                <a class="dropdown-item"
+                                                                    href="index.php?act=delete-category&id=<?= $category['category_id'] ?>">Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>

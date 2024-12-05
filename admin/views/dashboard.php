@@ -385,17 +385,17 @@
 											</div>
 										</div>
 										<?php if ($totalOrders['percent'] < 0) { ?>
-											<p class="card-groth down">
-												<i class="ri-arrow-down-line"></i>
-												<?= number_format($totalCustomers['percent']) . "%" ?>
-												<span>Tháng trước</span>
-											</p>
+												<p class="card-groth down">
+													<i class="ri-arrow-down-line"></i>
+													<?= number_format($totalCustomers['percent']) . "%" ?>
+													<span>Tháng trước</span>
+												</p>
 										<?php } else { ?>
-											<p class="card-groth up">
-												<i class="ri-arrow-up-line"></i>
-												<?= number_format($totalCustomers['percent']) . "%" ?>
-												<span>Tháng trước</span>
-											</p> 
+												<p class="card-groth up">
+													<i class="ri-arrow-up-line"></i>
+													<?= number_format($totalCustomers['percent']) . "%" ?>
+													<span>Tháng trước</span>
+												</p> 
 										<?php } ?>
 									</div>
 								</div>
@@ -411,17 +411,17 @@
 											</div>
 										</div>
 										<?php if ($totalOrders['percent'] < 0) { ?>
-											<p class="card-groth down">
-												<i class="ri-arrow-down-line"></i>
-												<?= number_format($totalOrders['percent']) . "%" ?>
-												<span>Tháng trước</span>
-											</p>
+												<p class="card-groth down">
+													<i class="ri-arrow-down-line"></i>
+													<?= number_format($totalOrders['percent']) . "%" ?>
+													<span>Tháng trước</span>
+												</p>
 										<?php } else { ?>
-											<p class="card-groth up">
-												<i class="ri-arrow-up-line"></i>
-												<?= number_format($totalOrders['percent']) . "%" ?>
-												<span>Tháng trước</span>
-											</p> <?php } ?>
+												<p class="card-groth up">
+													<i class="ri-arrow-up-line"></i>
+													<?= number_format($totalOrders['percent']) . "%" ?>
+													<span>Tháng trước</span>
+												</p> <?php } ?>
 									</div>
 								</div>
 							</div>
@@ -432,21 +432,21 @@
 											<span class="icon icon-3"><i class="ri-money-dollar-circle-line"></i></span>
 											<div class="growth-numbers">
 												<h4>Doanh thu</h4>
-												<h5><?= number_format($totalRevenues['this_month'])."đ" ?></h5>
+												<h5><?= number_format($totalRevenues['this_month']) . "đ" ?></h5>
 											</div>
 										</div>
 										<?php if ($totalRevenues['percent'] < 0) { ?>
-											<p class="card-groth down">
-												<i class="ri-arrow-down-line"></i>
-												<?= number_format($totalRevenues['percent']) . "%" ?>
-												<span>Tháng trước</span>
-											</p>
+												<p class="card-groth down">
+													<i class="ri-arrow-down-line"></i>
+													<?= number_format($totalRevenues['percent']) . "%" ?>
+													<span>Tháng trước</span>
+												</p>
 										<?php } else { ?>
-											<p class="card-groth up">
-												<i class="ri-arrow-up-line"></i>
-												<?= number_format($totalRevenues['percent']) . "%" ?>
-												<span>Tháng trước</span>
-											</p> <?php } ?>
+												<p class="card-groth up">
+													<i class="ri-arrow-up-line"></i>
+													<?= number_format($totalRevenues['percent']) . "%" ?>
+													<span>Tháng trước</span>
+												</p> <?php } ?>
 									</div>
 								</div>
 							</div>
@@ -509,7 +509,7 @@
 					<div class="col-xxl-6 col-xl-12">
 						<div class="cr-card" id="best_seller_tbl">
 							<div class="cr-card-header">
-								<h4 class="cr-card-title">Sản phẩm bán chạy nhất</h4>
+								<h4 class="cr-card-title">Bán chạy nhất</h4>
 								<div class="header-tools">
 									<a href="javascript:void(0)" class="m-r-10 cr-full-card" title="Full Screen"><i
 											class="ri-fullscreen-line"></i></a>
@@ -532,17 +532,17 @@
 											</thead>
 											<tbody>
 												<?php foreach ($bestSellers as $product): ?>
-													<tr>
-														<td><img class="cat-thumb" src="<?= BASE_URL . $product['image'] ?>"
-																alt="clients Image"><span
-																class="name"><?= $product['product_name'] ?></span>
-														</td>
-														<td>
-															<?= number_format($product['price']) ?>
-														</td>
-														<td><?= $product['total'] - $product['total_sold'] ?></td>
-														<td><?= $product['total_sold'] ?></td>
-													</tr>
+														<tr>
+															<td><img class="cat-thumb" src="<?= BASE_URL . $product['image'] ?>"
+																	alt="clients Image"><span
+																	class="name"><?= $product['product_name'] ?></span>
+															</td>
+															<td>
+																<?= number_format($product['price']) ?>
+															</td>
+															<td><?= $product['total'] - $product['total_sold'] ?></td>
+															<td><?= $product['total_sold'] ?></td>
+														</tr>
 												<?php endforeach; ?>
 											</tbody>
 										</table>
@@ -554,7 +554,7 @@
 					<div class="col-xxl-6 col-xl-12">
 						<div class="cr-card" id="top_product_tbl">
 							<div class="cr-card-header">
-								<h4 class="cr-card-title">Sản phẩm lượt xem cao nhất</h4>
+								<h4 class="cr-card-title">Top Product</h4>
 								<div class="header-tools">
 									<a href="javascript:void(0)" class="m-r-10 cr-full-card" title="Full Screen"><i
 											class="ri-fullscreen-line"></i></a>
@@ -571,21 +571,66 @@
 												<tr>
 													<th>Product</th>
 													<th>Price</th>
+													<th>Orders</th>
 													<th>Stock</th>
-													<th>View</th>
+													<th>Total</th>
 												</tr>
 											</thead>
 											<tbody>
-												<?php foreach($viewHighest as $product): ?>
 												<tr>
-													<td><img class="cat-thumb" src="<?= BASE_URL.$product['image'] ?>" alt="clients Image"><span
-															class="name"><?= $product['product_name'] ?></span>
+													<td><img class="cat-thumb" src="" alt="clients Image"><span
+															class="name">Mens t-shirt</span>
 													</td>
-													<td><?= $product['price'] ?></td>
-													<td><?= $product['total'] ?></td>
-													<td><?= $product['view'] ?></td>
+													<td>$16</td>
+													<td>162</td>
+													<td>456</td>
+													<td>$3524</td>
 												</tr>
-												<?php endforeach;?>
+												<tr>
+													<td><img class="cat-thumb" src="" alt="clients Image"><span
+															class="name">Sofa chair</span>
+													</td>
+													<td>$52</td>
+													<td>178</td>
+													<td>958</td>
+													<td>$8654</td>
+												</tr>
+												<tr>
+													<td><img class="cat-thumb" src="" alt="clients Image"><span
+															class="name">Night Lamp</span>
+													</td>
+													<td>$70</td>
+													<td>198</td>
+													<td>1524</td>
+													<td>$1152</td>
+												</tr>
+												<tr>
+													<td><img class="cat-thumb" src="" alt="clients Image"><span
+															class="name">Mens hoodie</span>
+													</td>
+													<td>$16</td>
+													<td>205</td>
+													<td>253</td>
+													<td>$5645</td>
+												</tr>
+												<tr>
+													<td><img class="cat-thumb" src="" alt="clients Image"><span
+															class="name">Digital Watch</span>
+													</td>
+													<td>$559</td>
+													<td>209</td>
+													<td>456</td>
+													<td>$20546</td>
+												</tr>
+												<tr>
+													<td><img class="cat-thumb" src="" alt="clients Image"><span
+															class="name">DSLR Camera.</span>
+													</td>
+													<td>$1546</td>
+													<td>212</td>
+													<td>98</td>
+													<td>$33500</td>
+												</tr>
 											</tbody>
 										</table>
 									</div>

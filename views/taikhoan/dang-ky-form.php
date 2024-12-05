@@ -59,11 +59,6 @@
         unset($_SESSION['success']);
     }
     ?>
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
 </head>
 
 <body class="body-bg-6">

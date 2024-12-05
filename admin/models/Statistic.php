@@ -7,31 +7,16 @@ class Statistic
         $this->conn = connect_db();
     }
 
-    public function selectTopViewHighest()
+    public function selectProductIsBestSeller()
     {
-        $sql = "SELECT 
-                    p.product_name,
-                    p.image,
-                    p.view,
-                    MIN(v.price) AS price,
-                    SUM(sv.quantity) AS total,
-                    COALESCE(SUM(od.quantity), 0) AS total_sold
-                FROM 
-                    products p 
-                JOIN 
-                    variants v ON p.product_id = v.product_id
-                JOIN 
-                    size_variants sv ON v.variant_id = sv.variant_id 
-                LEFT JOIN 
-                    order_detail od ON sv.size_id = od.size_id
-                GROUP BY 
-                    p.product_name, p.image, p.view
-                ORDER BY 
-                    p.view DESC";
-        
+        $sql = "SELECT p.product_name, SUM(od.quantity) AS total_quantity
+                    FROM orders o
+                    INNER JOIN order_details od ON o.order_id = od.order_id
+                    INNER JOIN products p ON od.product_id = p.product_id
+                    GROUP BY p.product_name
+                    ORDER BY total_quantity DESC";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(); // Thực thi câu lệnh
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về dữ liệu dưới dạng mảng
+        return $stmt->fetchAll();
     }
 
 
@@ -47,7 +32,7 @@ class Statistic
                     JOIN 
                         orders o ON od.order_id = o.order_id
                     WHERE 
-                        o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND o.state_id = 4
+                        o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
                     GROUP BY 
                         DATE(o.order_date)
                     ORDER BY 
@@ -134,45 +119,45 @@ class Statistic
 
     //đếm đơn hàng theo tháng
     public function totalOrders()
-{
-    // Tháng này
-    $sqlThisMonth = "SELECT COUNT(*) AS total_orders
+    {
+        // Tháng này
+        $sqlThisMonth = "SELECT COUNT(*) AS total_orders
                      FROM orders o
                      JOIN states s ON o.state_id = s.state_id
                      WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
                        AND s.state_slug = 'giao-hang-thanh-cong'";
 
-    $stmtThisMonth = $this->conn->prepare($sqlThisMonth);
-    $stmtThisMonth->execute();
-    $currentMonthData = $stmtThisMonth->fetch(PDO::FETCH_ASSOC);
+        $stmtThisMonth = $this->conn->prepare($sqlThisMonth);
+        $stmtThisMonth->execute();
+        $currentMonthData = $stmtThisMonth->fetch(PDO::FETCH_ASSOC);
 
-    // Tháng trước
-    $sqlLastMonth = "SELECT COUNT(*) AS total_orders_last_month
+        // Tháng trước
+        $sqlLastMonth = "SELECT COUNT(*) AS total_orders_last_month
                      FROM orders
                      WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH)
                        AND order_date < DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
                        AND state_id IN (SELECT state_id FROM states WHERE state_slug = 'giao-hang-thanh-cong')";
 
-    $stmtLastMonth = $this->conn->prepare($sqlLastMonth);
-    $stmtLastMonth->execute();
-    $lastMonthData = $stmtLastMonth->fetch(PDO::FETCH_ASSOC);
+        $stmtLastMonth = $this->conn->prepare($sqlLastMonth);
+        $stmtLastMonth->execute();
+        $lastMonthData = $stmtLastMonth->fetch(PDO::FETCH_ASSOC);
 
-    // Tính toán tổng số đơn hàng
-    $currentMonthOrders = $currentMonthData['total_orders'] ?: 0;
-    $lastMonthOrders = $lastMonthData['total_orders_last_month'] ?: 0;
+        // Tính toán tổng số đơn hàng
+        $currentMonthOrders = $currentMonthData['total_orders'] ?: 0;
+        $lastMonthOrders = $lastMonthData['total_orders_last_month'] ?: 0;
 
-    if ($lastMonthOrders > 0) {
-        $percent = (($currentMonthOrders - $lastMonthOrders) / $lastMonthOrders) * 100;
-    } else {
-        $percent = $currentMonthOrders > 0 ? 100 : 0; // Nếu tháng trước không có đơn hàng
+        if ($lastMonthOrders > 0) {
+            $percent = (($currentMonthOrders - $lastMonthOrders) / $lastMonthOrders) * 100;
+        } else {
+            $percent = $currentMonthOrders > 0 ? 100 : 0; // Nếu tháng trước không có đơn hàng
+        }
+
+        return [
+            'this_month' => $currentMonthOrders,
+            'last_month' => $lastMonthOrders,
+            'percent' => $percent
+        ];
     }
-
-    return [
-        'this_month' => $currentMonthOrders,
-        'last_month' => $lastMonthOrders,
-        'percent' => $percent
-    ];
-}
 
 
     //tổng doanh thu theo tháng
