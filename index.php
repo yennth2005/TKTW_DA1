@@ -5,6 +5,7 @@ require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './models/Product.php';
 require_once './models/Home.php';
+require_once './models/BlogsModel.php';
 // Require toàn bộ file Models: phải connect db trước
 
 // Require toàn bộ file Controllers
@@ -26,6 +27,7 @@ match ($act) {
     'search' => $homeController->search(),
     'filter' => $homeController->filter(),
     'add-comment' => $homeController->addComments(),
+
     //tài khoản
     'register' => $homeController->register(),
     'post-info-register' => $homeController->postInfo(),
@@ -51,6 +53,9 @@ match ($act) {
 
     //account
     'personal-detail' => $homeController->showPersonalDetail(),
+
+    //blog
+    'trang-bai-viet' => $homeController->showBlogsDetail($_GET['id'] ?? null),
 
 
 };

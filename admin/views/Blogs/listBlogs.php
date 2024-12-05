@@ -354,8 +354,8 @@
                     <div class="cr-breadcrumb">
                         <h5>Product Category</h5>
                         <ul>
-                            <li><a href="index.html">Carrot</a></li>
-                            <li>Product Category</li>
+                            <li><a href="?act=home">Carrot</a></li>
+                            <li>List Blogs</li>
                         </ul>
                     </div>
                 </div>
@@ -369,7 +369,7 @@
                         <div class="cr-card card-default product-list">
                             <div class="cr-card-content ">
                                 <div class="table-responsive">
-                                    <center><a href="?act=add-category" class="btn btn-warning">Create Category</a>
+                                    <center><a href="?act=add-blog" class="btn btn-warning">Create Blogs</a>
                                     </center>
 
                                     <table class="table">
@@ -384,14 +384,15 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach ($blogs as $post) {
+                                            foreach ($posts as $post) {
                                                 ?>
                                                 <tr>
 
-                                                    <td><?= $category['category_id'] ?></td>
-                                                    <td><?= $category['category_name'] ?></td>
-                                                    <td><img src="<?= BASE_URL . $category['image'] ?>" width="100px"
-                                                            alt="">
+                                                    <td><?= $post['id'] ?></td>
+                                                    <td><?= $post['title'] ?></td>
+                                                    <td><?= $post['description'] ?></td>
+                                                    <td><?= $post['content'] ?></td>
+                                                    <td><img src="<?= BASE_URL . $post['img'] ?>" alt="">
                                                     </td>
                                                     <td>
                                                         <div class="d-flex justify-content-center">
@@ -404,9 +405,9 @@
                                                             </button>
                                                             <div class="dropdown-menu">
                                                                 <a class="dropdown-item"
-                                                                    href="index.php?act=update-category&id=<?= $category['category_id'] ?>">Edit</a>
+                                                                    href="index.php?act=update-blog&id=<?= $post['id'] ?>">Edit</a>
                                                                 <a class="dropdown-item"
-                                                                    href="index.php?act=delete-category&id=<?= $category['category_id'] ?>">Delete</a>
+                                                                    href="index.php?act=delete-blog&id=<?= $post['id'] ?>">Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>

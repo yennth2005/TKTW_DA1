@@ -2,12 +2,12 @@
 class HomeController
 {
     public $homeModel;
+    public $BlogModel;
 
     public function __construct()
     {
-
         $this->homeModel = new Home();
-
+        $this->BlogModel = new BlogModel();
 
     }
     //////////products and categories///////////////////
@@ -16,6 +16,7 @@ class HomeController
         $products = $this->homeModel->listPro();
         $cates = $this->homeModel->getAllCate();
         $catePro = $this->homeModel->cateProduct();
+        $posts = $this->BlogModel->getAllBlog();
         // var_dump($products);
         require_once './views/home.php';
     }
@@ -620,4 +621,14 @@ class HomeController
     {
         require_once 'views/gio-hang/cam-on.php';
     }
+
+    //blogs
+
+    public function showBlogsDetail($id)
+    {
+        $post = $this->BlogModel->getBlogById($id);
+        // var_dump($id);
+        require './views/trangchinh/trang-bai-viet.php';
+    }
+
 }

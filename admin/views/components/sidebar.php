@@ -27,6 +27,8 @@
                                     class="ri-checkbox-blank-circle-line"></i>Đơn hàng</a></li>
                         <li><a href="index.php?act=list-comment" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Bình luận</a></li>
+                        <li><a href="index.php?act=list-blogs" class="cr-page-link drop"><i
+                                    class="ri-checkbox-blank-circle-line"></i>Bài viết</a></li>
 
                     </ul>
                 </li>

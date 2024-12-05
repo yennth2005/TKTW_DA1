@@ -10,6 +10,7 @@ require_once './models/Order.php';
 require_once './models/State.php';
 require_once './models/Comment.php';
 require_once './models/Statistic.php';
+require_once './models/Blog.php';
 require_once './controllers/CustomerController.php';
 require_once './controllers/DashboardController.php';
 require_once './controllers/ProductController.php';
@@ -18,6 +19,7 @@ require_once './controllers/OrderController.php';
 require_once './controllers/StateController.php';
 require_once './controllers/CommentController.php';
 require_once './controllers/StatisticsController.php';
+require_once './controllers/BlogController.php';
 
 // Router đơn giản
 $customer = new CustomerController();
@@ -27,6 +29,7 @@ $order = new OrderController();
 $comment = new CommentController();
 $state = new StateController();
 $statistic = new StatisticsController();
+$blogs = new BlogController();
 
 $act = $_GET['act'] ?? '/';
 //$_GET['action'] : 'index';
@@ -84,5 +87,14 @@ match ($act) {
     'list-comment' => (new CommentController())->list(),
     'view-detail' => (new CommentController())->viewDetail(),
     'delete-comment' => (new CommentController())->delete(),
+
+    //bài viết
+    'list-blogs' => (new BlogController())->showAllBlog(),
+    'delete-blog' => (new BlogController())->delete(),
+    'add-blog' => (new BlogController())->addBlogs(),
+    'post-add-blog' => (new BlogController())->postBlog(),
+    'update-blog' => (new BlogController())->updateBlog(),
+    'post-update-blog' => (new BlogController())->postUpdateBlog(),
 }
+
     ?>
