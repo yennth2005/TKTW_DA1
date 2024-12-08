@@ -319,7 +319,7 @@
 
                                                 <span class="cr-bill-wrap cr-bill-half">
                                                     <label>Họ và tên*</label>
-                                                    <input type="text" name="name" placeholder="Điền họ và tên"
+                                                    <input type="text" name="name" value="<?= $customerInfo['name'] ?>" placeholder="Điền họ và tên"
                                                         required>
                                                     <p id="name_err" style="color:red">
                                                         <?= isset($name_err) ? $name_err : '' ?>
@@ -327,21 +327,21 @@
                                                 </span>
                                                 <span class="cr-bill-wrap cr-bill-half">
                                                     <label>Email*</label>
-                                                    <input type="email" name="email" placeholder="Điền email" required>
+                                                    <input type="email" name="email" value="<?= $customerInfo['email'] ?>"  placeholder="Điền email" required>
                                                     <p id="email_err" style="color:red">
                                                         <?= isset($email_err) ? $email_err : '' ?>
                                                     </p>
                                                 </span>
                                                 <span class="cr-bill-wrap">
                                                     <label>Địa chỉ</label>
-                                                    <input type="text" name="address" placeholder="Điền địa chỉ">
+                                                    <input type="text" name="address" value="<?= $customerInfo['address'] ?>"  placeholder="Điền địa chỉ">
                                                 </span>
                                                 <p id="address_err" style="color:red">
                                                     <?= isset($address_err) ? $address_err : '' ?>
                                                 </p>
                                                 <span class="cr-bill-wrap">
                                                     <label>Số điện thoại</label>
-                                                    <input type="text" name="phone" placeholder="Điền số điện thoại">
+                                                    <input type="text" name="phone" value="<?= $customerInfo['phone'] ?>"  placeholder="Điền số điện thoại">
                                                 </span>
                                                 <p id="phone_err" style="color:red">
                                                     <?= isset($phone_err) ? $phone_err : '' ?>

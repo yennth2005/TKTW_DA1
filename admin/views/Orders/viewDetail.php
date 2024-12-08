@@ -388,25 +388,41 @@
                             <div class="cr-card-content">
                                 <div class="row cr-product-uploads">
                                     <div class="col-lg-4 mb-991">
-                                    <?php if($order['state_id'] != '5'){?>
-                                        <div class="row">
-                                            <h3>Cập nhật trạng thái</h3>
-                                            <form method="POST" action="?act=update-state&id=<?= $order['order_id']?>">
-                                                <select name="state" id="">
-                                                    <?php foreach ($states as $state) { ?>
-                                                        <option <?= $order['state_id'] == $state['state_id'] ? 'selected' :''?> name="state" value="<?= $state['state_id']?>"><?= $state['state_name'] ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select> <br> <br>
-                                                <label for="description"><h3>Chi tiết trạng thái:</h3></label> <br>
-                                                <textarea name="description" id="description"></textarea>
-                                                <input type="hidden" name="time"> <br>
-                                                <button type="submit" class="btn btn-primary">Cập nhật</button>
-                                            </form>
-                                        </div>
-                                        <?php }else{?>
+                                        <?php if ($order['state_id'] <'4') { ?>
+                                            <div class="row">
+                                                <h3>Cập nhật trạng thái</h3>
+                                                <form method="POST" action="?act=update-state&id=<?= $order['order_id'] ?>">
+                                                    <select name="state" id="state-select">
+                                                        <?php
+                                                        $current_state_id = $order['state_id'];
+                                                        $next_state = null;
+
+                                                        foreach ($states as $state) {
+                                                            if ($state['state_id'] == $current_state_id + 1) {
+                                                                $next_state = $state;
+                                                                break; // Ngừng vòng lặp khi tìm thấy trạng thái tiếp theo
+                                                            }
+                                                        }
+
+                                                        // Nếu tìm thấy trạng thái tiếp theo, hiển thị nó
+                                                        if ($next_state) { ?>
+                                                            <option value="<?= $next_state['state_id'] ?>" selected>
+                                                                <?= $next_state['state_name'] ?>
+                                                            </option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <br><br>
+                                                    <label for="description">
+                                                        <h3>Chi tiết trạng thái:</h3>
+                                                    </label> <br>
+                                                    <textarea name="description" id="description"></textarea>
+                                                    <input type="hidden" name="time"> <br>
+                                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                                </form>
+                                            </div>
+                                        <?php } else { ?>
                                             <h3>Đơn hàng đã bị huỷ</h3>
-                                        <?php }?>
+                                        <?php } ?>
                                     </div>
                                     <div class="col-lg-8">
                                         <table class="table">
@@ -423,12 +439,13 @@
                                                 <?php if (!empty($orderDetail)) {
                                                     $grandTotal = 0; ?>
                                                     <?php foreach ($orderDetail as $order) {
-                                                        $totalPrice = $order['quantity'] * $order['price']; 
+                                                        $totalPrice = $order['quantity'] * $order['price'];
                                                         $grandTotal += $totalPrice; ?>
                                                         <tr>
                                                             <td><?= $order['product_id'] ?></td>
                                                             <td><?= $order['product_name'] ?></td>
-                                                            <td><img width="100px" height="100px" src="<?= BASE_URL.$order['image'] ?>" alt=""></td>
+                                                            <td><img width="100px" height="100px"
+                                                                    src="<?= BASE_URL . $order['image'] ?>" alt=""></td>
                                                             <td><?= $order['quantity'] ?></td>
                                                             <td><?= $order['price'] ?></td>
                                                         </tr>

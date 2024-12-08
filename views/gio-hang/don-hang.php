@@ -225,15 +225,37 @@
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
-                                                            <button class="btn btn-warning btn-lg">Mua Lại</button>
+                                                            
                                                         <?php } else { ?>
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
-                                                            <button class="btn btn-warning btn-lg">Mua Lại</button>
-                                                            <a href="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-danger btn-lg">Huỷ đơn hàng</button>
-                                                            </a>
+                                                            
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['order_id'] ?>" data-bs-whatever="@getbootstrap">Huỷ đơn hàng</button>
+
+                                                            <div class="modal fade" id="exampleModal<?= $item['order_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lý do huỷ đơn hàng</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form method="POST" action="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
+                                                                            <div class="mb-3">
+                                                                                <label for="message-text" class="col-form-label">Message:</label>
+                                                                                <textarea class="form-control" id="message-text" name="message"></textarea>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                                                                <button type="submit" name="submit_cancel" class="btn btn-primary">Gửi yêu cầu</button>
+                                                                            </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -278,20 +300,36 @@
                                                     <span class="fw-bold">Tổng tiền: <span
                                                             class="text-success"><?= number_format($item['total_amount']) . "đ" ?></span></span>
                                                     <div class="d-flex gap-2">
-                                                        <?php if ($item['state_id'] >= 3) { ?>
+                                                        
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
-                                                            <button class="btn btn-danger btn-lg">Mua Lại</button>
-                                                        <?php } else { ?>
-                                                            <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-primary btn-lg">Xem chi tiết</button>
-                                                            </a>
-                                                            <button class="btn btn-warning">Mua Lại</button>
-                                                            <a href="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-danger btn-lg">Huỷ đơn hàng</button>
-                                                            </a>
-                                                        <?php } ?>
+                                                            
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['order_id'];$item['state_id'] ?>" data-bs-whatever="@getbootstrap">Huỷ đơn hàng</button>
+
+                                                            <div class="modal fade" id="exampleModal<?= $item['order_id'];$item['state_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lý do huỷ đơn hàng</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form method="POST" action="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
+                                                                            <div class="mb-3">
+                                                                                <label for="message-text" class="col-form-label">Message:</label>
+                                                                                <textarea class="form-control" id="message-text" name="message"></textarea>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                                                                <button type="submit" name="submit_cancel" class="btn btn-primary">Gửi yêu cầu</button>
+                                                                            </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -343,20 +381,37 @@
                                                     <span class="fw-bold">Tổng tiền: <span
                                                             class="text-success"><?= number_format($item['total_amount']) . "đ" ?></span></span>
                                                     <div class="d-flex gap-2">
-                                                        <?php if ($item['state_id'] >= 3) { ?>
+                                                        
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
-                                                            <button class="btn btn-danger btn-lg">Mua Lại</button>
-                                                        <?php } else { ?>
-                                                            <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-primary btn-lg">Xem chi tiết</button>
-                                                            </a>
-                                                            <button class="btn btn-warning">Mua Lại</button>
-                                                            <a href="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-danger btn-lg">Huỷ đơn hàng</button>
-                                                            </a>
-                                                        <?php } ?>
+                                                            
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['order_id'] ?>" data-bs-whatever="@getbootstrap">Huỷ đơn hàng</button>
+
+                                                            <div class="modal fade" id="exampleModal<?= $item['order_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lý do huỷ đơn hàng</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form action="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
+                                                                            <div class="mb-3">
+                                                                                <label for="message-text" class="col-form-label">Message:</label>
+                                                                                <textarea class="form-control" id="message-text" name="message"></textarea>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                                                                <button type="submit" name="submit_cancel" class="btn btn-primary">Gửi yêu cầu</button>
+                                                                            </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -412,9 +467,38 @@
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
-                                                            <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-success btn-lg">Xác nhận</button>
-                                                            </a>                                                        
+                                                                                        
+                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal<?= $item['order_id'] ?>"
+                                                            data-id="<?= $item['order_id'] ?>">
+                                                            Xác nhận
+                                                        </button>
+
+                                                        <div class="modal fade"
+                                                            id="deleteModal<?= $item['order_id'] ?>"
+                                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="staticBackdropLabel">Xác
+                                                                            nhận đơn hàng</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Xác nhận đã nhận hàng thành công?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Hủy</button>
+                                                                        <a href="index.php?act=confirm-order-done&order-id=<?= $item['order_id'] ?>"
+                                                                            class="btn btn-danger">Xác nhận</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>                           
                                                     </div>
                                                 </div>
                                             </div>
@@ -466,20 +550,11 @@
                                                     <span class="fw-bold">Tổng tiền: <span
                                                             class="text-success"><?= number_format($item['total_amount']) . "đ" ?></span></span>
                                                     <div class="d-flex gap-2">
-                                                        <?php if ($item['state_id'] >= 3) { ?>
-                                                            <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-primary btn-lg">Xem chi tiết</button>
-                                                            </a>
-                                                            <button class="btn btn-danger btn-lg">Mua Lại</button>
-                                                        <?php } else { ?>
-                                                            <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-primary btn-lg">Xem chi tiết</button>
-                                                            </a>
-                                                            <button class="btn btn-warning">Mua Lại</button>
-                                                            <a href="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-danger btn-lg">Huỷ đơn hàng</button>
-                                                            </a>
-                                                        <?php } ?>
+                                                        <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
+                                                            <button class="btn btn-primary btn-lg">Xem chi tiết</button>
+                                                        </a>
+                                                        <a href="#" class="btn btn-success">Đánh giá</a>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -531,20 +606,12 @@
                                                     <span class="fw-bold">Tổng tiền: <span
                                                             class="text-success"><?= number_format($item['total_amount']) . "đ" ?></span></span>
                                                     <div class="d-flex gap-2">
-                                                        <?php if ($item['state_id'] >= 3) { ?>
+                    
                                                             <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
                                                             <button class="btn btn-danger btn-lg">Mua Lại</button>
-                                                        <?php } else { ?>
-                                                            <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-primary btn-lg">Xem chi tiết</button>
-                                                            </a>
-                                                            <button class="btn btn-warning">Mua Lại</button>
-                                                            <a href="?act=cancel-order&order-id=<?= $item['order_id'] ?>">
-                                                                <button class="btn btn-danger btn-lg">Huỷ đơn hàng</button>
-                                                            </a>
-                                                        <?php } ?>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

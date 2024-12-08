@@ -407,34 +407,63 @@
                                                     <td><?= $order['recipient_name'] ?></td>
                                                     <td><?= $order['recipient_phone'] ?></td>
                                                     <td><?= $order['order_date'] ?></td>
-                                                    <td><?= number_format($order['total_amount']) ."VND" ?></td>
+                                                    <td><?= number_format($order['total_amount']) . "VND" ?></td>
                                                     <td>
                                                         <?php
-                                                     
+
                                                         $statusClasses = [
-                                                            1 => 'text-warning', 
-                                                            2 => 'text-info',     
-                                                            3 => 'text-orange',  
-                                                            4 => 'text-success',   
+                                                            1 => 'text-warning',
+                                                            2 => 'text-info',
+                                                            3 => 'text-orange',
+                                                            4 => 'text-success',
                                                             5 => 'text-danger',
                                                         ];
 
-                                                        
+
                                                         $class = $statusClasses[$order['state_id']] ?? 'text-muted';
                                                         ?>
                                                         <span class="<?= $class ?>"><?= $order['state_name'] ?></span>
                                                     </td>
                                                     <td>
-                                                        <?php if($order['state_id'] != '5'){?>
+                                                        <?php if ($order['state_id'] <'4') { ?>
                                                             <a class="btn btn-warning"
                                                                 href="index.php?act=update-order&id=<?= $order['order_id'] ?>">Cập
                                                                 nhật</a>
-                                                        <?php }else{?>
-                                                            <a class="btn btn-danger"
-                                                            href="index.php?act=delete-order&id=<?= $order['order_id'] ?>">Xoá</a>
+                                                        <?php } else { ?>
+                                                            
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                                data-bs-target="#deleteModal<?= $order['order_id'] ?>"
+                                                                data-id="<?= $order['order_id'] ?>">
+                                                                Xóa
+                                                            </button>
+
+                                                            <div class="modal fade" id="deleteModal<?= $order['order_id'] ?>"
+                                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="staticBackdropLabel">Xác
+                                                                                nhận xóa</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Bạn có chắc chắn muốn xóa không?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal">Hủy</button>
+                                                                            <a href="index.php?act=delete-order&id=<?= $order['order_id'] ?>"
+                                                                                class="btn btn-danger">Xóa</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <a class="btn btn-primary"
-                                                            href="index.php?act=update-order&id=<?= $order['order_id'] ?>">Xem</a>
-                                                        <?php }?>
+                                                                href="index.php?act=update-order&id=<?= $order['order_id'] ?>">Xem</a>
+                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

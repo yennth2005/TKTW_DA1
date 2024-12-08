@@ -172,9 +172,11 @@
     <section class="flat-spacing-4 pt_0">
         <div class="tf-main-product section-image-zoom">
             <div class="container">
-                <?php 
-                     
-                    if(isset($_GET['color'])){$variant=$_GET['color'];} ?>
+                <?php
+
+                if (isset($_GET['color'])) {
+                    $variant = $_GET['color'];
+                } ?>
                 <form action="?act=add-to-cart" method="POST">
                     <div class="row">
                         <div class="col-md-6">
@@ -210,7 +212,7 @@
                                 <div class="tf-zoom-main"></div>
                                 <div class="tf-product-info-list other-image-zoom">
                                     <div class="tf-product-info-title">
-                                        <h5><?= htmlspecialchars($productDetail['product_name'] ?? "Tên sản phẩm không tồn tại", ENT_QUOTES, 'UTF-8') ?>
+                                        <h5><?= $productDetail['product_name'] ?? "Tên sản phẩm không tồn tại", ENT_QUOTES, 'UTF-8' ?>
                                         </h5>
                                     </div>
                                     <div class="tf-product-info-badges">
@@ -220,12 +222,16 @@
                                             <p class="fw-6"></p>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="variant_id" value="<?=  $variant  ?>">
-                                    <input type="hidden" name="size_id" value="<?= isset($_GET['size']) ? $_GET['size'] : ""?>">
+                                    <input type="hidden" name="variant_id" value="<?= $variant ?>">
+                                    <input type="hidden" name="size_id"
+                                        value="<?= isset($_GET['size']) ? $_GET['size'] : "" ?>">
                                     <input type="hidden" name="price" value="<?= $productDetail['price'] ?>">
                                     <div class="tf-product-info-price">
-                                        <div class="price-on-sale" id="price-display">Giá: <span id="price-value"><?= number_format($productDetail['price']) ."đ"?></span></div>
-                                        <div class="compare-at-price"><?= number_format($productDetail['price'])."đ"?></div>
+                                        <div class="price-on-sale" id="price-display">Giá: <span
+                                                id="price-value"><?= number_format($productDetail['price']) . "đ" ?></span>
+                                        </div>
+                                        <div class="compare-at-price"><?= number_format($productDetail['price']) . "đ" ?>
+                                        </div>
                                         <div class="badges-on-sale"><span>20</span>% OFF</div>
                                     </div>
 
@@ -238,12 +244,12 @@
                                             </div>
                                             <div class="variant-picker-values" id="color-picker">
                                                 <?php foreach ($allVariants as $variant): ?>
-                                                    <input class="inputColor" id="color-<?= $variant['variant_id'] ?>" type="text"
-                                                        name="color" value="<?= $variant['variant_id'] ?>"
+                                                    <input class="inputColor" id="color-<?= $variant['variant_id'] ?>"
+                                                        type="text" name="color" value="<?= $variant['variant_id'] ?>"
                                                         data-price="<?= $variant['price'] ?>"
                                                         data-image="<?= $variant['image'] ?>"
                                                         <?= $variant['variant_id'] === $productDetail['variant_id'] ? 'checked' : '' ?>>
-                                                    <label  class="hover-tooltip radius-60 color-btn"
+                                                    <label class="hover-tooltip radius-60 color-btn"
                                                         for="color-<?= $variant['variant_id'] ?>">
                                                         <span class="btn-checkbox"
                                                             style="background-color: <?= $exchangeColor[$variant['color']] ?>"></span>
@@ -276,22 +282,43 @@
                                         <div class="quantity-title fw-6">Số lượng</div>
                                         <div class="wg-quantity">
                                             <span class="btn-quantity btn-decrease" onclick="decreasePro()">-</span>
-                                            <input type="text" class="quantity-product"  name="quantity" value="1">
+                                            <input type="text" class="quantity-product" name="quantity" value="1"
+                                                id="quantityInput">
                                             <span class="btn-quantity btn-increase" onclick="increasePro()">+</span>
                                         </div>
                                     </div>
+
+                                    <script>
+                                        const decreasePro = () => {
+                                            const quantityInput = document.getElementById('quantityInput');
+                                            let currentQuantity = parseInt(quantityInput.value);
+
+                                            if (currentQuantity > 1) { // Đảm bảo số lượng không giảm xuống dưới 1
+                                                currentQuantity--;
+                                                quantityInput.value = currentQuantity;
+                                            }
+                                        };
+
+                                        const increasePro = () => {
+                                            const quantityInput = document.getElementById('quantityInput');
+                                            let currentQuantity = parseInt(quantityInput.value);
+
+                                            currentQuantity++; // Tăng số lượng
+                                            quantityInput.value = currentQuantity;
+                                        };
+                                    </script>
                                     <div class="tf-product-info-quantity">
                                         <div class="">Kho: <span class="totalQuantity" id="totalQuantity"></span></div>
-                                        
+
                                     </div>
                                     <script>
                                         const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
                                         const totalQuantity = document.querySelector('.totalQuantity');
                                         console.log(totalQuantity);
-                                        
+
                                         // totalQuantity.forEach((quantity)=>{
                                         //     console.log(quantity);
-                                            
+
                                         // })
                                         const decreasePro = () => {
                                             let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
@@ -313,7 +340,7 @@
                                             <button name="btn_submit"
                                                 class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add
                                                     to cart </span></button>
-                                            
+
                                             <div class="w-100">
                                                 <a href="#" class="btns-full">Buy with <img
                                                         src="<?= BASE_URL_VIEW ?>assets/img/payments/paypal.png"
@@ -395,103 +422,89 @@
                             </div>
                         </div>
                     </div>
-                    </form>
-                    <div class="cr-paking-delivery">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
-                                    data-bs-target="#description" type="button" role="tab" aria-controls="description"
-                                    aria-selected="true">Description</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="additional-tab" data-bs-toggle="tab"
-                                    data-bs-target="#additional" type="button" role="tab" aria-controls="additional"
-                                    aria-selected="false">Information</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
-                                    type="button" role="tab" aria-controls="review"
-                                    aria-selected="false">Review</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="description" role="tabpanel"
-                                aria-labelledby="description-tab">
-                                <div class="cr-tab-content">
-                                    <div class="cr-description">
-                                        <p><?= $productDetail['description'] ?></p>
-                                    </div>
-                                    <h4 class="heading">Packaging & Delivery</h4>
-                                    <div class="cr-description">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error in vero
-                                            perferendis dolor! Quis vel consequuntur repellat distinctio rem. Corrupti
-                                            ratione alias odio, error dolore temporibus consequatur, nobis veniam odit
-                                            laborum dignissimos consectetur quae vero in perferendis provident quis.</p>
-                                    </div>
+                </form>
+                <div class="cr-paking-delivery">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                                data-bs-target="#description" type="button" role="tab" aria-controls="description"
+                                aria-selected="true">Description</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="additional-tab" data-bs-toggle="tab"
+                                data-bs-target="#additional" type="button" role="tab" aria-controls="additional"
+                                aria-selected="false">Information</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                type="button" role="tab" aria-controls="review" aria-selected="false">Review</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="description" role="tabpanel"
+                            aria-labelledby="description-tab">
+                            <div class="cr-tab-content">
+                                <div class="cr-description">
+                                    <p><?= $productDetail['description'] ?></p>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
-                                <div class="cr-tab-content">
-                                    <div class="cr-description">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error in vero
-                                            sapiente
-                                            doloribus debitis corporis, eaque dicta, repellat amet, illum adipisci vel
-                                            perferendis dolor! Quis vel consequuntur repellat distinctio rem. Corrupti
-                                            ratione alias odio, error dolore temporibus consequatur, nobis veniam odit
-                                            laborum dignissimos consectetur quae vero in perferendis provident quis.</p>
-                                    </div>
-                                    <div class="list">
-                                        <ul>
-                                            <li><label>Brand <span>:</span></label>ESTA BETTERU CO</li>
-                                            <li><label>Flavour <span>:</span></label>Super Saver Pack</li>
-                                            <li><label>Diet Type <span>:</span></label>Vegetarian</li>
-                                            <li><label>Weight <span>:</span></label>200 Grams</li>
-                                            <li><label>Speciality <span>:</span></label>Gluten Free, Sugar Free</li>
-                                            <li><label>Info <span>:</span></label>Egg Free, Allergen-Free</li>
-                                            <li><label>Items <span>:</span></label>1</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                                <div class="cr-tab-content-from">
-                                    <?php foreach($comments as $comment): ?>
-                                    <div class="post">
-                                        <div class="content">
-                                            <img src="<?= $comment['image'] ?>" alt="review">
-                                            <div class="details">
-                                                <span class="date"><?= $comment['date'] ?></span>
-                                                <span class="name"><?= $comment['name'] ?></span>
-                                            </div>
-                                            
-                                        </div>
-
-                                        <p><?= $comment['title'] ?></p>
-                                        <p><?= $comment['content'] ?></p>
-                                        
-                                    </div>
-                                    <?php endforeach;?>
-                                    <?php if(isset($_SESSION['user'])){?>
-                                    <h4 class="heading">Add a Review</h4>
-                                    <form action="?act=add-comment" method="POST">
-                                        <input type="hidden" name="product_id" value="<?= $product_id ?>">
-                                        
-                                        <div class="cr-ratting-input">
-                                            <input name="title" placeholder="Title*" type="text" required="">
-                                        </div>
-                                        <div class="cr-ratting-input form-submit">
-                                            <textarea name="content" placeholder="Enter Your Comment"></textarea>
-                                            <button class="cr-button" type="submit" value="Submit">Submit</button>
-                                        </div>
-                                    </form>
-                                    <?php }else{?>
-                                        <h6><a href="?act=login"><button class="btn btn-primary">Đăng nhập</button></a> để viết bình luận</h6>
-                                        <?php }?>
+                                <h4 class="heading">Packaging & Delivery</h4>
+                                <div class="cr-description">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error in vero
+                                        perferendis dolor! Quis vel consequuntur repellat distinctio rem. Corrupti
+                                        ratione alias odio, error dolore temporibus consequatur, nobis veniam odit
+                                        laborum dignissimos consectetur quae vero in perferendis provident quis.</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
+                            <div class="cr-tab-content">
+                                <div class="cr-description">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error in vero
+                                        sapiente
+                                        doloribus debitis corporis, eaque dicta, repellat amet, illum adipisci vel
+                                        perferendis dolor! Quis vel consequuntur repellat distinctio rem. Corrupti
+                                        ratione alias odio, error dolore temporibus consequatur, nobis veniam odit
+                                        laborum dignissimos consectetur quae vero in perferendis provident quis.</p>
+                                </div>
+                                <div class="list">
+                                    <ul>
+                                        <li><label>Brand <span>:</span></label>ESTA BETTERU CO</li>
+                                        <li><label>Flavour <span>:</span></label>Super Saver Pack</li>
+                                        <li><label>Diet Type <span>:</span></label>Vegetarian</li>
+                                        <li><label>Weight <span>:</span></label>200 Grams</li>
+                                        <li><label>Speciality <span>:</span></label>Gluten Free, Sugar Free</li>
+                                        <li><label>Info <span>:</span></label>Egg Free, Allergen-Free</li>
+                                        <li><label>Items <span>:</span></label>1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            <div class="cr-tab-content-from">
+                                <?php if (empty($comments)): ?>
+                                    <div class="post">
+                                        Chưa có đánh giá nào
+                                    </div>
+                                <?php else: ?>
+                                    <?php foreach ($comments as $comment): ?>
+                                        <div class="post">
+                                            <div class="content">
+                                                <img src="<?= $comment['image'] ?>" alt="review">
+                                                <div class="details">
+                                                    <span class="date"><?= $comment['date'] ?></span>
+                                                    <span class="name"><?= $comment['name'] ?></span>
+                                                </div>
+                                            </div>
+                                            <p><?= $comment['title'] ?></p>
+                                            <p><?= $comment['content'] ?></p>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
-                
+                </div>
+
             </div>
         </div>
 
@@ -1079,28 +1092,28 @@
         let blockSize = document.querySelector("#size-picker");
         let colorSelect = document.querySelector("#size-id");
         let priceDisplay = document.querySelector("#price-value"); // Phần tử để hiển thị giá
-        let imageDisplay =document.querySelector(".product-image");
+        let imageDisplay = document.querySelector(".product-image");
         let selectedColor = ""; // Biến để lưu mã màu
         let selectedSize = ""; // Biến để lưu mã size
 
         inputColor.forEach(item => {
-            item.addEventListener('click', function(event) {
+            item.addEventListener('click', function (event) {
                 selectedColor = event.target.value; // Lưu mã màu đã chọn
                 let selectedPrice = event.target.getAttribute('data-price'); // Lấy giá từ thuộc tính data-price
-                priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice)+"đ"; // Cập nhật giá hiển thị
+                priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice) + "đ"; // Cập nhật giá hiển thị
                 const selectedImage = event.target.getAttribute('data-image');
                 // console.log(imageDisplay);
                 imageDisplay.src = selectedImage
                 // console.log("Selected Color:", selectedColor);
-                
-                
+
+
 
                 fetch(BASE_URL + '?act=get-size-by-color&variant_id=' + selectedColor)
                     .then(response => response.json())
                     .then(data => {
                         blockSize.innerHTML = "";
                         let UI = ``;
-                        
+
                         data.forEach(size => {
                             UI += `
                                 <input id="size-${size.size_id}" type="radio" name="size"
@@ -1111,26 +1124,26 @@
                                 </label>
                             `;
                         });
-                        
+
                         blockSize.innerHTML = UI;
 
                         // Lấy ID của size khi click vào
                         const sizeInputs = blockSize.querySelectorAll('input[type="radio"]');
                         sizeInputs.forEach(input => {
-                            input.addEventListener('change', function() {
+                            input.addEventListener('change', function () {
                                 selectedSize = this.value; // Lưu mã size đã chọn
                                 document.querySelector('input[name="size_id"]').value = selectedSize; // Cập nhật giá trị size_id
                                 // console.log("Selected Size ID:", selectedSize);
                                 const quantityTotal = this.getAttribute('data-quantity');
-                                document.querySelector('.totalQuantity').innerHTML =quantityTotal
+                                document.querySelector('.totalQuantity').innerHTML = quantityTotal
                                 // console.log(quantityTotal);
                                 // Tạo đường dẫn mới
                                 const newPath = `${BASE_URL}?act=view-detail&color=${selectedColor}&size=${selectedSize}`;
                                 console.log("New Path:", newPath);
-                                
+
                                 // Cập nhật lịch sử trình duyệt mà không tải lại trang
                                 history.pushState(null, "", newPath);
-                                
+
                                 // Nếu bạn muốn điều hướng đến đường dẫn mới ngay lập tức, hãy bỏ comment dòng dưới đây:
                                 // window.location.href = newPath;
                             });
@@ -1148,7 +1161,7 @@
         //     priceDisplay.textContent = checkedColor.getAttribute('data-price');
         // }
         // const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
-                                        
+
         //                                 const decreasePro = () => {
         //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
         //                                     if (currentValue > 1) { // Đảm bảo không giảm xuống dưới 1

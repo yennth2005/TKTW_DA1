@@ -386,8 +386,38 @@
                                                     <td><?= $cmt['content'] ?></td>
                                                     <td><?= $cmt['date'] ?></td>
                                                     <td>
-                                                        <a class="btn btn-info" 
-                                                            href="index.php?act=delete-comment&id-comment=<?= $cmt['comment_id'] ?>&id-product=<?= $cmt['product_id'] ?>">Xoá</a>
+                                                        
+                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal<?= $cmt['comment_id'] ?>"
+                                                            data-id="<?= $cmt['comment_id'] ?>">
+                                                            Xóa
+                                                        </button>
+
+                                                        <div class="modal fade"
+                                                            id="deleteModal<?= $cmt['comment_id'] ?>"
+                                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="staticBackdropLabel">Xác
+                                                                            nhận xóa</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn có chắc chắn muốn xóa không?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Hủy</button>
+                                                                        <a href="index.php?act=delete-comment&id=<?= $cmt['cmt_id'] ?>"
+                                                                            class="btn btn-danger">Xóa</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

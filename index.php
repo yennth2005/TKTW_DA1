@@ -44,6 +44,7 @@ match ($act) {
     'view-order'=>$homeController->viewOrderByCustomer(),
     'view-detail-order'=>$homeController->viewDetailOrder(),
     'cancel-order' =>$homeController->cancelOrder(),
+    'confirm-order-done'=>$homeController->useConfirmOrder(),
     // 'update-cart'=>$homeController->updateCart(),
     'cam-on'=>$homeController->camOn(),
     'get-size-by-color'=>$homeController->getSizesByVariant(),

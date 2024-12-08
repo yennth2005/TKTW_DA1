@@ -200,7 +200,7 @@
                                 <div class="col-md-8 timeline-content">
                                     <strong><?= $history['state_name'] ?></strong><br>
                                     <?= $history['description'] ?><br>
-                                    <?= $orderDetail['recipient_name'] ?>
+
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -243,6 +243,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     <?php endforeach; ?>
                 </div>
 
@@ -281,6 +282,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
 

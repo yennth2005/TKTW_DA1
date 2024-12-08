@@ -13,9 +13,25 @@ class Customer{
             $data=$stmt->fetchAll();
         return $data;
     }
-    public function insert($name,$email,$password,$image,$address,$phone,$role,$create_at){
-        $sql= "INSERT INTO `customer` (`name`,`email`, `password`,`image`,`address`,`phone`, `role`,`create_at`) VALUES ('{$name}','{$email}', '{$password}','{$image}', '{$address}', '{$phone}', '{$role}','{$create_at}') " ;
-        $this->conn->exec($sql);  
+    // public function insert($name,$email,$password,$image,$address,$phone,$role,$create_at){
+    //     $sql= "INSERT INTO `customer` (`name`,`email`, `password`,`image`,`address`,`phone`, `role`,`create_at`) VALUES (?,?,?,?,?,?,?,?) " ;
+    //     $stmt = $this->conn->prepare($sql);  
+    //     $stmt->execute([$name,$email,$password,$image,$address,$phone,$role,$create_at]);
+    // }
+    public function insert($name, $email, $password, $image, $address, $phone, $role, $create_at) {
+        $sql = "INSERT INTO `customer` (`name`, `email`, `password`, `image`, `address`, `phone`, `role`, `create_at`) VALUES (:name, :email, :password, :image, :address, :phone, :role, :create_at)";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':create_at', $create_at);
+        
+        $stmt->execute();
     }
     public function delete($id){
         try{

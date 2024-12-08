@@ -191,7 +191,7 @@
                                         </div>
                                         <div class="avatar-preview cr-preview">
                                             <div class="imagePreview cr-div-preview">
-                                                <img class="cr-image-preview" src="<?= BASE_URL . $customer['image'] ?>"
+                                                <img class="cr-image-preview" src="<?= isset($customer['image']) ? BASE_URL . $customer['image'] : 'views/assets/img/account.png'?>"
                                                     alt="edit">
                                             </div>
                                         </div>
