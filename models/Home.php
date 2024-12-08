@@ -36,11 +36,31 @@ class Home
         $stmt->execute($params); // Truyền mảng tham số vào
         return $stmt->fetchAll();
     }
-    public function insertCustomer($name, $email, $password, $role)
+    public function insertCustomer($name, $email, $password, $role,$create_at)
     {
-        $sql = "INSERT INTO customer (`name` , `email`, `password`,`role`) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO customer (`name` , `email`, `password`,`role`,`create_at`) VALUES (?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$name, $email, $password, $role]);
+        $stmt->execute([$name, $email, $password, $role,$create_at]);
+    }
+    public function getAllCustomer(){
+        try {
+            $sql = "SELECT * FROM customer";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetchAll();            
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    public function getCustomerInfo($customer_id)
+    {
+        try {
+            $sql = "SELECT * FROM customer WHERE customer_id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$customer_id]);
+            return $stmt->fetch();
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
     public function increaseView($product_id)
     {
@@ -51,11 +71,10 @@ class Home
     public function checklogin()
     {
         $email = $_POST['email'];
-        $password = $_POST['password'];
-        $sql = "SELECT * FROM customer WHERE `email`=? and `password`=?";
+        $sql = "SELECT * FROM customer WHERE `email`=?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$email, $password]);
-        return $stmt->fetch();
+        $stmt->execute([$email]);
+        return $stmt->fetch(); // Chỉ lấy dữ liệu người dùng theo email
     }
     public function listPro()
     {
@@ -81,26 +100,17 @@ class Home
 
 
     ////////ACOUNT//////////
-    public function find($id){
-        try {
-            $sql="SELECT * FROM `customer` WHERE `customer`.`customer_id`={$id}";
-            $stmt=$this->conn->query($sql);
-            $data= $stmt->fetch();
-            return $data;
-        } catch (PDOException $e) {
-            $e->getMessage();
-        }
-    }
-
-    public function changePass($password, $customer_id) {
+    public function changePass($password, $customer_id)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$hashedPassword, $customer_id]);
     }
-    public function edit($id,$name,$email,$image,$address,$phone){
+    public function edit($id, $name, $email, $image, $address, $phone)
+    {
         try {
-            $sql="UPDATE `customer` SET `name` = '{$name}', `email` = '{$email}',  `image` = '{$image}', `address` = '{$address}',`phone`= '{$phone}' WHERE `customer`.`customer_id` = '{$id}'";
+            $sql = "UPDATE `customer` SET `name` = '{$name}', `email` = '{$email}',  `image` = '{$image}', `address` = '{$address}',`phone`= '{$phone}' WHERE `customer`.`customer_id` = '{$id}'";
             $this->conn->exec($sql);
         } catch (\Throwable $th) {
             //throw $th;
@@ -391,12 +401,9 @@ class Home
     }
     public function selectItemFromVariantId($variant_id)
     {
-        // Kiểm tra xem $variant_id có phải là một mảng không
         if (is_array($variant_id)) {
-            // Nếu là mảng, có thể lấy giá trị đầu tiên hoặc xử lý theo cách khác
-            $variant_id = $variant_id[0]; // Hoặc xử lý theo cách bạn muốn
+            $variant_id = $variant_id[0]; 
         }
-
         $sql = "SELECT ct.*, v.*,sv.size_value, p.product_name FROM cart_items ct 
                     JOIN size_variants sv ON ct.size_id = sv.size_id
                     JOIN variants v ON sv.variant_id = v.variant_id 
@@ -408,9 +415,8 @@ class Home
             $stmt->execute([$variant_id]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            // Xử lý lỗi ở đây (như log lỗi)
             echo "Error: " . $e->getMessage();
-            return []; // Trả về mảng rỗng nếu có lỗi
+            return []; 
         }
     }
     public function insertOrder($customer_id, $recipient_name, $recipient_email, $recipient_phone, $recipient_address, $order_date, $total_amount, $comments, $update_at, $state_id)
@@ -448,11 +454,11 @@ class Home
 
     //////////////////////ORDER DETAIL///////////////
 
-    public function selectOrderByCustomer($customer_id)
+    public function selectOrderByCustomer($order_id)
     {
-        $sql = "SELECT * FROM orders  WHERE customer_id = ?";
+        $sql = "SELECT * FROM orders  WHERE order_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$customer_id]);
+        $stmt->execute([$order_id]);
         return $stmt->fetch();
     }
     //tìm đơn hàng để lấy thông tin tổng tiền cho vào phần chi tiết đơn hàng
@@ -468,7 +474,7 @@ class Home
         $sql = "SELECT 
                 o.order_id,
                 o.state_id,
-                s.state_name,  -- Lấy tên trạng thái
+                s.state_name,  
                 o.order_date,
                 o.update_at,
                 MAX(p.product_name) AS product_name,
@@ -481,14 +487,14 @@ class Home
             JOIN size_variants sv ON od.size_id = sv.size_id
             JOIN variants v ON sv.variant_id = v.variant_id
             JOIN products p ON v.product_id = p.product_id
-            JOIN states s ON o.state_id = s.state_id  -- Kết hợp với bảng states
+            JOIN states s ON o.state_id = s.state_id 
             WHERE o.customer_id = ?
             GROUP BY o.order_id
             ORDER BY o.order_id DESC";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$customer_id]);  // Sử dụng prepared statement để tránh SQL injection
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);  // Lấy dữ liệu dưới dạng mảng kết hợp
+        $stmt->execute([$customer_id]);  
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     }
     public function showDetailOrder($order_id)
     {
@@ -497,6 +503,7 @@ class Home
             p.product_id,
             v.image,
             v.variant_id,
+            sv.size_id,
             od.quantity,
             od.price,
             sv.size_value,

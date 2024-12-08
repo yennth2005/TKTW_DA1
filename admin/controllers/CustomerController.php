@@ -22,28 +22,27 @@ class CustomerController
         $uploadFile = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
             echo "<h1>Uploaded</h1>";
-
             $relativePath = "uploads/Customer/" . $fileName;
-            $images = $relativePath;
-            echo "<p>Image URL: <a href='$images'>$images</a></p>";
+            $image = $relativePath;
+            echo "<p>Image URL: <a href='$image'>$image</a></p>";
         } else {
             echo "<h1>Error uploading file</h1>";
+            return; 
         }
+
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $image = $images;
         $address = $_POST['address'];
         $phone = $_POST['phone'];
         $create_at = date("Y-m-d H:i:s");
         $role = $_POST['role'];
-        if ($name == '') {
-            $error_name = "Không được bỏ trống";
-        }
-        $this->customerModel->insert($name, $email, $password, $image, $address, $phone, $role, $create_at);
-        // $customers=$this->customerModel->all();
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $this->customerModel->insert($name, $email, $hashedPassword, $image, $address, $phone, $role, $create_at);
         header('Location: ?act=list-user');
+        exit(); 
     }
     public function create()
     {

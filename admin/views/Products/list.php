@@ -383,11 +383,7 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Page title & breadcrumb -->
-                <!-- <form action="?act=search-user">
-        <input type="text" name="search">
-        <input type="submit" name="btn_search" value="Search">
-    </form> -->
+                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="cr-card card-default product-list">
@@ -453,7 +449,7 @@
                                                                             aria-label="Close"></button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        Bạn có chắc chắn muốn xóa?
+                                                                        Bạn có chắc chắn muốn xóa không?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"

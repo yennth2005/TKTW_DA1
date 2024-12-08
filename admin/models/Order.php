@@ -51,7 +51,13 @@ class Order{
         $stmt->execute([ $state_id, $update_at, $order_id]);
         return $order_id;
     }
-    
+    public function updateOrderAfter7Days(){
+        $sql = "UPDATE orders SET state_id = '4' 
+          WHERE state_id = '3' 
+          AND TIMESTAMPDIFF(DAY, order_date, NOW()) >= 7";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+    }
     public function deleteOrderHistory($order_id){
         $sql = "DELETE FROM order_history_state WHERE order_id = ?";
         $stmt = $this->conn->prepare($sql);
