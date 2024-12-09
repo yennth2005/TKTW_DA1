@@ -4,7 +4,7 @@
     Version: 2.1
     Copyright 2024
  ============================================================-->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Nov 2024 15:29:37 GMT -->
 
@@ -158,36 +158,55 @@
             </div>
         </div>
     </div>
-
-    <section class="section-cart padding-t-100">
+    <section class="section-register padding-tb-100">
         <div class="container">
-            <div class="row">
-                        <div class="col-lg-8">
-                            <div class="cr-vendor-upload-detail">
-                                <form class="row g-3" action="?act=post-changed"
-                                    method="POST" enctype="multipart/form-data" onsubmit="updateUser()" name="myForm">
-
-                                    <div class="col-md-12">
-                                        <label for="password" class="form-label">Mật khẩu mới</label>
-                                        <input type="password" class="form-control slug-title" id="new_pass" name="new_pass">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="password" class="form-label">Xác nhận mật khẩu mới</label>
-                                        <input type="password" class="form-control slug-title" id="new_pass_check" name="new_pass_check">
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <button type="submit" name="btn_update" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
+            <div class="row d-none">
+                <div class="col-lg-12">
+                    <div class="mb-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="cr-banner">
+                            <h2>Register</h2>
                         </div>
-                    
-                
-            
+                        <div class="cr-banner-sub-title">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore lacus vel facilisis. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="cr-register" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
+                        <div class="form-logo">
+                            <img width="71px" src="<?= BASE_URL ?>views/assets/img/logo/logo2-removebg-preview.png"
+                                alt="logo">
+                        </div>
+                        <center>
+                            <h4>Thay đổi mật khẩu</h4>
+                        </center>
+                        <form class="row g-3" action="?act=post-changed" method="POST" enctype="multipart/form-data"
+                            onsubmit="updateUser()" name="myForm">
+
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">Mật khẩu mới</label>
+                                <input type="password" class="form-control slug-title" id="new_pass" name="new_pass">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">Xác nhận mật khẩu mới</label>
+                                <input type="password" class="form-control slug-title" id="new_pass_check"
+                                    name="new_pass_check">
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" name="btn_update" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <?php include './views/components/footer.php' ?>

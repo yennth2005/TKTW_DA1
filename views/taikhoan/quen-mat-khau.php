@@ -205,8 +205,31 @@
                             <img width="71px" src="<?= BASE_URL ?>views/assets/img/logo/logo2-removebg-preview.png"
                                 alt="logo">
                         </div>
+                        <?php if (getsession('hienthi') > 5):  ?>
                         <center><h4>Quên mật khẩu</h4></center>
-                        <form class="cr-content-form" method="POST">
+                        <form class="cr-content-form" action="?act=check-code" method="POST">
+                            <div class="row">
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Mã xác minh</label>
+                                        <input type="hidden" name="customer_id" id="customer_id" value="<?= $dataCustomer['customer_id'] ?? "" ?>">
+                                        <input type="text" name="code" placeholder="" id="code"
+                                            class="cr-form-control">
+                                        
+                                    </div>
+                                </div>
+                                <div class="remember">
+                                </div><br>
+                                <div class="row">
+                                    <button type="submit" name="btn_submit" class="col-6 cr-button m-1">Gửi mã</button>
+                                    <a href="<?= BASE_URL ?>?act=login" class="col -6 cr-button m-1">
+                                        Đăng nhập
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                        <?php else: ?>
+                            <form class="cr-content-form" action="?act=forgot" method="POST">
                             <div class="row">
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group">
@@ -217,7 +240,7 @@
                                             <?php if (isset($_SESSION['error_email'])): ?>
                                                 <?php
                                                 echo $_SESSION['error_email'];
-                                                unset($_SESSION['error_email']); // Xóa thông báo sau khi hiển thị
+                                                unset($_SESSION['error_email']); 
                                                 ?>
                                             <?php endif; ?>
                                         </span>
@@ -225,14 +248,15 @@
                                 </div>
                                 <div class="remember">
                                 </div><br>
-                                <div class="login-buttons">
-                                    <button type="submit" class="cr-button">Gửi mã</button>
-                                    <a href="<?= BASE_URL ?>?act=login" class="link">
-                                        Login
+                                <div class="row">
+                                    <button type="submit" name="btn_submit" class="col-6 cr-button m-1">Gửi mã</button>
+                                    <a href="<?= BASE_URL ?>?act=login" class="col -6 cr-button m-1">
+                                        Đăng nhập
                                     </a>
                                 </div>
                             </div>
                         </form>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>

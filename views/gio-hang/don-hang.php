@@ -35,6 +35,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <style>
+        .review-section {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+.rating {
+  cursor: pointer;
+  color: grey;
+  font-size: 30px;
+}
+.star {
+  transition: color 0.2s;
+}
+.star.filled {
+  color: gold; /* Màu cho sao đã được đánh giá */
+}
+.rating-text {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #666;
+}
+    </style>
     <?php
     if (isset($_SESSION['error'])) {
         echo "
@@ -305,13 +327,13 @@
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
                                                             
-                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['order_id'];$item['state_id'] ?>" data-bs-whatever="@getbootstrap">Huỷ đơn hàng</button>
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xulyModal<?= $item['order_id'];$item['state_id'] ?>" data-bs-whatever="xuly">Huỷ đơn hàng</button>
 
-                                                            <div class="modal fade" id="exampleModal<?= $item['order_id'];$item['state_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal fade" id="xulyModal<?= $item['order_id'];$item['state_id'] ?>" tabindex="-1" aria-labelledby="xulyModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lý do huỷ đơn hàng</h1>
+                                                                            <h1 class="modal-title fs-5" id="xulyModalLabel">Lý do huỷ đơn hàng</h1>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
@@ -386,13 +408,13 @@
                                                                 <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                             </a>
                                                             
-                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['order_id'] ?>" data-bs-whatever="@getbootstrap">Huỷ đơn hàng</button>
+                                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xacnhanModal<?= $item['order_id'] ?>" data-bs-whatever="@getbootstrap">Huỷ đơn hàng</button>
 
-                                                            <div class="modal fade" id="exampleModal<?= $item['order_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal fade" id="xacnhanModal<?= $item['order_id'] ?>" tabindex="-1" aria-labelledby="xacnhanModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lý do huỷ đơn hàng</h1>
+                                                                            <h1 class="modal-title fs-5" id="xacnhanModalLabel">Lý do huỷ đơn hàng</h1>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
@@ -553,8 +575,184 @@
                                                         <a href="?act=view-detail-order&order-id=<?= $item['order_id'] ?>">
                                                             <button class="btn btn-primary btn-lg">Xem chi tiết</button>
                                                         </a>
-                                                        <a href="#" class="btn btn-success">Đánh giá</a>
-                                                        
+                                                        <?php  if($item['order_id'] !=$viewComment['order_id']){ ?>
+                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['order_id'] ?>" data-bs-whatever="@getbootstrap">Đánh giá</button>
+                                                        <?php }else{ ?>
+                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal<?= $item['order_id'] ?>" data-bs-whatever="@getbootstrap">Xem đánh giá</button>
+                                                        <?php }?>
+                                                        <div class="modal fade" id="exampleModal<?= $item['order_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Đánh giá sản phẩm</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <form id="ratingForm" action="?act=add-comment" method="POST">
+                                                                <div class="modal-body">
+                                                                    <div class="mb-3">
+                                                                        <label for="recipient-name" class="col-form-label">Tiêu đề:</label>
+                                                                        <input type="text" class="form-control" name="title" id="recipient-name" required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="recipient-name" class="col-form-label">Nội dung:</label>
+                                                                        <input type="text" class="form-control" name="content" id="recipient-name" required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <div class="review-section">
+                                                                            <h3>Về Dịch Vụ</h3>
+                                                                            <div class="rating">
+                                                                                <span class="star" data-value="1">★</span>
+                                                                                <span class="star" data-value="2">★</span>
+                                                                                <span class="star" data-value="3">★</span>
+                                                                                <span class="star" data-value="4">★</span>
+                                                                                <span class="star" data-value="5">★</span>
+                                                                            </div>
+                                                                            <span class="rating-text">Bình thường</span>
+                                                                            <input type="hidden" name="rating" id="rating" value="">
+                                                                            <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                                                            <input type="hidden" name="order_id" value="<?= $item['order_id'] ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                                                    <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
+                                                                </div>
+                                                            </form>
+
+                                                            <script>
+                                                                const stars = document.querySelectorAll('.star');
+                                                                const ratingText = document.querySelector('.rating-text');
+                                                                const ratingInput = document.getElementById('rating');
+                                                                const form = document.getElementById('ratingForm');
+
+                                                                stars.forEach(star => {
+                                                                    star.addEventListener('click', function() {
+                                                                        const ratingValue = this.getAttribute('data-value');
+
+                                                                        // Cập nhật sao đã chọn
+                                                                        stars.forEach(s => {
+                                                                            s.classList.remove('filled');
+                                                                        });
+                                                                        for (let i = 0; i < ratingValue; i++) {
+                                                                            stars[i].classList.add('filled');
+                                                                        }
+
+                                                                        // Cập nhật văn bản đánh giá
+                                                                        ratingInput.value = ratingValue;
+                                                                        ratingText.textContent = ratingValue <= 2 ? 'Kém' : ratingValue <= 4 ? 'Bình thường' : 'Tuyệt vời';
+                                                                    });
+                                                                });
+
+                                                                // Gửi dữ liệu khi form được gửi
+                                                                form.addEventListener('submit', function(event) {
+                                                                    event.preventDefault(); // Ngăn không cho trang tải lại
+
+                                                                    const formData = new FormData(form); // Lấy tất cả dữ liệu từ form
+
+                                                                    // Gửi dữ liệu bằng AJAX
+                                                                    fetch('index.php?act=add-comment', {
+                                                                        method: 'POST',
+                                                                        body: formData
+                                                                    })
+                                                                    .then(response => response.text())
+                                                                    .then(data => {
+                                                                        // Xử lý dữ liệu trả về từ máy chủ
+                                                                        console.log(data);
+                                                                    })
+                                                                    .catch(error => console.error('Error:', error));
+                                                                });
+                                                            </script>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+
+                                                        <div class="modal fade" id="updateModal<?= $item['order_id'] ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="updateModalLabel">Sửa đánh giá sản phẩm</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <form id="ratingForm" action="?act=add-comment" method="POST">
+                                                                <div class="modal-body">
+                                                                    <div class="mb-3">
+                                                                        <label for="recipient-name" class="col-form-label">Tiêu đề:</label>
+                                                                        <input type="text" class="form-control" name="title" id="recipient-name" value="<?= $viewComment['title'] ?>" required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="recipient-name" class="col-form-label">Nội dung:</label>
+                                                                        <input type="text" class="form-control" name="content" id="recipient-name" value="<?= $viewComment['content'] ?>" required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <div class="review-section">
+                                                                            <h3>Về Dịch Vụ</h3>
+                                                                            <div class="rating">
+                                                                                <span class="star" data-value="1">★</span>
+                                                                                <span class="star" data-value="2">★</span>
+                                                                                <span class="star" data-value="3">★</span>
+                                                                                <span class="star" data-value="4">★</span>
+                                                                                <span class="star" data-value="5">★</span>
+                                                                            </div>
+                                                                            <span class="rating-text">Bình thường</span>
+                                                                            <input type="hidden" name="rating" id="rating" value="">
+                                                                            <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                                                            <input type="hidden" name="order_id" value="<?= $item['order_id'] ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                                                    <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
+                                                                </div>
+                                                            </form>
+
+                                                            <script>
+                                                                const stars = document.querySelectorAll('.star');
+                                                                const ratingText = document.querySelector('.rating-text');
+                                                                const ratingInput = document.getElementById('rating');
+                                                                const form = document.getElementById('ratingForm');
+
+                                                                stars.forEach(star => {
+                                                                    star.addEventListener('click', function() {
+                                                                        const ratingValue = this.getAttribute('data-value');
+
+                                                                        // Cập nhật sao đã chọn
+                                                                        stars.forEach(s => {
+                                                                            s.classList.remove('filled');
+                                                                        });
+                                                                        for (let i = 0; i < ratingValue; i++) {
+                                                                            stars[i].classList.add('filled');
+                                                                        }
+
+                                                                        // Cập nhật văn bản đánh giá
+                                                                        ratingInput.value = ratingValue;
+                                                                        ratingText.textContent = ratingValue <= 2 ? 'Kém' : ratingValue <= 4 ? 'Bình thường' : 'Tuyệt vời';
+                                                                    });
+                                                                });
+
+                                                                // Gửi dữ liệu khi form được gửi
+                                                                form.addEventListener('submit', function(event) {
+                                                                    event.preventDefault(); // Ngăn không cho trang tải lại
+
+                                                                    const formData = new FormData(form); // Lấy tất cả dữ liệu từ form
+
+                                                                    // Gửi dữ liệu bằng AJAX
+                                                                    fetch('index.php?act=add-comment', {
+                                                                        method: 'POST',
+                                                                        body: formData
+                                                                    })
+                                                                    .then(response => response.text())
+                                                                    .then(data => {
+                                                                        // Xử lý dữ liệu trả về từ máy chủ
+                                                                        console.log(data);
+                                                                    })
+                                                                    .catch(error => console.error('Error:', error));
+                                                                });
+                                                            </script>
+                                                            </div>
+                                                        </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

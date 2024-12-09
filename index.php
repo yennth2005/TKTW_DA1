@@ -3,6 +3,7 @@ session_start();
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
+require_once './commons/sendMail.php'; // Hàm hỗ trợ
 require_once './models/Product.php';
 require_once './models/Home.php';
 // Require toàn bộ file Models: phải connect db trước
@@ -26,15 +27,20 @@ match ($act) {
     'search'=>$homeController->search(),
     'filter'=>$homeController->filter(),
     'add-comment'=>$homeController->addComments(),
+    // 'update-comment'=>$homeController->updateComment(),
     //tài khoản
     'register' => $homeController->register(),
     'post-info-register' =>$homeController->postInfo(),
     'login'=>$homeController->login(),
     'check-login'=>$homeController->postLogin(),
     'logout'=>$homeController->logout(),
+    
+
     'view-products'=>$homeController->viewAllProducts(),
     'view-detail'=> $homeController ->viewDetailProduct(),
     'view-category'=> $homeController ->viewProductByCategogy(),
+
+
     'add-to-cart'=>$homeController ->addToCart(),
     'view-cart'=>$homeController ->showCart(),
     'deleteProductFromCart'=>$homeController->deleteProductFromCartById(),
@@ -55,4 +61,6 @@ match ($act) {
     'change-password'=>$homeController->changePassword(),
     'post-changed'=>$homeController->doneChanged(),
     'forgot-password' =>$homeController->forgot(),
+    'forgot'=>$homeController->handleForgot(),
+    'check-code'=>$homeController->checkCodeVerify(),
 };
