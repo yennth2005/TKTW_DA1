@@ -97,16 +97,25 @@ class Home
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    public function checkExistCustomer($email){
+        $sql = "SELECT * FROM customer WHERE `email`=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetch(); // Chỉ lấy dữ liệu người dùng theo email
+    }
 
     ////////ACOUNT//////////
     public function changePass($password, $customer_id)
-    {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$hashedPassword, $customer_id]);
+{
+    $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    
+    if ($stmt->execute([$password, $customer_id])) {
+        return true; 
+    } else {
+        return false; 
     }
+}
     public function edit($id, $name, $email, $image, $address, $phone)
     {
         try {
@@ -115,6 +124,17 @@ class Home
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+    public function updatePasswordByCode($code, $customer_id) {
+        $sqlUpdate = "UPDATE customer SET `code` = ? WHERE customer_id = ?";
+        $stmtUpdate = $this->conn->prepare($sqlUpdate);
+        if ($stmtUpdate->execute([$code, $customer_id])) {
+            $sqlSelect = "SELECT * FROM customer WHERE customer_id = ?";
+            $stmtSelect = $this->conn->prepare($sqlSelect);
+            $stmtSelect->execute([$customer_id]);
+            return $stmtSelect->fetch(PDO::FETCH_ASSOC);
+        }
+        return false; 
     }
     public function getAllProducts()
     {
@@ -194,11 +214,17 @@ class Home
         return $stmt->fetchAll();
     }
 
-    public function insertComment($title, $content, $customer_id, $product_id, $create_at)
+    public function insertComment($title, $content, $customer_id, $product_id, $order_id, $create_at, $rating)
     {
-        $sql = "INSERT INTO comments (`title`, `content`, `customer_id`,`product_id`,`date`) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO comments (`title`, `content`, `customer_id`,`product_id`,`order_id`,`date`,`rating`) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$title, $content, $customer_id, $product_id, $create_at]);
+        $stmt->execute([$title, $content, $customer_id, $product_id,$order_id, $create_at,$rating]);
+    }
+    public function selectCommentByOrder($order_id){
+        $sql = "SELECT * FROM comments WHERE order_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$order_id]);
+        return $stmt->fetch();
     }
     ////Detail
     public function getDetailProduct($product_id, $variantId, $size_id)

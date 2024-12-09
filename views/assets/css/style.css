@@ -9661,6 +9661,25 @@ iframe {
 .cr-product-uploads .color-label {
   width: 100%;
 }
-
+.review-section {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+.rating {
+  cursor: pointer;
+  color: grey;
+  font-size: 30px;
+}
+.star {
+  transition: color 0.2s;
+}
+.star.filled {
+  color: gold; /* Màu cho sao đã được đánh giá */
+}
+.rating-text {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #666;
+}
 
 /*# sourceMappingURL=style.css.map */

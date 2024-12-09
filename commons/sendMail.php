@@ -21,13 +21,13 @@ function sendMail($to, $subject, $content)
         $mail->isSMTP(); // Gửi email qua SMTP
         $mail->Host       = 'smtp.gmail.com'; // Máy chủ SMTP Gmail
         $mail->SMTPAuth   = true; // Bật xác thực SMTP
-        $mail->Username   = 'tranhello3@gmail.com'; // Địa chỉ email đúng
-        $mail->Password   = 'okkthrszxabehnmt'; // Mật khẩu ứng dụng
+        $mail->Username   = 'yennthph50871@gmail.com'; // Địa chỉ email đúng
+        $mail->Password   = 'pzgb sswr flcn mwbz'; // Mật khẩu ứng dụng
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
-
+        $mail->CharSet = "UTF-8";
         // Recipients
-        $mail->setFrom('yenngohai451@gmail.com', 'BabyStore'); // Email và tên hiển thị
+        $mail->setFrom('yennthph50871@gmail.com', 'babyStore'); // Email và tên hiển thị
         $mail->addAddress($to); // Email người nhận
 
         // Content
