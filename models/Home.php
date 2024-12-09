@@ -36,17 +36,18 @@ class Home
         $stmt->execute($params); // Truyền mảng tham số vào
         return $stmt->fetchAll();
     }
-    public function insertCustomer($name, $email, $password, $role,$create_at)
+    public function insertCustomer($name, $email, $password, $role, $create_at)
     {
         $sql = "INSERT INTO customer (`name` , `email`, `password`,`role`,`create_at`) VALUES (?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$name, $email, $password, $role,$create_at]);
+        $stmt->execute([$name, $email, $password, $role, $create_at]);
     }
-    public function getAllCustomer(){
+    public function getAllCustomer()
+    {
         try {
             $sql = "SELECT * FROM customer";
             $stmt = $this->conn->query($sql);
-            return $stmt->fetchAll();            
+            return $stmt->fetchAll();
         } catch (PDOException $e) {
             $e->getMessage();
         }
@@ -97,7 +98,8 @@ class Home
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function checkExistCustomer($email){
+    public function checkExistCustomer($email)
+    {
         $sql = "SELECT * FROM customer WHERE `email`=?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$email]);
@@ -106,16 +108,16 @@ class Home
 
     ////////ACOUNT//////////
     public function changePass($password, $customer_id)
-{
-    $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
-    $stmt = $this->conn->prepare($sql);
-    
-    if ($stmt->execute([$password, $customer_id])) {
-        return true; 
-    } else {
-        return false; 
+    {
+        $sql = "UPDATE customer SET `password` = ? WHERE customer_id = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt->execute([$password, $customer_id])) {
+            return true;
+        } else {
+            return false;
+        }
     }
-}
     public function edit($id, $name, $email, $image, $address, $phone)
     {
         try {
@@ -125,7 +127,8 @@ class Home
             //throw $th;
         }
     }
-    public function updatePasswordByCode($code, $customer_id) {
+    public function updatePasswordByCode($code, $customer_id)
+    {
         $sqlUpdate = "UPDATE customer SET `code` = ? WHERE customer_id = ?";
         $stmtUpdate = $this->conn->prepare($sqlUpdate);
         if ($stmtUpdate->execute([$code, $customer_id])) {
@@ -134,7 +137,7 @@ class Home
             $stmtSelect->execute([$customer_id]);
             return $stmtSelect->fetch(PDO::FETCH_ASSOC);
         }
-        return false; 
+        return false;
     }
     public function getAllProducts()
     {
@@ -218,18 +221,20 @@ class Home
     {
         $sql = "INSERT INTO comments (`title`, `content`, `customer_id`,`product_id`,`order_item_id`,`date`,`rating`) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$title, $content, $customer_id, $product_id,$order_item_id, $create_at,$rating]);
+        $stmt->execute([$title, $content, $customer_id, $product_id, $order_item_id, $create_at, $rating]);
     }
-    public function selectCommentByOrder($order_id){
+    public function selectCommentByOrder($order_id)
+    {
         $sql = "SELECT * FROM comments  WHERE order_item_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$order_id]);
         return $stmt->fetch();
     }
-    public function updateComment($title,$content,$date,$comment_id){
+    public function updateComment($title, $content, $date, $comment_id)
+    {
         $sql = "UPDATE comments SET `title` = ?, `content` = ?, `date` = ? WHERE `comment_id` = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$title,$content,$date,$comment_id]);
+        $stmt->execute([$title, $content, $date, $comment_id]);
     }
 
     ////Detail
@@ -434,7 +439,7 @@ class Home
     public function selectItemFromVariantId($variant_id)
     {
         if (is_array($variant_id)) {
-            $variant_id = $variant_id[0]; 
+            $variant_id = $variant_id[0];
         }
         $sql = "SELECT ct.*, v.*,sv.size_value, p.product_name FROM cart_items ct 
                     JOIN size_variants sv ON ct.size_id = sv.size_id
@@ -448,7 +453,7 @@ class Home
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
-            return []; 
+            return [];
         }
     }
     public function insertOrder($customer_id, $recipient_name, $recipient_email, $recipient_phone, $recipient_address, $order_date, $total_amount, $comments, $update_at, $state_id)
@@ -525,8 +530,8 @@ class Home
             ORDER BY o.order_id DESC";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$customer_id]);  
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
+        $stmt->execute([$customer_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function showDetailOrder($order_id)
     {
@@ -625,6 +630,22 @@ class Home
     public function __destruct()
     {
         $this->conn = null;
+    }
+
+    public function getAllBlog()
+    {
+        $sql = " SELECT * FROM blogs ";
+        $result = $this->conn->query($sql);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getBlogById($id)
+    {
+        $sql = "SELECT * FROM blogs WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>
