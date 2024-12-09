@@ -190,6 +190,7 @@
                             <div class="col-md-12">
                                 <label for="password" class="form-label">Mật khẩu mới</label>
                                 <input type="password" class="form-control slug-title" id="new_pass" name="new_pass">
+                                <input type="hidden" class="form-control slug-title" id="new_pass" name="customer_id" value="<?= $customer_id ?>">
                             </div>
                             <div class="col-md-12">
                                 <label for="password" class="form-label">Xác nhận mật khẩu mới</label>

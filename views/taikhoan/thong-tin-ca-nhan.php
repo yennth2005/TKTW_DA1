@@ -163,70 +163,73 @@
         <div class="container">
             <div class="row">
                 <div class="cr-card card-default">
-                <div class="cr-card-content">
-                    <div class="row cr-product-uploads">
-                        <div class="col-lg-4 mb-991">
-                            <div class="cr-vendor-img-upload">
-                                <div class="cr-vendor-main-img">
+                    <div class="cr-card-content">
+                        <div class="row cr-product-uploads">
+                            <div class="col-lg-4 mb-991">
+                                <div class="cr-vendor-img-upload">
+                                    <div class="cr-vendor-main-img">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="col-md-24">
-                                <a  
-                                    href="?act=change-password" class="btn btn-success">Thay đổi mật khẩu
-                                </a>
+                            <div class="col-lg-8">
+                                <div class="col-md-24">
+                                    <a href="?act=change-password&id=<?= $customer['customer_id'] ?>"
+                                        class="btn btn-success">Thay đổi mật khẩu
+                                    </a>
 
-                            </div>
-                            <div class="cr-vendor-upload-detail">
-                                <form class="row g-3"
-                                    action="?act=personal-detail&id=<?= $_SESSION['user']['customer_id'] ?>"
-                                    method="POST" enctype="multipart/form-data" onsubmit="updateUser()" name="myForm">
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input type='file' class="cr-image-upload" accept=".png, .jpg, .jpeg"
-                                                name="image" id="image">
-                                            <input type="hidden" name="imageUploaded">
-                                            <label><i class="ri-pencil-line"></i></label>
-                                        </div>
-                                        <div class="avatar-preview cr-preview">
-                                            <div class="imagePreview cr-div-preview">
-                                                <img class="cr-image-preview" src="<?= isset($customer['image']) ? BASE_URL.$customer['image'] : 'views/assets/img/account.png'?>"
-                                                    alt="edit">
+                                </div>
+                                <div class="cr-vendor-upload-detail">
+                                    <form class="row g-3"
+                                        action="?act=personal-detail&id=<?= $_SESSION['user']['customer_id'] ?>"
+                                        method="POST" enctype="multipart/form-data" onsubmit="updateUser()"
+                                        name="myForm">
+
+                                        <div class="avatar-upload">
+                                            <div class="avatar-edit">
+                                                <input type='file' class="cr-image-upload" accept=".png, .jpg, .jpeg"
+                                                    name="image" id="image">
+                                                <input type="hidden" name="imageUploaded">
+                                                <label><i class="ri-pencil-line"></i></label>
+                                            </div>
+                                            <div class="avatar-preview cr-preview">
+                                                <div class="imagePreview cr-div-preview">
+                                                    <img class="cr-image-preview"
+                                                        src="<?= BASE_URL . $customer['image'] ?>" alt="edit">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="name" class="form-label">Họ và tên</label>
-                                        <input type="text" class="form-control slug-title" id="name" name="name"
-                                            value="<?= $customer['name'] ?>">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" class="form-control slug-title" id="name" name="email"
-                                            value="<?= $customer['email'] ?>">
-                                    </div>
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Họ và tên</label>
+                                            <input type="text" class="form-control slug-title" id="name" name="name"
+                                                value="<?= $customer['name'] ?>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" class="form-control slug-title" id="name" name="email"
+                                                value="<?= $customer['email'] ?>">
+                                        </div>
 
-                                    <div class="col-md-6">
-                                        <label for="address" class="form-label">Địa chỉ</label>
-                                        <input type="text" class="form-control slug-title" id="address" name="address"
-                                            value="<?= $customer['address'] ?>">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="phone" class="form-label">Số điện thoại</label>
-                                        <input type="text" class="form-control slug-title" id="phone" name="phone"
-                                            value="<?= $customer['phone'] ?>">
-                                    </div>
+                                        <div class="col-md-6">
+                                            <label for="address" class="form-label">Địa chỉ</label>
+                                            <input type="text" class="form-control slug-title" id="address"
+                                                name="address" value="<?= $customer['address'] ?>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Số điện thoại</label>
+                                            <input type="text" class="form-control slug-title" id="phone" name="phone"
+                                                value="<?= $customer['phone'] ?>">
+                                        </div>
 
-                                    <div class="col-md-12">
-                                        <button type="submit" name="btn_update" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
+                                        <div class="col-md-12">
+                                            <button type="submit" name="btn_update"
+                                                class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </section>

@@ -214,18 +214,24 @@ class Home
         return $stmt->fetchAll();
     }
 
-    public function insertComment($title, $content, $customer_id, $product_id, $order_id, $create_at, $rating)
+    public function insertComment($title, $content, $customer_id, $product_id, $order_item_id, $create_at, $rating)
     {
-        $sql = "INSERT INTO comments (`title`, `content`, `customer_id`,`product_id`,`order_id`,`date`,`rating`) VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO comments (`title`, `content`, `customer_id`,`product_id`,`order_item_id`,`date`,`rating`) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$title, $content, $customer_id, $product_id,$order_id, $create_at,$rating]);
+        $stmt->execute([$title, $content, $customer_id, $product_id,$order_item_id, $create_at,$rating]);
     }
     public function selectCommentByOrder($order_id){
-        $sql = "SELECT * FROM comments WHERE order_id = ?";
+        $sql = "SELECT * FROM comments  WHERE order_item_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$order_id]);
         return $stmt->fetch();
     }
+    public function updateComment($title,$content,$date,$comment_id){
+        $sql = "UPDATE comments SET `title` = ?, `content` = ?, `date` = ? WHERE `comment_id` = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$title,$content,$date,$comment_id]);
+    }
+
     ////Detail
     public function getDetailProduct($product_id, $variantId, $size_id)
     {
@@ -482,10 +488,10 @@ class Home
 
     public function selectOrderByCustomer($order_id)
     {
-        $sql = "SELECT * FROM orders  WHERE order_id = ?";
+        $sql = "SELECT * FROM orders  WHERE customer_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$order_id]);
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
     //tìm đơn hàng để lấy thông tin tổng tiền cho vào phần chi tiết đơn hàng
     public function findOrder($order_id)
@@ -525,6 +531,7 @@ class Home
     public function showDetailOrder($order_id)
     {
         $sql = "SELECT 
+            od.id,
             p.product_name,
             p.product_id,
             v.image,
@@ -533,7 +540,8 @@ class Home
             od.quantity,
             od.price,
             sv.size_value,
-            v.color
+            v.color,
+            od.order_id
         FROM  order_detail od 
         JOIN size_variants sv ON od.size_id = sv.size_id
         JOIN variants v ON sv.variant_id = v.variant_id

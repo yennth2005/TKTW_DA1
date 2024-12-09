@@ -288,26 +288,7 @@
                                         </div>
                                     </div>
 
-                                    <script>
-                                        // const decreasePro = () => {
-                                        //     const quantityInput = document.getElementById('quantityInput');
-                                        //     let currentQuantity = parseInt(quantityInput.value);
-
-                                        //     if (currentQuantity > 1) { // Đảm bảo số lượng không giảm xuống dưới 1
-                                        //         currentQuantity--;
-                                        //         quantityInput.value = currentQuantity;
-                                        //     }
-                                        // };
-
-                                        // const increasePro = () => {
-                                            
-                                        //     const quantityInput = document.getElementById('quantityInput');
-                                        //     let currentQuantity = parseInt(quantityInput.value);
-
-                                        //     currentQuantity++; // Tăng số lượng
-                                        //     quantityInput.value = currentQuantity;
-                                        // };
-                                    </script>
+                                    
                                     <div class="tf-product-info-quantity">
                                         <div class="">Kho: <span class="totalQuantity" id="totalQuantity"></span></div>
 
@@ -470,11 +451,12 @@
                                                 <img src="<?= $comment['image'] ?>" alt="review">
                                                 <div class="details">
                                                     <span class="date"><?= $comment['date'] ?></span>
-                                                    <span class="name"><?= $comment['name'] ?></span>
+                                                    <span class="name"><h6><?= $comment['title'] ?></h6></span>
+                                                    <span class="name"><?= $comment['content'] ?></span>
                                                 </div>
                                             </div>
-                                            <p><?= $comment['title'] ?></p>
-                                            <p><?= $comment['content'] ?></p>
+                                            <h6></h6>
+                                            <p><?= $comment['name'] ?></p>
                                         </div>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
