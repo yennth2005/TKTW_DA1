@@ -300,212 +300,100 @@ class HomeController
     }
     //CART
 
-    // public function addToCart()
-    // {
-    //     $cates = $this->homeModel->getAllCate();
-    //     date_default_timezone_set('Asia/Ho_Chi_Minh');
-
-    //     if (isset($_SESSION['user'])) {
-    //         $customerId = $_SESSION['user']['customer_id'];
-    //         $createdAt = date('Y-m-d H:i:s');
-    //         if (isset($_POST['btn_submit'])) {
-    //             if (!isset($_POST['variant_id'])) {
-    //                 $_SESSION['error'] = "Bạn chưa chọn màu";
-    //                 header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                 exit;
-    //             }
-    //             if (empty($_POST['size_id'])) {
-    //                 $_SESSION['error'] = "Bạn chưa chọn kích thước";
-    //                 header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                 exit;
-    //             }
-    //             if (isset($_POST['quantity'], $_POST['price'], $_POST['variant_id'], $_POST['size_id'])) {
-    //                 $variantId = $_POST['variant_id'];
-    //                 $sizeId = $_POST['size_id'];
-    //                 $quantity = $_POST['quantity'];
-    //                 $price = $_POST['price'];
-    //             } else {
-    //                 $_SESSION['error'] = "Dữ liệu không hợp lệ.";
-    //                 header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                 exit;
-    //             }
-    //             // var_dump($variantId);
-    //             // var_dump($sizeId);
-    //         }
-
-    //         //thông tin giỏ hàng
-    //         $cart = $this->homeModel->selectCartByCustomer($customerId);
-    //         if ($cart) {
-    //             $cartId = $cart['cart_id'];
-    //             $cartItem = $this->homeModel->selectCartItem($cartId, $variantId, $sizeId);
-    //             $productInfo = $this->homeModel->selectItemFromVariantId($variantId);
-    //             if ($cartItem) {
-    //                 $newQuantity = $cartItem['quantity'] + $quantity;
-    //                 if($newQuantity <=$productInfo['quantity']){
-    //                     $updateResult = $this->homeModel->updateCartItemQuantity($cartItem['cart_item_id'], $newQuantity);
-                        
-    //                 }else{
-    //                     $_SESSION['error'] = "Vượt quá số lượng tồn kho";
-    //                     header('Location: ' . $_SERVER['HTTP_REFERER']);
-
-    //                 }
-    //                 if (!$updateResult) {
-    //                     $_SESSION['error'] = "Lỗi: Không thể cập nhật số lượng sản phẩm.";
-    //                     header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                     exit;
-    //                 }
-    //             } else {
-    //                 $result = $this->homeModel->insertCartItemByCartId($cartId, $variantId, $sizeId, $quantity, $price);
-    //                 if (empty($result)) {
-    //                     $_SESSION['success'] = "Thêm vào giỏ hàng thành công.";
-    //                     header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                     exit;
-    //                 }
-    //             }
-    //         } else {
-    //             // Tạo giỏ hàng mới nếu chưa tồn tại
-    //             $insertCartResult = $this->homeModel->insertCart($customerId, $createdAt);
-    //             if ($insertCartResult) {
-    //                 $cart = $this->homeModel->selectCartByCustomer($customerId);
-    //                 if ($cart) {
-    //                     $cartId = $cart['cart_id'];
-    //                     $result = $this->homeModel->insertCartItemByCartId($cartId, $variantId, $sizeId, $quantity, $price);
-    //                     if (!$result) {
-    //                         $_SESSION['error'] = "Lỗi: Không thể thêm sản phẩm vào giỏ hàng.";
-    //                         header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                         exit;
-    //                     }
-    //                 }
-    //             } else {
-    //                 $_SESSION['error'] = "Lỗi: Không thể tạo giỏ hàng.";
-    //                 header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //                 exit;
-    //             }
-    //         }
-
-    //         $_SESSION['success'] = "Thêm vào giỏ hàng thành công.";
-    //         header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //         exit;
-    //     } else {
-    //         $_SESSION['error'] = "Vui lòng đăng nhập";
-    //         header('Location: ?act=login');
-    //         exit;
-    //     }
-    // }
-
     public function addToCart()
-{
-    $cates = $this->homeModel->getAllCate();
-    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    {
+        $cates = $this->homeModel->getAllCate();
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-    if (!isset($_SESSION['user'])) {
-        $_SESSION['error'] = "Vui lòng đăng nhập";
-        header('Location: ?act=login');
-        exit;
-    }
-
-    $customerId = $_SESSION['user']['customer_id'];
-    $createdAt = date('Y-m-d H:i:s');
-
-    if (isset($_POST['btn_submit'])) {
-        if (!$this->validateInput()) {
-            return; // Lỗi đã được xử lý trong validateInput
-        }
-
-        $variantId = $_POST['variant_id'];
-        $sizeId = $_POST['size_id'];
-        $quantity = $_POST['quantity'];
-        $price = $_POST['price'];
-
-        $this->processCart($customerId, $variantId, $sizeId, $quantity, $price);
-    }
-}
-
-private function validateInput()
-{
-    if (!isset($_POST['variant_id'])) {
-        $_SESSION['error'] = "Bạn chưa chọn màu";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
-
-    if (empty($_POST['size_id'])) {
-        $_SESSION['error'] = "Bạn chưa chọn kích thước";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
-
-    if (empty($_POST['quantity']) || empty($_POST['price']) || empty($_POST['variant_id']) || empty($_POST['size_id'])) {
-        $_SESSION['error'] = "Dữ liệu không hợp lệ.";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
-
-    return true;
-}
-
-private function processCart($customerId, $variantId, $sizeId, $quantity, $price)
-{
-    $cart = $this->homeModel->selectCartByCustomer($customerId);
-    
-    if ($cart) {
-        $this->updateExistingCart($cart['cart_id'], $variantId, $sizeId, $quantity, $price);
-    } else {
-        $this->createNewCart($customerId, $variantId, $sizeId, $quantity, $price);
-    }
-}
-
-private function updateExistingCart($cartId, $variantId, $sizeId, $quantity, $price)
-{
-    $cartItem = $this->homeModel->selectCartItem($cartId, $variantId, $sizeId);
-    $productInfo = $this->homeModel->selectItemFromVariantId($variantId);
-
-    if ($cartItem) {
-        $newQuantity = $cartItem['quantity'] + $quantity;
-        if ($newQuantity <= $productInfo['quantity']) {
-            $updateResult = $this->homeModel->updateCartItemQuantity($cartItem['cart_item_id'], $newQuantity);
-            if (!$updateResult) {
-                $_SESSION['error'] = "Vượt quá số lượng tồn kho";
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-                exit;
+        if (isset($_SESSION['user'])) {
+            $customerId = $_SESSION['user']['customer_id'];
+            $createdAt = date('Y-m-d H:i:s');
+            if (isset($_POST['btn_submit'])) {
+                if (!isset($_POST['variant_id'])) {
+                    $_SESSION['error'] = "Bạn chưa chọn màu";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+                if (empty($_POST['size_id'])) {
+                    $_SESSION['error'] = "Bạn chưa chọn kích thước";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+                if (isset($_POST['quantity'], $_POST['price'], $_POST['variant_id'], $_POST['size_id'])) {
+                    $variantId = $_POST['variant_id'];
+                    $sizeId = $_POST['size_id'];
+                    $quantity = $_POST['quantity'];
+                    $price = $_POST['price'];
+                } else {
+                    $_SESSION['error'] = "Dữ liệu không hợp lệ.";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+                // var_dump($variantId);
+                // var_dump($sizeId);
             }
-        } else {
-            $_SESSION['error'] = "Vượt quá số lượng tồn kho";
+
+            //thông tin giỏ hàng
+            $cart = $this->homeModel->selectCartByCustomer($customerId);
+            if ($cart) {
+                $cartId = $cart['cart_id'];
+                $cartItem = $this->homeModel->selectCartItem($cartId, $variantId, $sizeId);
+                $productInfo = $this->homeModel->selectItemFromVariantId($variantId);
+                if ($cartItem) {
+                    $newQuantity = $cartItem['quantity'] + $quantity;
+                    if($newQuantity <=$productInfo['quantity']){
+                        $updateResult = $this->homeModel->updateCartItemQuantity($cartItem['cart_item_id'], $newQuantity);
+                        
+                    }else{
+                        $_SESSION['error'] = "Vượt quá số lượng tồn kho";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+                    }
+                    if (!$updateResult) {
+                        $_SESSION['error'] = "Lỗi: Không thể cập nhật số lượng sản phẩm.";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        exit;
+                    }
+                } else {
+                    $result = $this->homeModel->insertCartItemByCartId($cartId, $variantId, $sizeId, $quantity, $price);
+                    if (empty($result)) {
+                        $_SESSION['success'] = "Thêm vào giỏ hàng thành công.";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        exit;
+                    }
+                }
+            } else {
+                // Tạo giỏ hàng mới nếu chưa tồn tại
+                $insertCartResult = $this->homeModel->insertCart($customerId, $createdAt);
+                if ($insertCartResult) {
+                    $cart = $this->homeModel->selectCartByCustomer($customerId);
+                    if ($cart) {
+                        $cartId = $cart['cart_id'];
+                        $result = $this->homeModel->insertCartItemByCartId($cartId, $variantId, $sizeId, $quantity, $price);
+                        if (!$result) {
+                            $_SESSION['error'] = "Lỗi: Không thể thêm sản phẩm vào giỏ hàng.";
+                            header('Location: ' . $_SERVER['HTTP_REFERER']);
+                            exit;
+                        }
+                    }
+                } else {
+                    $_SESSION['error'] = "Lỗi: Không thể tạo giỏ hàng.";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
+                }
+            }
+
+            $_SESSION['success'] = "Thêm vào giỏ hàng thành công.";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit;
+        } else {
+            $_SESSION['error'] = "Vui lòng đăng nhập";
+            header('Location: ?act=login');
+            exit;
         }
-    } else {
-        $this->addItemToCart($cartId, $variantId, $sizeId, $quantity, $price);
     }
-}
 
-private function addItemToCart($cartId, $variantId, $sizeId, $quantity, $price)
-{
-    $result = $this->homeModel->insertCartItemByCartId($cartId, $variantId, $sizeId, $quantity, $price);
-    if (!$result) {
-        $_SESSION['error'] = "Lỗi: Không thể thêm sản phẩm vào giỏ hàng.";
-    } else {
-        $_SESSION['success'] = "Thêm vào giỏ hàng thành công.";
-    }
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
-}
 
-private function createNewCart($customerId, $variantId, $sizeId, $quantity, $price)
-{
-    $createdAt = date('Y-m-d H:i:s');
-    $insertCartResult = $this->homeModel->insertCart($customerId, $createdAt);
-    if ($insertCartResult) {
-        $cart = $this->homeModel->selectCartByCustomer($customerId);
-        if ($cart) {
-            $this->addItemToCart($cart['cart_id'], $variantId, $sizeId, $quantity, $price);
-        }
-    } else {
-        $_SESSION['error'] = "Lỗi: Không thể tạo giỏ hàng.";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
-}
     public function showCart()
     {
         $cates = $this->homeModel->getAllCate();
