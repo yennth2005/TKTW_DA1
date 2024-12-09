@@ -58,6 +58,9 @@ match ($act) {
     'post-add-variant'=>$product->addVariant(),
     'add-size'=>$product->saveSize(),
     'delete-variant'=>$product->deleteVariant(),
+    'update-color'=>$product->updateVariant(),
+    'update-size'=>$product->updateSize(),
+    // 'delete-size'=>$product->deleteSize(),
 
     //Quản lí danh mục
     'list-category' => $category->showAllCategory(),

@@ -90,13 +90,26 @@ public function getVariantsByProductId($product_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 public function deleteSize($size_id){
-    
+    $sql = "DELETE FROM size_variants WHERE size_id = ?";
+    $stmt = $this->cnt->prepare($sql);
+    $stmt->execute([$size_id]);
 }
 public function deleteVariant($size_id){
     $sql="DELETE FROM size_variants WHERE `size_variants`.`size_id`= ? ";
     $stmt = $this->cnt->prepare($sql);
     $stmt->execute([$size_id]);
 
+}
+
+public function updateColor($color,$image,$price,$sale,$variant_id){
+    $sql = "UPDATE variants SET `color` = ? , `image` = ?, `price`= ?, `sale` = ? WHERE variant_id = ?";
+    $stmt = $this->cnt->prepare($sql);
+    $stmt->execute([$color,$image,$price,$sale,$variant_id]);
+}
+public function updateSize($size,$quantity,$size_id){
+    $sql = "UPDATE size_variants SET `size_value`=?, `quantity`= ? WHERE size_id = ?";
+    $stmt = $this->cnt->prepare($sql);
+    $stmt->execute([$size,$quantity,$size_id]);
 }
 // public function find
 // public function getVariantsByProductId($product_id) {

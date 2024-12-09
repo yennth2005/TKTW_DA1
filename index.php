@@ -4,15 +4,11 @@ session_start();
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './commons/sendMail.php'; // Hàm hỗ trợ
-require_once './models/Product.php';
 require_once './models/Home.php';
 // Require toàn bộ file Models: phải connect db trước
 
 // Require toàn bộ file Controllers
-require_once "./controllers/calculatorController.php";
 require_once "./controllers/HomeController.php";
-require_once "./controllers/ProductController.php";
-require_once "./controllers/CategoryController.php";
 
 //Xây dựng Route
 $act = $_GET['act'] ?? '/'; //nếu không có act thì nó trả về cái / có nghĩa là trống

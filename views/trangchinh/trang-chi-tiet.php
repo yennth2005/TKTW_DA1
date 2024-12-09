@@ -228,9 +228,9 @@
                                     <input type="hidden" name="price" value="<?= $productDetail['price'] ?>">
                                     <div class="tf-product-info-price">
                                         <div class="price-on-sale" id="price-display">Giá: <span
-                                                id="price-value"><?= number_format($productDetail['price']) . "đ" ?></span>
+                                                id="price-value"><?= number_format($productDetail['price']) . "VND" ?></span>
                                         </div>
-                                        <div class="compare-at-price"><?= number_format($productDetail['price']) . "đ" ?>
+                                        <div class="compare-at-price"><?= number_format($productDetail['price']) . "VND" ?>
                                         </div>
                                         <div class="badges-on-sale"><span>20</span>% OFF</div>
                                     </div>
@@ -289,51 +289,29 @@
                                     </div>
 
                                     <script>
-                                        const decreasePro = () => {
-                                            const quantityInput = document.getElementById('quantityInput');
-                                            let currentQuantity = parseInt(quantityInput.value);
+                                        // const decreasePro = () => {
+                                        //     const quantityInput = document.getElementById('quantityInput');
+                                        //     let currentQuantity = parseInt(quantityInput.value);
 
-                                            if (currentQuantity > 1) { // Đảm bảo số lượng không giảm xuống dưới 1
-                                                currentQuantity--;
-                                                quantityInput.value = currentQuantity;
-                                            }
-                                        };
+                                        //     if (currentQuantity > 1) { // Đảm bảo số lượng không giảm xuống dưới 1
+                                        //         currentQuantity--;
+                                        //         quantityInput.value = currentQuantity;
+                                        //     }
+                                        // };
 
-                                        const increasePro = () => {
-                                            const quantityInput = document.getElementById('quantityInput');
-                                            let currentQuantity = parseInt(quantityInput.value);
+                                        // const increasePro = () => {
+                                            
+                                        //     const quantityInput = document.getElementById('quantityInput');
+                                        //     let currentQuantity = parseInt(quantityInput.value);
 
-                                            currentQuantity++; // Tăng số lượng
-                                            quantityInput.value = currentQuantity;
-                                        };
+                                        //     currentQuantity++; // Tăng số lượng
+                                        //     quantityInput.value = currentQuantity;
+                                        // };
                                     </script>
                                     <div class="tf-product-info-quantity">
                                         <div class="">Kho: <span class="totalQuantity" id="totalQuantity"></span></div>
 
                                     </div>
-                                    <script>
-                                        const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
-                                        const totalQuantity = document.querySelector('.totalQuantity');
-                                        console.log(totalQuantity);
-
-                                        // totalQuantity.forEach((quantity)=>{
-                                        //     console.log(quantity);
-
-                                        // })
-                                        const decreasePro = () => {
-                                            let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
-                                            if (currentValue > 1) { // Đảm bảo không giảm xuống dưới 1
-                                                quantityInput.value = currentValue - 1; // Giảm số lượng
-                                            }
-                                        }
-
-                                        const increasePro = () => {
-                                            let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
-                                            // if(currenValue < ){
-
-                                            // } // Tăng số lượng
-                                        }
-                                    </script>
                                     <div class="tf-product-info-buy-button">
                                         <form class="add-to-cart">
                                             <!-- add cart -->
@@ -591,8 +569,8 @@
                                         <a href="?act=view-detail&color=<?= $pro['color_id'] ?>"
                                             class="title"><?= $pro['product_name'] ?></a>
                                         <p class="cr-price">
-                                            <span class="new-price"><?= number_format($pro['new_price']) ?> đ</span>
-                                            <span class="old-price"><?= number_format($pro['sale_price']) ?> đ</span>
+                                            <span class="new-price"><?= number_format($pro['new_price']) ?> VND</span>
+                                            <span class="old-price"><?= number_format($pro['sale_price']) ?> VND</span>
                                         </p>
                                     </div>
                                 </div>
@@ -836,84 +814,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<!-- <script>
-    document.querySelectorAll(".inputColor, #size-picker").forEach((element) => {
-  element.addEventListener("click", () => {
-    // Kiểm tra xem phần tử được nhấn là color hay size
-    const isColor = element.classList.contains("color-option");
-
-    // Cập nhật trạng thái 'selected' cho phần tử chọn
-    const options = document.querySelectorAll(
-      isColor ? ".color-option" : ".size-option"
-    );
-    options.forEach((el) =>
-      el.classList.remove(isColor ? "selected" : "active__size")
-    );
-    element.classList.add(isColor ? "selected" : "active__size");
-
-    // Lấy giá trị cần thiết
-    const dataVariationId = document
-      .querySelector(".color-option.selected")
-      .getAttribute("data-variationId");
-    const dataSizeId = document
-      .querySelector(".size-option.active__size")
-      .getAttribute("data-sizeId");
-    const dataProductId = document
-      .querySelector(".detail")
-      .getAttribute("data-productId");
-
-    // Cập nhật URL mà không tải lại trang
-    const newUrl = `http://localhost/duan1/detail?product=${dataProductId}&color=${dataVariationId}&size=${dataSizeId}`;
-    history.pushState(null, "", newUrl); // Cập nhật URL
-
-    // Fetch dữ liệu mới từ server
-    fetch(
-      `http://localhost/duan1/Backend/controller/client/clientAjax.php?product=${dataProductId}&color=${dataVariationId}`
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`Fetch error: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Updated data:", data);
-
-        // Cập nhật HTML dựa trên dữ liệu mới
-        // Cập nhật màu sắc
-        document.querySelector(".value__color").innerText = data.color;
-
-        // Cập nhật kích thước
-        document.querySelector(".value__size").innerText = data.size;
-
-        // Cập nhật giá mới
-        document.querySelector(
-          ".detail__right--price--new"
-        ).innerText = `${data.price} đ`;
-
-        // Cập nhật giá cũ nếu có
-        document.querySelector(".detail__right--price--old").innerText =
-          data.old_price ? `${data.old_price} đ` : "";
-
-        // Cập nhật hình ảnh sản phẩm
-        document
-          .querySelector(".detail__right--img img")
-          .setAttribute("src", data.image);
-
-        // Cập nhật tên và mã sản phẩm
-        document.querySelector(".detail__right--name").innerText =
-          data.productName;
-        document.querySelector(".detail__right-code .value__color").innerText =
-          data.variationCode;
-        document.querySelector(".value__size").innerText = data.size;
-      })
-      .catch((error) => {
-        console.error("Error connecting to server:", error);
-      });
-  });
-});
-
-</script> -->
 
 <!-- <script>
     // let inputColor = document.querySelectorAll(".inputColor")
@@ -1091,22 +991,27 @@
         let BASE_URL = "http://localhost/TKTW_DA1/";
         let blockSize = document.querySelector("#size-picker");
         let colorSelect = document.querySelector("#size-id");
-        let priceDisplay = document.querySelector("#price-value"); // Phần tử để hiển thị giá
+        //hiển thị giá
+        let priceDisplay = document.querySelector("#price-value"); 
+        //hiển thị ảnh
         let imageDisplay = document.querySelector(".product-image");
-        let selectedColor = ""; // Biến để lưu mã màu
-        let selectedSize = ""; // Biến để lưu mã size
+        //lưu mã màu
+        let selectedColor = ""; 
+        //lưu mã size
+        let selectedSize = "";
 
         inputColor.forEach(item => {
             item.addEventListener('click', function (event) {
-                selectedColor = event.target.value; // Lưu mã màu đã chọn
-                let selectedPrice = event.target.getAttribute('data-price'); // Lấy giá từ thuộc tính data-price
-                priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice) + "đ"; // Cập nhật giá hiển thị
+                //lưu mã màu đã chọn
+                selectedColor = event.target.value; 
+                //Lấy giá từ thuộc tính data-price
+                let selectedPrice = event.target.getAttribute('data-price'); 
+                // Cập nhật giá hiển thị
+                priceDisplay.textContent = new Intl.NumberFormat().format(selectedPrice) + "VND"; 
                 const selectedImage = event.target.getAttribute('data-image');
                 // console.log(imageDisplay);
                 imageDisplay.src = selectedImage
                 // console.log("Selected Color:", selectedColor);
-
-
 
                 fetch(BASE_URL + '?act=get-size-by-color&variant_id=' + selectedColor)
                     .then(response => response.json())
@@ -1139,8 +1044,8 @@
                                 // console.log(quantityTotal);
                                 // Tạo đường dẫn mới
                                 const newPath = `${BASE_URL}?act=view-detail&color=${selectedColor}&size=${selectedSize}`;
-                                console.log("New Path:", newPath);
-
+                                // console.log("New Path:", newPath);
+                                
                                 // Cập nhật lịch sử trình duyệt mà không tải lại trang
                                 history.pushState(null, "", newPath);
 
@@ -1155,28 +1060,6 @@
             });
         });
 
-        // Khởi tạo giá hiển thị với màu đã chọn mặc định
-        // const checkedColor = document.querySelector('.inputColor:checked');
-        // if (checkedColor) {
-        //     priceDisplay.textContent = checkedColor.getAttribute('data-price');
-        // }
-        // const quantityInput = document.querySelector('.quantity-product'); // Lấy phần tử input duy nhất
-
-        //                                 const decreasePro = () => {
-        //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
-        //                                     if (currentValue > 1) { // Đảm bảo không giảm xuống dưới 1
-        //                                         quantityInput.value = currentValue - 1; // Giảm số lượng
-        //                                     }
-        //                                 }
-
-        //                                 const increasePro = () => {
-        //                                     let currentValue = parseInt(quantityInput.value); // Lấy giá trị hiện tại
-        //                                     if(currenValue < quantityTotal ){
-        //                                         quantityInput.value = currentValue + 1;
-        //                                     } else{
-        //                                         alert("Vượt qu")
-        //                                     }
-        //                                 }
     });
 </script>
 

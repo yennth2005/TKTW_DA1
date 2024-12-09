@@ -378,7 +378,7 @@
                                             <li><label>Diet Type :</label>Vegetarian</li>
                                             <li><label>Speciality :</label>Gluten Free, Sugar Free</li>
                                         </ul>
-                                        <p class="cr-price"><span class="new-price"><?= number_format($product['new_price']) ?></span> <span
+                                        <p class="cr-price"><span class="new-price"><?= number_format($product['new_price']) . "VND"?></span> <span
                                                 class="old-price"><?= number_format($product['sale_price']) ?></span></p>
                                     </div>
                                 </div>

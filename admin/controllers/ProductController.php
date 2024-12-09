@@ -204,11 +204,8 @@ class ProductControllerAdmin
             echo "<p>Lỗi: File không được tải lên đúng cách.</p>";
             return;
         }
-
         $filename = uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
-
         $uploadDir = __DIR__ . '/../../uploads/Products/';
-
         if (!file_exists($uploadDir)) {
             if (!mkdir($uploadDir, 0777, true)) {
                 echo "<h1>Tải ảnh thất bại</h1>";
@@ -230,14 +227,15 @@ class ProductControllerAdmin
     }
     public function saveSize()
     {
-        $variant_id = $_GET['variant-id']; // Lấy variant_id từ URL
-        $size_value = $_POST['size']; // Lấy kích cỡ từ form
+        $variant_id = $_GET['variant-id']; 
+        $size_value = $_POST['size']; 
         $quantity = $_POST['quantity']; // Lấy số lượng từ form
         $product = $_POST['product-id'];
         // Thêm kích cỡ vào cơ sở dữ liệu
         $this->proAdminModel->insertSizeVariant($size_value, $quantity, $variant_id);
 
         // Quay lại trang danh sách biến thể
+        $_SESSION['success']="Thêm thành công";
         header("Location: ?act=view-detail-pro&id=" . $product);
         exit();
     }
@@ -245,13 +243,52 @@ class ProductControllerAdmin
     public function deleteVariant()
     {
         $product = $_GET['product-id'];
-        $size_id = $_GET['size-id'];
-        $this->proAdminModel->deleteVariant($size_id);
+        // $size_id = $_GET['size-id'];
+        // $this->proAdminModel->deleteVariant($size_id);
         $_SESSION['success']="Xoá thành công";
         header("Location: ?act=view-detail-pro&id=" . $product);
     }
     public function updateVariant()
     {
+        
+            $variant_id = $_GET['variant-id'];
+            $product_id=$_POST['product_id'];
+            $color = $_POST['color'];
+            $price = $_POST['price'];
+            $sale = $_POST['sale'];
+            $image = $_POST['imageData'];
+            if (isset($_FILES['image'])) {
+                if ($_FILES['name']['error'] == UPLOAD_ERR_OK) {
+                    $uploadDir = __DIR__ . '/../../uploads/Products/';
+                    $fileName = basename($_FILES['image']['name']);
+                    $uploadFile = $uploadDir . $fileName;
+                    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+                        // echo "<h1>Uploaded</h1>";
+                        $relativePath = "uploads/Products/" . $fileName;
+                        $image = $relativePath;
+                        // echo "<p>Image URL: <a href='$images'>$images</a></p>";
+                    } else {
+                        echo "<h1>Error uploading file</h1>";
+                    }
+                }
+            } 
+            $this->proAdminModel->updateColor($color,$image,$price,$sale,$variant_id);
+            $_SESSION['success'] = "Cập nhật thành công";
+            header("Location: ?act=view-detail-pro&id=" . $product_id);
+            exit();
+        
+    }
+
+    public function updateSize(){
+
+            $size_id = $_GET['size-id'];
+            $product_id=$_POST['product_id'];
+            $size = $_POST['size'];
+            $quantity = $_POST['quantity'];
+            $this->proAdminModel->updateSize($size,$quantity,$size_id);
+            $_SESSION['success'] = "Cập nhật thành công";
+            header("Location: ?act=view-detail-pro&id=" . $product_id);
+            exit();
         
     }
     // public function saveSize()
