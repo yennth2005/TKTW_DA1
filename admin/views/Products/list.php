@@ -399,7 +399,6 @@
                                             <tr>
                                                 <td>ID</td>
                                                 <td>Tên sản phẩm</td>
-                                                <td>Mô tả</td>
                                                 <td>Lượt xem</td>
                                                 <td>Danh mục</td>
                                                 <td>Số lượng biến thể</td>
@@ -417,7 +416,6 @@
                                                     <td><a
                                                             href="?act=add-variants&product-id=<?= $product['product_id'] ?>"><?= $product['product_name'] ?></a>
                                                     </td>
-                                                    <td><?= $product['description'] ?></td>
                                                     <td><?= $product['view'] ?></td>
                                                     <td><?= $product['category_id'] ?></td>
                                                     <td><?= $product['variant_quantity'] ?></td>

@@ -120,7 +120,10 @@ class HomeController
             'Tím' => 'violet',
             'Xanh nhạt' => '#0dcaf0',
             'Nâu' => 'brown',
-            'Xanh' => 'blue'
+            'Xanh' => 'blue',
+            'Đen'=>'black',
+            'Ghi'=>'gray',
+            "Xám"=>'gray'
         ];
         require_once './views/trangchinh/trang-chi-tiet.php';
     }
