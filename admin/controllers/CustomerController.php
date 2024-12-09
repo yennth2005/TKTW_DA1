@@ -99,7 +99,7 @@ class CustomerController
         } else {
             $image = $customer['image'];
         }
-        ;
+        
 
         $this->customerModel->edit($id, $name, $email, $password, $image, $address, $phone, $role, $create_at);
         header("Location:" . BASE_URL_ADMIN . "?act=list-user");

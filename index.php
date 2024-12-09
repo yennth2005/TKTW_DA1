@@ -23,7 +23,7 @@ match ($act) {
     'search'=>$homeController->search(),
     'filter'=>$homeController->filter(),
     'add-comment'=>$homeController->addComments(),
-    // 'update-comment'=>$homeController->updateComment(),
+    'update-comment'=>$homeController->updateComment(),
     //tài khoản
     'register' => $homeController->register(),
     'post-info-register' =>$homeController->postInfo(),

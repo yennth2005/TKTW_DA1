@@ -186,11 +186,11 @@
                 <div class="col-xxl-6 col-xl-12">
                     <h1>Thông tin người nhận</h1>
                     <span>
-                        <h6><b>Khách hàng: </b><?= $orderDetail['recipient_name'] ?></h6>
+                        <h6><b>Khách hàng: </b><?= $order['recipient_name'] ?></h6>
                     </span>
-                    <span><b>Số điện thoại: </b><?= $orderDetail['recipient_phone'] ?></span> <br>
-                    <span><b>Địa chỉ: </b><?= $orderDetail['recipient_address'] ?></span> <br>
-                    <span><b>Lời nhắn: </b><?= $orderDetail['comments'] ?></span> <br>
+                    <span><b>Số điện thoại: </b><?= $order['recipient_phone'] ?></span> <br>
+                    <span><b>Địa chỉ: </b><?= $order['recipient_address'] ?></span> <br>
+                    <span><b>Lời nhắn: </b><?= $order['comments'] ?></span> <br>
                 </div>
                 <div class="col-xxl-6 col-xl-12">
                     <div class="timeline">
@@ -208,85 +208,159 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xxl-6 col-xl-12">
-                    <?php foreach ($orderItems as $item): ?>
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-1">
-                                    <img style="padding: 40px 0px 0px 20px" width="100px" height="100px"
-                                        src="<?= $item['image'] ?>" class="img-fluid rounded-start" alt="Product Image">
-                                </div>
-                                <div class="col-md-11">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="card-title"><a
-                                                    href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
-                                            </h5>
+            <div class="col-xxl-6 col-xl-12">
+    <?php foreach ($orderItems as $item): ?>
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-1">
+                    <img style="padding: 40px 0px 0px 20px" width="100px" height="100px"
+                         src="<?= $item['image'] ?>" class="img-fluid rounded-start" alt="Product Image">
+                </div>
+                <div class="col-md-11">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">
+                                <a href="?act=view-detail&color=<?= $item['variant_id'] ?>"><?= $item['product_name'] ?></a>
+                            </h5>
+                        </div>
+                        <p class="card-text">Màu: <span class="text-default fw-bold"><?= $item['color'] . "-" . $item['size_value'] ?></span></p>
+                        <p class="card-text">Giá: <span class="text-danger fw-bold"><?= number_format($item['price']) . "đ" ?></span></p>
+                        <p class="card-text">Số lượng: <span class="text-info fw-bold">x <?= $item['quantity'] ?></span></p>
 
-                                        </div>
-                                        <p class="card-text">Màu: <span
-                                                class="text-default fw-bold"><?= $item['color'] . "-" . $item['size_value'] ?></span>
-                                        </p>
-                                        <p class="card-text">Giá: <span
-                                                class="text-danger fw-bold"><?= number_format($item['price']) . "đ" ?></span>
-                                        </p>
-                                        <p class="card-text">Số lượng: <span class="text-info fw-bold">x
-                                                <?= $item['quantity'] ?></span>
-                                        </p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span class="fw-bold">Tổng tiền: <span class="text-success"><?= number_format($item['price'] * $item['quantity']) . "đ" ?></span></span>
+                        </div>
 
-                                        <div class="d-flex justify-content-between align-items-center mt-4">
-                                            <span class="fw-bold">Tổng tiền: <span
-                                                    class="text-success"><?= number_format($item['price'] * $item['quantity']) . "đ" ?></span></span>
-
-                                        </div>
+                        <?php if($order['state_id']=="4"){
+                        $viewComment = $comments[$item['id']] ?? null; 
+                        if (!$viewComment){ ?>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $item['id'] ?>" data-bs-whatever="@getbootstrap">Đánh giá</button>
+                        <?php }else{ ?>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal<?= $item['id'] ?>" data-bs-whatever="@getbootstrap">Xem đánh giá</button>
+                        <?php }} ?>
+                           
+                        <!-- Modal Đánh giá -->
+                        <div class="modal fade" id="exampleModal<?= $item['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Đánh giá sản phẩm</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <form id="ratingForm" action="?act=add-comment" method="POST">
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Tiêu đề:</label>
+                                                <input type="text" class="form-control" name="title" id="recipient-name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Nội dung:</label>
+                                                <input type="text" class="form-control" name="content" id="recipient-name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="review-section">
+                                                    
+                                                    <input type="hidden" name="rating" id="rating" value="">
+                                                    <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                                    <input type="hidden" name="order_id" value="<?= $item['order_id'] ?>">
+                                                    <input type="hidden" name="order_item_id" value="<?= $item['id'] ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                            <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        
-                    <?php endforeach; ?>
-                </div>
 
-                <div class="col-xxl-6 col-xl-12">
-                    <div class="container mt-5">
-                        <h3>Tổng Kết Đơn Hàng</h3>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Tổng tiền hàng</td>
-                                    <td class="text-right">
-                                        <?= $order['total_amount'] - 20000 >= 200000 ? number_format($order['total_amount']) . "đ" : number_format(($order['total_amount']) - 20000) . "đ" ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Phí vận chuyển</td>
-                                    <td class="text-right">+<?= number_format(20000) . "đ" ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Giảm giá phí vận chuyển</td>
-                                    <td class="text-right text-danger">
-                                        <?= $order['total_amount'] - 20000 >= 200000 ? "-20,000đ" : "-0đ" ?>
-                                    </td>
-                                </tr>
-                                <tr class="total-row">
-                                    <td>Thành tiền</td>
-                                    <td class="text-right text-success">
-                                        <b><?= number_format($order['total_amount']) . "đ" ?></b>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Phương thức Thanh toán</td>
-                                    <td class="text-right">
-                                        <?= $order['payment_method'] == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán trực tuyến" ?>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
+                        <!-- Modal Xem đánh giá -->
+                        <?php 
+                         if($order['state_id']=="4"){
+                        if ($viewComment){ ?>
+                        <div class="modal fade" id="updateModal<?= $item['id'] ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="updateModalLabel">Sửa đánh giá sản phẩm</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form id="ratingForm" action="?act=update-comment&id=<?= $viewComment['comment_id'] ?>" method="POST">
+                                        <!-- <?php var_dump($viewComment['comment_id']) ?> -->
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Tiêu đề:</label>
+                                                <input type="text" class="form-control" name="title" id="recipient-name" value="<?=  $viewComment['title'] ?>" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Nội dung:</label>
+                                                <input type="text" class="form-control" name="content" id="recipient-name" value="<?= $viewComment['content'] ?>" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="review-section">
+                                                    <input type="hidden" name="rating" id="rating" value="">
+                                                    <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                                    <input type="hidden" name="order_id" value="<?= $item['order_id'] ?>">
+                                                    <input type="hidden" name="order_item_id" value="<?= $item['id'] ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                            <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <?php }} ?>
                     </div>
                 </div>
-
             </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+    <div class="col-xxl-6 col-xl-12">
+        <div class="container mt-5">
+            <h3>Tổng Kết Đơn Hàng</h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Tổng tiền hàng</td>
+                        <td class="text-right">
+                            <?= $order['total_amount'] - 20000 >= 200000 ? number_format($order['total_amount']) . "đ" : number_format(($order['total_amount']) - 20000) . "đ" ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phí vận chuyển</td>
+                        <td class="text-right">+<?= number_format(20000) . "đ" ?></td>
+                    </tr>
+                    <tr>
+                        <td>Giảm giá phí vận chuyển</td>
+                        <td class="text-right text-danger">
+                            <?= $order['total_amount'] - 20000 >= 200000 ? "-20,000đ" : "-0đ" ?>
+                        </td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Thành tiền</td>
+                        <td class="text-right text-success">
+                            <b><?= number_format($order['total_amount']) . "đ" ?></b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phương thức Thanh toán</td>
+                        <td class="text-right">
+                            <?= $order['payment_method'] == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán trực tuyến" ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
         </div>
 
     </section>

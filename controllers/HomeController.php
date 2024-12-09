@@ -57,19 +57,26 @@ class HomeController
         $customer_id = $_SESSION['user']['customer_id'];
         $product_id = $_POST['product_id'];
         $order_id = $_POST['order_id'];
+        $order_id = $_POST['order_id'];
+        $order_item_id = $_POST['order_item_id'];
         $title = $_POST['title'];
         $content = $_POST['content'];
         $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
         $create_at = date("Y-m-d H:i:s");
-    
-        if ($title && $content && $rating >= 1 && $rating <= 5) {
-            $this->homeModel->insertComment($title, $content, $customer_id, $product_id,$order_id, $create_at, $rating);
-            $_SESSION['success'] = "Gửi bình luận thành công";
-            header("Location: " .$_SERVER['HTTP_REFERER']);
-        } else {
-            echo "Có lỗi xảy ra. Vui lòng kiểm tra lại!";
-            header("Location: " .$_SERVER['HTTP_REFERER']);
-        }
+
+        $this->homeModel->insertComment($title, $content, $customer_id, $product_id,$order_item_id, $create_at, $rating);
+        $_SESSION['success'] = "Gửi bình luận thành công";
+        header("Location: ?act=view-detail-order&order-id=".$order_id);
+    }
+    public function updateComment(){
+        $comment_id = $_GET['id'];
+        $order_id = $_POST['order_id'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $date = date("Y-m-d");
+        $this->homeModel->updateComment($title,$content,$date,$comment_id);
+        $_SESSION['success']="Cập nhật thành công";
+        header("Location: ?act=view-detail-order&order-id=".$order_id);
     }
     //view category
     public function viewProductByCategogy()
@@ -235,7 +242,7 @@ class HomeController
 
             if (isset($_FILES['image'])) {
                 if ($_FILES['name']['error'] == UPLOAD_ERR_OK) {
-                    $uploadDir = __DIR__ . '/../../uploads/Customer/';
+                    $uploadDir = __DIR__ . '/../uploads/Customer/';
                     $fileName = basename($_FILES['image']['name']);
                     $uploadFile = $uploadDir . $fileName;
                     if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
@@ -263,17 +270,18 @@ class HomeController
 
     public function changePassword()
     {
+        $customer_id = $_GET['id'];
         require_once 'views/taikhoan/thay-doi-mat-khau.php';
     }
     public function doneChanged()
     {
-        $customer_id = $_SESSION['user']['customer_id'];
+        $customer_id = $_POST['customer_id'];
         var_dump($customer_id);
         $password = $_POST['new_pass'];
         $passwordCheck = $_POST['new_pass_check'];
         $code = null;
-        if (strlen($password) < 8) {
-            $_SESSION['error'] = "Mật khẩu ít nhất 8 kí tự";
+        if (strlen($password) < 6) {
+            $_SESSION['error'] = "Mật khẩu ít nhất 6 kí tự";
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit;
         } elseif ($passwordCheck !== $password) {
@@ -283,15 +291,12 @@ class HomeController
         } else {
             $this->homeModel->updatePasswordByCode($code,$customer_id);
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            if ($this->homeModel->changePass($passwordHash, $customer_id)) {
-                $_SESSION['success'] = "Thay đổi mật khẩu thành công";
-                header("Location: ?act=login");
-            } else {
-                $_SESSION['error'] = "Có lỗi xảy ra khi cập nhật mật khẩu.";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
-            }
+            $this->homeModel->changePass($passwordHash, $customer_id);
+            $_SESSION['success'] = "Thay đổi mật khẩu thành công";
+            header("Location: ?act=login");
+            
         }
-        session_unset();
+        // session_unset();
     }
     //CART
 
@@ -698,24 +703,24 @@ private function createNewCart($customerId, $variantId, $sizeId, $quantity, $pri
     {
         $cates = $this->homeModel->getAllCate();
         $customer_id = $_SESSION['user']['customer_id'];
-        $order = $this->homeModel->selectOrderByCustomer($customer_id);
-        // var_dump($cart);
-        
+        $orders = $this->homeModel->selectOrderByCustomer($customer_id);
+        // var_dump($order);
+        foreach($orders as $order ){
+            $orderDetails = $this->homeModel->showDetailOrder($order['order_id']);
+        }
         //lấy ra danh sách đơn hàng chung
         $orderItems = $this->homeModel->showOrder($customer_id);
         // $totalOrder = $this->homeModel->getTotalFromOrder($order['order_id']);
         foreach($orderItems as $item){
-            $viewComment =$this->homeModel->selectCommentByOrder($item['order_id']);
-            // var_dump($viewComment);
+            
         }
         // var_dump($stateItem);
         // echo "<pre>";
-        // print_r($orderItems);
+        // print_r($order);
         // echo "</pre>";
         require_once 'views/gio-hang/don-hang.php';
     }
 
-    ///////////XEM CHI TIẾT ĐƠN MUA (info customer, info status, info products)
     public function viewDetailOrder()
     {
         $cates = $this->homeModel->getAllCate();
@@ -724,7 +729,7 @@ private function createNewCart($customerId, $variantId, $sizeId, $quantity, $pri
         // var_dump($cart);
         //lấy ra danh sách đơn hàng chung
         $order_id = $_GET['order-id'];
-        $orderDetail = $this->homeModel->selectOrderByCustomer($order_id);
+        // var_dump($orderDetail);
         // $totalOrder = $this->homeModel->getTotalFromOrder($order['order_id']);
         //chi tiết trạng thái
         $historyState = $this->homeModel->getHistoryDetail($order_id);
@@ -734,18 +739,14 @@ private function createNewCart($customerId, $variantId, $sizeId, $quantity, $pri
         $order = $this->homeModel->findOrder($order_id);
         // lấy thông tin nguoiwf nhận, lấy thông tin lịch sử trạng thái theo orderId
         // lấy thông tin từng sp theo orderId
-        // foreach($orderItems as $item){
-        //     echo "<pre>";
-        // print_r($item);
-        // echo "</pre>";
-        // }
-        //              echo "<pre>";
-        // print_r($orderDetail);
-        // echo "</pre>";
+        $comments = [];
+        foreach ($orderItems as $item) {
+            $comments[$item['id']] = $this->homeModel->selectCommentByOrder($item['id']);
+            
+        }
 
         require_once 'views/gio-hang/chi-tiet-don-hang.php';
     }
-
     /////////////////HUỶ ĐƠN HÀNG//////////////////////
     //////////khi huỷ đơn hàng thì chuyển trạng thái và thêm trạng thái đó vào history state ngoài ra sẽ cộng lại số
     //////////số lượng sản phẩm đã mua trở lại
@@ -834,7 +835,7 @@ private function createNewCart($customerId, $variantId, $sizeId, $quantity, $pri
             }
             elseif($code == $customerInfo['code']){
                 $_SESSION['success']="Xác minh thành công!";
-                require_once 'views/taikhoan/thay-doi-mat-khau.php';
+                header("Location: ?act=change-password&id=".$customer_id);
                 exit;
             }else{
                 $_SESSION['error']="Mã xác minh không hợp lệ!";
@@ -843,7 +844,6 @@ private function createNewCart($customerId, $variantId, $sizeId, $quantity, $pri
             }
         }
     }
-
 
     // public function handleForgot() {
     //     if (isset($_POST['btn_submit'])) {
