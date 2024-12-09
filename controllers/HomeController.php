@@ -13,6 +13,7 @@ class HomeController
         $products = $this->homeModel->listPro();
         $cates = $this->homeModel->getAllCate();
         $catePro = $this->homeModel->cateProduct();
+        $posts = $this->homeModel->getAllBlog();
         // var_dump($products);
         require_once './views/home.php';
     }
@@ -64,19 +65,20 @@ class HomeController
         $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
         $create_at = date("Y-m-d H:i:s");
 
-        $this->homeModel->insertComment($title, $content, $customer_id, $product_id,$order_item_id, $create_at, $rating);
+        $this->homeModel->insertComment($title, $content, $customer_id, $product_id, $order_item_id, $create_at, $rating);
         $_SESSION['success'] = "Gửi bình luận thành công";
-        header("Location: ?act=view-detail-order&order-id=".$order_id);
+        header("Location: ?act=view-detail-order&order-id=" . $order_id);
     }
-    public function updateComment(){
+    public function updateComment()
+    {
         $comment_id = $_GET['id'];
         $order_id = $_POST['order_id'];
         $title = $_POST['title'];
         $content = $_POST['content'];
         $date = date("Y-m-d");
-        $this->homeModel->updateComment($title,$content,$date,$comment_id);
-        $_SESSION['success']="Cập nhật thành công";
-        header("Location: ?act=view-detail-order&order-id=".$order_id);
+        $this->homeModel->updateComment($title, $content, $date, $comment_id);
+        $_SESSION['success'] = "Cập nhật thành công";
+        header("Location: ?act=view-detail-order&order-id=" . $order_id);
     }
     //view category
     public function viewProductByCategogy()
@@ -193,15 +195,15 @@ class HomeController
             if (password_verify($_POST['password'], $data['password'])) {
                 $_SESSION['user'] = $data;
                 $_SESSION['success'] = "Đăng nhập thành công! Chào mừng " . $data['name'];
-                header("Location: ".BASE_URL);
+                header("Location: " . BASE_URL);
                 exit;
             } else {
-                $_SESSION['error_password'] = "Mật khẩu không đúng"; 
-                header("Location: ".$_SERVER['HTTP_REFERER']);
+                $_SESSION['error_password'] = "Mật khẩu không đúng";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit;
             }
         } else {
-            $_SESSION['error_email'] = "Email không tồn tại"; 
+            $_SESSION['error_email'] = "Email không tồn tại";
         }
 
         $error_email = "";
@@ -289,12 +291,12 @@ class HomeController
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit;
         } else {
-            $this->homeModel->updatePasswordByCode($code,$customer_id);
+            $this->homeModel->updatePasswordByCode($code, $customer_id);
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
             $this->homeModel->changePass($passwordHash, $customer_id);
             $_SESSION['success'] = "Thay đổi mật khẩu thành công";
             header("Location: ?act=login");
-            
+
         }
         // session_unset();
     }
@@ -341,10 +343,10 @@ class HomeController
                 $productInfo = $this->homeModel->selectItemFromVariantId($variantId);
                 if ($cartItem) {
                     $newQuantity = $cartItem['quantity'] + $quantity;
-                    if($newQuantity <=$productInfo['quantity']){
+                    if ($newQuantity <= $productInfo['quantity']) {
                         $updateResult = $this->homeModel->updateCartItemQuantity($cartItem['cart_item_id'], $newQuantity);
-                        
-                    }else{
+
+                    } else {
                         $_SESSION['error'] = "Vượt quá số lượng tồn kho";
                         header('Location: ' . $_SERVER['HTTP_REFERER']);
 
@@ -593,14 +595,14 @@ class HomeController
         $customer_id = $_SESSION['user']['customer_id'];
         $orders = $this->homeModel->selectOrderByCustomer($customer_id);
         // var_dump($order);
-        foreach($orders as $order ){
+        foreach ($orders as $order) {
             $orderDetails = $this->homeModel->showDetailOrder($order['order_id']);
         }
         //lấy ra danh sách đơn hàng chung
         $orderItems = $this->homeModel->showOrder($customer_id);
         // $totalOrder = $this->homeModel->getTotalFromOrder($order['order_id']);
-        foreach($orderItems as $item){
-            
+        foreach ($orderItems as $item) {
+
         }
         // var_dump($stateItem);
         // echo "<pre>";
@@ -630,7 +632,7 @@ class HomeController
         $comments = [];
         foreach ($orderItems as $item) {
             $comments[$item['id']] = $this->homeModel->selectCommentByOrder($item['id']);
-            
+
         }
 
         require_once 'views/gio-hang/chi-tiet-don-hang.php';
@@ -686,48 +688,49 @@ class HomeController
     {
         require_once 'views/taikhoan/quen-mat-khau.php';
     }
-    public function handleForgot(){
-        if(isset($_POST['btn_submit'])){
-            if($_POST['email']){
+    public function handleForgot()
+    {
+        if (isset($_POST['btn_submit'])) {
+            if ($_POST['email']) {
                 $email = $_POST['email'];
                 $check = $this->homeModel->checkExistCustomer($email);
-                if($email != $check['email']){
+                if ($email != $check['email']) {
                     $_SESSION['error'] = "Email không tồn tại";
-                    header("Location: ".$_SERVER['HTTP_REFERER']);
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
                 }
                 $dataCustomer = $this->homeModel->checklogin();
                 $codeVerify = generateRandomNumber();
-                sendResetPasswordMail($_POST['email'],$codeVerify);
-                $updatePassword = $this->homeModel->updatePasswordByCode($codeVerify,$dataCustomer['customer_id']);
-                if($updatePassword){
+                sendResetPasswordMail($_POST['email'], $codeVerify);
+                $updatePassword = $this->homeModel->updatePasswordByCode($codeVerify, $dataCustomer['customer_id']);
+                if ($updatePassword) {
                     $_SESSION['success'] = 'Mã đã được gửi về Email của bạn!';
-                    $_SESSION['hienthi'] = 100; 
+                    $_SESSION['hienthi'] = 100;
                     require_once 'views/taikhoan/quen-mat-khau.php';
-                }else{
+                } else {
                     $_SESSION['error'] = 'Có lỗi xảy ra';
-                    header("Location:" .$_SERVER['HTTP_REFERER']);
+                    header("Location:" . $_SERVER['HTTP_REFERER']);
                 }
             }
         }
     }
 
-    public function checkCodeVerify(){
-        if(isset($_POST['btn_submit'])){
+    public function checkCodeVerify()
+    {
+        if (isset($_POST['btn_submit'])) {
             $customer_id = $_POST['customer_id'];
             $code = $_POST['code'];
             $customerInfo = $this->homeModel->getCustomerInfo($customer_id);
             if (strlen($customerInfo['code']) < 2) {
                 $_SESSION['error'] = 'Vui lòng thử lại';
-                $_SESSION['hienthi'] = 100; 
+                $_SESSION['hienthi'] = 100;
                 require_once 'views/taikhoan/quen-mat-khau.php';
-            }
-            elseif($code == $customerInfo['code']){
-                $_SESSION['success']="Xác minh thành công!";
-                header("Location: ?act=change-password&id=".$customer_id);
+            } elseif ($code == $customerInfo['code']) {
+                $_SESSION['success'] = "Xác minh thành công!";
+                header("Location: ?act=change-password&id=" . $customer_id);
                 exit;
-            }else{
-                $_SESSION['error']="Mã xác minh không hợp lệ!";
-                header("Location: ".$_SERVER['HTTP_REFERER']);
+            } else {
+                $_SESSION['error'] = "Mã xác minh không hợp lệ!";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit;
             }
         }
@@ -738,7 +741,7 @@ class HomeController
     //         if (!empty($_POST['email'])) { // Kiểm tra xem email có được nhập hay không
     //             $email = $_POST['email'];
     //             $dataCustomer = $this->homeModel->checkExistCustomer($email); // Chuyển email vào hàm kiểm tra
-                
+
     //             // Kiểm tra xem email có tồn tại không
     //             if (!$dataCustomer || $email != $dataCustomer['email']) {
     //                 $_SESSION['error'] = "Email không tồn tại";
@@ -748,7 +751,7 @@ class HomeController
 
     //             $codeVerify = generateRandomNumber();
     //             sendResetPasswordMail($email, $codeVerify);
-                
+
     //             // Cập nhật mã xác minh trong cơ sở dữ liệu
     //             $updatePassword = $this->homeModel->updatePasswordByCode($codeVerify, $dataCustomer['customer_id']);
     //             if ($updatePassword) {
@@ -764,5 +767,14 @@ class HomeController
     //         }
     //     }
     // }
-    
+
+    //blogs
+
+    public function showBlogsDetail($id)
+    {
+        $post = $this->homeModel->getBlogById($id);
+        // var_dump($id);
+        require './views/trangchinh/trang-bai-viet.php';
+    }
+
 }

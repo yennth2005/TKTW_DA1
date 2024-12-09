@@ -1,6 +1,6 @@
 <div class="cr-sidebar" data-mode="light">
     <div class="cr-sb-logo">
-        <a href="<?= BASE_URL?>" class="sb-full"><img
+        <a href="<?= BASE_URL ?>" class="sb-full"><img
                 src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/logo/logoDA1-removebg-preview.png" alt="logo"></a>
         <a href="index.html" class="sb-collapse"><img
                 src="<?= BASE_URL_ADMIN_VIEW ?>assets/img/logo/logo2-removebg-preview.png" alt="logo"></a>
@@ -25,7 +25,8 @@
                                     class="ri-checkbox-blank-circle-line"></i>Đơn hàng</a></li>
                         <li><a href="index.php?act=list-comment" class="cr-page-link drop"><i
                                     class="ri-checkbox-blank-circle-line"></i>Bình luận</a></li>
-
+                        <li><a href="index.php?act=list-blogs" class="cr-page-link drop"><i
+                                    class="ri-checkbox-blank-circle-line"></i>Bài viết</a></li>
                     </ul>
                 </li>
 
