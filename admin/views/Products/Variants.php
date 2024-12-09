@@ -395,83 +395,263 @@
                             <div class="cr-card-content ">
                                 <div class="table-responsive">
 
-
-                                    <table class="table table-striped">
+                                    <table class="table">
                                         <thead>
-
                                             <tr>
-                                                <td>Mã thuộc tính</td>
-                                                <td>Hình ảnh</td>
-                                                <td>Màu sắc</td>
-                                                <td>Kích cỡ</td>
-                                                <td>Giá gốc</td>
-                                                <td>Giá khuyến mãi</td>
-                                                <td>Tổng số hàng</td>
-                                                <td>Hành động</td>
+                                                <th>Mã màu</th>
+                                                <th>Hình ảnh</th>
+                                                <th>Màu sắc</th>
+                                                <th>Giá gốc</th>
+                                                <th>Giá khuyến mãi</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($products as $product) { ?>
-                                                <tr>
-                                                    <td><?= $product['variant_id'] ?></td>
-                                                    <td><img src="<?= BASE_URL.$product['image'] ?>" width="100px" alt=""></td>
-                                                    <td><?= $product['color'] ?></td>
-                                                    <td><?= $product['size_value'] ?></td>
-                                                    <td><?= number_format($product['price']) ?> VND</td>
-                                                    <td><?= number_format($product['sale']) ?> VND</td>
-                                                    <td><?= $product['quantity'] ?></td>
-                                                    <td>
-                                                        <a href="?act=delete-variant&size-id=<?= $product['size_id'] ?>&product-id=<?= $product['product_id']?>" class="btn btn-danger mr-1">Xoá</a>                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        <button data-bs-target="#exampleModal<?= $product['variant_id'] ?>"
-                                                            data-bs-whatever="@getbootstrap">Thêm kích cỡ</button>
+                                            <?php
+                                            $currentProductId = null;
+                                            foreach ($products as $product) {
 
-                                                        <div class="modal fade"
-                                                            id="exampleModal<?= $product['variant_id'] ?>" tabindex="-1"
-                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                            Thêm biến thể mới</h1>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
+                                                if ($currentProductId !== $product['variant_id']) {
+                                                    $currentProductId = $product['variant_id'];
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $product['variant_id'] ?></td>
+                                                        <td><img src="<?= BASE_URL . $product['image'] ?>" width="100px" alt="">
+                                                        </td>
+                                                        <td><?= $product['color'] ?></td>
+                                                        <td><?= number_format($product['price']) ?> VND</td>
+                                                        <td><?= number_format($product['sale']) ?> VND</td>
+                                                        <td>
+                                                            <a class="btn btn-primary" data-bs-toggle="collapse"
+                                                                href="#collapse<?= $product['variant_id'] ?>" role="button"
+                                                                aria-expanded="false"
+                                                                aria-controls="collapse<?= $product['variant_id'] ?>">
+                                                                Chi tiết
+                                                            </a>
+                                                            <!-- sửa màu -->
+                                                            <button type="button" class="btn btn-warning"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#updateexampleModal<?= $product['variant_id'] ?>">
+                                                                Sửa
+                                                            </button>
+
+                                                            <div class="modal fade" id="updateexampleModal<?= $product['variant_id'] ?>"
+                                                                tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                                                Cập nhật màu</h1>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form method="POST" enctype="multipart/form-data"
+                                                                                action="?act=update-color&variant-id=<?= $product['variant_id'] ?>" >
+                                                                                <div class="mb-3">
+                                                                                    <label for="size" class="col-form-label">Giá trị:</label>
+                                                                                    <input type="text" class="form-control"
+                                                                                        id="color" name="color" required
+                                                                                        value="<?= $product['color'] ?>">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="size" class="col-form-label">Hình ảnh:</label>
+                                                                                    <input type="file" class="form-control"
+                                                                                        id="image" name="image">
+                                                                                    <input type="hidden" name="imageData" value="<?= $product['image'] ?>">
+                                                                                    <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                                                                </div>
+                                                                                <input type="hidden"
+                                                                                    value="<?= $product['product_id'] ?>"
+                                                                                    name="product-id">
+                                                                                <div class="mb-3">
+                                                                                    <label for="quantity"
+                                                                                        class="col-form-label">Giá gốc</label>
+                                                                                    <input type="number" class="form-control"
+                                                                                        id="price" name="price"
+                                                                                        value="<?= $product['price'] ?>"
+                                                                                        required>
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label for="quantity"
+                                                                                        class="col-form-label">Giá khuyến mãi</label>
+                                                                                    <input type="number" class="form-control"
+                                                                                        id="sale" name="sale"
+                                                                                        value="<?= $product['sale'] ?>"
+                                                                                        required>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-secondary"
+                                                                                        data-bs-dismiss="modal">Đóng</button>
+                                                                                    <button type="submit" name="btn_submit"
+                                                                                        class="btn btn-primary">Cập
+                                                                                        nhật</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="modal-body">
-                                                                        <form method="POST"
-                                                                            action="?act=add-size&variant-id=<?= $product['variant_id'] ?>">
-                                                                            <div class="mb-3">
-                                                                                <label for="size" class="col-form-label">Giá
-                                                                                    trị:</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    id="size" name="size" required>
-                                                                            </div>
-                                                                            <input type="hidden" value="<?= $product['product_id']?>" name="product-id">
-                                                                            <div class="mb-3">
-                                                                                <label for="quantity"
-                                                                                    class="col-form-label">Số lượng:</label>
-                                                                                <input type="number" class="form-control"
-                                                                                    id="quantity" name="quantity" required>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button"
-                                                                                    class="btn btn-secondary"
-                                                                                    data-bs-dismiss="modal">Đóng</button>
-                                                                                <button type="submit"
-                                                                                    class="btn btn-primary">Thêm</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                    
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
+                                                            <!-- end sửa màu -->
+                                                            <a href="?act=delete-variant&variant-id=<?= $product['variant_id'] ?>&product-id=<?= $product['product_id'] ?>"
+                                                                class="btn btn-danger mr-1">Xoá</a>
+                                                            <!-- Thêm size mới -->
+                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModal<?= $product['variant_id'] ?>">
+                                                                Thêm kích cỡ
+                                                            </button>
 
+                                                            <div class="modal fade"
+                                                                id="exampleModal<?= $product['variant_id'] ?>" tabindex="-1"
+                                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                                                Thêm biến thể mới</h1>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form method="POST"
+                                                                                action="?act=add-size&variant-id=<?= $product['variant_id'] ?>">
+                                                                                <div class="mb-3">
+                                                                                    <label for="size" class="col-form-label">Giá
+                                                                                        trị:</label>
+                                                                                    <input type="text" class="form-control"
+                                                                                        id="size" name="size" required>
+                                                                                </div>
+                                                                                <input type="hidden"
+                                                                                    value="<?= $product['product_id'] ?>"
+                                                                                    name="product-id">
+                                                                                <div class="mb-3">
+                                                                                    <label for="quantity"
+                                                                                        class="col-form-label">Số lượng:</label>
+                                                                                    <input type="number" class="form-control"
+                                                                                        id="quantity" name="quantity" required>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-secondary"
+                                                                                        data-bs-dismiss="modal">Đóng</button>
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">Thêm</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end thêm size mới -->
+                                                        </td>
+                                                    </tr>
+                                                    <!-- chi tiết size -->
+
+                                                    <tr class="collapse" id="collapse<?= $product['variant_id'] ?>">
+                                                        <td colspan="6">
+                                                            <div class="card card-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Mã kích cỡ</th>
+                                                                            <th>Kích cỡ</th>
+                                                                            <th>Số lượng</th>
+                                                                            <th>Hành động</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <?php } ?>
+                                                                    <tr>
+                                                                        <td><?= $product['size_id'] ?></td>
+                                                                        <td><?= $product['size_value'] ?></td>
+                                                                        <td><?= $product['quantity'] ?></td>
+                                                                        <td>
+                                                                            <!-- xoá size -->
+                                                                            <a class="btn btn-outline-danger"
+                                                                                href="?act=delete-size&size-id=<?= $product['size_id'] ?>">Xoá</a>
+                                                                            <!-- sửa size -->
+                                                                            <button type="button"
+                                                                                class="btn btn-outline-warning"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#exampleModal<?= $product['size_id'] ?>">
+                                                                                Sửa
+                                                                            </button>
+
+                                                                            <div class="modal fade"
+                                                                                id="exampleModal<?= $product['size_id'] ?>"
+                                                                                tabindex="-1"
+                                                                                aria-labelledby="exampleModalLabel"
+                                                                                aria-hidden="true">
+                                                                                <div class="modal-dialog">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h1 class="modal-title fs-5"
+                                                                                                id="exampleModalLabel">
+                                                                                                Cập nhật size</h1>
+                                                                                            <button type="button"
+                                                                                                class="btn-close"
+                                                                                                data-bs-dismiss="modal"
+                                                                                                aria-label="Close"></button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <form method="POST"
+                                                                                                action="?act=update-size&size-id=<?= $product['size_id'] ?>">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="size"
+                                                                                                        class="col-form-label">Giá
+                                                                                                        trị:</label>
+                                                                                                    <input type="text"
+                                                                                                        class="form-control"
+                                                                                                        id="size"
+                                                                                                        name="size" required
+                                                                                                        value="<?= $product['size_value'] ?>">
+                                                                                                </div>
+                                                                                                <input type="hidden"
+                                                                                                    value="<?= $product['product_id'] ?>"
+                                                                                                    name="product_id">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="quantity"
+                                                                                                        class="col-form-label">Số
+                                                                                                        lượng:</label>
+                                                                                                    <input type="number"
+                                                                                                        class="form-control"
+                                                                                                        id="quantity"
+                                                                                                        name="quantity"
+                                                                                                        value="<?= $product['quantity'] ?>"
+                                                                                                        required>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button"
+                                                                                                        class="btn btn-secondary"
+                                                                                                        data-bs-dismiss="modal">Đóng</button>
+                                                                                                    <button type="submit" name="btn_submit"
+                                                                                                        class="btn btn-primary">Cập
+                                                                                                        nhật</button>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <?php
+                                                                    if (next($products) === false || current($products)['variant_id'] !== $product['variant_id']) {
+                                                                        ?>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
+                                            } ?>
+                                        </tbody>
                                     </table>
+
                                 </div>
                             </div>
                         </div>
