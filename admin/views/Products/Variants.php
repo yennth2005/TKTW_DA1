@@ -393,10 +393,12 @@
                     <div class="col-md-12">
                         <div class="cr-card card-default product-list">
                             <div class="cr-card-content ">
+
                                 <div class="table-responsive">
 
                                     <table class="table">
                                         <thead>
+                                        <center><a href="?act=add-variants&product-id=<?= $product_id?>" class="btn btn-success">Thêm màu mới</a></center>
                                             <tr>
                                                 <th>Mã màu</th>
                                                 <th>Hình ảnh</th>

@@ -296,17 +296,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-sm-6 col-6 cr-product-box banner-480 mb-24">
-                            <div class="cr-ice-cubes">
-                                <img src="views/assets/img/product/product-banner.jpg" alt="product banner" />
-                                <div class="cr-ice-cubes-contain">
-                                    <h4 class="title">Juicy</h4>
-                                    <h5 class="sub-title">Fruits</h5>
-                                    <span>100% Natural</span>
-                                    <a href="shop-left-sidebar.html" class="cr-button">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-12 mb-24">
@@ -316,7 +306,7 @@
                                 <div class="cr-product-card">
                                     <div class="cr-product-image">
                                         <div class="cr-image-inner zoom-image-hover">
-                                            <img src="<?= $pro['image'] ?>" alt="product-1" />
+                                            <img src="<?= $pro['image'] ?>" height="300px" alt="product-1" />
                                         </div>
                                         <div class="cr-side-view">
                                             <a href="#" class="wishlist">

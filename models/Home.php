@@ -84,6 +84,7 @@ class Home
                 c.category_id,
                 p.product_name, 
                 p.product_id, 
+                p.view,
                 p.image, 
                 MIN(v.variant_id) as color_id, 
                 MIN(v.price) as new_price,
@@ -93,7 +94,7 @@ class Home
                 JOIN variants v 
                 ON p.product_id = v.product_id
                 GROUP BY p.product_id
-                ORDER BY p.product_id
+                ORDER BY p.view DESC
                 LIMIT 8";
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

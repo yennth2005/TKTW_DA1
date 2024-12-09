@@ -12,7 +12,8 @@ class ProductAdmin{
             JOIN `variants` v ON p.product_id = v.product_id 
             JOIN size_variants sv ON v.variant_id = sv.variant_id
             GROUP BY p.product_id 
-            HAVING variant_quantity>=0 " ;
+            ORDER BY p.view DESC
+            " ;
     $stmt=$this->cnt->query($sql);
     $data=$stmt->fetchAll();
     return $data;

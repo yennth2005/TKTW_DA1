@@ -243,7 +243,7 @@
                                 <div class="cr-product-card">
                                     <div class="cr-product-image">
                                         <div class="cr-image-inner zoom-image-hover">
-                                            <img src="<?= $product['image'] ?>" alt="product-1">
+                                            <img src="<?= $product['image'] ?>" height="300px" alt="product-1">
                                         </div>
                                         <div class="cr-side-view">
                                             <a href="javascript:void(0)" class="wishlist">
@@ -293,7 +293,7 @@
                                 <div class="cr-product-card">
                                     <div class="cr-product-image">
                                         <div class="cr-image-inner zoom-image-hover">
-                                            <img src="<?= $product['image'] ?>" alt="product-1">
+                                            <img src="<?= $product['image'] ?>" height="300px" alt="product-1">
                                         </div>
                                         <div class="cr-side-view">
                                             <a href="javascript:void(0)" class="wishlist">
@@ -343,7 +343,7 @@
                                 <div class="cr-product-card">
                                     <div class="cr-product-image">
                                         <div class="cr-image-inner zoom-image-hover">
-                                            <img src="<?= $product['image'] ?>" alt="product-1">
+                                            <img src="<?= $product['image'] ?>" height="300px" alt="product-1">
                                         </div>
                                         <div class="cr-side-view">
                                             <a href="javascript:void(0)" class="wishlist">
