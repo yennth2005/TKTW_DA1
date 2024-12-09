@@ -267,7 +267,8 @@ class HomeController
     }
     public function doneChanged()
     {
-        $customer_id = $_GET['customer_id'];
+        $customer_id = $_SESSION['user']['customer_id'];
+        var_dump($customer_id);
         $password = $_POST['new_pass'];
         $passwordCheck = $_POST['new_pass_check'];
         $code = null;
@@ -289,9 +290,8 @@ class HomeController
                 $_SESSION['error'] = "Có lỗi xảy ra khi cập nhật mật khẩu.";
                 header("Location: " . $_SERVER['HTTP_REFERER']);
             }
-            session_unset();
-            exit;
         }
+        session_unset();
     }
     //CART
 

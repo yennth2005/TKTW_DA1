@@ -174,7 +174,7 @@
                         <div class="col-lg-8">
                             <div class="col-md-24">
                                 <a  
-                                    href="?act=change-password&id=<?= $_SESSION['user']['customer_id'] ?>" class="btn btn-success">Thay đổi mật khẩu
+                                    href="?act=change-password" class="btn btn-success">Thay đổi mật khẩu
                                 </a>
 
                             </div>
@@ -191,7 +191,7 @@
                                         </div>
                                         <div class="avatar-preview cr-preview">
                                             <div class="imagePreview cr-div-preview">
-                                                <img class="cr-image-preview" src="<?= isset($customer['image']) ? BASE_URL . $customer['image'] : 'views/assets/img/account.png'?>"
+                                                <img class="cr-image-preview" src="<?= isset($customer['image']) ? BASE_URL.$customer['image'] : 'views/assets/img/account.png'?>"
                                                     alt="edit">
                                             </div>
                                         </div>
